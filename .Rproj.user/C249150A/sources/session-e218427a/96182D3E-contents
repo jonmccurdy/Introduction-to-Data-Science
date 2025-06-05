@@ -34,7 +34,7 @@ format:
   html:
     theme: cosmo
     css: 
-      - callout_custom.scss
+      - callout_custom.css
       - style.css
       - webex.css
     include-in-header: webex.js

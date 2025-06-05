@@ -3,7 +3,7 @@
     "path": "~/Data-200-Book/_quarto.yml",
     "project_path": "_quarto.yml",
     "type": "yaml",
-    "hash": "3633877583",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1746327168628.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "2,2",
-        "scrollLine": "0"
+        "cursorPosition": "41,27",
+        "scrollLine": "11"
     },
     "folds": "",
-    "lastKnownWriteTime": 1749137371,
+    "lastKnownWriteTime": 1749141464,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1749137371428,
+    "last_content_update": 1749141464368,
     "read_only": false,
     "read_only_alternatives": []
 }

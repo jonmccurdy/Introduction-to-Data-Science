@@ -341,7 +341,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="callout_custom.scss">
+<link rel="stylesheet" href="callout_custom.css">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="webex.css">
 </head>
@@ -810,12 +810,12 @@ length</code></pre>
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>), <span class="dv">7</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
 <span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Female" "Female" "Female" "Male"   "Male"   "Male"   "Female"</code></pre>
+<pre><code>[1] "Male"   "Male"   "Female" "Male"   "Female" "Male"   "Female"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>fx <span class="ot">&lt;-</span> <span class="fu">factor</span>(x)</span>
 <span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>fx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] Female Female Female Male   Male   Male   Female
+<pre><code>[1] Male   Male   Female Male   Female Male   Female
 Levels: Female Male</code></pre>
 </div>
 </div>
@@ -856,13 +856,13 @@ Levels: Female Male</code></pre>
 <div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Small"</span>, <span class="st">"Medium"</span>, <span class="st">"Large"</span>), <span class="dv">7</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
 <span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Medium" "Small"  "Large"  "Medium" "Large"  "Large"  "Medium"</code></pre>
+<pre><code>[1] "Large"  "Medium" "Medium" "Large"  "Large"  "Medium" "Medium"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>fy <span class="ot">&lt;-</span> <span class="fu">factor</span>(y, <span class="at">ordered=</span><span class="cn">TRUE</span>)</span>
 <span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>fy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] Medium Small  Large  Medium Large  Large  Medium
-Levels: Large &lt; Medium &lt; Small</code></pre>
+<pre><code>[1] Large  Medium Medium Large  Large  Medium Medium
+Levels: Large &lt; Medium</code></pre>
 </div>
 </div>
 <p>This is obviously not what we want. When we go to a restaurant and order a side of fries, we expect the Large to be bigger than the Medium which is bigger than the Small. To have the levels end up in the correct order, we will want to use the ‘levels’ argument and pass it a vector of the correct ordering. When you do this, the spelling has to be the same (even the capitalization) for R to recognize it. Now that we have an ordered factor, we can compare values using logical operators.</p>
@@ -870,7 +870,7 @@ Levels: Large &lt; Medium &lt; Small</code></pre>
 <div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>fy <span class="ot">&lt;-</span> <span class="fu">factor</span>(y, <span class="at">ordered=</span><span class="cn">TRUE</span>, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Small"</span>, <span class="st">"Medium"</span>, <span class="st">"Large"</span>))</span>
 <span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>fy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] Medium Small  Large  Medium Large  Large  Medium
+<pre><code>[1] Large  Medium Medium Large  Large  Medium Medium
 Levels: Small &lt; Medium &lt; Large</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(fy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -886,7 +886,7 @@ Levels: Small &lt; Medium &lt; Large</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>fy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] Medium Small  Large  Medium Large  Large  Medium
+<pre><code>[1] Large  Medium Medium Large  Large  Medium Medium
 Levels: Small &lt; Medium &lt; Large</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(fy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -896,7 +896,7 @@ Levels: Small &lt; Medium &lt; Large</code></pre>
 <div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(fy) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"mini"</span>, <span class="st">"regular"</span>, <span class="st">"huge"</span>)</span>
 <span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>fy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] regular mini    huge    regular huge    huge    regular
+<pre><code>[1] huge    regular regular huge    huge    regular regular
 Levels: mini &lt; regular &lt; huge</code></pre>
 </div>
 </div>

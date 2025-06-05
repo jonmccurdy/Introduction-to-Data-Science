@@ -341,7 +341,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="callout_custom.scss">
+<link rel="stylesheet" href="callout_custom.css">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="webex.css">
 </head>
@@ -708,7 +708,7 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="dv">50</span>,<span class="dv">8</span>)</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_mode</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 52.0592</code></pre>
+<pre><code>[1] 49.55185</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">col=</span><span class="st">"lightblue"</span>, <span class="at">freq=</span><span class="cn">FALSE</span>)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(x), <span class="at">col=</span><span class="st">"red"</span>)</span>
@@ -1002,11 +1002,11 @@ $quart
 <div class="cell">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skew</span>(<span class="fu">rgamma</span>(<span class="dv">500</span>,<span class="dv">2</span>,<span class="at">scale=</span><span class="dv">5</span>)) <span class="co"># Have shown this to be skewed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.140197</code></pre>
+<pre><code>[1] 1.352424</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skew</span>(<span class="fu">rnorm</span>(<span class="dv">500</span>,<span class="dv">0</span>,<span class="dv">2</span>)) <span class="co"># Have shown this to be symmetric</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.08838256</code></pre>
+<pre><code>[1] 0.207754</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skew</span>(mtcars<span class="sc">$</span>mpg) <span class="co"># Have shown this to be moderately skewed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
