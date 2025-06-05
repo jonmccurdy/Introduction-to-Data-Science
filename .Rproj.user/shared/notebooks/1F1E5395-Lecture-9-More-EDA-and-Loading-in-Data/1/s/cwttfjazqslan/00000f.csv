@@ -1,0 +1,6 @@
+"0","Data_200_df$state_f <- factor(Data_200_df$state)"
+"0","Data_200_df$year_f <- factor(Data_200_df$year)"
+"0","Data_200_df$majors_f <- factor(Data_200_df$majors)"
+"0",""
+"0","Data_200_df$sport_f <- as.factor(Data_200_df$sport)"
+"0","levels(Data_200_df$sport_f) <- c(""No"", ""Yes"")"

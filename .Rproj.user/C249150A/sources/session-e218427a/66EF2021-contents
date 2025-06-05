@@ -1,0 +1,211 @@
+# Exploratory Data Analysis
+
+The Data Science Life-cycle consists of procuring the data, tidying the data to make it workable, and then repeatedly transforming, visualizing, and modeling the data until our results are finalized to how we would like them. After we are happy with the results, we then have to communicate the information to our respective audience. For this class, we will focus on transforming the data, visualizing the data, and communicating the data. Future classes will emphasize "tidying" large datasets and building models to better describe data.
+
+## The Basics of EDA
+
+Whenever we start working with a new dataset for the first time, we will want to carry out Exploratory Data Analysis (EDA) to understand what we are looking at. Some questions we may ask ourselves are: What does the data represent, What does the data look like, and Are there any problems (missing or unusual) with the data values? These questions will help us complete the first goal of EDA. We should note that these goals were designed/created by Professor Portier and they will not be found online or in other literature. The first goal, which will help us understand what our data is, can be seen below:
+
+-   **Goal One: Getting to know the Data**
+    -   Step One: What is the data?
+    -   Step Two: Logical vs Physical
+    -   Step Three: Data Conditions
+    -   Step Four: Data Preparation
+    -   Step Five: Initial Summary
+    -   Step Six: Data Visualization
+
+## Step 1: What is the Data?}
+
+We can attempt to answer Step One: What is the Data, by looking at the logical structure (metadata) of the data. Normally datasets come with documentation that tells us how the data was captured, what the attributes are that are being measured, and the data types and units present in the dataset. This will be helpful to look at as a first glance of the dataset to understand what we are working with. There are a few datasets that we will regularly use in R, one is the "datasets" library (built into R) and the other in the "openintro" library. To access a library for the first time we need to install the package using the *install.packages()* function. We will only need to do this once. After we have the package installed, we will need to use the *library()* function every time we start a new session (or RMarkdown file) to access the functions/datasets inside the package. To learn more about the packages we can use the *help()* function.
+
+
+```{r}
+#| eval: false
+
+help(package = "datasets") # Datasets built-in to R
+install.packages("openintro") # Installing a package- only do once
+library(openintro) # Loading library into environment- do every session
+help(package = "openintro") # Datasets in openintro library
+```
+
+```{r}
+#| echo: false
+
+library(openintro) # Loading library into environment- do every session
+
+```
+
+\begin{watch}{}{}
+    \href{https://youtu.be/6UPqEI9-uFE}{Installing Packages and Loading Libraries}
+\end{watch}
+
+## Step 2: Logical vs. Physical
+
+In Step Two: Logical vs Physical, we will want to make sure the documentation and the actual data match up. We will want to check that the number of variables and observations is the same in both places. To do this we can use the *help()* function to read the documentation and the *str()* function to look at the actual structure of the dataframe. Comparing both is an important step, especially when we start working with large "real-world" datasets. If the documentation and the data do not match up then we should be wary about working with the dataset as it might be missing vital information.
+
+```{r}
+#| eval: false
+
+help(mtcars) # Reading the documentation
+str(mtcars) # Looking at the dataset structure
+```
+
+```{r}
+#| echo: false
+
+str(mtcars) # Looking at the dataset structure
+```
+
+\begin{watch}{}{}
+    \href{https://youtu.be/e70L-Zy__0I}{Looking at the Logical vs. Physical}
+\end{watch}
+
+## Special Values in R}
+
+After we have confirmed that the documentation and the data align with each other, we will want to investigate if there is anything unusual with the data. For instance, are there any missing or special values? A few special values that we might encounter are missing data (indicated as **NA*), non-numeric data (indicated as *NaN* which stands for Not a Number), and extreme values that are beyond the computer's limits (indicated as $\pm$ *Inf*). Below we can see a few missing values when we look at the structure of the "airquality" dataset, as well as other ways in which we might encounter special values. Notice how in R the value $-42/0$ is $-\infty$ but in math we would consider it Undefined.
+
+```{r}
+str(airquality)
+
+c(2^8392, -42/0, 0/0)
+```
+
+\begin{watch}{}{}
+    \href{https://youtu.be/nkYpKiHXc0o}{Special Values we may see in R}
+\end{watch}
+
+## Step 3: Data Conditions
+
+For large datasets, we will not want to scan the whole dataset to see if missing values are present though. Thankfully, we can determine if a dataset or specific column has missing values present by using the *is.na()* function. This will return a logical vector of TRUE and FALSE depending on if the individual elements are *NA*. We can then sum up the logical vector to determine how many missing values are present.
+
+```{r}
+sum(is.na(airquality$Ozone))
+sum(is.na(airquality$Solar.R))
+sum(is.na(airquality$Wind))
+```
+
+If we want to investigate where the missing values occur we could use the *which()* function to identify the elements that are missing.
+
+```{r}
+head(airquality$Ozone, 10)
+
+is.na(head(airquality$Ozone, 10))
+
+which(is.na(head(airquality$Ozone, 10)))
+```
+
+\begin{watch}{}{}
+    \href{https://youtu.be/Gj_-ZS9wH6c}{Identifying Missing Values}
+\end{watch}
+
+It may also be a good idea to print out the unique values to see if there are any missing or unusual values. To do this, we can use the *unique()* function as well as the *sort()* function. One other thing we might look for the an outlier value. For instance, 999 might indicate a missing value if all other values are around 20. Another thing we will note is that some functions will not work properly if missing values exist. If this is the case then we might need to specify the argument *na.rm*=TRUE to remove the missing values before running the function.
+
+```{r}
+sort(unique(airquality$Ozone), na.last=TRUE)
+
+range(airquality$Ozone)
+range(airquality$Ozone, na.rm=TRUE)
+
+mean(airquality$Ozone)
+mean(airquality$Ozone, na.rm=TRUE)
+```
+
+We can see how many complete observations we have using the *complete.cases()* function. This will return TRUE if all of the observations in a row are present and FALSE if a missing value is detected. This will be beneficial so we can see if all of the missing values are in a few observations or if they are spread throughout the dataset. In addition to this, we could calculate the number of complete rows as well as how many observations have missing values by using the *sum()* function. If we are interested in the proportion of observations that are complete then we can use the *mean()* function. This will calculate the mean of the TRUEs (1) and FALSEs (0) and return the proportion of TRUEs that we have.
+
+```{r}
+head(airquality)
+
+head(complete.cases(airquality))
+
+sum(complete.cases(airquality))
+nrow(airquality) - sum(complete.cases(airquality))
+sum(!complete.cases(airquality))
+
+mean(complete.cases(airquality))
+sum(complete.cases(airquality)) / nrow(airquality)
+```
+
+Finally, the last thing we may want to do in this step is to display all of the complete cases so that no missing values are present. To do this, we can pass the logical vector into our index-selection brackets. In the example below, notice how the 5th and 6th observation containing *NA* are no longer present:
+
+```{r}
+head(airquality[complete.cases(airquality),])
+```
+
+\begin{watch}{}{}
+    \href{https://youtu.be/Qqs3RrHd4xQ}{Identifying Missing Observations}
+\end{watch}
+
+## Step 4: Data Preparation
+
+In Step Four: Data Preparation, we will begin to alter the dataset to better represent certain columns. For instance, does one of our columns need to be changed from quantitative to categorical? We might also be interested in adding new columns based on the data or just generally cleaning it up to help us gain information from the dataset. One thing we might do is replace implicit missing value if, after talking to an expert they inform us the value is not correct or missing. For instance, if we talked to an expert and they said that the Ozone should not be 168 but should be a missing value instead then we can make that change.
+
+```{r}
+airquality$Ozone[airquality$Ozone == 168] <- NA
+sort(unique(airquality$Ozone), na.last = TRUE)
+```
+
+We will very rarely make changes to missing values in this course. Instead, we will most likely just filter them out from our calculations using the argument *na.rm=*TRUE. In Data 210 we will learn different options of how to replace them. 
+
+If we want to convert a variable to a different type then we can using the different data type's function in R. Most of these will be of the form *as.type()* where "type" is replaced by the data type we are aiming for. So, if we want to convert a vector to numeric then we would use *as.numeric()*. If we wanted a character or logical vector instead we would say *as.character()* or *as.logical()*. For converting vector to a factor we could use *factor()*. 
+
+To see an example of this we will look at the "beaver2" dataset, specifically at the "activ" variable. Looking at the documentation it seems "activ" is an indicator variable (either 0 or 1) which may be better suited to be a factor instead of an integer. So, we will go through the process of converting the vector into a factor. When we do this though, we do not want to change the column in R, rather we will create a new column to store the changed value. This way if we make a mistake the original data will still be present. So, to re-iterate... **don't overwrite your column!!!** If we do happen to over-write a dataset in R then we can get the original dataset back by using the command *data("name of dataset")* and it will reload the original into your environment.
+
+```{r}
+str(beaver2)
+unique(beaver2$activ)
+
+beaver2$activ_f <- factor(beaver2$activ)
+levels(beaver2$activ_f) <- c("No", "Yes")
+str(beaver2)
+```
+
+\begin{watch}{}{}
+    \href{https://youtu.be/fAcw4RpMgzU}{Altering a Variable}
+\end{watch}
+
+Sometimes it is helpful to convert a quantitative variable into a categorical variable by placing the data into different categories. To do this, we will "cut" the data into ranges and assign each value a category. An example of this can be seen below using the *cut()* function.
+
+```{r}
+range(airquality$Ozone, na.rm=TRUE)
+cut(airquality$Ozone, breaks=seq(0,150,by=25))
+
+airquality$Ozone_cat <- cut(airquality$Ozone, breaks=seq(0,150,by=25))
+summary(airquality[,c(1,7)])
+```
+
+\begin{watch}{}{}
+    \href{https://youtu.be/3qMzvNiGmd4}{Using the \textit{cut()} Function to create a new variable}
+\end{watch}
+
+## Step 5: Initial Summary
+
+Step Five: Initial Summary is all about displaying a summary of the dataset to get some insight into how the data is spread out and where the center of each variable is. We will want to look at the results and ask ourselves what information we can gain from it. To procure a summary of a dataset, simply use the *summary()* function. The output will be a 5-number summary (with the mean included) along with how many missing values are in each variable.
+
+```{r}
+summary(airquality)
+```
+
+
+\begin{watch}{}{}
+    \href{https://youtu.be/lDZzsabI2xw}{Using the \textit{summary()} Function}
+\end{watch}
+
+## Step 6: Data Visualization
+
+And finally, the last step we want to do is Step Six: Data Visualizations. In this step, we want to visualize the quantitative data with a histogram using the *hist()* function and visualize the categorical data with barplots using the *barplot()* function. For categorical data, we will need to use the *table()* function to summarize the data first. And as we move throughout the course, we will introduce different visualization techniques which will help us understand the data.
+
+```{r}
+hist(airquality$Ozone, freq = FALSE)
+lines(density(airquality$Ozone, na.rm=TRUE))
+```
+
+```{r}
+table(airquality$Ozone_cat)
+barplot(table(airquality$Ozone_cat))
+```
+
+\begin{watch}{}{}
+    \href{https://youtu.be/SqOE-rSd-_U}{Creating Basic Visualizations}
+\end{watch}
+
+Exploratory Data Analysis, and in particular these 6 steps, is something we should carry out every time we start working with new datasets. We do not want to jump into analyzing a dataset without knowing what it looks like or if changes need to be made. After a while, these steps will become second nature to us and we will be able to carry them out relatively quickly.

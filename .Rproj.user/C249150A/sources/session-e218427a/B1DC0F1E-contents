@@ -1,0 +1,170 @@
+# R Basics
+
+As Data Scientists, we will not have to calculate everything by hand, but rather we will rely on a statistical programming language called R. This is an open-source language (meaning anyone can contribute to it) designed to clean, analyze, and present data. Before you begin coding in R you should note that syntax rules do apply and it is an interpreted language (meaning you can run it line by line). One of the benefits of R (and why we are learning it) is that it is a popular, powerful, and flexible language used by Data Scientists throughout the industry. 
+
+## The R Language
+
+The language is maintained by the Comprehensive R Archive Network (CRAN) and can be downloaded from their website (\url{https://cran.r-project.org}). Since R is an open-source language, community members can write their own programs and submit them to CRAN for the whole community to use. Because of this, R is constantly evolving and you can almost always find a library or a package that will do the analysis you need it to do. If you have not already downloaded R to your device then I would recommend doing so now so that you can follow along with the rest of this lecture. A picture of the R console can be seen below:
+
+![](images/L3-R-console.png){fig-align="center"}
+
+\begin{watch}{}{}
+    \href{https://youtu.be/TP9KX50x6a0}{Downloading and Installing R}
+\end{watch}
+
+Just because we can run all types of analysis on a dataset does not mean that we should though, as you will not use all of the ingredients in your pantry when you make dinner just because they are available to you. You need to understand **what you are doing** when you run code or analyze datasets. You should know what your dataset contains and the different data types that you have. You should know the quality of your data and if there are any underlying problems with the dataset, and you should know if any relationships might exist within the dataset.
+
+Knowing all of these things will not only help us in writing code to analyze the data, but it will make our lives easier and save us time. A famous phrase (possibly coined by Army specialist William Mellin) tells us "Garbage in... Garbage out". He expanded on this phrase with the following explanation: "If the problem has been sloppily programmed the answer will be just as incorrect. If the programmer made mistakes the machine will make mistakes. It can't correct them because it can't do one thing: It can't think for itself."
+
+## Starting to Code
+
+The R Console will be where we will "submit" our code to be run line by line. Any code you wish to run should be placed after the > symbol. Let's open up R and type in *Hello R* and see what happens. We should get an error telling us that there is an unexpected symbol present. This is because R does not understand what the word *Hello* means. If we want to type in characters/words/strings then we need to do so inside of quotation marks (either "double" quotes or 'single' quotes). Below is an example of what your results may look like. Note that for the rest of this course, I will use the green box to represent the R console to display the code/output.
+
+```{r}
+#| eval: FALSE
+Hello R
+```
+<span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error: unexpected symbol in &quot;Hello R&quot;</span>
+
+```{r} 
+"Hello R"
+'Hello R'
+```
+
+Before we continue running code in R, it is important to go over some quick housekeeping notes. To begin, you will place your code after the >. If you see a + on the left-hand side, it means that R is expecting something more to end the previous line (maybe you are missing a quotation mark or parenthesis). Anything you put after # will be considered a comment and nothing on the line after # will run. It is also important to realize that R is case sensitive so Mydata and mydata are different. If you ever would like to access any previous commands then you have them re-appear using the up and down arrows on your keyboard. Finally, if you are ever unsure about the exact command syntax then R will help you finish typing the commands (tab completion). 
+
+```{r}
+#| eval: FALSE
+> "I am Dr. McCurdy
++ and I forgot a quotation mark"
+```
+```{r}
+#| echo: FALSE
+"I am Dr. McCurdy
+and I forgot a quotation mark"
+```
+
+```{r}
+# Words after the pound sign will not run since it is a comment
+2 + 3 # Adding 2 numbers together
+```
+
+\begin{watch}{}{}
+    \href{https://youtu.be/Wf7Qwbr9Nko}{Starting to Code with R}
+\end{watch}
+
+## Understanding Error Messages
+
+It is also probably time to discuss some of the things that can go wrong when inputting code. The first that might occur (and the most obvious) is a **syntax error**. This means that you have submitted invalid code (maybe a forgotten comma, an "open" bracket, or misspelled a function name/variable) and R returns an error message. It is important to **read the error message**! About 95% of the time it will be easy to identify your mistake and fix it. We will see some common syntax errors later on in the course as we get to new material. 
+
+Another error that you might make is a **semantic error**. This occurs when your code is technically correct but it does not do what you expected it to do. For instance, if you are trying to find the mean of a dataset with 10 items and you divide by 11 instead, then R will run it just fine, but you didn't calculate the mean. These semantic errors are hard to find and figure out, but it does help to run your code **line by line** to identify where the unexpected result occurs. **When in doubt explain your code to a rubber duck!** (this means that looking at your code line by line and trying to explain it usually helps you identify the mistake)
+
+## Using R as a Calculator
+
+To get started with R, we should think of it as a calculator. Any mathematical operations we wish to do we can. Below are a few examples of the commands we can use:
+
+```{r}
+# Addition and Subtraction: use + and -
+7 + 3 - 19 + 8
+
+# Multiplication and Division: use * and /
+3 * 8 / 7
+
+# Exponentiation: use ^
+4 ^ 5
+
+# Parenthesis for grouping calculated expressions: use ()
+(3 + 5)/3
+
+# Integer Division (floor): use %/%
+18 %/% 7
+
+# Modulus (remainder): use %%
+18 %% 7
+
+# Example showing how the floor and remainder function work:
+18/7
+
+18 %/% 7 + 18%%7 / 7
+```
+
+R follows the standard Order of Operations, with the order going P-E-\%-MD-AS. This means that R will always carry out items in the **Parenthesis** before going on to things outside of the parenthesis. Next, R will look for **Exponentiation**, with the operations being carried out from right to left. This means that $2 \wedge 2 \wedge 3$ is not $4 \wedge 3$ but rather $2\wedge8$. Any special function indicated with a \% will be next. Then **Multiplication** and **Division** are evaluated left to right (which is typical) with **Addition** and **Subtraction** being evaluated last (also left to right). It may take some getting used to, so I always recommend putting more parenthesis than is required so that you can have peace of mind that the calculation is what you intended it to be.
+
+As a practice, I encourage you to try evaluating the following mathematical expressions. When doing so make sure that you use parenthesis to group operations together. It is better to use too many parentheses while we are learning the language instead of trying to write a minimal solution.
+
+For values that contain a certain number of significant figures (usually more than 7), R will represent the results in scientific notation. This is represented with an $e$, which stands for $\times 10^n$. For instance, $3.21\times 10^{-7}$ is represented in R as $3.21e-7$.
+
+```{r}
+102938303820387203828373
+
+.00000002828
+
+2.31e-2
+
+3.9282e12
+```
+
+## Variables
+
+In addition to using R as a calculator, we can also save values as **variables**. Variables will allow us to provide a reference (a name) so that we can reuse the value later. To create a variable we will use the $<$- operator (also called the assignment operator) with the value we want to save "pointing" at the variable name. Like everything else in R, variables are case-sensitive so we should make them short and meaningful so that they are easy to type in over and over. We will be able to name them anything we want, as the names can contain letters, numbers, periods, or even underscores.
+
+```{r}
+value1 <- 3
+value2 <- 5
+value1
+value1 + value2
+```
+
+
+```{r}
+#| eval: FALSE
+value3 # will have a syntax error since value3 does not exist
+```
+<span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error: object &#39;value3&#39; not found</span>
+
+
+```{r}
+value3 <- value1*value2
+value3
+```
+
+These variables will allow us to save results for later use. If we anticipate having to type in a calculation multiple times then we might as well create a variable (type once; use often). It should be mentioned that some variable names are "off-limit", such as the name of R functions and commands. We will discuss that later in more detail though.
+
+```{r}
+x <- 1*2 + 3*4 + 5*6 + 7*8
+y <- 9^3 + 8^3
+z <- (5 + 3^2) ^2
+
+x * y
+
+y / z
+```
+
+
+## The R Environment
+
+We interact with R through environments. Think of it as filing cabinets. If we define a variable called x in one drawer (let's call it Drawer 1), then when we open up Drawer 2 we will not be able to find x. This is because it is not in Drawer 2, it is in Drawer 1. This is known as a workspace, and most of the time we will be defining variables in the global environment, so we will not have to worry about different drawers. But, any variable that we initialize in R will remain in R as long as our session is still active. We can see what variables and objects currently exist in our environment with the *ls()* function.
+
+```{r}
+ls()
+
+ls(pattern="^val") # can search for certain patterns
+```
+
+If we ever need to remove a specific object in R from our workspace then we can do this with the *rm()* function. We should be careful with this though, as we cannot reverse the removal of a variable. If we need to clear our whole workspace then we can remove all objects with *rm(list=ls())*.
+
+```{r}
+x
+rm(x)
+```
+
+
+```{r}
+#| eval: FALSE
+x
+```
+<span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error: object &#39;x&#39; not found</span>
+
+
+If you need to close R then you can either close it by using the command *q()* or by just exiting the window. When you close R it will ask you if you want to "Save workspace image?". What this is asking is if you would like to save all of your current objects in R (all of the variables and functions you have made) and have them available to you in your future R sessions. If you select yes then it will be saved under your current directory under the file .RData. Most things we will be doing in this class will not need to be saved in this manner as it will be easy to recreate everything quickly if we do need something again.
+

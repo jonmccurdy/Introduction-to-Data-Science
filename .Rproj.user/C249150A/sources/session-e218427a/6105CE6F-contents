@@ -1,0 +1,104 @@
+# Preface {.unnumbered}
+
+```{r setup, include=FALSE}
+library(webexercises)
+```
+
+<div class="learning-goals">
+
+  - Understand the basics of regression analysis.
+  - Learn how to interpret p-values and confidence intervals.
+  - Apply regression in R to a real dataset.
+</div>
+
+This is a Quarto book.
+
+To learn more about Quarto books visit <https://quarto.org/docs/books>.
+
+```{r}
+1 + 1
+3+2
+```
+
+```{r}
+1 + 1
+3+2
+```
+
+```{r}
+linear_model <- lm(Sepal.Length ~ Sepal.Width, data=iris)
+summary(linear_model)
+```
+
+## Watch this video
+
+We can add a video fairly easily with the following code (modestbranding reduces logo and rel=0 does not suggest other channels when paused)
+
+(https://quarto.org/docs/authoring/videos.html)
+
+{{< video https://www.youtube.com/embed/iAF7APi_EgU?modestbranding=1&rel=0 >}}
+
+## Callout Boxes
+
+We can make callout boxes for note, warning, important, tip, and caution
+
+(https://quarto.org/docs/authoring/callouts.html)
+
+::: callout-note
+Note that there are five types of callouts, including: `note`, `warning`, `important`, `tip`, and `caution`.
+:::
+
+::: callout-tip
+## Tip with Title
+
+This is an example of a callout with a title.
+:::
+
+::: {.callout-caution collapse="true"}
+## Expand To Learn About Collapse
+
+This is an example of a 'folded' caution callout that can be expanded by the user. You can use `collapse="true"` to collapse it by default or `collapse="false"` to make a collapsible callout that is expanded by default.
+:::
+
+::: {.callout-tip title="Tip with Title"}
+This is a callout with a title.
+:::
+
+## Sample Questions for Students
+
+::: {.callout-tip title="Try it Out"}
+What is the output of `mean(c(1, 2, 3, 4, 5))` in R?
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+The output is `3`. This is because it calculates the arithmetic mean:\
+(1 + 2 + 3 + 4 + 5) / 5 = 15 / 5 = 3.
+:::
+:::
+
+## Creating Problems for Students to Try
+
+::: {.callout-tip title="Try it Out"}
+What is the output of `mean(c(1, 2, 3, 4, 5))` in R?
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+The output is `3`. This is because it calculates the arithmetic mean:\
+(1 + 2 + 3 + 4 + 5) / 5 = 15 / 5 = 3.
+
+</details>
+:::
+
+## Creating Quiz Questions for Students
+
+(https://web.mat.upc.edu/joaquim.puig/posts/webexercises-quiz/)
+
+-   **Numeric questions** How much is 2+3? `r fitb(2+3)`
+-   **Multiple Choice** Which is the capital city of Barbados? `r mcq(c(answer="Bridgetown", "Georgetown",             "Kingston", "Bridgerton"))`
+-   **True or False** Quarto is very cool `r torf(TRUE)`.
+-   **Fill in the Blank** What is the letter after D? `r fitb("E", ignore_case = TRUE)`.
+-   Type a vowel: `r fitb(c("A", "E", "I", "O" , "U"), ignore_case = TRUE)`
+-   Which function will help me find standard deviation for the code: `r fitb("sd")`(c(1,4,7,8,4))
+
+Testing 123

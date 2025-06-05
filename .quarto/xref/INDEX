@@ -1,0 +1,59 @@
+{
+  "index.qmd": {
+    "index.html": "8b23bd8d"
+  },
+  "intro.qmd": {
+    "intro.html": "67039a1b"
+  },
+  "summary.qmd": {
+    "summary.html": "9927d63f"
+  },
+  "references.qmd": {
+    "references.html": "eb7f95f0"
+  },
+  "Lecture-1-What-is-Data.qmd": {
+    "Lecture-1-What-is-Data.html": "f27c2468"
+  },
+  "Lecture-2-Data-Detectives.qmd": {
+    "Lecture-2-Data-Detectives.html": "ab9e9deb"
+  },
+  "Lecture-3-R-Basics.qmd": {
+    "Lecture-3-R-Basics.html": "8424d846"
+  },
+  "Lecture-4-R-and-Vectors.qmd": {
+    "Lecture-4-R-and-Vectors.html": "01d78927"
+  },
+  "Lecture-5-More-R.qmd": {
+    "Lecture-5-More-R.html": "46448eee"
+  },
+  "Lecture-6-Reproducibility-with-RMarkdown.qmd": {
+    "Lecture-6-Reproducibility-with-RMarkdown.html": "8c4b4ca4"
+  },
+  "Lecture-7-Dataframes-in-R.qmd": {
+    "Lecture-7-Dataframes-in-R.html": "23e8061d"
+  },
+  "Lecture-8-Exploratory-Data-Analysis.qmd": {
+    "Lecture-8-Exploratory-Data-Analysis.html": "8cba0f14"
+  },
+  "Lecture-9-More-EDA-and-Loading-in-Data.qmd": {
+    "Lecture-9-More-EDA-and-Loading-in-Data.html": "5a2faab5"
+  },
+  "Lecture-10-Probability-Distributions.qmd": {
+    "Lecture-10-Probability-Distributions.html": "11f378ce"
+  },
+  "Lecture-11-Describing-a-Distribution.qmd": {
+    "Lecture-11-Describing-a-Distribution.html": "cbd05966"
+  },
+  "Lecture-12-Central-Limit-Theorem.qmd": {
+    "Lecture-12-Central-Limit-Theorem.html": "54250790"
+  },
+  "Lecture-13-Confidence-Intervals.qmd": {
+    "Lecture-13-Confidence-Intervals.html": "0f9d77e5"
+  },
+  "Lecture-14-Hypothesis-Testing.qmd": {
+    "Lecture-14-Hypothesis-Testing.html": "8767c738"
+  },
+  "Lecture-15-Visualizations.qmd": {
+    "Lecture-15-Visualizations.html": "d4e44e0f"
+  }
+}

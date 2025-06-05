@@ -1,0 +1,21 @@
+# RMarkdown
+
+Switching gears, we are at the point of our Data Science journey where we want to focus on our communication skills so that we can inform others of our findings. To do this we will introduce the idea of **reproducibility** and a new feature called RMarkdown. Other people need to run our code and reproduce our findings. Because, generating results, no matter how noteworthy, are meaningless if they cannot be independently validated.
+
+Within R there are a few different ways for us to stay organized. One way is to use **scripts** in R which will allow us to save our code as a .R file and then run the whole file with one command. Another way is to use **text documents** to save your code as a .txt file, but we cannot run this with a single command. You need to find out what works for you! I normally create my code in the console and then I copy and paste it into a text file when I want to save it. Others open a script and can run it line by line in there, you will just have to play around and create your style. But, when you do code make sure you create it and run it line by line. Very rarely would we want to create multiple lines of code and then run it and "hope" for the best by running it all at once.
+
+\begin{watch}{}{}
+    \href{https://youtu.be/wwTJtW4s7yU}{Using Scripts and Text Files}
+\end{watch}
+
+## Reproducibility using RMarkdown
+
+Another system that students tend to like (and one we will be using) is RMarkdown. This is a file type in R that will allow us to place our code and comments/explanations side-by-side. We will then be able to "knit" (compile) the file together and it will output a Word document with the output displayed. We will go over this in class together, but to get started you will go to "File -$>$ New File -$>$ RMarkdown". You may need to install some packages on the first run (just accept them). It will then ask you to pick a Title for the document and an output format (just choose Word or HTML but not PDF). 
+
+RMarkdown relies on YAML (Yet Another Markup Language) so this may be similar to other Markup languages you may have used in other classes. We will just focus on the basics for now, but know that there is a lot of customization and implementations we could do. The Heading will determine the title, output format, and author/date (we will not need to alter anything in here). One aspect that we will be adding/altering is the R "Chunks". These are between the "` symbols and can be created by hitting the green "C" on the top right of the document. These are where we will place the R code (only the code, not the output!) that we want to run. Outside of the R chunks, we will place out explanations of the code/results so others can understand it. When we are done we will "Knit" it (top middle button) to make it into a Word or HTML document.
+
+"Knitting" the document will then compile the file. It will run your R code (or other languages if you specify it) and display the output directly following your code. This results in an organized and professional looking document without having to copy and paste our code/results.
+
+\begin{watch}{}{}
+    \href{https://youtu.be/Sm6aMty-xiE}{Using RMarkdown}
+\end{watch}
