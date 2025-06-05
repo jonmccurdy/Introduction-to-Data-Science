@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.29">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>11&nbsp; Describing a Distribution – Introduction to Data Science with R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Lecture-12-Central-Limit-Theorem.html" rel="next">
+<link href="./Lecture-10-Probability-Distributions.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="callout_custom.scss">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="webex.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Lecture-11-Describing-a-Distribution.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Describing a Distribution</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Introduction to Data Science with R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-1-What-is-Data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What is Data?</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-2-Data-Detectives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Detectives</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-3-R-Basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-4-R-and-Vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vectors and Factors in R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-5-More-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">More R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-6-Reproducibility-with-RMarkdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">RMarkdown</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-7-Dataframes-in-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dataframes in R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-8-Exploratory-Data-Analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-9-More-EDA-and-Loading-in-Data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Loading Data in R &amp; EDA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-10-Probability-Distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Probability Distributions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-11-Describing-a-Distribution.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Describing a Distribution</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-12-Central-Limit-Theorem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Central Limit Theorem</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-13-Confidence-Intervals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Confidence Intervals</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-14-Hypothesis-Testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-15-Visualizations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Visualizations</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#center-statistics" id="toc-center-statistics" class="nav-link active" data-scroll-target="#center-statistics"><span class="header-section-number">11.1</span> Center Statistics</a>
+  <ul class="collapse">
+  <li><a href="#measures-of-central-tendency" id="toc-measures-of-central-tendency" class="nav-link" data-scroll-target="#measures-of-central-tendency"><span class="header-section-number">11.1.1</span> Measures of Central Tendency</a></li>
+  <li><a href="#quartile-analysis" id="toc-quartile-analysis" class="nav-link" data-scroll-target="#quartile-analysis"><span class="header-section-number">11.1.2</span> Quartile Analysis</a></li>
+  <li><a href="#trimmed-mean" id="toc-trimmed-mean" class="nav-link" data-scroll-target="#trimmed-mean"><span class="header-section-number">11.1.3</span> Trimmed Mean</a></li>
+  <li><a href="#weighted-mean" id="toc-weighted-mean" class="nav-link" data-scroll-target="#weighted-mean"><span class="header-section-number">11.1.4</span> Weighted Mean</a></li>
+  <li><a href="#mode" id="toc-mode" class="nav-link" data-scroll-target="#mode"><span class="header-section-number">11.1.5</span> Mode</a></li>
+  <li><a href="#quartiles" id="toc-quartiles" class="nav-link" data-scroll-target="#quartiles"><span class="header-section-number">11.1.6</span> Quartiles</a></li>
+  <li><a href="#summarizing-the-center-and-position" id="toc-summarizing-the-center-and-position" class="nav-link" data-scroll-target="#summarizing-the-center-and-position"><span class="header-section-number">11.1.7</span> Summarizing the Center and Position</a></li>
+  </ul></li>
+  <li><a href="#spread-statistics" id="toc-spread-statistics" class="nav-link" data-scroll-target="#spread-statistics"><span class="header-section-number">11.2</span> Spread Statistics</a>
+  <ul class="collapse">
+  <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance"><span class="header-section-number">11.2.1</span> Variance</a></li>
+  <li><a href="#inter-quartile-range-iqr" id="toc-inter-quartile-range-iqr" class="nav-link" data-scroll-target="#inter-quartile-range-iqr"><span class="header-section-number">11.2.2</span> Inter-Quartile Range (IQR)</a></li>
+  <li><a href="#z-score-normalization" id="toc-z-score-normalization" class="nav-link" data-scroll-target="#z-score-normalization"><span class="header-section-number">11.2.3</span> Z-Score (Normalization)</a></li>
+  <li><a href="#summarizing-the-spread-using-functions" id="toc-summarizing-the-spread-using-functions" class="nav-link" data-scroll-target="#summarizing-the-spread-using-functions"><span class="header-section-number">11.2.4</span> Summarizing the Spread using Functions</a></li>
+  </ul></li>
+  <li><a href="#skew-statistics" id="toc-skew-statistics" class="nav-link" data-scroll-target="#skew-statistics"><span class="header-section-number">11.3</span> Skew Statistics</a>
+  <ul class="collapse">
+  <li><a href="#skewness" id="toc-skewness" class="nav-link" data-scroll-target="#skewness"><span class="header-section-number">11.3.1</span> Skewness</a></li>
+  <li><a href="#kurtosis" id="toc-kurtosis" class="nav-link" data-scroll-target="#kurtosis"><span class="header-section-number">11.3.2</span> Kurtosis</a></li>
+  <li><a href="#mode-and-shape" id="toc-mode-and-shape" class="nav-link" data-scroll-target="#mode-and-shape"><span class="header-section-number">11.3.3</span> Mode and Shape</a></li>
+  <li><a href="#assessing-the-data" id="toc-assessing-the-data" class="nav-link" data-scroll-target="#assessing-the-data"><span class="header-section-number">11.3.4</span> Assessing the Data</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Describing a Distribution</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="center-statistics" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="center-statistics"><span class="header-section-number">11.1</span> Center Statistics</h2>
+<p>We have already done some Exploratory Data Analysis (EDA) in order to become familiar with the data. We asked ourselves what the logical and physical structure were, as well as if there were any “issues” with the data concerning missing values. We also started to prepare the data for future analysis by converting some columns to factors and occasionally creating new factor columns using the <em>cut()</em> function on a column composed of quantitative data. We finished off our Goal 1 of EDA by looking at a summary of the dataset and visualizing it in order to get a better idea of what the data we were working with looks like.</p>
+<p>Now that we are familiar with the dataset and know what it looks like, we can move on to describing the data. To describe the data, we can use <strong>descriptive statistics</strong>. The three of the big ways we will use to describe a dataset are the center, the spread, and the shape of the dataset. All of these will help us understand the data at a deeper level.</p>
+<section id="measures-of-central-tendency" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="measures-of-central-tendency"><span class="header-section-number">11.1.1</span> Measures of Central Tendency</h3>
+<p>Describing the center of a dataset can help give us insight into what the data looks like, but we do lose some meaning when we reduce all of the data values down to a single representative value. Because we lose some meaning, multiple “competing” definitions of the center have emerged. These different definitions will allow us to identify patterns in the data that a single one by itself will not be able to tell us. We already know that there are multiple different ways in which we can describe the center of a dataset. We can do this with the <strong>mean</strong>, which is the average, the <strong>median</strong>, which is the middle of a sorted list, and the <strong>mode</strong>, which is where the highest occurring frequency happens.</p>
+<p>The central tendency can give us insight into the shape of the distribution. In order for a distribution to be symmetric, that is the “left-hand” side and the “right-hand” side look like mirror images, the mean must equal the median. This is a necessary condition, but not necessarily a sufficient condition. If the mean and median are equal then do we have a symmetric distribution? We will investigate this condition later after we look into the shape and spread of the distribution a little bit more.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/L11-skewed-distributions.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="quartile-analysis" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="quartile-analysis"><span class="header-section-number">11.1.2</span> Quartile Analysis</h3>
+<p>Let’s look at a quick example in order to see how the center can tell us about the shape. The first thing that we will probably want to look at is to see if the mean and median are close to each other. Then, another thing we can do is look at the Quartiles of the dataset. We will want to see if the range of the <span class="math inline">\(2^{\text{nd}}\)</span> Quartile (2Q) and the <span class="math inline">\(3^{\text{rd}}\)</span> Quartile (3Q) are comparable as well as if the range of the <span class="math inline">\(1^{\text{st}}\)</span> Quartile (1Q) and <span class="math inline">\(4^{\text{th}}\)</span> Quartile (4Q) are comparable. If the range of the <span class="math inline">\(1^{\text{st}}\)</span> Quartile is much larger than the range of the <span class="math inline">\(4^{\text{th}}\)</span> Quartile then it may indicate that the distribution is negatively skewed. Now, remember that the <span class="math inline">\(1^{\text{st}}\)</span> Quartile is the first 25% of the data, the <span class="math inline">\(2^{\text{nd}}\)</span> Quartile is the second 25% of the data, and so on.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/L11-skewed-quartiles.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(iris<span class="sc">$</span>Sepal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  4.300   5.100   5.800   5.843   6.400   7.900 </code></pre>
+</div>
+</div>
+<p>In the output above, we can see that the mean and median are comparable to each other, which indicates we might have a symmetric distribution. Looking at the range of the <span class="math inline">\(2^{\text{nd}}\)</span> and <span class="math inline">\(3^{\text{rd}}\)</span> Quartiles we can see the range of the <span class="math inline">\(3^{\text{rd}}\)</span> Quartile (<span class="math inline">\(6.4-5.8=0.6\)</span>) is slightly smaller than the range of the <span class="math inline">\(2^{\text{nd}}\)</span> Quartile (<span class="math inline">\(5.8-5.1=0.7\)</span>). Additionally, looking at the range of the <span class="math inline">\(1^{\text{st}}\)</span> Quartile (<span class="math inline">\(0.8\)</span>) and <span class="math inline">\(4^{\text{th}}\)</span> Quartile (<span class="math inline">\(1.5\)</span>) we can see that we have a wider Q4 then we have with Q1. This might indicate a positive skew since the larger range of Q4 might suggest we have outliers above the mean.</p>
+<p>Looking at another example, our first impression may be that the data is slightly negatively skewed due to outliers below the mean. This is because while the mean and median are similar, the range of Q1 is larger than the range of Q4.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars<span class="sc">$</span>speed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    4.0    12.0    15.0    15.4    19.0    25.0 </code></pre>
+</div>
+</div>
+<p>We should note that this method is only to give us an initial impression of the skew of the data and is not meant to be a definitive statement. We will see additional techniques later that we can employ to get a more definitive answer.</p>
+</section>
+<section id="trimmed-mean" class="level3" data-number="11.1.3">
+<h3 data-number="11.1.3" class="anchored" data-anchor-id="trimmed-mean"><span class="header-section-number">11.1.3</span> Trimmed Mean</h3>
+<p>Another technique we can use to measure the central tendency is to use the trimmed mean. It is important to remember that the mean is affected by outliers, meaning extreme values on either side may cause the mean to be “pulled” one way or another. The idea behind the trimmed is to remove a percentage of the top and bottom values and then calculate the mean. This allows us to determine the average of the majority of the values, so the extreme outlier will not have any influence. This method of finding the mean is used in many Olympic competitions, most notably in Figure Skating. The highest and lowest scores are discarded so a single judge could not “tank” the score of an opposing country’s competitor.</p>
+<p>After carrying out a trimmed mean, the shift in the mean will highlight the effect and impact of extreme values. If there is an increase with the trimmed mean then it indicates we have extreme values on the left-side. If there is a decrease with the trimmed mean then we have outliers on the right-side. And if there is only a slight change then there is only a minimal impact from extreme values.</p>
+<p>This can be done in R using the ‘trim’ argument within the mean function. Below are a few examples of trimming 10% in total (which does 5% from both sides). The first example indicates that there are a few extreme outliers above the mean which “pull” the mean up:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mtcars<span class="sc">$</span>disp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 230.7219</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mtcars<span class="sc">$</span>disp, <span class="at">trim=</span>.<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 222.5231</code></pre>
+</div>
+</div>
+<p>In this next example we can see that the mean and the trimmed mean are close to each other. This indicates that there is minimal impact from outliers. It does not indicate that there are no outliers though, as the outliers could be “counter-acting” each other.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(iris<span class="sc">$</span>Sepal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.843333</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(iris<span class="sc">$</span>Sepal.Length, <span class="at">trim=</span>.<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.808333</code></pre>
+</div>
+</div>
+<p>Finally, in this last example we can see the effect of an outlier on the “left-hand” side. The combine function is used to calculate the mean of the Sepal.Length vector and the value -100. Doing the trimmed mean removes this outlier and calculates the mean again, which indicates this outlier on the “left-hand” side was affecting the mean.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(iris<span class="sc">$</span>Sepal.Length,<span class="sc">-</span><span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.142384</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(iris<span class="sc">$</span>Sepal.Length,<span class="sc">-</span><span class="dv">100</span>), <span class="at">trim=</span>.<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.8</code></pre>
+</div>
+</div>
+</section>
+<section id="weighted-mean" class="level3" data-number="11.1.4">
+<h3 data-number="11.1.4" class="anchored" data-anchor-id="weighted-mean"><span class="header-section-number">11.1.4</span> Weighted Mean</h3>
+<p>Another important way to calculate the mean is using a weighted average. The idea behind this calculation is to assign a weight to each value and then calculate the mean. This is commonly done with quantitative discrete data. You have used the weighted mean before to calculate your grade grades and your GPA. The weighted mean can be described with the following formula: <span class="math display">\[ \frac{\sum_{i=1}^n w_i\cdot x_i}{\sum_{i=1}^n w_i} \]</span> where <span class="math inline">\(x_i\)</span> is the value and <span class="math inline">\(w_i\)</span> is the weight associated with it.</p>
+<p>When every value has the same weight then we are calculating the mean. Below is an example of this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">9</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x<span class="sc">*</span>w)<span class="sc">/</span><span class="fu">sum</span>(w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p>If the weights are different then it may not result in the mean of the values. Below is an example of the weighted mean when it comes to calculating final grades in the class:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">100</span>, <span class="dv">70</span>, <span class="dv">50</span>, <span class="dv">95</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> <span class="fu">c</span>(.<span class="dv">05</span>, .<span class="dv">10</span>, .<span class="dv">25</span>, .<span class="dv">25</span>, .<span class="dv">35</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 81</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x<span class="sc">*</span>w)<span class="sc">/</span><span class="fu">sum</span>(w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 77.75</code></pre>
+</div>
+</div>
+<p>Finally, we will look at a financial based question. Assuming that we own a store which sells only 3 products: A for $6.50, B for $7.00, and C for $12. We might want to ask ourselves what the average sale price is? Well, if we just took the mean of the three products we would get $8.50. But this does not take into account the fact that we might sell more of one product than another. If we sold 200 units of Product A, 100 units of Product B, and only 5 units of Product C, then the average sale price would be vastly different.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>price <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">6.50</span>, <span class="fl">7.00</span>, <span class="fl">12.00</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sold <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">200</span>,<span class="dv">100</span>,<span class="dv">5</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(price<span class="sc">*</span>sold)<span class="sc">/</span><span class="fu">sum</span>(sold)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.754098</code></pre>
+</div>
+</div>
+</section>
+<section id="mode" class="level3" data-number="11.1.5">
+<h3 data-number="11.1.5" class="anchored" data-anchor-id="mode"><span class="header-section-number">11.1.5</span> Mode</h3>
+<p>The mode is another descriptive statistic which might be useful in summarizing the data. This tells us which value occurs most frequently in a dataset. Unfortunately, there is no function in base R which calculates this for us, as the ‘<span class="math inline">\(mode()\)</span>’ function deals with the storage of an object and does not calculate the value occurring most frequently. We could create our own function in R in order to calculate it though:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>MODE <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>     tbl <span class="ot">&lt;-</span> <span class="fu">table</span>(x)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">as.numeric</span>(<span class="fu">names</span>(tbl[tbl<span class="sc">==</span><span class="fu">max</span>(tbl)]))</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>     }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Note</strong>: We will introduce a few functions in R over the next few sections. You should be focused on when to use them and how to interpret the output, not the actual code.</p>
+<p>What the function above is doing is allowing us to pass a vector into the function and it is then creating a table of all of the different values. It then identifies which value in the table is the largest and searches the table for any values that are equal to this value (since there can be multiple modes). It then selects all of them that are the maximum value and prints out the names of the selected values. Below is an example to see the function at work:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mtcars<span class="sc">$</span>cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ 4  6  8 
+11  7 14 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">MODE</span>(mtcars<span class="sc">$</span>cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+<p>Our function will also be able to determine the mode if there are multiple occurrences of the largest value:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>data_example <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">15</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">16</span>, <span class="dv">17</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data_example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>data_example
+10 12 13 14 15 16 17 
+ 3  1  2  1  3  2  1 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">MODE</span>(data_example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10 15</code></pre>
+</div>
+</div>
+<p>The function that we created only works for quantitative discrete data though. Continuous data has too few repeats due to the values being able to be anything within a given interval. This would result in our function identifying every value as the mode, which is not very helpful. We could use our density function to estimate the mode though. This would tell us which value on our density function is the highest. Below is the code for that (again, it is not vital for us to understand how to write functions in R right now):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>estimate_mode <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>     from<span class="ot">=</span><span class="fu">min</span>(x, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>     to<span class="ot">=</span><span class="fu">max</span>(x, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>     d <span class="ot">&lt;-</span> <span class="fu">density</span>(x, <span class="at">from=</span>from, <span class="at">to=</span>to, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>     d<span class="sc">$</span>x[<span class="fu">which.max</span>(d<span class="sc">$</span>y)]</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>     }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If we were to randomly generate 1,000 observations from the normal distribution and plot it we could see the density plot is largest around 53. The estimated mode tells us the density line is the tallest around 52.8, which confirms our visualization. The black vertical line was inputted to help show where 52.8 was in the graph. We should be careful in using our function, as it only works for continuous data with a single peak. If we have bi-modal data (with 2 peaks) then we would have to create a new function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="dv">50</span>,<span class="dv">8</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_mode</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 52.0592</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">col=</span><span class="st">"lightblue"</span>, <span class="at">freq=</span><span class="cn">FALSE</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(x), <span class="at">col=</span><span class="st">"red"</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">52.81717</span>, <span class="at">col=</span><span class="st">"black"</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lecture-11-Describing-a-Distribution_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="quartiles" class="level3" data-number="11.1.6">
+<h3 data-number="11.1.6" class="anchored" data-anchor-id="quartiles"><span class="header-section-number">11.1.6</span> Quartiles</h3>
+<p>We have already talked some about the median and quartiles. We could calculate the <span class="math inline">\(p^{\text{th}}\)</span> quantile which is the value where <span class="math inline">\(100\cdot p%\)</span> of the data is less than the value. This also means that <span class="math inline">\(100\cdot (1-p)%\)</span> of the data is more than this value. If we are in the <span class="math inline">\(90^\text{th}\)</span> percentile for intelligence then we are really smart since we score better than 90% of people. But, if we are in the <span class="math inline">\(17^\text{th}\)</span> percentile for salary then we know we are only making more money than 17% of people (and we should probably ask for a raise).</p>
+<p>In order to calculate different quantiles in R, we could use the ‘<span class="math inline">\(quantile()\)</span>’ function. We need to pass a vector into it and tell it where we want to set the breaks (as decimals). We can do this using the sequence function. Below is an example of how we could do it with quartiles and quintiles:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>,<span class="at">to=</span><span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.00 0.25 0.50 0.75 1.00</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>,<span class="at">to=</span><span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.25</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    0%    25%    50%    75%   100% 
+10.400 15.425 19.200 22.800 33.900 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>,<span class="at">to=</span><span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0 0.2 0.4 0.6 0.8 1.0</code></pre>
+</div>
+</div>
+</section>
+<section id="summarizing-the-center-and-position" class="level3" data-number="11.1.7">
+<h3 data-number="11.1.7" class="anchored" data-anchor-id="summarizing-the-center-and-position"><span class="header-section-number">11.1.7</span> Summarizing the Center and Position</h3>
+<p>Similar to the mode function we created earlier, we could create functions in R to put all of the information in a single place for us. Be careful though, as passing continuous data into it may result in everything being outputted as a mode (you can always remove the MODE function if you are dealing with continuous data):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>center_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="at">mean=</span><span class="fu">round</span>(<span class="fu">mean</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="dv">2</span>),</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">median=</span><span class="fu">round</span>(<span class="fu">median</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="dv">2</span>),</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">trim25=</span><span class="fu">round</span>(<span class="fu">mean</span>(x,<span class="at">trim=</span>.<span class="dv">25</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="dv">2</span>),</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">trim10=</span><span class="fu">round</span>(<span class="fu">mean</span>(x,<span class="at">trim=</span>.<span class="dv">10</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="dv">2</span>),</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">mode=</span><span class="fu">round</span>(<span class="fu">MODE</span>(x),<span class="dv">2</span>),</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">est_mode=</span><span class="fu">round</span>(<span class="fu">estimate_mode</span>(x),<span class="dv">2</span>)</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="fu">center_stats</span>(iris<span class="sc">$</span>Sepal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    mean   median   trim25   trim10     mode est_mode 
+    5.84     5.80     5.80     5.81     5.00     5.72 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">center_stats</span>(airquality<span class="sc">$</span>Ozone)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    mean   median   trim25   trim10     mode est_mode 
+   42.13    31.50    33.40    37.80    23.00    20.61 </code></pre>
+</div>
+</div>
+<p>We could do something similar with our position summary as well and view the quartiles and quantiles:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>position_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">list</span>(<span class="at">quint=</span><span class="fu">quantile</span>(x,<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">2</span>), <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">quart=</span><span class="fu">quantile</span>(x,<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">25</span>), <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="fu">position_stats</span>(iris<span class="sc">$</span>Sepal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$quint
+  0%  20%  40%  60%  80% 100% 
+4.30 5.00 5.60 6.10 6.52 7.90 
+
+$quart
+  0%  25%  50%  75% 100% 
+ 4.3  5.1  5.8  6.4  7.9 </code></pre>
+</div>
+</div>
+<p>These center stats and position stats might indicate to use the the Sepal Length of an iris is symmetric since the mean and median are roughly the same, with no real differences in the mean and trimmed mean. Additionally, the position stats do not show too much reason to be concerned as the distance between the 25th and 50th percentile is roughly the same as the distance between the 50th and 75th percentile. We can make the same argument for the bottom half of the data and the top half of the data and get similar results. We will see in future sections how we can quantify the symmetry of the dataset using a formula/number.</p>
+<p>The last example we will look at in this section are the calculations for the Ozone variable in the “airquality” dataset. The center stats were carried out above and it indicates that this variable is not symmetric since the mean and median are far apart along with the mean and trimmed mean being different. Interpreting the position stats for the variable give us similar results. We can see that the top half of the dataset is much more spread out then the bottom half of the dataset, indicating that we probably have a skewed distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">position_stats</span>(airquality<span class="sc">$</span>Ozone)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$quint
+  0%  20%  40%  60%  80% 100% 
+   1   14   23   39   73  168 
+
+$quart
+    0%    25%    50%    75%   100% 
+  1.00  18.00  31.50  63.25 168.00 </code></pre>
+</div>
+</div>
+<p>It is important to note that these outputs will not definitively prove if the distribution is symmetric or not. We will need to utilize all of the information we learn over the next few lectures along with a visualization to make any determination. Because we will be utilizing these functions that we have created throughout the rest of the course, I encourage you to save them somewhere so that you can run them when needed (like when you start a new session in R or if you need to use the functions in an RMarkdown document).</p>
+</section>
+</section>
+<section id="spread-statistics" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="spread-statistics"><span class="header-section-number">11.2</span> Spread Statistics</h2>
+<p>There are a few descriptive statistics that we should look at in order to gain more information about our data. The three big ones are the center of the data, the spread of the data, and the skewness of the data. We have already seen how central tendency can tell us about a dataset in terms of the symmetry of the data. In this lecture, we will look into what the spread of the data can tell and relate some of this information back to the idea of symmetry.</p>
+<p>Let’s assume that we are given two different sets of data regarding salaries at two different companies. If I told you that employees at both companies earned an average of $75,000 then might consider both sets of data to be about the same. This is not quite true though, as every employee at Company A could make exactly $75,000 while most employees at Company B make $50,000 with a single outlier (probably the CEO) making a ton of money, thus bringing the mean to $75,000. This example should show us that the central tendency of a dataset by itself does not tell us the whole picture, we also need to provide the spread of the data. There are a few different ways that we can describe the spread of our data; the two simplest methods would be using our Range Difference and our Standard Deviation (two methods we have already discussed).</p>
+<section id="variance" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="variance"><span class="header-section-number">11.2.1</span> Variance</h3>
+<p>One way to describe the range of a dataset is to calculate the variance of the data. This will tell us how far (on average) data varies from the mean. This should sound extremely similar to our standard deviation, which is expected since the two are related. In fact, the variance (<span class="math inline">\(\sigma^2\)</span>) is the standard deviation (<span class="math inline">\(\sigma\)</span>) squared. Its exact formula can be seen below: <span class="math display">\[ \text{variance } = \sigma^2 = \frac{\sum_{i=1}^n (x_1-\bar{x})^2}{n-1}\]</span></p>
+<p>It should be noted that the units are squared for variance. This means that if our data is measuring pounds then the variance will be in pounds<span class="math inline">\(^2\)</span>. Taking the square root of the variance will give us the standard deviation. The idea of variance and standard deviation allows us to compare two sets of data that have the same units. Below, we can see the calculation in R using a formula and the built-in function and how it relates to standard deviation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">8</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="fu">length</span>(x)<span class="sc">-</span><span class="dv">1</span>) <span class="co"># Variance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">6.8</span>) <span class="co"># Standard Deviation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.607681</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.607681</code></pre>
+</div>
+</div>
+<p>If we go back to our previous example about salary, we can compare the two groups using both the mean and the standard deviation. If we found the standard deviation of Company A to be $5,000 and Company B to be $30,000 then we could say that the salaries at Company B are much more spread out than at Company A. The mean and the standard deviation should always be interpreted together, as just knowing one does not tell us the full picture of the data.</p>
+</section>
+<section id="inter-quartile-range-iqr" class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="inter-quartile-range-iqr"><span class="header-section-number">11.2.2</span> Inter-Quartile Range (IQR)</h3>
+<p>Another way that we can describe the spread of the data is through quartiles. We touched on quartiles in the previous section and mentioned that they break up the data into ``quarters”. In order to calculate the different quartile values (First Quartile=Q1, Second Quartile=Median=Q2, and Third Quartile=Q3) we will first need to order our data from smallest to largest and then identify the middle value. This middle value of the dataset will be the median, also known as Q2. This tells us the value such that 50% of the data is below it and 50% of the data is above it.</p>
+<p>Once we have found the median, we can break our data up into a “lower” half and an ``upper” half. We then find the median of each of those groups and that tells us what our Q1 and Q3 are. The First Quartile (Q1) will tell us the value such that 25% of the data is below it (and thus 75% of the data is above it). Likewise, the Third Quartile (Q3) will tell us the value such that 75% of the data is below is (and thus 25% of the data is above it). An example of this can be seen in the dataset below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/L11-Quartiles.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>It should probably be mentioned that R sometimes calculates quartiles a little bit differently than you may expect. That is because there are actually nine(!) different ways programmed in R. We can choose different methods using the ‘type=’ argument in our ‘quantile()’ function. Below is an example of carrying out the process in R and seeing that we get different results than the picture above depending on the type we select to caclulate the quartiles. Don’t worry about the small differences or the details as all of the results will give us similar values, and it will not affect any calculations we do. I just wanted to point this out in case we try finding it by hand or use an online calculator and then compare it to R and notice that it is different.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">26</span>, <span class="dv">27</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">40</span>, <span class="dv">44</span>, <span class="dv">50</span>, <span class="dv">52</span>, <span class="dv">55</span>, <span class="dv">57</span>)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  24.00   26.75   36.00   38.50   50.50   57.00 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">25</span>,.<span class="dv">50</span>,.<span class="dv">75</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   0%   25%   50%   75%  100% 
+24.00 26.75 36.00 50.50 57.00 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">25</span>,.<span class="dv">50</span>,.<span class="dv">75</span>,<span class="dv">1</span>), <span class="at">type=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  0%  25%  50%  75% 100% 
+24.0 26.5 36.0 51.0 57.0 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">25</span>,.<span class="dv">50</span>,.<span class="dv">75</span>,<span class="dv">1</span>), <span class="at">type=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   0%   25%   50%   75%  100% 
+24.00 26.25 36.00 51.50 57.00 </code></pre>
+</div>
+</div>
+<p>We can use these quartiles to determine the spread of our data along with if the data is possibly symmetric. Remember that when we do this “Quartile Analysis”, we want to check that the Median-Minimum is roughly the same size as the Maximum-Median. Additionally, we want to check whether Q1-Minimum is roughly similar to Maximum-Q3 and if Median-Q1 is roughly similar to Q3-Median. Going through this process, we may see that data on one side of the median is more spread out, which may indicate the data is skewed toward that side.</p>
+<p>We can go a little bit further and introduce the idea of the Inter-Quartile Range (IQR). This will be calculated as the middle 50% of the data (or Q3-Q1). This is important as it tells us how spread out the middle part of our data is. Typically, it is said that data below <span class="math inline">\(Q1-1.5\cdot IQR\)</span> or above <span class="math inline">\(Q3+1.5\cdot IQR\)</span> are considered outliers.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/L11-IQR.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>We can calculate the Inter-Quartile Range, as well as our other quartile ranges used in our “Quartile Analysis” using the quantile function in R. We can see that the two halves are not the same “size”, indicating potential positive skew due to the “right side” being bigger then the “left side”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(mtcars<span class="sc">$</span>mpg) <span class="sc">-</span> <span class="fu">min</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8.8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(mtcars<span class="sc">$</span>mpg) <span class="sc">-</span> <span class="fu">median</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 14.7</code></pre>
+</div>
+</div>
+<p>Looking at the different Quartile Ranges we can see that the middle sections are fairly symmetric, which indicates that the tails may be the thing causing the skew to occur.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(mtcars<span class="sc">$</span>mpg) <span class="sc">-</span> <span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, .<span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  25% 
+3.775 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, .<span class="dv">75</span>) <span class="sc">-</span> <span class="fu">median</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>75% 
+3.6 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We have a symmetric middle since values are about the same</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can also calculate our IQR in R and we can see that 50% of our data only falls over a range of roughly 7.4 mpg.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, .<span class="dv">75</span>) <span class="sc">-</span> <span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, .<span class="dv">25</span>) <span class="co"># This is our IQR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  75% 
+7.375 </code></pre>
+</div>
+</div>
+<p>Finally, looking at our quartile ranges for the tails we can see that the skewness is on the right side due to the upper 25% of the data taking up more room than the lower 25% of the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, .<span class="dv">25</span>) <span class="sc">-</span> <span class="fu">min</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  25% 
+5.025 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(mtcars<span class="sc">$</span>mpg)<span class="sc">-</span><span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg,.<span class="dv">75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> 75% 
+11.1 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># May indicate a positive skew since right-half is bigger than left-half</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="z-score-normalization" class="level3" data-number="11.2.3">
+<h3 data-number="11.2.3" class="anchored" data-anchor-id="z-score-normalization"><span class="header-section-number">11.2.3</span> Z-Score (Normalization)</h3>
+<p>If we wish to compare two sets of data, then we can Normalize the data. What we are doing here is centering our data around the mean and then dividing it by the standard deviation in order for us to have a unitless value. Doing this will allow us to compare sets with either the same or different units. It also allows us to not have to define what a “big” difference or a “big” range is like we did before to identify the skew. It makes all of the data normalized and thus easier to read and compare with differing groups. We have seen this idea before with the idea of the <span class="math inline">\(z\)</span>-score, which tells us how many standard deviations above (or below) the mean a value is:</p>
+<p><span class="math display">\[ z\text{-score} = \frac{\text{value} - \text{mean}}{\text{standard deviation}}\]</span></p>
+<p>This idea of normalization often allows us to apply the z-score technique to Normal Distributions. This will give us the Standard Normal Distribution with a mean of 0 and a standard deviation of 1, denoted as N(0,1). If we were to plot a standard normal distribution, it would look like the figure below, with a z-score of 1 indicating a value of 1 standard deviation above the mean and a z-score of -2 indicating a value of 2 standard deviations below the mean.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/L11-Normal-Distribution.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Note that the idea of normalized data can be carried out on any set of data as well as descriptive statistics, allowing us to indicate the skew of the data. Below is an example of standardizing the data in R making it easier to see the right-skew:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( (mtcars<span class="sc">$</span>mpg<span class="sc">-</span><span class="fu">mean</span>(mtcars<span class="sc">$</span>mpg))<span class="sc">/</span><span class="fu">sd</span>(mtcars<span class="sc">$</span>mpg) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-1.6079 -0.7741 -0.1478  0.0000  0.4495  2.2913 </code></pre>
+</div>
+</div>
+<p>We could also compare the percentages within 1, 2, and 3 standard deviations if we were to write a function. It will allow us to learn about where the data lies as well as the thickness of the tails, which we will discuss in the next section. Once again, we do not need to understand how to write a function in R, we just need to know the general idea of what it is doing.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>pct <span class="ot">&lt;-</span> <span class="cf">function</span>(x,n) {</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>     lbnd <span class="ot">&lt;-</span> <span class="fu">mean</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">-</span> n<span class="sc">*</span><span class="fu">sd</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>     ubnd <span class="ot">&lt;-</span> <span class="fu">mean</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">+</span> n<span class="sc">*</span><span class="fu">sd</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>     (pct <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">length</span>(x[x<span class="sc">&gt;=</span>lbnd <span class="sc">&amp;</span> x<span class="sc">&lt;=</span>ubnd])<span class="sc">/</span><span class="fu">length</span>(x)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>))</span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can use this function to see what percent of the data is within 1, 2, and 3 standard deviations. We know that a normal distribution will roughly follow the 68-95-99.7 rule in terms of the spread of the data. If I were to do this in R I could get the following results:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pct</span>(mtcars<span class="sc">$</span>mpg, <span class="dv">1</span>) <span class="co"># Expecting 68</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 75</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pct</span>(mtcars<span class="sc">$</span>mpg, <span class="dv">2</span>) <span class="co"># Expecting 95</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 93.75</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pct</span>(mtcars<span class="sc">$</span>mpg, <span class="dv">3</span>) <span class="co"># Expecting 99.7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100</code></pre>
+</div>
+</div>
+<p>The results above indicate that we have more data within 1 and 3 standard deviations than we would expect. This may indicate skewness in our data along with a different tail thickness than a normal distribution (but that will come next time)</p>
+</section>
+<section id="summarizing-the-spread-using-functions" class="level3" data-number="11.2.4">
+<h3 data-number="11.2.4" class="anchored" data-anchor-id="summarizing-the-spread-using-functions"><span class="header-section-number">11.2.4</span> Summarizing the Spread using Functions</h3>
+<p>We could build a function to help us summarize the spread of our data. This function will calculate the standard deviation, IQR, the normalized minimum, maximum, and range as well as the percentage of data within 1, 2, and 3 standard deviations:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>spread_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="at">sd=</span><span class="fu">round</span>(<span class="fu">sd</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="dv">2</span>),</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">iqr=</span><span class="fu">round</span>(<span class="fu">IQR</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="dv">2</span>),</span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">minz=</span><span class="fu">round</span>(<span class="fu">range</span>(<span class="fu">scale</span>(x),<span class="at">na.rm=</span><span class="cn">TRUE</span>)[<span class="dv">1</span>],<span class="dv">2</span>),</span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">maxz=</span><span class="fu">round</span>(<span class="fu">range</span>(<span class="fu">scale</span>(x),<span class="at">na.rm=</span><span class="cn">TRUE</span>)[<span class="dv">2</span>],<span class="dv">2</span>),</span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">diffz=</span><span class="fu">round</span>(<span class="fu">diff</span>(<span class="fu">range</span>(<span class="fu">scale</span>(x),<span class="at">na.rm=</span><span class="cn">TRUE</span>)),<span class="dv">2</span>),</span>
+<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">prp1=</span><span class="fu">round</span>(<span class="fu">pct</span>(x,<span class="dv">1</span>),<span class="dv">2</span>),</span>
+<span id="cb97-8"><a href="#cb97-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">prp2=</span><span class="fu">round</span>(<span class="fu">pct</span>(x,<span class="dv">2</span>),<span class="dv">2</span>),</span>
+<span id="cb97-9"><a href="#cb97-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">prp3=</span><span class="fu">round</span>(<span class="fu">pct</span>(x,<span class="dv">3</span>),<span class="dv">2</span>))</span>
+<span id="cb97-10"><a href="#cb97-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb97-11"><a href="#cb97-11" aria-hidden="true" tabindex="-1"></a><span class="fu">spread_stats</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    sd    iqr   minz   maxz  diffz   prp1   prp2   prp3 
+  6.03   7.38  -1.61   2.29   3.90  75.00  93.75 100.00 </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="skew-statistics" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="skew-statistics"><span class="header-section-number">11.3</span> Skew Statistics</h2>
+<p>So far we have discussed what the center and the spread of the data can tell us about symmetry. Remember that for data to be symmetric the mean has to equal the median. In this lecture, we will look into how we can measure the shape of the distribution using symmetry, skewness, and the tails of the data.</p>
+<section id="skewness" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="skewness"><span class="header-section-number">11.3.1</span> Skewness</h3>
+<p>We have seen that extreme values have the potential to impact the mean. This can cause the data to be skewed to either the right side or to the left side. Extreme values above the mean make the tail longer on the right while extreme values below the mean make the tail longer on the left. We can quantify skew using the following formula:</p>
+<p><span class="math display">\[ \text{skew}=\frac{\frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^3}{s^3} = \frac{1}{n} \sum_{i=1}^n z_i^3 \]</span></p>
+<p>If the value of the skew is positive then the data will be right-skewed and if the skew is negative then it will be left-skewed. A skew of 0 will indicate that we may have a symmetric distribution. Values between -0.5 and 0.5 can probably be considered fairly symmetric. If the skew lies between -0.5 and -1 or 0.5 and 1 then we can consider it moderately skewed, and values more extreme will be considered highly skewed. We have a formula in R that we can implement to calculate the skew for us:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>skew <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>            z <span class="ot">&lt;-</span> (x<span class="sc">-</span><span class="fu">mean</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>))<span class="sc">/</span><span class="fu">sd</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">mean</span>(z<span class="sc">^</span><span class="dv">3</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can test this function out on data we have shown to be both skewed and symmetric:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skew</span>(<span class="fu">rgamma</span>(<span class="dv">500</span>,<span class="dv">2</span>,<span class="at">scale=</span><span class="dv">5</span>)) <span class="co"># Have shown this to be skewed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.140197</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skew</span>(<span class="fu">rnorm</span>(<span class="dv">500</span>,<span class="dv">0</span>,<span class="dv">2</span>)) <span class="co"># Have shown this to be symmetric</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.08838256</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skew</span>(mtcars<span class="sc">$</span>mpg) <span class="co"># Have shown this to be moderately skewed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.610655</code></pre>
+</div>
+</div>
+<p>These values should validate the calculations we did earlier relating to center and spread. We still want to go through the process of our “Quartile Analysis” and other steps to verify that we are skewed, as we do not want to just rely on the visualization (though it can help confirm) to determine symmetry/skew.</p>
+<p>If we do happen to have extreme values or highly skewed data then we will probably not want to use the mean and standard deviation. This is because these statistics are highly influenced by outliers. Instead, we will want to consider using the Median and IQR to give better measures of the center and spread of the data.</p>
+</section>
+<section id="kurtosis" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="kurtosis"><span class="header-section-number">11.3.2</span> Kurtosis</h3>
+<p>Another important thing to look at when it comes to the shape of the distribution is the kurtosis. This tells us information about the tails of our data, specifically if they are thinner or thicker than the tails of a normal distribution. If there are extreme values then data is “pulled” into the tails, resulting in the “thicker tails”. If our data has thicker tails then we will call it “leptokurtic”. If there is less data in the tails (meaning the tails are “thinner”) then there is a minimal impact of extreme values. This will be called “platykurtic”. We can visualize what both of these look like (with mesokurtic being normally distributed)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/L11-kurtosis.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>This idea of looking at the tails is important in allowing us to compare the data with a normal distribution. We know through the 68-95-99.7 rule that if we have a normal distribution then roughly 68% of the data is within 1 standard deviation, 95% of the data is within 2 standard deviations, and 99.7% of the data is within 3 standard deviations. So, if we calculate the proportion of data within 1 standard deviation from the mean and get a value less than 68% then we have the potential for thicker tails (and thus more extreme values), while a value greater than 68% indicates that we have thinner tails (and thus fewer extreme values).</p>
+<p>We can also quantify the kurtosis with the formula below. If the kurtosis is positive then we have more values in the tails (leptokurtic) and if the kurtosis is negative then we have fewer values in the tails than a normal distribution (platykurtic).</p>
+<p><span class="math display">\[ \text{kurtosis} = \frac{1}{n} \sum_{i=1}^n z_i^4 - 3 \]</span></p>
+<p>We can create a function in R that will calculate the kurtosis for us:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>kurt <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>            z <span class="ot">&lt;-</span> (x<span class="sc">-</span><span class="fu">mean</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>))<span class="sc">/</span><span class="fu">sd</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">mean</span>(z<span class="sc">^</span><span class="dv">4</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">-</span> <span class="dv">3</span></span>
+<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can then use this function to calculate the kurtosis for the ‘mpg’ vector in the ‘mtcars’ dataset. In the previous lecture, we saw that 100% of the data was within 3 standard deviations, implying that it has thinner tails than a normal distribution. Therefore we would expect the kurtosis to be negative.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kurt</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.372766</code></pre>
+</div>
+</div>
+<p>We could also write a function to combine the skew and kurtosis calculations into a single function to use. For instance, we can see in the dataset ‘mlb_teams’ that the Wins column is moderately skewed left and that it has thicker tails than the normal distribution.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>shape_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">c</span>(<span class="at">skew=</span><span class="fu">round</span>(<span class="fu">skew</span>(x),<span class="dv">2</span>),</span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">kurt=</span><span class="fu">round</span>(<span class="fu">kurt</span>(x),<span class="dv">2</span>))</span>
+<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shape_stats</span>(mlb_teams<span class="sc">$</span>wins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> skew  kurt 
+-0.75  0.82 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shape_stats</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> skew  kurt 
+ 0.61 -0.37 </code></pre>
+</div>
+</div>
+</section>
+<section id="mode-and-shape" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="mode-and-shape"><span class="header-section-number">11.3.3</span> Mode and Shape</h3>
+<p>The Mode of a distribution is directly related to the shape. If we have symmetric data and it is uni-modal (one mode) then all of the values are clustered around a single point. If data is bi-modal (two modes) then the data is clustered around two points. We could extend this idea of clustering to occur around multiple points. Typically, if there are multiple modes then there are probably multiple populations included in the dataset. This may be able to be ``broken” apart using categorical variables. An example of this would be the average height of students may be bi-modal due to males and females having different average heights.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/L11-Modals.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="assessing-the-data" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="assessing-the-data"><span class="header-section-number">11.3.4</span> Assessing the Data</h3>
+<p>Now that we can look at the center, the spread, and the skew of the data we can start talking about how to assess the data. We might ask ourselves what relationships and patterns can be seen and what transformations might help us gain a deeper understanding of the data.</p>
+<p>Looking at the ‘babies’ dataframe with a specific focus on the ‘bwt’ column, we can run through our exercises to learn about the center, spread, and skew. We should be able to determine that this is unimodal data which has a slight negative skew and slightly thicker tails than a normal distribution. There is also a minimal impact from extreme values. We can visualize this data and compare it to a normal distribution (the red line) to see how it would compare:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(babies<span class="sc">$</span>bwt,<span class="at">freq=</span><span class="cn">FALSE</span>)</span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(babies<span class="sc">$</span>bwt),<span class="at">col=</span><span class="st">"blue"</span>)</span>
+<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>xfit <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(babies<span class="sc">$</span>bwt),.<span class="dv">1</span>)</span>
+<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>yfit <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(xfit,<span class="at">mean=</span><span class="fu">mean</span>(babies<span class="sc">$</span>bwt), <span class="at">sd=</span><span class="fu">sd</span>(babies<span class="sc">$</span>bwt,<span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
+<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xfit, yfit, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lecture-11-Describing-a-Distribution_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Lecture-10-Probability-Distributions.html" class="pagination-link" aria-label="Probability Distributions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Probability Distributions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Lecture-12-Central-Limit-Theorem.html" class="pagination-link" aria-label="Central Limit Theorem">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Central Limit Theorem</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
