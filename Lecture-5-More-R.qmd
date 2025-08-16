@@ -10,9 +10,19 @@ c("Hello", "world!") -> y # This also works but is not recommended
 y
 ```
 
+Now that we’ve covered the basics of R, including simple calculations, variables, and vectors, it’s time to dive a little deeper. In this section, we will explore more of R’s built-in functionality that makes data manipulation efficient and expressive. You’ll learn how to generate sequences, replicate values, name vector elements, and search using patterns. We’ll also explore special functions that help us handle data more effectively. These tools will become essential as we begin working with larger and more complex datasets.
+
+::: learning-goals
+
+- Generate numeric and character vectors using functions like seq(), rep(), and sample().
+- Use indexing techniques to select specific elements from a vector.
+- Apply pattern matching with grep() and understand how regular expressions work within R.
+- Use special functions like which(), duplicated(), unique(), any(), and all() to summarize or filter vector data.
+:::
+
 ## Creating a Sequence of Numbers
 
-There are additional ways we could make a vector as well. If we wanted all of our numbers in a sequence then we could use the *seq()* function to do this. With this function, we can specify what our starting value is and what we want the sequence to do. The function also allows us to pass an argument into it which specifies what value we should increment the sequence by. If we do not specify what we should increment by then it will automatically default to 1. We can also count down if we would like. Finally, it should be mentioned that most functions do not require us to write the argument name as long as we pass them in the correct order (but we should probably keep doing it).
+There are additional ways we could make a vector as well. If we wanted all of our numbers in a sequence then we could use the *seq()* function to do this. With this function, we can specify what our starting value is and what we want the sequence to do. The function also allows us to pass an argument into it which specifies what value we should increment the sequence by. If we do not specify what we should increment by then it will automatically default to 1. We can also count down if we would like. Finally, it should be mentioned that most functions do not require us to write the argument name as long as we pass them in the correct order (but we should probably keep doing it until we are more comfortable).
 
 ```{r}
 seq(from=1, to=10)
@@ -23,7 +33,7 @@ seq(7, 1)
 
 seq(from=30, to=1, by=-4)
 
-seq(-1,2,by=0.3)
+seq(-1, 2, by=0.3)
 ```
 
 If we do not need to increment the sequence by a certain value then we could do something similar with a colon. This will create a sequence by just adding 1 to a value until it reaches the end number. An example of this can be seen below:
@@ -39,6 +49,18 @@ If we do not need to increment the sequence by a certain value then we could do 
 \begin{watch}{}{}
     \href{https://youtu.be/c4qJ3Y5hJ0s}{Creating a Sequence of Numbers}
 \end{watch}
+
+::: {.callout-tip title="Try it Out"}
+Emmit is interested in displaying all of the possible GPA values rounded to 2 decimal places. How can he do this is the GPA must be between 0 and 4.0?
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
 
 ## Replicating Values
 
@@ -69,6 +91,18 @@ rep(c(7,2,1), each=3, length.out=10)
 \begin{watch}{}{}
     \href{https://youtu.be/OGBhjbDChgQ}{Replicating Values}
 \end{watch}
+
+::: {.callout-tip title="Try it Out"}
+Emmit surveys his friends regarding their favorite fruit, and determines that 7 of them like apples, 4 like bananas, 3 like oranges, and 1 likes pineapple. How can he display this information using the *rep()* function?
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
 
 ## Creating a Vector of Letters
 
@@ -101,6 +135,18 @@ y[-c(1,5,8)]
 \begin{watch}{}{}
     \href{https://youtu.be/H-q_LZVM0_0}{Using the Letters Vector}
 \end{watch}
+
+::: {.callout-tip title="Try it Out"}
+Emmit is making a display for his smoothie stand and wants it to say "EMMIT smoothies". Help him do this in R.
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
 
 ## Named Vectors
 
@@ -139,6 +185,18 @@ x[c(1,3)]
     \href{https://youtu.be/uYHuPb60zSA}{Named Vectors}
 \end{watch}
 
+::: {.callout-tip title="Try it Out"}
+Emmit has been operating the smoothie stand for a few weeks now and wants to calculate how many smoothies of each flavor he has sold. Help him create a named vector if he has sold 42 Strawberry, 37 Manhgo, and 28 Pineapple smoothies. 
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
 ## Index Selection using GREP
 
 One very powerful tool in R that allows us to search a string for a specific pattern is the *grep()* function. This stands for Global/Regular Expression/Print and is important to us as it will allow us to identify all of the elements containing a specific pattern. To see this function in action we will utilize the "euro" vector which is a named vector available to us in R. 
@@ -148,7 +206,7 @@ euro
 ```
 
 
-Before we jump into using the function though, we will want to discuss some of the syntax that the *grep()* uses. The first is that it expects us to pass a pattern into it using quotation marks. If we type a $\wedge$ at the beginning of the pattern then it will search for strings **starting with** the pattern. If we type a $ at the end of the pattern then it will search for strings **ending with** the pattern. A single period will stand for any character, and brackets characters in brackets will mean "any of these characters". After we specify the pattern we will need to also specify where we are looking for the pattern, and in our case, it will be the names of the euro vector. The output for this function will be the indices of the elements which contain the specified pattern. 
+Before we jump into using the function though, we will want to discuss some of the syntax that the *grep()* uses. The first is that it expects us to pass a pattern into it using quotation marks. If we type a $\wedge$ at the beginning of the pattern then it will search for strings **starting with** the pattern. If we type a $ at the end of the pattern then it will search for strings **ending with** the pattern. A single period will stand for any character, and characters in brackets will mean "any of these characters". After we specify the pattern we will need to also specify where we are looking for the pattern, and in our case, it will be the names of the euro vector. The output for this function will be the indices of the elements which contain the specified pattern. 
 
 ```{r}
 names(euro)
@@ -175,6 +233,25 @@ While this function may seem a little complicated at first, it is a very powerfu
 \begin{watch}{}{}
     \href{https://youtu.be/BDRppgPi8-E}{Index Selection using GREP}
 \end{watch}
+
+::: {.callout-tip title="Try it Out"}
+The smoothie stand has the following flavors. How can he display the flavors that start with Berry, end with Crush, or have two consecutive vowels.
+
+```{r}
+flavors <- c("Mango Madness", "Berry Blast", "Peach Punch", "Pineapple Punch", 
+             "Acai Antioxidant", "Tropical Berry Twist", "Citrus Crush", 
+             "Berry Goddess", "Chocolate Crush", "Vanilla Velvet")
+```
+
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
 
 ## Logical Vectors and Index Selection
 
@@ -230,6 +307,23 @@ x[x > 5 | x < 3 & x < 4]
     \href{https://youtu.be/QIrSEcEYRVk}{Logical Vectors and Index Selection}
 \end{watch}
 
+::: {.callout-tip title="Try it Out"}
+Emmit has calculated the number of he has sold for each of the past 10 days. How many days did he sell less than 7.5 smoothies? How mant days did he sell either less than 5 or greater than 15 smoothies? 
+
+```{r}
+sales <- c(12, 5, 9, 15, 7, 3, 10, 20, 7, 6)
+```
+
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
 ## Sample Function
 
 There are a few special functions in R that we should discuss that will be used throughout the course. The first is the *sample()* function which will allow us to randomly sample values from a vector that we pass into it. We will be able to choose how many values we want to be outputted and whether we want to allow the repetition of the values (this will need to be true if we want to output more values than we passed in). The exact values that are returned are not predictable as they rely on a random number generator behind the scenes. If we wish to get the same values over and over again then we need to use the *set.seed()* function to achieve this goal. An example of using the *sample()* function can be seen below:
@@ -263,15 +357,40 @@ sample(c("A", "B", "C"), 10, replace=TRUE)
     \href{https://youtu.be/8JwzbwIki-g}{Using the Sample Function}
 \end{watch}
 
+::: {.callout-tip title="Try it Out"}
+Emmit wants to run a promotion where he randomly selects smoothie flavors to feature each day. Help him write R code which randomly picks 3 flavors to promote each day.
+
+```{r}
+flavors <- c("Mango Madness", "Berry Blast", "Peach Punch", "Pineapple Punch", 
+             "Acai Antioxidant", "Tropical Berry Twist", "Citrus Crush", 
+             "Berry Goddess", "Chocolate Crush", "Vanilla Velvet")
+```
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
 ## Special Functions in R
 
-Another special function that may come in handy is the *which()* function. What this will do is tell us the index values of the elements which meet certain criteria. Note in the sample below that it is telling us the 1st, 6th, 7th, and 10th elements in the vector are greater than 40 (it is not telling us the values greater than 40, just the indices of the elements):
+Another special function that may come in handy is the *which()* function. What this will do is tell us the index values of the elements which meet certain criteria. Note in the sample below that it is telling us the 6th, 12th, 13th, and 20th elements in the vector are greater than 40 (it is not telling us the values greater than 40, just the indices of the elements):
+
+```{r}
+#| echo: FALSE
+
+set.seed(1)
+```
 
 ```{r}
 x <- sample(1:50, 20, replace=TRUE)
 x
 
-which(x > 40)
+which(x > 40) # Indices with values greater than 40
+x[which(x > 40)] # Values greater than 40
 ```
 
 
@@ -300,6 +419,23 @@ all(x < 10)
     \href{https://youtu.be/46XJpsU2A6k}{Special Functions in R}
 \end{watch}
 
+::: {.callout-tip title="Try it Out"}
+Emmit has calculated the number of he has sold for each of the past 10 days. Using the functions in this section determine which days had sales greater than or equal to 15 and if the sales on a day matched a previous day's total.
+
+```{r}
+sales <- c(12, 5, 9, 15, 7, 3, 10, 20, 7, 6)
+```
+
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
 ## Getting Help
 
 While I have thrown a lot of information at you in this lecture, know that R provides help and resources for all functions. So, if we are ever confused about a specific function or do not know what parameters we can pass into the function, then we can always use a question mark to search for the documentation. That is if we are curious about the *mean()* function then we can type ?mean.
@@ -309,3 +445,27 @@ Using two question marks will search the database for the phrase if we are unsur
 \begin{watch}{}{}
     \href{https://youtu.be/SE8j5P77XUo}{Getting Help in R}
 \end{watch}
+
+::: {.practice-it}
+- Create sequences in R to do the following:
+  a) Create a sequence of numbers from 1 to 20 incrementing by 3 using the `seq()` function.  
+  b) Using the `rep()` function, create a vector that contains the elements 5, 10, and 15, where 5 is repeated 3 times, 10 is repeated 2 times, and 15 is repeated 4 times.  
+  c) Using the built-in `letters` vector, extract and display the letters at the 3rd, 6th, 9th, and 12th positions.
+  d) Name the vector `c(50, 100, 200)` with the names `"Small"`, `"Medium"`, and `"Large"`, then access the element named `"Medium"`.
+
+
+- Create a vector `states` with values: "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana"  
+  a) Use `grep()` to find all states that start with the letter `"C"` and display those states.
+  b) Use `grep()` to find all states that end with the letter `"a"` and display those states.
+  c) Use `grep()` to find all states that contain the letters `"_n"` (with _ being any letter) or `"or"`.
+  d) Use logical operators to display all states that contain either `"Florida"` or `"Georgia"`.
+
+- Use the `sample()` function to randomly select 7 values from the numbers 1 through 20 *without replacement*.
+
+- Create a vector `temperature` with the values 72, 75, 78, 80, 77, 74, 91, 84, 85, 93, 80.  
+  a) Use the `which()` function to find the indices where the daily temperature is equal to 80
+  b) Use the `duplicated()` function to identify which day's temperatures are duplicates.
+  c) Use the `unique()` function to get the distinct daily temperature values.
+  d) Use the `any()` function to check if any days have temperatures below 80.
+  e) Use the `all()` function to check if all days have temperatures 80 or less.
+:::

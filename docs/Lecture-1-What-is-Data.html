@@ -348,7 +348,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -441,6 +441,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Visualizations</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-16-Line-of-Best-Fit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Line of Best Fit</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -479,30 +485,110 @@ window.Quarto = {
 </header>
 
 
-<p>As we begin our journey to becoming Data Scientists, it is important to get a firm grasp of what data actually is. There are many ways to define data. If you were to look at the origin of the word, you would see that it is the plural of the Latin word “datum”, which means piece of information. You might propose other definitions, such as; Information collected about something, or Facts and Statistics used to calculate something. All of these are acceptable interpretations of data, and we will probably switch between them throughout the semester. But, it is important to acknowledge that data (the individual pieces of information) by itself is essentially meaningless, it is through interpretation that it gains meaning. And that is what we will learn throughout this semester; how to interpret pieces of information to tell a story.</p>
+<p>As we begin our journey to becoming Data Scientists, it is important to get a firm grasp of what data actually is. There are many ways to define data. If you were to look at the origin of the word, you would see that it is the plural of the Latin word “datum”, which means piece of information. You might propose other definitions, such as: Information collected about something, or Facts and Statistics used to calculate something. All of these are acceptable interpretations of data, and we will probably switch between them throughout the semester. But, it is important to acknowledge that data (the individual pieces of information) by itself is essentially meaningless, it is through interpretation that it gains meaning. And that is what we will learn throughout this semester; how to interpret pieces of information to tell a story.</p>
 <div class="learning-goals">
 <ul>
-<li>Understand the basics of what data looks like.</li>
-<li>Learn how to interpret p-values and confidence intervals.</li>
-<li>Apply regression in R to a real dataset.</li>
+<li>Understand what data is, how it’s collected, and why interpretation gives it meaning.</li>
+<li>Recognize the role of data science in modeling, storytelling, and decision-making.</li>
+<li>Classify data as quantitative or qualitative, and further distinguish between continuous, discrete, nominal, and ordinal types.</li>
 </ul>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Supplemental Material
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="Reading-Guide/L1-Reading-Guide.pdf" download=""> 📄 Download the lecture’s Reading Guide </a></p>
+</div>
 </div>
 <section id="data-fication" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="data-fication"><span class="header-section-number">1.1</span> Data-fication</h2>
 <p>Technology has become an integral part of our daily life. Almost everything we do tracks and collects data on us. This includes checking our social media in the morning, purchasing food with our credit card, and even “scanning” our ID to enter buildings. Every company we interact with collects data on us whether we like it or not, including the Government. It should be mentioned that not all of this is bad. The school collects information about what classes you have passed, credit card companies collect information to determine how reliable you are in paying your bills, and hospitals collect medical history about you to improve your level of care.</p>
-<p>Before reading on, you should stop and think about what information about you is out there. Can you think of specific companies/groups which have a lot of data bout you? Do you think it is a good or bad thing that information about you is collected?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reflection
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before reading on, you should stop and think about what information about you is out there.</p>
+<ul>
+<li>Can you think of specific companies/groups which have a lot of data bout you?</li>
+<li>Do you think it is a good or bad thing that information about you is collected?</li>
+</ul>
+</div>
+</div>
 <p>Because of the large amount of data that is floating around in the “wild”, scientists say that we are currently in the “Age of Information/Data”. Another term, coined in a 2013 article titled “The Rise of Big Data”, describes the process of “taking all aspects of life and turning them into data [<span class="math inline">\(\dots\)</span>] Once we datafy things, we can transform their purpose and turn the information into new forms of value.” This results in a “digital footprint”; as we leave a trail of data about ourselves wherever we go. This digit footprint starts when we are born and follows us throughout our lives. Companies are able to change/tweak products based on the data they collect about our preferences (think how social media evolved based on the apps we used), but these products can also change how we behave (think social media addiction).</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit is a college sophomore who starts every day by checking his phone, grabbing a breakfast burrito at the cafeteria, and hiking to the Grotto on campus. What types of data are being generated by Emmit’s morning routine? Who might collect that data, and what could they use it for?</p>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/0MVLquVROZo?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</details>
+</div>
+</div>
 </section>
 <section id="communicating-with-data" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="communicating-with-data"><span class="header-section-number">1.2</span> Communicating with Data</h2>
 <p>So all of this data is available, but why should we care exactly? Well, all of this data allows us to do some pretty cool things. In the previous section, we mentioned how credit card companies can determine if we are dependable. They do this by taking our past payment history and other information about us, such as age, gender, and income level, and then building a model to decide if we will end up paying off the loan or defaulting on it. Other scenarios might be to predict the outcomes of NFL games, analyze weather patterns to better understand hurricane trajectory, or even recommend movies on Netflix/products on Amazon. All of these things are done with data, and when we build these models we are doing Data Science. There are many definitions out there for Data Science, but one of the ones I like is the following: <strong>Data Science unlocks hidden stories within vast amounts of data, paving the way for innovations that transform industries and improve lives.</strong></p>
 <p>Since Data Science involves the process of unlocking and telling stories, it is important for us to ask ourselves what exactly makes a good story. In middle school and high school, I am sure we were taught that every story should have a beginning (the Introduction), a middle (the “Plot”), and an ending (the Conclusion). As Data Scientists, we will need to communicate our results in a similar way (as a data story) in order for people to understand our findings. So, we should also start to think about how we convey a data story so other people can understand it. If we are predicting the miles per gallon a car will have, then we will present our story differently to kindergartners than we would to automotive experts. So, it is important to write our story with our audience in mind. To help the presentation, we will want to incorporate visualizations to engage the audience and support our plot.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit and his friends have been complaining that the campus dining hall lines are way too long during lunch. Emmit decides to track how long he waits each day for a week, and also asks his friends to do the same. He collects data on wait times, day of the week, and time of day. How can Emmit turn this data into a compelling story? Who is his audience, and what would be a good way to visualize his findings?</p>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/qVT0qFMCFnM?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</details>
+</div>
+</div>
 </section>
 <section id="classifying-data" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="classifying-data"><span class="header-section-number">1.3</span> Classifying Data</h2>
 <p>There are a number of ways to classify the data that we will encounter throughout this course. The first big division will be deciding whether the data is <strong>Quantitative</strong> or <strong>Qualitative</strong>. Quantitative data are anything that is a count or a measure (think quantities) while Qualitative data are things that cannot be expressed using numbers (think categories). Depending on what type of data we have will determine how we analyze and visualize it.</p>
 <p>Quantitative data can be broken up into two more categories. We will say the data is <strong>Continuous</strong> if it can take on infinitely many values in a given interval. What this essentially means is that if it makes sense to add additional decimal places then it is probably continuous data. Examples of this include temperature (it makes sense for something to be 74.3<span class="math inline">\(^\circ\)</span> F or even 74.3138<span class="math inline">\(^\circ\)</span> F if our measurement device is precise enough), weight, and time. We need to be careful, as continuous data does not mean that it is continuously changing, it means that it can take any value in an interval.</p>
-<p>The other type of quantitative data will be <strong>Discrete</strong> data. If our data can only take on certain values in a given interval then it will be Discrete data. This includes the number of people at a party (it has to be a whole number as we can’t have 13.47 people…), a person’s shoe size, and the amount of money they have in their wallet. Notice that some of these may have decimal places, like shoe size, but still be considered discrete data since it does not make sense to have an additional decimal place. One mistake students often make is saying that there is a finite number of possibilities for discrete data. This is false, there can be an infinite number of values (theoretically there be <span class="math inline">\(0, 1, 2, 3, \cdots\)</span> all the way to infinity number of people in a room, but it has to be a whole number) as long as the data can only take on certain values in the interval.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Just because a value has decimals doesn’t mean it’s continuous! Think about whether additional precision makes sense.</p>
+</div>
+</div>
+<p>The other type of quantitative data will be <strong>Discrete</strong> data. If our data can only take on certain values in a given interval then it will be Discrete data. This includes the number of people at a party (it has to be a whole number as we can’t have a fraction of a person), a person’s shoe size, and the amount of money they have in their wallet. Notice that some of these may have decimal places, like shoe size, but still be considered discrete data since it does not make sense to have an additional decimal place. One mistake students often make is saying that there is a finite number of possibilities for discrete data. This is false, there can be an infinite number of values (theoretically there be <span class="math inline">\(0, 1, 2, 3, \cdots\)</span> all the way to infinity number of people in a room, but it has to be a whole number) as long as the data can only take on certain values in the interval.</p>
 <p>Qualitative (categorical) data can also be broken up into two groups. These groups depend on whether the data can be ordered or not. <strong>Nominal</strong> data has no implied ordering. Examples of this might be gender, color, or fruits as it does not make sense to say that one ordering is correct (it doesn’t make sense to say male comes before female or vice versa). <strong>Ordinal</strong> data can be ordered. This might include grade classification (Freshman, Sophomore, Junior, Senior), letter grades, and drink sizes (small, medium, and large). All of these make sense to put in a specific order.</p>
 <p>Throughout the course, before we start analyzing data it is important to stop and think about what type of data we have. You will need to differentiate whether it us Qualitative or Quantitative. If it is Quantitative then is it Continuous or Discrete. If it is Qualitative then is it Nominal or Ordinal. For instance, we might say that it is Quantitative Continuous or Qualitative Nominal. We will never mix the classifications, for instance, we will never have Qualitative Discrete or Quantitative Ordinal Continuous, as this does not make sense. There are many additional ways we could classify our data, but we will just stick with these basic classifications for now.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -510,13 +596,53 @@ window.Quarto = {
 <p><img src="images/L1-Data-Decision-Tree.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
-<div class="practice-it">
-<ul>
-<li>Understand the basics of what data looks like.</li>
-<li>Learn how to interpret p-values and confidence intervals.</li>
-<li>Apply regression in R to a real dataset.</li>
-</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit is organizing a spreadsheet of his week to track habits and mood. Help classify each of Emmit’s variables as Quantitative Continuous, Quantitative Discrete, Qualitative Nominal, or Qualitative Ordinal:</p>
+<ul>
+<li>Sleep hours</li>
+<li>Number of texts sent</li>
+<li>Mood (happy, okay, sad)</li>
+<li>Year in college</li>
+</ul>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/xocjeeh3EOE?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</details>
+</div>
+</div>
+<div class="practice-it">
+<p><br></p>
+<ol type="1">
+<li><p>Explain why raw data alone is not meaningful without interpretation.</p></li>
+<li><p>Give an example of a decision or prediction you’ve seen (in apps, services, or media) that likely used data. What data was probably used?</p></li>
+<li><p>Why is it important to consider your audience when presenting data? Give one example of how you’d present the same data differently to two groups.</p></li>
+<li><p>For each variable, classify it as one of the following: <em>Quantitative Continuous, Quantitative Discrete, Qualitative Nominal, Qualitative Ordinal</em></p>
+<ol type="a">
+<li>Height in inches<br>
+</li>
+<li>Shirt size (S, M, L, XL)<br>
+</li>
+<li>Number of steps walked<br>
+</li>
+<li>Rating of a movie (1 to 5 stars)</li>
+</ol></li>
+<li><p>Why would “Quantitative Ordinal Continuous” be an invalid classification?</p></li>
+<li><p>Think of one variable from your daily life. Write down the variable and explain how you would classify it and why.</p></li>
+<li><p>Write a short “data story” (4–5 sentences) using any 3 variables of your choice. Specify your audience and how you’d visualize it.</p></li>
+</ol>
+</div>
+
 
 
 </section>
@@ -923,8 +1049,8 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Preface">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      <a href="./index.html" class="pagination-link" aria-label="Welcome">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Welcome</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

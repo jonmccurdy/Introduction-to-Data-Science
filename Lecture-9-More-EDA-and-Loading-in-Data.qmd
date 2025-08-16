@@ -1,5 +1,14 @@
 # Loading Data in R & EDA
 
+::: learning-goals
+
+- Load external data into R using read.csv() or the RStudio Import Dataset interface.
+- Examine the structure of a dataset using str() and determine which variables should be converted to factors.
+- Use the table() function to summarize and visualize categorical variables and their combinations with barplots.
+- Use logical vectors to filter data and compute summaries like means for specific subgroups.
+- Use the aggregate() function to compute summary statistics for quantitative variables grouped by one or more categorical variables.
+:::
+
 ## Loading Data into R
 
 Sometimes we are interested in using data that isn't in R. If this is the case, we will have to load the data into R ourselves using a CSV file. To follow along with this lecture writeup, you should download the dataset called "Data\_200\_df.csv" on Canvas under the Modules. Now to load data into R there are several different ways we can do it. One way is using the *read.csv()* function where we pass the file path into the function. 

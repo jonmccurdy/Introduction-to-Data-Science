@@ -383,7 +383,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -476,6 +476,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Visualizations</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-16-Line-of-Best-Fit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Line of Best Fit</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -515,6 +521,15 @@ window.Quarto = {
 </header>
 
 
+<div class="learning-goals">
+<ul>
+<li>Load external data into R using read.csv() or the RStudio Import Dataset interface.</li>
+<li>Examine the structure of a dataset using str() and determine which variables should be converted to factors.</li>
+<li>Use the table() function to summarize and visualize categorical variables and their combinations with barplots.</li>
+<li>Use logical vectors to filter data and compute summaries like means for specific subgroups.</li>
+<li>Use the aggregate() function to compute summary statistics for quantitative variables grouped by one or more categorical variables.</li>
+</ul>
+</div>
 <section id="loading-data-into-r" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="loading-data-into-r"><span class="header-section-number">9.1</span> Loading Data into R</h2>
 <p>Sometimes we are interested in using data that isn’t in R. If this is the case, we will have to load the data into R ourselves using a CSV file. To follow along with this lecture writeup, you should download the dataset called “Data_200_df.csv” on Canvas under the Modules. Now to load data into R there are several different ways we can do it. One way is using the <em>read.csv()</em> function where we pass the file path into the function.</p>
@@ -677,6 +692,7 @@ Freshman   Junior   Senior Sophmore
 </div>
 </div>
 <p>Within this section, we have learned two powerful functions which help us summarize categorical and quantitative data. We should think about what data we have present though before we run the code. If we try to run the table function on data that is not categorical (with relatively few categories) or if we try to use the aggregate function and group by quantitative data then the output will not be readable due to the number of possibilities. Therefore, it is important to think about what type of data we are passing into each function and whether the output is particularly useful.</p>
+
 
 
 </section>

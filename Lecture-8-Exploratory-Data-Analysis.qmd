@@ -1,6 +1,15 @@
 # Exploratory Data Analysis
 
-The Data Science Life-cycle consists of procuring the data, tidying the data to make it workable, and then repeatedly transforming, visualizing, and modeling the data until our results are finalized to how we would like them. After we are happy with the results, we then have to communicate the information to our respective audience. For this class, we will focus on transforming the data, visualizing the data, and communicating the data. Future classes will emphasize "tidying" large datasets and building models to better describe data.
+The Data Science Life-cycle consists of procuring the data, tidying the data to make it workable, and then repeatedly transforming, visualizing, and modeling the data until our results are finalized to how we would like them. After we are happy with the results, we then have to communicate the information to our respective audience. For this class, we will focus on transforming the data, visualizing the data, and communicating the data. Future courses will emphasize "tidying" large datasets and building models to better describe data.
+
+::: learning-goals
+
+- Understand the role of Exploratory Data Analysis (EDA) in the data science life cycle and identify when and why it is necessary.
+- Investigate dataset documentation and structure using functions like help() and str() to determine what the data is and how it is organized.
+- Detect and handle special values (e.g., NA, NaN, Inf) and assess data conditions using logical checks and summary functions.
+- Prepare data by modifying variable types, filtering missing values, or creating new variables through transformation and recoding.
+- Generate initial summaries using the summary() function and visualize quantitative and categorical variables to gain insight into distributions and patterns in the data.
+:::
 
 ## The Basics of EDA
 
@@ -23,13 +32,14 @@ We can attempt to answer Step One: What is the Data, by looking at the logical s
 #| eval: false
 
 help(package = "datasets") # Datasets built-in to R
-install.packages("openintro") # Installing a package- only do once
-library(openintro) # Loading library into environment- do every session
+install.packages("openintro") # Installing a package- only do this once
+library(openintro) # Loading library into environment- do this every session
 help(package = "openintro") # Datasets in openintro library
 ```
 
 ```{r}
 #| echo: false
+#| warning: false
 
 library(openintro) # Loading library into environment- do every session
 
@@ -38,6 +48,18 @@ library(openintro) # Loading library into environment- do every session
 \begin{watch}{}{}
     \href{https://youtu.be/6UPqEI9-uFE}{Installing Packages and Loading Libraries}
 \end{watch}
+
+::: {.callout-tip title="Try it Out"}
+Emmit is taking an Introductory Data Science course and has learned about a package created specifically for students in his course. Help Emmit install, load, and view the documentation for the "MSMU" package. 
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
 
 ## Step 2: Logical vs. Physical
 
@@ -59,6 +81,18 @@ str(mtcars) # Looking at the dataset structure
 \begin{watch}{}{}
     \href{https://youtu.be/e70L-Zy__0I}{Looking at the Logical vs. Physical}
 \end{watch}
+
+::: {.callout-tip title="Try it Out"}
+Help Emmit look at the documentation for the "income_data" dataset in the "MSMU" library and verify that it matches the data avaliable in the package.
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
 
 ## Special Values in R}
 
@@ -98,6 +132,18 @@ which(is.na(head(airquality$Ozone, 10)))
     \href{https://youtu.be/Gj_-ZS9wH6c}{Identifying Missing Values}
 \end{watch}
 
+::: {.callout-tip title="Try it Out"}
+Looking at the "income_data" dataset in the "MSMU" library, help Emmit determine if there are any missing values present and where they occur. 
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
 It may also be a good idea to print out the unique values to see if there are any missing or unusual values. To do this, we can use the *unique()* function as well as the *sort()* function. One other thing we might look for the an outlier value. For instance, 999 might indicate a missing value if all other values are around 20. Another thing we will note is that some functions will not work properly if missing values exist. If this is the case then we might need to specify the argument *na.rm*=TRUE to remove the missing values before running the function.
 
 ```{r}
@@ -135,6 +181,18 @@ head(airquality[complete.cases(airquality),])
     \href{https://youtu.be/Qqs3RrHd4xQ}{Identifying Missing Observations}
 \end{watch}
 
+::: {.callout-tip title="Try it Out"}
+Emmit thinks that there are might be some unusual values present in the "income_data" dataset. Help him determine which values are unusual. Also help him calculate the mean number of years until retirement. 
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
 ## Step 4: Data Preparation
 
 In Step Four: Data Preparation, we will begin to alter the dataset to better represent certain columns. For instance, does one of our columns need to be changed from quantitative to categorical? We might also be interested in adding new columns based on the data or just generally cleaning it up to help us gain information from the dataset. One thing we might do is replace implicit missing value if, after talking to an expert they inform us the value is not correct or missing. For instance, if we talked to an expert and they said that the Ozone should not be 168 but should be a missing value instead then we can make that change.
@@ -163,6 +221,18 @@ str(beaver2)
     \href{https://youtu.be/fAcw4RpMgzU}{Altering a Variable}
 \end{watch}
 
+::: {.callout-tip title="Try it Out"}
+You and Emmit noticed that unusual values were present in the "Ages" and the "Salary" column. Change the unusual values to NA so that they are properly coded. 
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
 Sometimes it is helpful to convert a quantitative variable into a categorical variable by placing the data into different categories. To do this, we will "cut" the data into ranges and assign each value a category. An example of this can be seen below using the *cut()* function.
 
 ```{r}
@@ -177,6 +247,18 @@ summary(airquality[,c(1,7)])
     \href{https://youtu.be/3qMzvNiGmd4}{Using the \textit{cut()} Function to create a new variable}
 \end{watch}
 
+::: {.callout-tip title="Try it Out"}
+While the "Age" variable is beneficial, Emmit thinks that having a qualitative variable might be more beneficial. Help him add a new column to the dataframe which classifies an individual as early career (< 35 years old), mid-career (35-55 years old), and late career (> 55 years old). 
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
 ## Step 5: Initial Summary
 
 Step Five: Initial Summary is all about displaying a summary of the dataset to get some insight into how the data is spread out and where the center of each variable is. We will want to look at the results and ask ourselves what information we can gain from it. To procure a summary of a dataset, simply use the *summary()* function. The output will be a 5-number summary (with the mean included) along with how many missing values are in each variable.
@@ -189,6 +271,7 @@ summary(airquality)
 \begin{watch}{}{}
     \href{https://youtu.be/lDZzsabI2xw}{Using the \textit{summary()} Function}
 \end{watch}
+
 
 ## Step 6: Data Visualization
 
@@ -209,3 +292,31 @@ barplot(table(airquality$Ozone_cat))
 \end{watch}
 
 Exploratory Data Analysis, and in particular these 6 steps, is something we should carry out every time we start working with new datasets. We do not want to jump into analyzing a dataset without knowing what it looks like or if changes need to be made. After a while, these steps will become second nature to us and we will be able to carry them out relatively quickly.
+
+::: {.callout-tip title="Try it Out"}
+Help Emmit create a few different visualizations to understand the dataset.
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
+::: {.practice-it}
+- Carry out Exploratory Data Analysis on the "beaver2" dataset:
+  a) Display the structure of the dataset. What are the datatypes present?
+  b) Create a new factor variable activ_f from the activ column with levels "No" and "Yes". Confirm the new variable is a factor.
+  c) Why might converting activ to a factor be useful in data analysis?
+  d) Display a summary of the beaver2 dataset including the new factor variable.
+  e) Suppose you mistakenly overwrite the activ variable. How can you reload the original dataset to recover it?
+
+- Carry out Exploratory Data Analysis on the "exam_data" dataset in the "MSMU" library:
+  a) Use the help() function to explore the documentation for the built-in exam_data dataset. What does this dataset represent?
+  b) Use str() on the exam_data dataset. How many rows and columns are there? Are there any special values or missing values mentioned?
+  c) Identify how many missing values are in each column
+  e) Display the unique values of the writing.score column sorted in increasing order. What does the range look like including and excluding missing values?
+  f) Explain why it might be important to know how many complete observations exist in this dataset. Use a function to find how many complete rows there are.
+:::

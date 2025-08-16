@@ -533,9 +533,18 @@ window.Quarto = {
 <pre><code>[1] "Hello"  "world!"</code></pre>
 </div>
 </div>
+<p>Now that we’ve covered the basics of R, including simple calculations, variables, and vectors, it’s time to dive a little deeper. In this section, we will explore more of R’s built-in functionality that makes data manipulation efficient and expressive. You’ll learn how to generate sequences, replicate values, name vector elements, and search using patterns. We’ll also explore special functions that help us handle data more effectively. These tools will become essential as we begin working with larger and more complex datasets.</p>
+<div class="learning-goals">
+<ul>
+<li>Generate numeric and character vectors using functions like seq(), rep(), and sample().</li>
+<li>Use indexing techniques to select specific elements from a vector.</li>
+<li>Apply pattern matching with grep() and understand how regular expressions work within R.</li>
+<li>Use special functions like which(), duplicated(), unique(), any(), and all() to summarize or filter vector data.</li>
+</ul>
+</div>
 <section id="creating-a-sequence-of-numbers" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="creating-a-sequence-of-numbers"><span class="header-section-number">5.1</span> Creating a Sequence of Numbers</h2>
-<p>There are additional ways we could make a vector as well. If we wanted all of our numbers in a sequence then we could use the <em>seq()</em> function to do this. With this function, we can specify what our starting value is and what we want the sequence to do. The function also allows us to pass an argument into it which specifies what value we should increment the sequence by. If we do not specify what we should increment by then it will automatically default to 1. We can also count down if we would like. Finally, it should be mentioned that most functions do not require us to write the argument name as long as we pass them in the correct order (but we should probably keep doing it).</p>
+<p>There are additional ways we could make a vector as well. If we wanted all of our numbers in a sequence then we could use the <em>seq()</em> function to do this. With this function, we can specify what our starting value is and what we want the sequence to do. The function also allows us to pass an argument into it which specifies what value we should increment the sequence by. If we do not specify what we should increment by then it will automatically default to 1. We can also count down if we would like. Finally, it should be mentioned that most functions do not require us to write the argument name as long as we pass them in the correct order (but we should probably keep doing it until we are more comfortable).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from=</span><span class="dv">1</span>, <span class="at">to=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -553,7 +562,7 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 30 26 22 18 14 10  6  2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="at">by=</span><span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">2</span>, <span class="at">by=</span><span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] -1.0 -0.7 -0.4 -0.1  0.2  0.5  0.8  1.1  1.4  1.7  2.0</code></pre>
 </div>
@@ -571,6 +580,25 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.25</span><span class="sc">:</span><span class="fl">7.75</span> <span class="co"># Notice how it does not go past the ending value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.25 1.25 2.25 3.25 4.25 5.25 6.25 7.25</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit is interested in displaying all of the possible GPA values rounded to 2 decimal places. How can he do this is the GPA must be between 0 and 4.0?</p>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<p>XXXX INSERT VIDEO XXXX</p>
+</details>
 </div>
 </div>
 </section>
@@ -612,6 +640,25 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">2</span>,<span class="dv">1</span>), <span class="at">each=</span><span class="dv">3</span>, <span class="at">length.out=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 7 7 7 2 2 2 1 1 1 7</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit surveys his friends regarding their favorite fruit, and determines that 7 of them like apples, 4 like bananas, 3 like oranges, and 1 likes pineapple. How can he display this information using the <em>rep()</em> function?</p>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<p>XXXX INSERT VIDEO XXXX</p>
+</details>
 </div>
 </div>
 </section>
@@ -660,6 +707,25 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>y[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">8</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  2  3  4  6  7  9 10</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit is making a display for his smoothie stand and wants it to say “EMMIT smoothies”. Help him do this in R.</p>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<p>XXXX INSERT VIDEO XXXX</p>
+</details>
 </div>
 </div>
 </section>
@@ -714,6 +780,25 @@ window.Quarto = {
 "Monday" "Friday" </code></pre>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit has been operating the smoothie stand for a few weeks now and wants to calculate how many smoothies of each flavor he has sold. Help him create a named vector if he has sold 42 Strawberry, 37 Manhgo, and 28 Pineapple smoothies.</p>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<p>XXXX INSERT VIDEO XXXX</p>
+</details>
+</div>
+</div>
 </section>
 <section id="index-selection-using-grep" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="index-selection-using-grep"><span class="header-section-number">5.5</span> Index Selection using GREP</h2>
@@ -727,7 +812,7 @@ window.Quarto = {
    0.787564 1936.270000   40.339900    2.203710  200.482000 </code></pre>
 </div>
 </div>
-<p>Before we jump into using the function though, we will want to discuss some of the syntax that the <em>grep()</em> uses. The first is that it expects us to pass a pattern into it using quotation marks. If we type a <span class="math inline">\(\wedge\)</span> at the beginning of the pattern then it will search for strings <strong>starting with</strong> the pattern. If we type a $ at the end of the pattern then it will search for strings <strong>ending with</strong> the pattern. A single period will stand for any character, and brackets characters in brackets will mean “any of these characters”. After we specify the pattern we will need to also specify where we are looking for the pattern, and in our case, it will be the names of the euro vector. The output for this function will be the indices of the elements which contain the specified pattern.</p>
+<p>Before we jump into using the function though, we will want to discuss some of the syntax that the <em>grep()</em> uses. The first is that it expects us to pass a pattern into it using quotation marks. If we type a <span class="math inline">\(\wedge\)</span> at the beginning of the pattern then it will search for strings <strong>starting with</strong> the pattern. If we type a $ at the end of the pattern then it will search for strings <strong>ending with</strong> the pattern. A single period will stand for any character, and characters in brackets will mean “any of these characters”. After we specify the pattern we will need to also specify where we are looking for the pattern, and in our case, it will be the names of the euro vector. The output for this function will be the indices of the elements which contain the specified pattern.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(euro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -780,89 +865,135 @@ window.Quarto = {
 </div>
 </div>
 <p>While this function may seem a little complicated at first, it is a very powerful tool that will allow us to filter out observations that meet certain criteria. One example might be searching a vector for all observations with the last name “Smith” or for people whose first name starts with the letters “Ca”.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The smoothie stand has the following flavors. How can he display the flavors that start with Berry, end with Crush, or have two consecutive vowels.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>flavors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mango Madness"</span>, <span class="st">"Berry Blast"</span>, <span class="st">"Peach Punch"</span>, <span class="st">"Pineapple Punch"</span>, </span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Acai Antioxidant"</span>, <span class="st">"Tropical Berry Twist"</span>, <span class="st">"Citrus Crush"</span>, </span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Berry Goddess"</span>, <span class="st">"Chocolate Crush"</span>, <span class="st">"Vanilla Velvet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<p>XXXX INSERT VIDEO XXXX</p>
+</details>
+</div>
+</div>
 </section>
 <section id="logical-vectors-and-index-selection" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="logical-vectors-and-index-selection"><span class="header-section-number">5.6</span> Logical Vectors and Index Selection</h2>
 <p>We briefly saw it in the previous lecture, but it is important for us to practice accessing vector elements using logical vectors. If any logical operator (<span class="math inline">\(&lt;,&lt;=, &gt;, &gt;=, ==, !=\)</span>) is used to compare vectors, the resulting output will be a logical vector. This will always be the case! It is good practice to think about what the outputted results will be before we even run the code instead of just “hoping for the best”.</p>
 <p>We can access the vector elements using logical vectors in two ways; explicitly and implicitly. Doing it explicitly would mean we save the logical vector to a new variable and then use the new variable in our index-selection brackets while doing it implicitly would mean we place the logical comparison into the index-selection brackets directly. I prefer the implicit method as we do not have to re-run the code if the original vector changes. Both examples can be seen below:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">8</span>,<span class="dv">6</span>)</span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">&gt;</span> <span class="dv">6</span></span>
-<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">8</span>,<span class="dv">6</span>)</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">&gt;</span> <span class="dv">6</span></span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>x[y] <span class="co"># Explicit creation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>x[y] <span class="co"># Explicit creation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8 7 8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>x[x<span class="sc">&gt;</span><span class="dv">6</span>] <span class="co"># Implicit creation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>x[x<span class="sc">&gt;</span><span class="dv">6</span>] <span class="co"># Implicit creation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8 7 8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4 8 2 6 7 6 3 8 6</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;=</span> <span class="dv">7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;=</span> <span class="dv">7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x <span class="sc">&gt;=</span> <span class="dv">7</span>) <span class="co"># Length of the vector is 11 elements</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x <span class="sc">&gt;=</span> <span class="dv">7</span>) <span class="co"># Length of the vector is 11 elements</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x <span class="sc">&gt;=</span> <span class="dv">7</span>) <span class="co"># Adding the logical vector: TRUE = 1, FALSE = 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x <span class="sc">&gt;=</span> <span class="dv">7</span>) <span class="co"># Adding the logical vector: TRUE = 1, FALSE = 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>x[x <span class="sc">&gt;=</span> <span class="dv">7</span>] <span class="co"># Displaying just the values whose index is TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>x[x <span class="sc">&gt;=</span> <span class="dv">7</span>] <span class="co"># Displaying just the values whose index is TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8 7 8</code></pre>
 </div>
 </div>
 <p>We can expand our capabilities with logical operators and introduce a few new operators which will allow us to evaluate multiple conditions at the same time. These include &amp; (which represents <strong>and</strong>), <span class="math inline">\(\vert\)</span> (which represents <strong>or</strong> and is the pipe symbol above the enter key), and ! (which represents <strong>not</strong>). The <strong>and</strong> will require both conditions to be true for the output to be true, the <strong>or</strong> only requires one condition to be true for the output to be true, and the <strong>not</strong> “flips” the final output to be the opposite.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">11</span></span>
-<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">11</span></span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">&gt;</span><span class="dv">5</span>) <span class="sc">&amp;</span> (x <span class="sc">&lt;</span> <span class="dv">10</span>) <span class="co"># Is the element greater than 5 and less than 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">&gt;</span><span class="dv">5</span>) <span class="sc">&amp;</span> (x <span class="sc">&lt;</span> <span class="dv">10</span>) <span class="co"># Is the element greater than 5 and less than 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>x[(x <span class="sc">&gt;</span><span class="dv">5</span>) <span class="sc">&amp;</span> (x <span class="sc">&lt;</span> <span class="dv">10</span>)] <span class="co"># Displaying the elements that are TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>x[(x <span class="sc">&gt;</span><span class="dv">5</span>) <span class="sc">&amp;</span> (x <span class="sc">&lt;</span> <span class="dv">10</span>)] <span class="co"># Displaying the elements that are TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6 7 8 9</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">&lt;</span> <span class="dv">5</span>) <span class="sc">|</span> (x <span class="sc">&gt;</span> <span class="dv">9</span>) <span class="co"># Is the elements less than 5 or greater than 9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>(x <span class="sc">&lt;</span> <span class="dv">5</span>) <span class="sc">|</span> (x <span class="sc">&gt;</span> <span class="dv">9</span>) <span class="co"># Is the elements less than 5 or greater than 9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>x[(x <span class="sc">&lt;</span> <span class="dv">5</span>) <span class="sc">|</span> (x <span class="sc">&gt;</span> <span class="dv">9</span>)] <span class="co"># Displaying the elements that are TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>x[(x <span class="sc">&lt;</span> <span class="dv">5</span>) <span class="sc">|</span> (x <span class="sc">&gt;</span> <span class="dv">9</span>)] <span class="co"># Displaying the elements that are TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  1  2  3  4 10 11</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>(x <span class="sc">&gt;</span> <span class="dv">6</span>) <span class="co"># Is the element not greater than 6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>(x <span class="sc">&gt;</span> <span class="dv">6</span>) <span class="co"># Is the element not greater than 6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>x[<span class="sc">!</span>(x <span class="sc">&gt;</span> <span class="dv">6</span>)] <span class="co"># Displaying the elements that are TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>x[<span class="sc">!</span>(x <span class="sc">&gt;</span> <span class="dv">6</span>)] <span class="co"># Displaying the elements that are TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 2 3 4 5 6</code></pre>
 </div>
 </div>
 <p>It is important to play around with the logical operators to get comfortable with filtering out elements that meet certain criteria. If you have multiple conditions you may need to use parenthesis to have it do what you wish, as it does the <strong>and</strong> operation before the <strong>or</strong> operation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>x[(x <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> x <span class="sc">&lt;</span> <span class="dv">3</span>) <span class="sc">&amp;</span> x <span class="sc">&lt;</span> <span class="dv">4</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>x[(x <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> x <span class="sc">&lt;</span> <span class="dv">3</span>) <span class="sc">&amp;</span> x <span class="sc">&lt;</span> <span class="dv">4</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>x[x <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> x <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">&amp;</span> x <span class="sc">&lt;</span> <span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>x[x <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> x <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">&amp;</span> x <span class="sc">&lt;</span> <span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  1  2  6  7  8  9 10 11</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit has calculated the number of he has sold for each of the past 10 days. How many days did he sell less than 7.5 smoothies? How mant days did he sell either less than 5 or greater than 15 smoothies?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">15</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">7</span>, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<p>XXXX INSERT VIDEO XXXX</p>
+</details>
 </div>
 </div>
 </section>
@@ -870,95 +1001,145 @@ window.Quarto = {
 <h2 data-number="5.7" class="anchored" data-anchor-id="sample-function"><span class="header-section-number">5.7</span> Sample Function</h2>
 <p>There are a few special functions in R that we should discuss that will be used throughout the course. The first is the <em>sample()</em> function which will allow us to randomly sample values from a vector that we pass into it. We will be able to choose how many values we want to be outputted and whether we want to allow the repetition of the values (this will need to be true if we want to output more values than we passed in). The exact values that are returned are not predictable as they rely on a random number generator behind the scenes. If we wish to get the same values over and over again then we need to use the <em>set.seed()</em> function to achieve this goal. An example of using the <em>sample()</em> function can be seen below:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  1  6  7  9 10</code></pre>
-</div>
 <div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2 2 9 6 2</code></pre>
+<pre><code>[1] 2 3 7 9 9</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 7 5 1 8 8</code></pre>
+<pre><code>[1] 2 7 9 1 8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  8  6 10  1  5</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">15</span>, <span class="at">replace=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">15</span>, <span class="at">replace=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error in sample.int(length(x), size, replace, prob) : cannot take a sample larger than the population when 'replace = FALSE'</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">15</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">15</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  4 10  9  3  9  9  3  2  1  1  2  6  4  1  8</code></pre>
+<pre><code> [1] 5 9 6 2 7 3 7 9 4 6 6 5 3 6 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="dv">10</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb140-2"><a href="#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="dv">10</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "C" "C" "C" "B" "C" "B" "B" "B" "C" "A"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="dv">10</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="dv">10</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "B" "B" "A" "B" "C" "A" "C" "C" "A" "A"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># This will result in the same thing as above</span></span>
-<span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="dv">10</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb144"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># This will result in the same thing as above</span></span>
+<span id="cb144-2"><a href="#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="dv">10</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "C" "C" "C" "B" "C" "B" "B" "B" "C" "A"</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit wants to run a promotion where he randomly selects smoothie flavors to feature each day. Help him write R code which randomly picks 3 flavors to promote each day.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb146"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a>flavors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Mango Madness"</span>, <span class="st">"Berry Blast"</span>, <span class="st">"Peach Punch"</span>, <span class="st">"Pineapple Punch"</span>, </span>
+<span id="cb146-2"><a href="#cb146-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Acai Antioxidant"</span>, <span class="st">"Tropical Berry Twist"</span>, <span class="st">"Citrus Crush"</span>, </span>
+<span id="cb146-3"><a href="#cb146-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Berry Goddess"</span>, <span class="st">"Chocolate Crush"</span>, <span class="st">"Vanilla Velvet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<p>XXXX INSERT VIDEO XXXX</p>
+</details>
 </div>
 </div>
 </section>
 <section id="special-functions-in-r" class="level2" data-number="5.8">
 <h2 data-number="5.8" class="anchored" data-anchor-id="special-functions-in-r"><span class="header-section-number">5.8</span> Special Functions in R</h2>
-<p>Another special function that may come in handy is the <em>which()</em> function. What this will do is tell us the index values of the elements which meet certain criteria. Note in the sample below that it is telling us the 1st, 6th, 7th, and 10th elements in the vector are greater than 40 (it is not telling us the values greater than 40, just the indices of the elements):</p>
+<p>Another special function that may come in handy is the <em>which()</em> function. What this will do is tell us the index values of the elements which meet certain criteria. Note in the sample below that it is telling us the 6th, 12th, 13th, and 20th elements in the vector are greater than 40 (it is not telling us the values greater than 40, just the indices of the elements):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb144"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>, <span class="dv">20</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
-<span id="cb144-2"><a href="#cb144-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>, <span class="dv">20</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb147-2"><a href="#cb147-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 14 25 26 27  5 27 28  9 29 35  8 26  7 42  9 19 36 14 17 43</code></pre>
+<pre><code> [1]  4 39  1 34 23 43 14 18 33 21 21 42 46 10  7  9 15 21 37 41</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb146"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(x <span class="sc">&gt;</span> <span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb149"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(x <span class="sc">&gt;</span> <span class="dv">40</span>) <span class="co"># Indices with values greater than 40</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 14 20</code></pre>
+<pre><code>[1]  6 12 13 20</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">which</span>(x <span class="sc">&gt;</span> <span class="dv">40</span>)] <span class="co"># Values greater than 40</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 43 42 46 41</code></pre>
 </div>
 </div>
 <p>Other functions which may be of use to us are the <em>duplicated()</em> function and the <em>unique()</em> function. The first function, <em>duplicated()</em>, will return a logical vector with TRUE after the first occurrence of duplicated values. So, the second time (and additional times) a number appears it will output TRUE. The <em>unique()</em> function will return just the unique values of the vector, meaning it will remove all of the duplicated values.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 14 25 26 27  5 27 28  9 29 35  8 26  7 42  9 19 36 14 17 43</code></pre>
+<pre><code> [1]  4 39  1 34 23 43 14 18 33 21 21 42 46 10  7  9 15 21 37 41</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">duplicated</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb155"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">duplicated</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE
-[13] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE</code></pre>
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb157"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 14 25 26 27  5 28  9 29 35  8  7 42 19 36 17 43</code></pre>
+<pre><code> [1]  4 39  1 34 23 43 14 18 33 21 42 46 10  7  9 15 37 41</code></pre>
 </div>
 </div>
 <p>Two other functions that will result in a single logical output are the <em>any()</em> and the <em>all()</em> function. These will do what their names sound like, that is they will see if any values in the vector meet certain criteria and if all values in the vector meet certain criteria.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb154"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb159"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb159-1"><a href="#cb159-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 14 25 26 27  5 27 28  9 29 35  8 26  7 42  9 19 36 14 17 43</code></pre>
+<pre><code> [1]  4 39  1 34 23 43 14 18 33 21 21 42 46 10  7  9 15 21 37 41</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb156"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(x <span class="sc">&gt;</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb158"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(x <span class="sc">&lt;</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb161"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(x <span class="sc">&gt;</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb160"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(x <span class="sc">&lt;=</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb163"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb163-1"><a href="#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(x <span class="sc">&lt;</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb162"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(x <span class="sc">&lt;</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb165"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb165-1"><a href="#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(x <span class="sc">&lt;=</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb167"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb167-1"><a href="#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span>(x <span class="sc">&lt;</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit has calculated the number of he has sold for each of the past 10 days. Using the functions in this section determine which days had sales greater than or equal to 15 and if the sales on a day matched a previous day’s total.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb169"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb169-1"><a href="#cb169-1" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">15</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">7</span>, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<p>XXXX INSERT VIDEO XXXX</p>
+</details>
 </div>
 </div>
 </section>
@@ -966,6 +1147,36 @@ window.Quarto = {
 <h2 data-number="5.9" class="anchored" data-anchor-id="getting-help"><span class="header-section-number">5.9</span> Getting Help</h2>
 <p>While I have thrown a lot of information at you in this lecture, know that R provides help and resources for all functions. So, if we are ever confused about a specific function or do not know what parameters we can pass into the function, then we can always use a question mark to search for the documentation. That is if we are curious about the <em>mean()</em> function then we can type ?mean.</p>
 <p>Using two question marks will search the database for the phrase if we are unsure what the function is called. For instance, we could type ?? “Standard Deviation” if we are unsure of the name of the function. Do not worry if you cannot remember everything, as you use it more and more it will become second nature. Even I have to regularly look at the R Documentation to see examples and to see what the options are for each function.</p>
+<div class="practice-it">
+<ul>
+<li><p>Create sequences in R to do the following:</p>
+<ol type="a">
+<li>Create a sequence of numbers from 1 to 20 incrementing by 3 using the <code>seq()</code> function.<br>
+</li>
+<li>Using the <code>rep()</code> function, create a vector that contains the elements 5, 10, and 15, where 5 is repeated 3 times, 10 is repeated 2 times, and 15 is repeated 4 times.<br>
+</li>
+<li>Using the built-in <code>letters</code> vector, extract and display the letters at the 3rd, 6th, 9th, and 12th positions.</li>
+<li>Name the vector <code>c(50, 100, 200)</code> with the names <code>"Small"</code>, <code>"Medium"</code>, and <code>"Large"</code>, then access the element named <code>"Medium"</code>.</li>
+</ol></li>
+<li><p>Create a vector <code>states</code> with values: “California”, “Colorado”, “Connecticut”, “Delaware”, “Florida”, “Georgia”, “Hawaii”, “Idaho”, “Illinois”, “Indiana”</p>
+<ol type="a">
+<li>Use <code>grep()</code> to find all states that start with the letter <code>"C"</code> and display those states.</li>
+<li>Use <code>grep()</code> to find all states that end with the letter <code>"a"</code> and display those states.</li>
+<li>Use <code>grep()</code> to find all states that contain the letters <code>"_n"</code> (with _ being any letter) or <code>"or"</code>.</li>
+<li>Use logical operators to display all states that contain either <code>"Florida"</code> or <code>"Georgia"</code>.</li>
+</ol></li>
+<li><p>Use the <code>sample()</code> function to randomly select 7 values from the numbers 1 through 20 <em>without replacement</em>.</p></li>
+<li><p>Create a vector <code>temperature</code> with the values 72, 75, 78, 80, 77, 74, 91, 84, 85, 93, 80.</p>
+<ol type="a">
+<li>Use the <code>which()</code> function to find the indices where the daily temperature is equal to 80</li>
+<li>Use the <code>duplicated()</code> function to identify which day’s temperatures are duplicates.</li>
+<li>Use the <code>unique()</code> function to get the distinct daily temperature values.</li>
+<li>Use the <code>any()</code> function to check if any days have temperatures below 80.</li>
+<li>Use the <code>all()</code> function to check if all days have temperatures 80 or less.</li>
+</ol></li>
+</ul>
+</div>
+
 
 
 </section>

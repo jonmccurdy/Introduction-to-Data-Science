@@ -2,6 +2,15 @@
 
 When it comes to data, it normally follows some pattern. The trouble is trying to identify what the pattern is. There are a few ways we could do this; one way is to try and guess the pattern using specific examples or we could observe large amounts of data to try and find a pattern. The first method will require us to learn about different probability distributions and their properties while the second method will require simulating datasets and looking at the results. 
 
+::: learning-goals
+
+- Understand the difference between theoretical and empirical probability and how to calculate each using formulas and simulations.  
+- Describe and simulate common discrete probability distributions: Bernoulli, Binomial, Uniform Discrete, and Poisson.  
+- Explore continuous probability distributions such as Uniform Continuous, Gamma, Exponential, and Normal, including their properties and R simulations.  
+- Apply R functions like *matrix()* and *apply()* to simulate repeated trials and summarize outcomes in probability problems.  
+- Explain the Law of Large Numbers and how increasing sample size improves the accuracy of empirical probability estimates.
+:::
+
 ## Overview of Probability
 
 To understand probability distributions, we should probably have a brief review of the topic. Probability is the measure of the likelihood that an event will occur. This likelihood is expressed as a number between 0 and 1, where 0 will indicate impossibility and 1 indicate certainty. The value will always be between 0 and 1 with the sum of probabilities being equal to 1. Some short-hand which you might seen is *P(A)*, which indicates the ``probability of event A occurring". 

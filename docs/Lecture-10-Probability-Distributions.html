@@ -383,7 +383,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -476,6 +476,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Visualizations</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-16-Line-of-Best-Fit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Line of Best Fit</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -530,6 +536,19 @@ window.Quarto = {
 
 
 <p>When it comes to data, it normally follows some pattern. The trouble is trying to identify what the pattern is. There are a few ways we could do this; one way is to try and guess the pattern using specific examples or we could observe large amounts of data to try and find a pattern. The first method will require us to learn about different probability distributions and their properties while the second method will require simulating datasets and looking at the results.</p>
+<div class="learning-goals">
+<ul>
+<li>Understand the difference between theoretical and empirical probability and how to calculate each using formulas and simulations.<br>
+</li>
+<li>Describe and simulate common discrete probability distributions: Bernoulli, Binomial, Uniform Discrete, and Poisson.<br>
+</li>
+<li>Explore continuous probability distributions such as Uniform Continuous, Gamma, Exponential, and Normal, including their properties and R simulations.<br>
+</li>
+<li>Apply R functions like <em>matrix()</em> and <em>apply()</em> to simulate repeated trials and summarize outcomes in probability problems.<br>
+</li>
+<li>Explain the Law of Large Numbers and how increasing sample size improves the accuracy of empirical probability estimates.</li>
+</ul>
+</div>
 <section id="overview-of-probability" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="overview-of-probability"><span class="header-section-number">10.1</span> Overview of Probability</h2>
 <p>To understand probability distributions, we should probably have a brief review of the topic. Probability is the measure of the likelihood that an event will occur. This likelihood is expressed as a number between 0 and 1, where 0 will indicate impossibility and 1 indicate certainty. The value will always be between 0 and 1 with the sum of probabilities being equal to 1. Some short-hand which you might seen is <em>P(A)</em>, which indicates the ``probability of event A occurring”.</p>
@@ -1077,6 +1096,7 @@ multiple of the number of rows [3]</code></pre>
 </div>
 </div>
 <p>So with this, we can see that the 68-95-99.7 rule is pretty accurate in telling us what percentage of the data is within so many standard deviations of the mean. You should get similar, but slightly different results. The more data in your sample the closer you will be to the true proportion.</p>
+
 
 
 </section>

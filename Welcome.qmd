@@ -1,0 +1,11 @@
+# Welcome {.unnumbered}
+
+Welcome to an Introduction to Data Science!
+
+This online book is designed to guide you step by step as you build both the technical skills and the critical thinking needed to work with data. Along the way, you’ll learn how to ask good questions, organize and analyze information in R, and communicate your findings clearly to others.
+
+The chapters are filled with examples, practice problems, and short stories about Emmit — a character you’ll get to know as you apply your skills in fun and practical ways. Each section is scaffolded to help you practice, reflect, and gain confidence as you progress. Additionally, there are downloadable reading guides and activities to assist you in your learning journey.
+
+Whether you’re brand new to programming, statistics, or data science, or you’ve had some experience before, this book is meant to meet you where you are and help you grow. By the end, you’ll not only understand the concepts but also feel confident using them in real-world situations.
+
+## 

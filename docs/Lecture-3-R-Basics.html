@@ -476,6 +476,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Visualizations</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-16-Line-of-Best-Fit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Line of Best Fit</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -518,9 +524,30 @@ window.Quarto = {
 
 
 <p>As Data Scientists, we will not have to calculate everything by hand, but rather we will rely on a statistical programming language called R. This is an open-source language (meaning anyone can contribute to it) designed to clean, analyze, and present data. Before you begin coding in R you should note that syntax rules do apply and it is an interpreted language (meaning you can run it line by line). One of the benefits of R (and why we are learning it) is that it is a popular, powerful, and flexible language used by Data Scientists throughout the industry.</p>
+<div class="learning-goals">
+<ul>
+<li>Understand what R is and recognize common syntax rules in R.</li>
+<li>Identify and troubleshoot basic errors in R.</li>
+<li>Use R as a calculator by applying arithmetic operations, grouping expressions with parentheses, and interpreting results.</li>
+<li>Create and use variables in R with the assignment operator &lt;- to store and reuse values in calculations.</li>
+</ul>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Supplemental Material
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="Reading-Guide/L3-Reading-Guide.pdf" download=""> 📄 Download the lecture’s Reading Guide </a></p>
+</div>
+</div>
 <section id="the-r-language" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="the-r-language"><span class="header-section-number">3.1</span> The R Language</h2>
-<p>The language is maintained by the Comprehensive R Archive Network (CRAN) and can be downloaded from their website (). Since R is an open-source language, community members can write their own programs and submit them to CRAN for the whole community to use. Because of this, R is constantly evolving and you can almost always find a library or a package that will do the analysis you need it to do. If you have not already downloaded R to your device then I would recommend doing so now so that you can follow along with the rest of this lecture. A picture of the R console can be seen below:</p>
+<p>The language is maintained by the Comprehensive R Archive Network (CRAN) and can be downloaded from their website <a href="https://cran.r-project.org">CRAN</a>. Since R is an open-source language, community members can write their own programs and submit them to CRAN for the whole community to use. Because of this, R is constantly evolving and you can almost always find a library or a package that will do the analysis you need it to do. If you have not already downloaded R to your device then I would recommend doing so now so that you can follow along with the rest of this lecture. A picture of the R console can be seen below:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/L3-R-console.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
@@ -531,7 +558,7 @@ window.Quarto = {
 </section>
 <section id="starting-to-code" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="starting-to-code"><span class="header-section-number">3.2</span> Starting to Code</h2>
-<p>The R Console will be where we will “submit” our code to be run line by line. Any code you wish to run should be placed after the &gt; symbol. Let’s open up R and type in <em>Hello R</em> and see what happens. We should get an error telling us that there is an unexpected symbol present. This is because R does not understand what the word <em>Hello</em> means. If we want to type in characters/words/strings then we need to do so inside of quotation marks (either “double” quotes or ‘single’ quotes). Below is an example of what your results may look like. Note that for the rest of this course, I will use the green box to represent the R console to display the code/output.</p>
+<p>The R Console will be where we will “submit” our code to be run line by line. Any code you wish to run should be placed after the &gt; symbol. Let’s open up R and type in <em>Hello R</em> and see what happens. We should get an error telling us that there is an unexpected symbol present. This is because R does not understand what the word <em>Hello</em> means. If we want to type in characters/words/strings then we need to do so inside of quotation marks (either “double” quotes or ‘single’ quotes). Below is an example of what your results may look like. Note that the grey box seen below will represent the R console to display the code/output.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Hello R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -546,7 +573,7 @@ window.Quarto = {
 <pre><code>[1] "Hello R"</code></pre>
 </div>
 </div>
-<p>Before we continue running code in R, it is important to go over some quick housekeeping notes. To begin, you will place your code after the &gt;. If you see a + on the left-hand side, it means that R is expecting something more to end the previous line (maybe you are missing a quotation mark or parenthesis). Anything you put after # will be considered a comment and nothing on the line after # will run. It is also important to realize that R is case sensitive so Mydata and mydata are different. If you ever would like to access any previous commands then you have them re-appear using the up and down arrows on your keyboard. Finally, if you are ever unsure about the exact command syntax then R will help you finish typing the commands (tab completion).</p>
+<p>Before we continue running code in R, it is important to go over some quick housekeeping notes. To begin, you will place your code after the &gt; symbol. If you see a + on the left-hand side, it means that R is expecting something more to end the previous line (maybe you are missing a quotation mark or parenthesis). Anything you put after # will be considered a comment and nothing on the line after the # symbol will run. It is also important to realize that R is case sensitive so MyData and mydata are different. If you ever would like to access any previous commands then you can have them re-appear by using the up and down arrows on your keyboard. Finally, if you are ever unsure about the exact command syntax then R will help you finish typing the commands (tab completion).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">"I am Dr. McCurdy</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st">+ and I forgot a quotation mark"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -563,11 +590,50 @@ window.Quarto = {
 <pre><code>[1] 5</code></pre>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit is running a smoothie stand on campus and he can’t quite figure out how to advertise his business in R. He wants to calculate the price ($2 + $1 for each size increase) and make a digital sign that displays this message in R: “Welcome to Emmit’s Smoothie Stand!” How can he accomplish this task?</p>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/qg2RO3BSkKM?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</details>
+</div>
+</div>
 </section>
 <section id="understanding-error-messages" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="understanding-error-messages"><span class="header-section-number">3.3</span> Understanding Error Messages</h2>
 <p>It is also probably time to discuss some of the things that can go wrong when inputting code. The first that might occur (and the most obvious) is a <strong>syntax error</strong>. This means that you have submitted invalid code (maybe a forgotten comma, an “open” bracket, or misspelled a function name/variable) and R returns an error message. It is important to <strong>read the error message</strong>! About 95% of the time it will be easy to identify your mistake and fix it. We will see some common syntax errors later on in the course as we get to new material.</p>
 <p>Another error that you might make is a <strong>semantic error</strong>. This occurs when your code is technically correct but it does not do what you expected it to do. For instance, if you are trying to find the mean of a dataset with 10 items and you divide by 11 instead, then R will run it just fine, but you didn’t calculate the mean. These semantic errors are hard to find and figure out, but it does help to run your code <strong>line by line</strong> to identify where the unexpected result occurs. <strong>When in doubt explain your code to a rubber duck!</strong> (this means that looking at your code line by line and trying to explain it usually helps you identify the mistake)</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit is trying to figure out how many customers he usually gets in a day but he does not think the result makes sense. The past 7 days he has had the following numbers: 14, 18, 21, 19, 17, 23, 20. Looking at the following code, help him determine his average daily customer count:</p>
+<p><code>&gt; 14 + 18 + 21 + 19 + 17 + 23 + 20) / 8</code></p>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/pL1vVYjwkUw?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</details>
+</div>
+</div>
 </section>
 <section id="using-r-as-a-calculator" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="using-r-as-a-calculator"><span class="header-section-number">3.4</span> Using R as a Calculator</h2>
@@ -614,7 +680,6 @@ window.Quarto = {
 </div>
 </div>
 <p>R follows the standard Order of Operations, with the order going P-E-%-MD-AS. This means that R will always carry out items in the <strong>Parenthesis</strong> before going on to things outside of the parenthesis. Next, R will look for <strong>Exponentiation</strong>, with the operations being carried out from right to left. This means that <span class="math inline">\(2 \wedge 2 \wedge 3\)</span> is not <span class="math inline">\(4 \wedge 3\)</span> but rather <span class="math inline">\(2\wedge8\)</span>. Any special function indicated with a % will be next. Then <strong>Multiplication</strong> and <strong>Division</strong> are evaluated left to right (which is typical) with <strong>Addition</strong> and <strong>Subtraction</strong> being evaluated last (also left to right). It may take some getting used to, so I always recommend putting more parenthesis than is required so that you can have peace of mind that the calculation is what you intended it to be.</p>
-<p>As a practice, I encourage you to try evaluating the following mathematical expressions. When doing so make sure that you use parenthesis to group operations together. It is better to use too many parentheses while we are learning the language instead of trying to write a minimal solution.</p>
 <p>For values that contain a certain number of significant figures (usually more than 7), R will represent the results in scientific notation. This is represented with an <span class="math inline">\(e\)</span>, which stands for <span class="math inline">\(\times 10^n\)</span>. For instance, <span class="math inline">\(3.21\times 10^{-7}\)</span> is represented in R as <span class="math inline">\(3.21e-7\)</span>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dv">102938303820387203828373</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -634,10 +699,34 @@ window.Quarto = {
 <pre><code>[1] 3.9282e+12</code></pre>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit is competing in a local math scavenger hunt. He finds a list of strange math expressions written on a whiteboard and he decides to use R to carry out the calculations. What should the results be for each expression?</p>
+<ul>
+<li><span class="math inline">\(\displaystyle 10^2 + \frac{3\times 60}{8 + 3} - 3\)</span></li>
+<li><span class="math inline">\(\displaystyle \frac{5^3\times(6-2)}{61-3+4}\)</span></li>
+<li><span class="math inline">\(\displaystyle \left(\frac{2^{2+1}}{6^{-2^{2.5}}}\right)^\frac{1}{2}\)</span></li>
+</ul>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/trkGaPZckic?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</details>
+</div>
+</div>
 </section>
 <section id="variables" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="variables"><span class="header-section-number">3.5</span> Variables</h2>
-<p>In addition to using R as a calculator, we can also save values as <strong>variables</strong>. Variables will allow us to provide a reference (a name) so that we can reuse the value later. To create a variable we will use the <span class="math inline">\(&lt;\)</span>- operator (also called the assignment operator) with the value we want to save “pointing” at the variable name. Like everything else in R, variables are case-sensitive so we should make them short and meaningful so that they are easy to type in over and over. We will be able to name them anything we want, as the names can contain letters, numbers, periods, or even underscores.</p>
+<p>In addition to using R as a calculator, we can also save values as <strong>variables</strong>. Variables will allow us to provide a reference (a name) so that we can reuse the value later. To create a variable we will use the <span class="math inline">\(&lt;\)</span>- operator (also called the assignment operator) with the value we want to save “pointing” at the variable name. Like everything else in R, variables are case-sensitive so we should make them short and meaningful so that they are easy to type in over and over. We will be able to name them (almost) anything we want, as the names can contain letters, numbers, periods, or even underscores.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>value1 <span class="ot">&lt;-</span> <span class="dv">3</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>value2 <span class="ot">&lt;-</span> <span class="dv">5</span></span>
@@ -676,6 +765,25 @@ window.Quarto = {
 <pre><code>[1] 6.331633</code></pre>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit is running a smoothie stand at the weekend farmer’s market. He sells two types of smoothies: Berry Blast and Tropical Twist. Each Berry Blast sells for $4 and each Tropical Twist sells for $5. On Saturday, he sold 9 Berry Blasts and 6 Tropical Twists. Let’s help Emmit calculate how much money he made using R using variables.</p>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/gx_PcoPkXTI?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</details>
+</div>
+</div>
 </section>
 <section id="the-r-environment" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="the-r-environment"><span class="header-section-number">3.6</span> The R Environment</h2>
@@ -703,6 +811,17 @@ window.Quarto = {
 </div>
 <p><span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error: object 'x' not found</span></p>
 <p>If you need to close R then you can either close it by using the command <em>q()</em> or by just exiting the window. When you close R it will ask you if you want to “Save workspace image?”. What this is asking is if you would like to save all of your current objects in R (all of the variables and functions you have made) and have them available to you in your future R sessions. If you select yes then it will be saved under your current directory under the file .RData. Most things we will be doing in this class will not need to be saved in this manner as it will be easy to recreate everything quickly if we do need something again.</p>
+<div class="practice-it">
+<p><br></p>
+<ol type="1">
+<li><p>What is the purpose of parentheses in R calculations? Give an example where parentheses change the result of an expression.</p></li>
+<li><p>Write the following expression in R syntax:<br>
+<span class="math inline">\(\left(3 + \frac{12\times 2}{2+1}\right)^2 - 5^2\)</span></p></li>
+<li><p>Create a variable called <code>price</code> and assign it the value 4.25. Then create another variable called <code>quantity</code> with the value 6. Create a third variable <code>total</code> that multiplies <code>price</code> by <code>quantity</code>. What is the value of <code>total</code>?</p></li>
+<li><p>After creating the variable <code>total</code> in the previous problem, use the <code>rm()</code> function to remove <code>total</code> from your environment. What happens if you try to display <code>total</code> after removing it?</p></li>
+</ol>
+</div>
+
 
 
 </section>

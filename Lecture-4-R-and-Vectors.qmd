@@ -1,5 +1,15 @@
 # Vectors and Factors in R
 
+As we continue learning R, it’s important to understand how data is structured and stored. In R, everything is a vector, this includes not only sequences of numbers but also text and logical values. This design choice makes R a powerful tool for performing operations across entire datasets at once. In this section, we will explore how to create, manipulate, and understand vectors, as well as how to work with factors, which are special types of vectors used to represent categorical data. Understanding these structures will be foundational to all future data analysis you perform in R.
+
+::: learning-goals
+
+- Distinguish between the basic data types in R, including doubles, characters, and logical values.
+- Create, manipulate, and coerce vectors while understanding how R recycles shorter vectors.
+- Use built-in statistical functions and know how to the basics of index selection.
+- Define and work with factors and ordered factors to represent categorical and ordinal data, including setting and renaming levels.
+:::
+
 ## Data Types in R
 
 So far we have seen how we can create variables in R. It is important to note that all objects in R have a type (the big three are **Doubles**, **Characters**, and **Logical**). A benefit to R is that we do not have to declare each variable and type, as it can figure all of that information out without us needing to do anything. Doubles consist of our numbers, which can be integers or decimal values. This is not the same as *floating point* values in other languages though. We can coerce the value to be an integer by placing an "L" after it (but there is no real benefit right now for integers over doubles so don't worry about it). Characters will be anything in quotes, whether it is a single letter, a word, a paragraph, a symbol, or a number. R will treat all characters the same. The last type we should discuss is the Logical type, which consists of TRUE and FALSE (yes it has to be in all caps) or the shortened T and F. If we are ever unsure of the type we are dealing with, we can use the *typeof()* function and R will tell us. 
@@ -40,6 +50,26 @@ One thing that makes R different then some other languages is that R is "vectori
 \begin{watch}{}{}
     \href{https://youtu.be/6m-hh-NG0X0}{Data Types in R}
 \end{watch}
+
+::: {.callout-tip title="Try it Out"}
+Emmit is working at his smoothie stand and tracking sales data. What is the type of each variable and what will he get if he sums up the `protien_added` variable?
+
+```{r}
+#| eval: false
+flavors <- c("berry", "mango", "banana")
+sales <- c(12, 15, 9)
+protein_added <- c(TRUE, FALSE, TRUE)
+mistake <- c(sales, "error")
+```
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
 
 ## Vectors
 
@@ -124,6 +154,20 @@ z
     \href{https://youtu.be/L58Xl50txa0}{Doing Math with Vectors}
 \end{watch}
 
+::: {.callout-tip title="Try it Out"}
+Emmit writes the amount of money he spends on coffee each day for a whole week. Help him put the values in a vector and then determine the prices if they increase by 25\%. 
+
+$\$4.25,\ \$0,\ \$3.75,\ \$4.00,\ \$5.00,\ \$2.75,\ \$3.00$
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
 ## Logical Operators
 
 One of the most important things we do in this class (and we will repeatedly do it throughout the semester) is using logical operators on vectors. If we compare 2 vectors using logical operators, the result will be a logical vector. There are a few big ones that we will need to know, and they are pretty well known. For instance, $<$ means less than, $>$ means greater than, $<=$ means less than or equal, $>=$ means greater than or equal, $==$ means equal (notice it is two equal signs), and $!=$ means not equal. 
@@ -142,12 +186,26 @@ x > 4 # Checks each element to see if it is greater than 4
     \href{https://youtu.be/IKVtf3-yO3k}{Logical Operators in R}
 \end{watch}
 
+::: {.callout-tip title="Try it Out"}
+Emmit is training for a marathon and tracks how many miles he runs each day for a week. Using logical vectors determine which days Emmit ran exactly 5 miles, which days he ran more than 4 miles, and which days his total was not equal to 6 miles.
+
+mileage: $6,\ 5,\ 6,\ 2,\ 4,\ 12,\ 5$
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
 ## Built-in statistical functions
 
 Within R, there are also built-in functions that will make our lives easier. All of the functions in this section will require us to pass a vector into it and it will output a vector of the same size or of size 1 or 2. The names for these functions resemble the function name that we would say out loud.
 
 ```{r}
-sqrt(182)
+sqrt(182) # square-root of 182
 
 x <- c(2,49,381)
 sqrt(x)
@@ -155,7 +213,7 @@ sqrt(x)
 log(x)
 ```
 
-There are also functions in R that will do all of the calculations we did in the earlier lectures. Unfortunately, there is no function to calculate the mode of a dataset. When working with these functions, it is important to make sure we pass a vector into the functions. This is a common error students make when they start off.
+There are also functions in R that will do all of the calculations we did in the earlier lectures. Unfortunately, there is no function to calculate the mode of a dataset. When working with these functions, it is important to make sure we pass a vector into the functions (this is a common error students make when they start off).
 
 ```{r}
 x <- c(12, 10, 18, 11, 11, 15, 21)
@@ -192,6 +250,26 @@ diff(range(x))
     \href{https://youtu.be/pwgSeoNjwPo}{Built-in Functions in R}
 \end{watch}
 
+::: {.callout-tip title="Try it Out"}
+Emmit recorded the number of minutes he spent reading each day over the last week:
+
+reading time: $20,\ 35,\ 28,\ 40,\ 30,\ 33,\ 45$
+
+- What is the total time Emmit spent reading?
+- What was his average (mean) reading time?
+- What was the median amount of time he read?
+- What is the standard deviation of his reading time?
+- What are the minimum and maximum reading times? What is the range difference?
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
 ## Indexing in R
 
 The last big thing we want to mention about vectors is how the elements are indexed. R starts indexing at 1 (this means the first element is index 1, the second element is index 2, and so on) which is different then other languages which start counting at 0. To access specific values we can place the indices in brackets. I will often refer to these as our "Index-Selection" brackets. We must pass a vector into our index-selection brackets using the combine function *c()* if we have multiple elements that we want to display.
@@ -210,6 +288,25 @@ x[c(1,3,6)]
 \begin{watch}{}{}
     \href{https://youtu.be/isTXaMdsyfI}{Indexing in R}
 \end{watch}
+
+::: {.callout-tip title="Try it Out"}
+Emmit is tracking the number of hours he sleeps each night for a week:
+
+sleep time: $6.5,\ 7,\ 8,\ 6,\ 7.5,\ 9,\ 6.5$
+
+- How many hours did Emmit sleep on the second night?
+- How many hours did he sleep on the last night of the week?
+- Use indexing to display only the second, fourth, and sixth nights.
+- Emmit wants to find the average of the sleep hours from the 2nd, 3rd, and 7th nights.
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
 
 
 ## Creating Factors in R
@@ -238,6 +335,17 @@ typeof(fx)
 \begin{watch}{}{}
     \href{https://youtu.be/UoPKvEKD9K4}{Creating Factors in R}
 \end{watch}
+
+::: {.callout-tip title="Try it Out"}
+Emmit is organizing a survey about his favorite fruit stand, and asks his friends what fruit they prefer: "Apple", "Banana", or "Cherry". The options are stored in a character vector. Create this character vector in R and then convert it into a factor.
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
 
 ## Dealing with Ordinal Data
 
@@ -292,6 +400,23 @@ fy
     \href{https://youtu.be/_PfBPa3GQWM}{Dealing with Ordinal Data}
 \end{watch}
 
+::: {.callout-tip title="Try it Out"}
+Emmit is helping organize a welcome event for new students. As part of the planning, he collects data on the class standings of students who RSVP’d. Help Emmit store this data as an ordered factor.
+
+```{r}
+#| eval: false
+standing <- sample(c("Freshman", "Sophomore", "Junior", "Senior"), 10, replace=TRUE)
+```
+
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
 
 ## RStudio
 
@@ -301,3 +426,29 @@ So far, we have been using the R Console (RGui) to run code. While this is suffi
 
 
 We will run our code in the bottom left panel with the option to save our code in the top left panel using a script or text file (more to come on this in future lectures). In the top right panel we will be able to see the variables saved in our R environment along with a history of our code. In the bottom right panel we will be able to view plots, read documentation, and browse files on our computer.
+
+::: {.practice-it}
+- Create variables in R to do the following:
+  a) Create a variable `age` and assign it your age as a double.  
+  b) Create a variable `student` and assign it a logical value indicating if you are a student (TRUE/FALSE).  
+  c) Create a variable `favorite_food` and assign it your favorite food as a character string.  
+  d) Use the `typeof()` function to check the type of each variable.  
+  e) Combine all three variables into a vector `combined_vec` using `c()` and check its type using `class()`. What do you notice about the elements?
+
+- Create a numeric vector `scores` with values: 82, 90, 75, 88, 95.  
+  a) Calculate the mean, median, and standard deviation of `scores`.  
+  b) Create a logical vector indicating which scores are above 85.  
+  c) Use this logical vector to subset and display only scores above 85.  
+  d) Multiply all scores by 1.1 to simulate a 10% curve and display the new scores.
+
+- Create a character vector `colors` with values `"red"`, `"blue"`, `"green"`, `"yellow"`.  
+  a) Create a logical vector `likes_color` of length 4, with TRUE for `"blue"` and `"green"` and FALSE otherwise.  
+  b) Use logical indexing to return only the colors you like.  
+  c) Try combining `colors` and `likes_color` into one vector. What happens to the types?
+
+- Create a vector `temps` with the values 72, 75, 78, 80, 77, 74.  
+  a) Access the first, third, and last elements using indexing.  
+  b) Use a logical condition to find and display all temps greater than or equal to 77.  
+  c) Replace the second element with 76 and display the updated vector.
+:::
+

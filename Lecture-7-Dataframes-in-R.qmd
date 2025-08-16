@@ -2,6 +2,14 @@
 
 Within R, we can form structured data with multiple columns. These are called **Dataframes** and are comparable to the way a spreadsheet may look. Within each dataframe, multiple columns can be present, with each column being a vector. Additionally, the column types may vary, as we can have a numeric vector, a logical vector, and a character vector all in the same dataframe. It is important to talk about dataframes as this is the predominant data structure in R. Almost all of the datasets that we encounter will be formatted as a dataframe. 
 
+::: learning-goals
+
+- Understand what a dataframe is and how to create dataframes from vectors using the data.frame() function.
+- Interpret the structure of a dataframe using str() along with how to access elements of a dataframe using both bracket notation and the dollar sign syntax.
+- Modify dataframes by renaming columns, removing rows or columns, and appending new data.
+- Use logical indexing to filter dataframe rows that meet specific criteria.
+:::
+
 ## Creating Dataframes
 
 Within a dataframe, the rows will represent an **observation**. Additionally, each vector (column) will have the same length as all of the others, resulting in a "rectangular" looking dataframe. We can make one ourselves by specifying the vectors in the *data.frame()* function. An example of this can be seen below:
@@ -27,6 +35,28 @@ head(df, 5) # Retrieves the first 5 rows (6 by default)
 \begin{watch}{}{}
     \href{https://youtu.be/KjMZt7-YDVQ}{Creating Dataframes in R}
 \end{watch}
+
+::: {.callout-tip title="Try it Out"}
+Emmit is organizing a small conference and wants to keep track of attendees. Make a dataframe which looks exactly like the following list:
+
+```{r}
+#| echo: false
+
+name <- c("Adam", "Brad", "Claire", "Donald", "Elaine", "Fiona")
+age <- c(30,49,32,28,27,33)
+role <- c("attendee", "speaker", "organizer", "attendeee", "attendee", "organizer")
+registered <- c(T, T, T, F, F, T)
+data.frame(name, age, role, registered)
+```
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
 
 ## The Structure of Dataframes
 
@@ -57,6 +87,18 @@ tail(df_added, 5) # Retrieves the last 5 observations of the dataframe
     \href{https://youtu.be/0BlLEFou1kM}{The Structure of Dataframes}
 \end{watch}
 
+::: {.callout-tip title="Try it Out"}
+Using the dataframe you previously made for Emmit, add a new row to the list of attendees: Gracie who is 39, a speaker, and not registered.
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
 ## Dataframe Properties
 
 We can learn about the dataframe's properties using a few different functions. One function called *dim()* will tell us about the number of rows and columns in the dataset (the dimension). Meanwhile, *nrow()* will tell us the number of rows, and *ncol()* will tell us the number of columns in the dataframe.
@@ -71,9 +113,21 @@ ncol(df)
     \href{https://youtu.be/fYxmRUeK4qw}{Dataframe Properties}
 \end{watch}
 
+::: {.callout-tip title="Try it Out"}
+Using the dataframe you previously made for Emmit with Gracie now added, determine the number of rows and columns the dataframe has. 
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
 ## Column names for Dataframes
 
-Sometimes it is helpful to name the columns of a dataframe if we do not like the current names of the vector. We can do this when we create the dataframe like in the example below:
+Sometimes it is helpful to re-name the columns of a dataframe if we do not like the current names of the vector. We can do this when we create the dataframe like in the example below:
 
 ```{r}
 x <- 0:9
@@ -97,6 +151,18 @@ head(df3,4)
 \begin{watch}{}{}
     \href{https://youtu.be/jzJfkWANAMU}{Column Names for Dataframes}
 \end{watch}
+
+::: {.callout-tip title="Try it Out"}
+Emmit decides that the dataframe for the conference should have different header names. Alter the dataframe so the column names are now: "participant_name", "participant_age", "conference_role", and "paid". 
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
 
 ## Dataframe Index Selection
 
@@ -140,6 +206,18 @@ df[df$ages <= 21, ] # Displays just the TRUE rows
     \href{https://youtu.be/hksRGX-YT6w}{Dataframe Index Selection using Logical Vectors}
 \end{watch}
 
+::: {.callout-tip title="Try it Out"}
+Emmit would like to display some key information from the conference attendees. First he would like to display all of the people that are speaking, then he would like to display all of the people who are under the age of 35, and finally he would like to display all of the people who are either attendees and have paid the registration fee. 
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
 ## Editing a Dataframe
 
 Finally, we can remove a single row or column from our dataframe, but we want to be very careful of doing this as we might not be able to reverse the action. To remove a row or column we can simply overwrite our dataframe by stating our dataframe and then in our index-selection brackets indicate which row/column you want to remove with a negative sign. Both methods can be seen below:
@@ -155,3 +233,34 @@ head(df4,3)
 \begin{watch}{}{}
     \href{https://youtu.be/us5M1ekgwUE}{Editing a Dataframe}
 \end{watch}
+
+::: {.callout-tip title="Try it Out"}
+Emmit decides that he does not need to record the attendee's age. He also found out that Adam is withdrawing from the conference. Help him remove the age column from the dataframe along with Adam's information.
+
+<details>
+
+<summary>Click to see the solution</summary>
+
+XXXX INSERT VIDEO XXXX
+
+</details>
+:::
+
+::: {.practice-it}
+- Create a dataframe in R pertaining to cities in New York:
+  a) A vector called cities with "Albany", "Buffalo", "Syracuse", "Rochester", "Ithaca" all included  
+  b) A vector called population with the values 97500, 255000, 142000, 210000, 32000
+  c) A logical vector called capital with Albany set to True and the rest being False
+  d) Display the structure of the dataframe.
+  e) Add a new column using *cbind()* called temperature with the values: 48,46,47,49,45.
+  f) Use *rbind()* to add the row: "Binghamton", 47000, FALSE, 44.
+  g) Explain what happens to the column types after adding the row.
+
+- Create a dataframe in R pertaining to states on the East Coast:
+  a) A vector containing the following states: "NY", "MD", "PA", "NJ", "VA"
+  b) A vector containing the following median income values: 75000, 88000, 68000, 85000, 72000
+  c) A logicial vector based on if it is a costal state (only Pennsylvania is not on the coast)
+  e) Display all of the costal states
+  f) Display all of the rows where the median income is greater than 80000
+  g) Display all of the rows where the state ends in a vowel or has a median income less than 77000
+:::

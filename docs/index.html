@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jon McCurdy">
-<meta name="dcterms.date" content="2025-05-03">
+<meta name="dcterms.date" content="2025-08-16">
 
 <title>Introduction to Data Science with R</title>
 <style>
@@ -21,41 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -312,6 +277,35 @@ window.onload = function() {
 
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="callout_custom.css">
 <link rel="stylesheet" href="style.css">
@@ -327,7 +321,7 @@ window.onload = function() {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Welcome</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -355,7 +349,7 @@ window.onload = function() {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text">Welcome</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -448,6 +442,12 @@ window.onload = function() {
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Visualizations</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lecture-16-Line-of-Best-Fit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Line of Best Fit</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -458,13 +458,9 @@ window.onload = function() {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a>
   <ul class="collapse">
-  <li><a href="#watch-this-video" id="toc-watch-this-video" class="nav-link" data-scroll-target="#watch-this-video">Watch this video</a></li>
-  <li><a href="#callout-boxes" id="toc-callout-boxes" class="nav-link" data-scroll-target="#callout-boxes">Callout Boxes</a></li>
-  <li><a href="#sample-questions-for-students" id="toc-sample-questions-for-students" class="nav-link" data-scroll-target="#sample-questions-for-students">Sample Questions for Students</a></li>
-  <li><a href="#creating-problems-for-students-to-try" id="toc-creating-problems-for-students-to-try" class="nav-link" data-scroll-target="#creating-problems-for-students-to-try">Creating Problems for Students to Try</a></li>
-  <li><a href="#creating-quiz-questions-for-students" id="toc-creating-quiz-questions-for-students" class="nav-link" data-scroll-target="#creating-quiz-questions-for-students">Creating Quiz Questions for Students</a></li>
+  <li><a href="#note" id="toc-note" class="nav-link" data-scroll-target="#note">Note</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -491,7 +487,7 @@ window.onload = function() {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 3, 2025</p>
+      <p class="date">August 16, 2025</p>
     </div>
   </div>
   
@@ -503,185 +499,28 @@ window.onload = function() {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<div class="learning-goals">
-<ul>
-<li>Understand the basics of regression analysis.</li>
-<li>Learn how to interpret p-values and confidence intervals.</li>
-<li>Apply regression in R to a real dataset.</li>
-</ul>
+<section id="welcome" class="level1 unnumbered">
+<h1 class="unnumbered">Welcome</h1>
+<p>Welcome to an Introduction to Data Science!</p>
+<p>This online book is designed to guide you step by step as you build both the technical skills and the critical thinking needed to work with data. Along the way, you’ll learn how to ask good questions, organize and analyze information in R, and communicate your findings clearly to others.</p>
+<p>The chapters are filled with examples, practice problems, and short stories about Emmit — a character you’ll get to know as you apply your skills in fun and practical ways. Each section is scaffolded to help you practice, reflect, and gain confidence as you progress. Additionally, there are downloadable reading guides and activities to assist you in your learning journey.</p>
+<p>Whether you’re brand new to programming, statistics, or data science, or you’ve had some experience before, this book is meant to meet you where you are and help you grow. By the end, you’ll not only understand the concepts but also feel confident using them in real-world situations.</p>
+<section id="note" class="level3">
+<h3 class="anchored" data-anchor-id="note">Note</h3>
+<p>This textbook was written by Dr.&nbsp;Jon McCurdy for Mount St.&nbsp;Mary’s University’s <em>Introduction to Data Science</em> course. Special Thanks to student Luke Papayoanou for his input along with developing the <strong>MSMU</strong> package in R to go along with this book.</p>
+<div style="text-align: center;">
+<table style="margin: 0 auto;">
+<tbody><tr>
+<td align="center">
+<img src="images/McCurdy-Headshot-close.jpeg" alt="Dr. Jon McCurdy" style="height:200px;"><br> Dr.&nbsp;Jon McCurdy
+</td>
+<td align="center">
+<img src="images/Luke_papayoanou_headshot.jpeg" alt="Luke Papayoanou" style="height:200px;"><br> Luke Papayoanou
+</td>
+</tr>
+</tbody></table>
 </div>
-<p>This is a Quarto book.</p>
-<p>To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">+</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 5</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>linear_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> Sepal.Width, <span class="at">data=</span>iris)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linear_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = Sepal.Length ~ Sepal.Width, data = iris)
 
-Residuals:
-    Min      1Q  Median      3Q     Max 
--1.5561 -0.6333 -0.1120  0.5579  2.2226 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   6.5262     0.4789   13.63   &lt;2e-16 ***
-Sepal.Width  -0.2234     0.1551   -1.44    0.152    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.8251 on 148 degrees of freedom
-Multiple R-squared:  0.01382,   Adjusted R-squared:  0.007159 
-F-statistic: 2.074 on 1 and 148 DF,  p-value: 0.1519</code></pre>
-</div>
-</div>
-<section id="watch-this-video" class="level2">
-<h2 class="anchored" data-anchor-id="watch-this-video">Watch this video</h2>
-<p>We can add a video fairly easily with the following code (modestbranding reduces logo and rel=0 does not suggest other channels when paused)</p>
-<p>(https://quarto.org/docs/authoring/videos.html)</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/iAF7APi_EgU?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</section>
-<section id="callout-boxes" class="level2">
-<h2 class="anchored" data-anchor-id="callout-boxes">Callout Boxes</h2>
-<p>We can make callout boxes for note, warning, important, tip, and caution</p>
-<p>(https://quarto.org/docs/authoring/callouts.html)</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note that there are five types of callouts, including: <code>note</code>, <code>warning</code>, <code>important</code>, <code>tip</code>, and <code>caution</code>.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip with Title
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This is an example of a callout with a title.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Expand To Learn About Collapse
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>This is an example of a ‘folded’ caution callout that can be expanded by the user. You can use <code>collapse="true"</code> to collapse it by default or <code>collapse="false"</code> to make a collapsible callout that is expanded by default.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Tip with Title">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip with Title
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This is a callout with a title.</p>
-</div>
-</div>
-</section>
-<section id="sample-questions-for-students" class="level2">
-<h2 class="anchored" data-anchor-id="sample-questions-for-students">Sample Questions for Students</h2>
-<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Try it Out
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>What is the output of <code>mean(c(1, 2, 3, 4, 5))</code> in R?</p>
-<div class="callout callout-style-simple callout-note callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>The output is <code>3</code>. This is because it calculates the arithmetic mean:<br>
-(1 + 2 + 3 + 4 + 5) / 5 = 15 / 5 = 3.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="creating-problems-for-students-to-try" class="level2">
-<h2 class="anchored" data-anchor-id="creating-problems-for-students-to-try">Creating Problems for Students to Try</h2>
-<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Try it Out
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>What is the output of <code>mean(c(1, 2, 3, 4, 5))</code> in R?</p>
-<details>
-<summary>
-Click to see the solution
-</summary>
-<p>The output is <code>3</code>. This is because it calculates the arithmetic mean:<br>
-(1 + 2 + 3 + 4 + 5) / 5 = 15 / 5 = 3.</p>
-</details>
-</div>
-</div>
-</section>
-<section id="creating-quiz-questions-for-students" class="level2">
-<h2 class="anchored" data-anchor-id="creating-quiz-questions-for-students">Creating Quiz Questions for Students</h2>
-<p>(https://web.mat.upc.edu/joaquim.puig/posts/webexercises-quiz/)</p>
-<ul>
-<li><strong>Numeric questions</strong> How much is 2+3? <input class="webex-solveme nospaces" size="1" data-answer="[&quot;5&quot;]"></li>
-<li><strong>Multiple Choice</strong> Which is the capital city of Barbados? <select class="webex-select"><option value="blank"></option><option value="answer">Bridgetown</option><option value="">Georgetown</option><option value="">Kingston</option><option value="">Bridgerton</option></select></li>
-<li><strong>True or False</strong> Quarto is very cool <select class="webex-select"><option value="blank"></option><option value="answer">TRUE</option><option value="">FALSE</option></select>.</li>
-<li><strong>Fill in the Blank</strong> What is the letter after D? <input class="webex-solveme nospaces ignorecase" size="1" data-answer="[&quot;E&quot;]">.</li>
-<li>Type a vowel: <input class="webex-solveme nospaces ignorecase" size="1" data-answer="[&quot;A&quot;,&quot;E&quot;,&quot;I&quot;,&quot;O&quot;,&quot;U&quot;]"></li>
-<li>Which function will help me find standard deviation for the code: <input class="webex-solveme nospaces" size="2" data-answer="[&quot;sd&quot;]">(c(1,4,7,8,4))</li>
-</ul>
-<p>Testing 123</p>
 
 
 </section>

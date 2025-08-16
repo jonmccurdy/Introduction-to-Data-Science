@@ -1,99 +1,30 @@
-# Preface {.unnumbered}
+# Welcome {.unnumbered}
 
-```{r setup, include=FALSE}
-library(webexercises)
-```
+Welcome to an Introduction to Data Science!
 
-<div class="learning-goals">
+This online book is designed to guide you step by step as you build both the technical skills and the critical thinking needed to work with data. Along the way, you’ll learn how to ask good questions, organize and analyze information in R, and communicate your findings clearly to others.
 
-  - Understand the basics of regression analysis.
-  - Learn how to interpret p-values and confidence intervals.
-  - Apply regression in R to a real dataset.
+The chapters are filled with examples, practice problems, and short stories about Emmit — a character you’ll get to know as you apply your skills in fun and practical ways. Each section is scaffolded to help you practice, reflect, and gain confidence as you progress. Additionally, there are downloadable reading guides and activities to assist you in your learning journey.
+
+Whether you’re brand new to programming, statistics, or data science, or you’ve had some experience before, this book is meant to meet you where you are and help you grow. By the end, you’ll not only understand the concepts but also feel confident using them in real-world situations.
+
+### Note
+
+This textbook was written by Dr. Jon McCurdy for Mount St. Mary's University's *Introduction to Data Science* course. Special Thanks to student Luke Papayoanou for his input along with developing the **MSMU** package in R to go along with this book.
+
+<div style="text-align: center;">
+
+<table style="margin: 0 auto;">
+<tr>
+<td align="center">
+<img src="images/McCurdy-Headshot-close.jpeg" alt="Dr. Jon McCurdy" style="height:200px;"><br>
+Dr. Jon McCurdy
+</td>
+<td align="center">
+<img src="images/Luke_papayoanou_headshot.jpeg" alt="Luke Papayoanou" style="height:200px;"><br>
+Luke Papayoanou
+</td>
+</tr>
+</table>
+
 </div>
-
-This is a Quarto book.
-
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
-
-```{r, output = "console"}
-1 + 1
-3+2
-```
-
-```{r}
-linear_model <- lm(Sepal.Length ~ Sepal.Width, data=iris)
-summary(linear_model)
-```
-
-## Watch this video
-
-We can add a video fairly easily with the following code (modestbranding reduces logo and rel=0 does not suggest other channels when paused)
-
-(https://quarto.org/docs/authoring/videos.html)
-
-{{< video https://www.youtube.com/embed/iAF7APi_EgU?modestbranding=1&rel=0 >}}
-
-## Callout Boxes
-
-We can make callout boxes for note, warning, important, tip, and caution
-
-(https://quarto.org/docs/authoring/callouts.html)
-
-::: callout-note
-Note that there are five types of callouts, including: `note`, `warning`, `important`, `tip`, and `caution`.
-:::
-
-::: callout-tip
-## Tip with Title
-
-This is an example of a callout with a title.
-:::
-
-::: {.callout-caution collapse="true"}
-## Expand To Learn About Collapse
-
-This is an example of a 'folded' caution callout that can be expanded by the user. You can use `collapse="true"` to collapse it by default or `collapse="false"` to make a collapsible callout that is expanded by default.
-:::
-
-::: {.callout-tip title="Tip with Title"}
-This is a callout with a title.
-:::
-
-## Sample Questions for Students
-
-::: {.callout-tip title="Try it Out"}
-What is the output of `mean(c(1, 2, 3, 4, 5))` in R?
-
-::: {.callout-note collapse="true" title="Solution" appearance="simple"}
-The output is `3`. This is because it calculates the arithmetic mean:\
-(1 + 2 + 3 + 4 + 5) / 5 = 15 / 5 = 3.
-:::
-:::
-
-## Creating Problems for Students to Try
-
-::: {.callout-tip title="Try it Out"}
-What is the output of `mean(c(1, 2, 3, 4, 5))` in R?
-
-<details>
-
-<summary>Click to see the solution</summary>
-
-The output is `3`. This is because it calculates the arithmetic mean:\
-(1 + 2 + 3 + 4 + 5) / 5 = 15 / 5 = 3.
-
-</details>
-:::
-
-## Creating Quiz Questions for Students
-
-(https://web.mat.upc.edu/joaquim.puig/posts/webexercises-quiz/)
-
--   **Numeric questions** How much is 2+3? `r fitb(2+3)`
--   **Multiple Choice** Which is the capital city of Barbados? `r mcq(c(answer="Bridgetown", "Georgetown",             "Kingston", "Bridgerton"))`
--   **True or False** Quarto is very cool `r torf(TRUE)`.
--   **Fill in the Blank** What is the letter after D? `r fitb("E", ignore_case = TRUE)`.
--   Type a vowel: `r fitb(c("A", "E", "I", "O" , "U"), ignore_case = TRUE)`
--   Which function will help me find standard deviation for the code: `r fitb("sd")`(c(1,4,7,8,4))
-
-Testing 123

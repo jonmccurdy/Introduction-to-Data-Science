@@ -482,107 +482,560 @@ window.Quarto = {
 
 
 <p>One of the goals of this class is learning how to describe data and use it to convey information about the variable of interest. To do this, we will need to discuss some basic statistical formulas that we will use throughout the semester. We will need to learn “how to do” the math in this section, but we should also put an emphasis on the meaning of each term and what it is telling us. Later on in this course, we will be able to calculate all of these formulas using computer software, but we will still need to know what the results are telling us.</p>
+<div class="learning-goals">
+<ul>
+<li>Understand the ways to describe the center and spread of a dataset, including mean, median, mode, range, and standard deviation, and what each measure conveys about the data.</li>
+<li>Interpret how outliers influence statistical measures and use tools like z-scores and standard deviation ranges to identify unusual observations.</li>
+<li>Compare and interpret center and spread within subgroups to draw meaningful conclusions about categorical variables.</li>
+</ul>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Supplemental Material
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="Reading-Guide/L2-Reading-Guide.pdf" download=""> 📄 Download the lecture’s Reading Guide </a></p>
+</div>
+</div>
 <section id="describing-the-center" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="describing-the-center"><span class="header-section-number">2.1</span> Describing the Center</h2>
 <p>It may seem odd, but there are multiple ways to describe the center of a dataset. Sometimes we might want the center to describe the mathematical mean (the average on a test was 83.5), other times we might want it to describe the middle value (half of the students got above an 86 on the test), and other times we might want to describe it as the value occurring the most often (the most common grade on the test was an 89). All of these are acceptable ways to discuss the center of a dataset, but they still tell us very different things.</p>
 <p>The first method we will discuss is probably something we are all familiar with, and that is the <strong>mean</strong>. The mean is the average value of the data set and is calculated by summing up all of the values and dividing by the number of observations. Next, we have the <strong>median</strong>, which is the middle value in the data set where half of the values are below it and half of the values are above it. To calculate the median we will order the observations from smallest to largest and then choose the middle observation. If there is an even number of observations then a middle value will not be present and you will need to take the mean of the middle two values to calculate the median. Finally, we have the <strong>mode</strong>. This is the value that occurs most often and is found by choosing the one that has the highest frequency. There may be no mode, one mode, or multiple modes depending on the dataset.</p>
-<p>Below is an example of how we can calculate the center of the dataset using the three terms above. The data describes the average game attendance for the 11 basketball teams in the Metro Atlantic Athletic Conference for the 2022-2023 competition year.</p>
-<table class="caption-top table">
+<p>Below is an example of how we can calculate the center of the dataset using the three terms above. The data describes the average game attendance for the 13 basketball teams in the Metro Atlantic Athletic Conference for the 2024-2025 competition year.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th>College</th>
-<th>Average Basketball Attendance</th>
+<th style="text-align: left;">College</th>
+<th style="text-align: right;">Mean Attendance</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Canisius</td>
-<td>847</td>
+<td style="text-align: left;">Canisius</td>
+<td style="text-align: right;">847</td>
 </tr>
 <tr class="even">
-<td>Fairfield</td>
-<td>2,135</td>
+<td style="text-align: left;">Fairfield</td>
+<td style="text-align: right;">2135</td>
 </tr>
 <tr class="odd">
-<td>Iona</td>
-<td>1,822</td>
+<td style="text-align: left;">Iona</td>
+<td style="text-align: right;">1822</td>
 </tr>
 <tr class="even">
-<td>Manhattan</td>
-<td>769</td>
+<td style="text-align: left;">Manhattan</td>
+<td style="text-align: right;">769</td>
 </tr>
 <tr class="odd">
-<td>Marist</td>
-<td>2,025</td>
+<td style="text-align: left;">Marist</td>
+<td style="text-align: right;">2025</td>
 </tr>
 <tr class="even">
-<td>Merrimack</td>
-<td>1,462</td>
+<td style="text-align: left;">Merrimack</td>
+<td style="text-align: right;">1462</td>
 </tr>
 <tr class="odd">
-<td>Mount St.&nbsp;Mary’s</td>
-<td>1,888</td>
+<td style="text-align: left;">Mount St.&nbsp;Mary’s</td>
+<td style="text-align: right;">1888</td>
 </tr>
 <tr class="even">
-<td>Niagara</td>
-<td>855</td>
+<td style="text-align: left;">Niagara</td>
+<td style="text-align: right;">855</td>
 </tr>
 <tr class="odd">
-<td>Quinnipiac</td>
-<td>1,510</td>
+<td style="text-align: left;">Quinnipiac</td>
+<td style="text-align: right;">1510</td>
 </tr>
 <tr class="even">
-<td>Rider</td>
-<td>1,540</td>
+<td style="text-align: left;">Rider</td>
+<td style="text-align: right;">1540</td>
 </tr>
 <tr class="odd">
-<td>Sacred Heart</td>
-<td>1,209</td>
+<td style="text-align: left;">Sacred Heart</td>
+<td style="text-align: right;">1209</td>
 </tr>
 <tr class="even">
-<td>Saint Peter’s</td>
-<td>539</td>
+<td style="text-align: left;">Saint Peter’s</td>
+<td style="text-align: right;">539</td>
 </tr>
 <tr class="odd">
-<td>Siena</td>
-<td>5,044</td>
+<td style="text-align: left;">Siena</td>
+<td style="text-align: right;">5044</td>
 </tr>
 </tbody>
 </table>
-<p>XXXXXXXXXXXXXXXXXX INSERT PICTURE SHOWING MATH XXXXXXXXXXXXXXXXXX</p>
-<p>We can notice that both the mean (1855.8) and the median (1289) tell us very different stories about what the average attendance was at the basketball games. One reason for this is because the mean is impacted by extreme values, which we will call <strong>outliers</strong>. These are values that are much smaller or larger than the rest of the dataset. For our dataset, it appears that Siena is an outlier since their attendance is much larger than the rest of the conference. If we were to temporarily remove this value from the dataset the mean would drop to roughly 1400 while the median would only change slightly to 1163. Through this, we can see that the mean is heavily influenced by outliers while the median is relatively immune to them (the median changed a good amount in our dataset since we have relatively few observations, if we had 100 different schools then we would not expect the median to be affected by outliers).</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/L2-Mean-Median-Mode.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>We can notice that both the mean (1665) and the median (1510) tell us very different stories about what the average attendance was at the basketball games. One reason for this is because the mean is impacted by extreme values, which we will call <strong>outliers</strong>. These are values that are much smaller or larger than the rest of the dataset. For our dataset, it appears that Siena is an outlier since their attendance is much larger than the rest of the conference. If we were to temporarily remove this value from the dataset the mean would drop to roughly 1383 while the median would only change slightly to 1486. Through this, we can see that the mean is heavily influenced by outliers while the median is relatively immune to them (the median changed a good amount in our dataset since we have relatively few observations, if we had 100 different schools then we would not expect the median to be affected by outliers).</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit is trying to evaluate how well-attended the recent campus speaker series was. After looking at the sign-in sheet he found they had the following attendance amounts:</p>
+<p><span class="math inline">\(52,\ 73,\ 84,\ 73,\ 82,\ 253,\ 82,\ 48,\ 73,\ 80\)</span></p>
+<p>If Emmit claims that “around 90 people come to each event,” is that accurate?</p>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/3HoJc50ngig?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</details>
+</div>
+</div>
 </section>
 <section id="describing-the-spread" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="describing-the-spread"><span class="header-section-number">2.2</span> Describing the Spread</h2>
-<p>Another way to describe a dataset is to talk about the spread of the data. Much like the center, this too can be done in several different ways. The first way we can do this is by calculating the <strong>range difference</strong> (often called the range). This takes the <strong>maximum</strong> value (6415) and the <strong>minimum</strong> value (573) and subtracts them from each other. This will give us a range difference (<strong>max - min</strong>) of 5842, indicating the data is spread out over 5842 values.</p>
+<p>Another way to describe a dataset is to talk about the spread of the data. Much like the center, this too can be done in several different ways. The first way we can do this is by calculating the <strong>range difference</strong> (often called the range). This takes the <strong>maximum</strong> value (5044) and the <strong>minimum</strong> value (539) and subtracts them from each other. This will give us a range difference (<strong>max - min</strong>) of 4505, indicating the data is spread out over 4505 values.</p>
 <p>An alternative way to discuss the spread of data is by calculating the <strong>standard deviation</strong>. This is a measure that tells us how far apart on average the values are from the mean. This calculation requires a few steps, with the first being to calculate the mean of the data. Second, you will need to calculate how far each value deviates from the mean (that is the value - mean). Third you will need to square all of the deviations, with the fourth step being adding up all of these squared deviations. Finally, you will divide by the number of observations minus 1 and then take the square root. While this sounds complicated, it can be done by making a table. An example of this can be seen below:</p>
-<p>XXXXXXXXXXXXXXXXXX INSERT PICTURE SHOWING MATH XXXXXXXXXXXXXXXXXX</p>
-<p>Looking at the example above, we can see that the data values are on average 1638.5 away from the mean. Similar to the mean, the standard deviation is also affected by outliers. If we were to temporarily remove the outlier (Siena) then the standard deviation would drop to roughly 665. It is important to understand what the standard deviation is telling us and the general method for calculating it, as the topic will come up throughout this semester and your Data Science journey.</p>
-<p>One of the many reasons why the standard deviation is important is because it allows us to compare datasets that might have different units. For instance, if we have a dataset describing heights and a dataset describing weights then just talking about the range difference or the standard deviation will not give us insight if one dataset is more spread out than the other. What might be beneficial is discussing the <strong>standard deviation range difference</strong>, as this is a statistical term to calculate how many standard deviations the maximum value differs from the minimum value. In our basketball attendance example, the standard deviation range difference will be <span class="math inline">\(\displaystyle \frac{5842}{1638.51}=3.57\)</span>. This tells us the data falls over a range of 3.57 standard deviations.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/L2-Standard-Deviation.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Looking at the example above, we can see that the data values are on average 1,137.5 away from the mean. Similar to the mean, the standard deviation is also affected by outliers. If we were to temporarily remove the outlier (Siena) then the standard deviation would drop to roughly 535.8 It is important to understand what the standard deviation is telling us and the general method for calculating it, as the topic will come up throughout this semester and your Data Science journey.</p>
+<p>One of the many reasons why the standard deviation is important is because it allows us to compare datasets that might have different units. For instance, if we have a dataset describing heights and a dataset describing weights then just talking about the range difference or the standard deviation will not give us insight if one dataset is more spread out than the other. What might be beneficial is discussing the <strong>standard deviation range difference</strong>, as this is a statistical term to calculate how many standard deviations the maximum value differs from the minimum value. In our basketball attendance example, the standard deviation range difference will be <span class="math inline">\(\displaystyle \frac{4505}{1137.5}=3.96\)</span>. This tells us the data falls over a range of 3.96 standard deviations.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit is helping the finance office estimate how much students spend weekly on coffee on campus. How can he best describe the spread of the data?</p>
+<p><span class="math inline">\(\$10,\ \$15,\ \$13,\ \$14,\ \$70,\ \$13,\ \$14,\ \$16,\ \$13,\ \$12\)</span></p>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/Xe8Q-CRPEyg?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</details>
+</div>
+</div>
 </section>
 <section id="calculating-z-score" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="calculating-z-score"><span class="header-section-number">2.3</span> Calculating z-Score</h2>
 <p>Another useful technique to compare values is to determine how many standard deviations away from the mean values are. This might help us see if certain values are “extremes”. To do this we will find the <strong>standard score</strong> (also called the <strong>z-score</strong>) which is calculated as:</p>
-<p><span class="math display">\[\text{z-score}=\frac{\text{Observed} - \text{ Mean}}{\text{Standard Deviation}}\]</span></p>
-<p>For our example, Mount St.&nbsp;Mary’s University has a z-score of <span class="math inline">\(0.04\)</span> while a school that has an average attendance of 900 spectators has a z-score of <span class="math inline">\(-0.58\)</span>. Stating how far an observation is away from the mean in terms of standard deviations helps give it more meaning.</p>
+<p><span class="math display">\[
+\text{z-score}=\frac{\text{Observed} - \text{ Mean}}{\text{Standard Deviation}}
+\]</span></p>
+<p>For our example, Mount St.&nbsp;Mary’s University has a z-score of <span class="math inline">\(0.20\)</span> while a school that has an average attendance of 900 spectators has a z-score of <span class="math inline">\(-0.67\)</span>. Stating how far an observation is away from the mean in terms of standard deviations helps give it more meaning.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit scores an 70 on a chemistry exam while his friend Mary scores an 85. The class average was 75 with a standard deviation of 3.5. What were their <span class="math inline">\(z\)</span>-scores?</p>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/ojsQGuKwNS0?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>XXXX INSERT VIDEO XXXX</p>
+</details>
+</div>
+</div>
 </section>
 <section id="visualizing-the-data" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="visualizing-the-data"><span class="header-section-number">2.4</span> Visualizing the Data</h2>
 <p>Visualizing data is also an important part of data science. We will discuss many visualization techniques later in the semester, but we do want to discuss a few big ones now. The first will be the <strong>histogram</strong>, which will help us visualize quantitative data. With this visualization, the height of the bar corresponds to how many observations have values within the interval. We should note that the bars are all touching each other since it is quantitative data. While this visualization will help convey information about the data, it does lose some of its detail due to the length of each category. In our visualization below, colleges that have an average attendance of 1001 and 1999 are lumped into the same category when one is almost double the other.</p>
-<p>An additional technique that we will make use of throughout the semester is the <strong>density</strong> plot, which can be thought of as a smoothing curve for the histogram. It is more detailed than the histogram since it can highlight certain spots where more or less data lie and it alleviates some of the issues mentioned with histograms above. Below is a visualization of both of these included. The <code>red" line indicates the mean and the</code>blue” line indicates the median.</p>
-<p>XXXXXXXXXXXXXXXXXX INSERT CODE FOR VISUALIZATIONS XXXXXXXXXXXXXXXXXX</p>
+<p>An additional technique that we will make use of throughout the semester is the <strong>density</strong> plot, which can be thought of as a smoothing curve for the histogram. It is more detailed than the histogram since it can highlight certain spots where more or less data lie and it alleviates some of the issues mentioned with histograms above. Below is a visualization of both of these included. The “red” line indicates the mean and the “blue” line indicates the median.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lecture-2-Data-Detectives_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit tracks how many hours he studies each day for two weeks. Help him visualize this data with a histogram.</p>
+<p><span class="math inline">\(2.5,\ 3.2,\ 5.4,\ 7.4,\ 2.1,\ 0.5,\ 1.4,\ 4.2,\ 2.1,\ 3.2,\ 0,\ 2.4,\ 4.4,\ 5.0\)</span></p>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/4E-cD72-jTA?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</details>
+</div>
+</div>
 <p>We can also use visualizations to try and determine if relationships exist between multiple variables. To do this we can use a <strong>scatter-plot</strong>, which will plot one variable on the <span class="math inline">\(x\)</span>-axis and another variable on the <span class="math inline">\(y\)</span>-axis. The points are plotted as ordered pairs. In future classes we will investigate how to describe the relationship of two variables using mathematics as well as learning how to calculate the line of best fit. Our example has been tweaked a little to include the student enrollment for each college in the conference. We will plot these points to see if a relationship exists between game attendance and student enrollment. We should stress though that just because a relationship exists does not mean that one variable causes the other variable to change. To quote the popular cliche: <strong>Correlation does not equal Causation!</strong></p>
-<p>Based on our plot, it appears that as student enrollment increases basketball attendance decreases. This does not make sense, as we would probably expect schools with more students to have more fans at the games. This may indicate that we are missing some other confounding variable that is causing some confusion in our results (like population of the surrounding area or even cost of attendance?).</p>
-<p>XXXXXXXXXXXXXXXXXX INSERT CODE FOR VISUALIZATIONS XXXXXXXXXXXXXXXXXX</p>
+<p>Based on our plot, it appears that as student enrollment has no affect on basketball attendance. This does not make sense, as we would probably expect schools with more students to have more fans at the games. This may indicate that we are missing some other confounding variable that is causing some confusion in our results (like population of the surrounding area or even cost of attendance?).</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">College</th>
+<th style="text-align: right;">Mean Attendance</th>
+<th style="text-align: right;">Student Enrollment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Canisius</td>
+<td style="text-align: right;">847</td>
+<td style="text-align: right;">2630</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fairfield</td>
+<td style="text-align: right;">2135</td>
+<td style="text-align: right;">6298</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Iona</td>
+<td style="text-align: right;">1822</td>
+<td style="text-align: right;">3720</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Manhattan</td>
+<td style="text-align: right;">769</td>
+<td style="text-align: right;">3195</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marist</td>
+<td style="text-align: right;">2025</td>
+<td style="text-align: right;">6657</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Merrimack</td>
+<td style="text-align: right;">1462</td>
+<td style="text-align: right;">5505</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mount St.&nbsp;Mary’s</td>
+<td style="text-align: right;">1888</td>
+<td style="text-align: right;">2240</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niagara</td>
+<td style="text-align: right;">855</td>
+<td style="text-align: right;">3763</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Quinnipiac</td>
+<td style="text-align: right;">1510</td>
+<td style="text-align: right;">9744</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rider</td>
+<td style="text-align: right;">1540</td>
+<td style="text-align: right;">3693</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sacred Heart</td>
+<td style="text-align: right;">1209</td>
+<td style="text-align: right;">6524</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Saint Peter’s</td>
+<td style="text-align: right;">539</td>
+<td style="text-align: right;">3673</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Siena</td>
+<td style="text-align: right;">5044</td>
+<td style="text-align: right;">3623</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lecture-2-Data-Detectives_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="describing-qualitative-data" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="describing-qualitative-data"><span class="header-section-number">2.5</span> Describing Qualitative Data</h2>
 <p>Everything we have discussed so far deals with quantitative data. We cannot describe qualitative (categorical) data the same way though, as it will not make sense to calculate and mean or the standard deviation of groups. What we can do though is describe it using counts. The example we have been using throughout this lecture is once again tweaked to include a new column, the state where the University is located, and whether or not the school is Catholic (C) or non-Catholic (NC).</p>
-<p>XXXXXXXXXXXXXXXXXX INSERT CODE FOR VISUALIZATIONS XXXXXXXXXXXXXXXXXX</p>
-<p>It is a relatively straightforward procedure, but we can do a <strong>count</strong> by category and see that 8 schools are Catholic and 3 schools that are not Catholic. We could do something similar with their locations and note that 6 schools are in New York, 2 are in Connecticut, 2 are in New Jersey, and 1 is in Maryland. To visualize categorical data we can use a <strong>barplot</strong>. This is similar to the histogram but the bars will not touch each other. Below is a visualization for both counts:</p>
-<p>XXXXXXXXXXXXXXXXXX INSERT CODE FOR VISUALIZATIONS XXXXXXXXXXXXXXXXXX</p>
-<p>We can do a “more exciting” analysis with categorical data by calculating quantitative descriptions within their categorical groups. For instance, we could calculate the mean attendance for Catholic schools (2069.88) and compare it to the mean attendance for non-Catholic schools (1285). We could also do something similar for the school’s location:</p>
-<p>XXXXXXXXXXXXXXXXXX INSERT CODE FOR VISUALIZATIONS XXXXXXXXXXXXXXXXXX</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 20%">
+<col style="width: 24%">
+<col style="width: 16%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">College</th>
+<th style="text-align: right;">Mean Attendance</th>
+<th style="text-align: right;">Student Enrollment</th>
+<th style="text-align: left;">Religious</th>
+<th style="text-align: left;">State</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Canisius</td>
+<td style="text-align: right;">847</td>
+<td style="text-align: right;">2630</td>
+<td style="text-align: left;">Catholic</td>
+<td style="text-align: left;">New York</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fairfield</td>
+<td style="text-align: right;">2135</td>
+<td style="text-align: right;">6298</td>
+<td style="text-align: left;">Catholic</td>
+<td style="text-align: left;">Connecticut</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Iona</td>
+<td style="text-align: right;">1822</td>
+<td style="text-align: right;">3720</td>
+<td style="text-align: left;">Catholic</td>
+<td style="text-align: left;">New York</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Manhattan</td>
+<td style="text-align: right;">769</td>
+<td style="text-align: right;">3195</td>
+<td style="text-align: left;">Catholic</td>
+<td style="text-align: left;">New York</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Marist</td>
+<td style="text-align: right;">2025</td>
+<td style="text-align: right;">6657</td>
+<td style="text-align: left;">Not Catholic</td>
+<td style="text-align: left;">New York</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Merrimack</td>
+<td style="text-align: right;">1462</td>
+<td style="text-align: right;">5505</td>
+<td style="text-align: left;">Catholic</td>
+<td style="text-align: left;">Massachusetts</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mount St.&nbsp;Mary’s</td>
+<td style="text-align: right;">1888</td>
+<td style="text-align: right;">2240</td>
+<td style="text-align: left;">Catholic</td>
+<td style="text-align: left;">Maryland</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niagara</td>
+<td style="text-align: right;">855</td>
+<td style="text-align: right;">3763</td>
+<td style="text-align: left;">Catholic</td>
+<td style="text-align: left;">New York</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Quinnipiac</td>
+<td style="text-align: right;">1510</td>
+<td style="text-align: right;">9744</td>
+<td style="text-align: left;">Not Catholic</td>
+<td style="text-align: left;">Connecticut</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rider</td>
+<td style="text-align: right;">1540</td>
+<td style="text-align: right;">3693</td>
+<td style="text-align: left;">Not Catholic</td>
+<td style="text-align: left;">New Jersey</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sacred Heart</td>
+<td style="text-align: right;">1209</td>
+<td style="text-align: right;">6524</td>
+<td style="text-align: left;">Catholic</td>
+<td style="text-align: left;">Connecticut</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Saint Peter’s</td>
+<td style="text-align: right;">539</td>
+<td style="text-align: right;">3673</td>
+<td style="text-align: left;">Catholic</td>
+<td style="text-align: left;">New Jersey</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Siena</td>
+<td style="text-align: right;">5044</td>
+<td style="text-align: right;">3623</td>
+<td style="text-align: left;">Catholic</td>
+<td style="text-align: left;">New York</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>It is a relatively straightforward procedure, but we can do a <strong>count</strong> by category and see that 10 schools are Catholic and 3 schools that are not Catholic. We could do something similar with their locations and note that 6 schools are in New York, 3 are in Connecticut, 2 are in New Jersey, 1 is in Maryland, and 1 is in Massachusetts. To visualize categorical data we can use a <strong>barplot</strong>. This is similar to the histogram but the bars will not touch each other. Below is a visualization for both counts:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lecture-2-Data-Detectives_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lecture-2-Data-Detectives_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can do a “more exciting” analysis with categorical data by calculating quantitative descriptions within their categorical groups. For instance, we could calculate the mean attendance for Catholic schools (1657) and compare it to the mean attendance for non-Catholic schools (1691.67). We could also do something similar for the school’s location:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">State</th>
+<th style="text-align: right;">Mean Attendance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Connecticut</td>
+<td style="text-align: right;">1618.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Maryland</td>
+<td style="text-align: right;">1888.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Massachusetts</td>
+<td style="text-align: right;">1462.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">New Jersey</td>
+<td style="text-align: right;">1039.500</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">New York</td>
+<td style="text-align: right;">1893.667</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Try it Out
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Emmit surveyed 30 students, asking what type of student club they were in and how many hours per week they typically spent participating. Using the information below, help him create a bar chart for the number of students in each club type and then which club type has the highest average time commitment.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Club Type</th>
+<th>Hours per Week (per student)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Academic</td>
+<td>3, 4, 2, 5, 3</td>
+</tr>
+<tr class="even">
+<td>Sports</td>
+<td>8, 10, 7, 9, 6, 10, 8</td>
+</tr>
+<tr class="odd">
+<td>Arts</td>
+<td>5, 4, 6, 5, 7, 4</td>
+</tr>
+<tr class="even">
+<td>Service</td>
+<td>2, 3, 4, 3, 2, 1, 2, 3, 2</td>
+</tr>
+</tbody>
+</table>
+<details>
+<summary>
+Click to see the solution
+</summary>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/wew11IxWNhs?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</details>
+</div>
+</div>
+<div class="practice-it">
+<p><br></p>
+<ol type="1">
+<li><p>George Carlin once said “Think of how stupid the average person is, and realize half of them are stupider than that.” What descriptive statistic is he referencing here?</p></li>
+<li><p>What is the difference between a bar chart and a histogram?</p></li>
+<li><p>Find the mean, median, and mode for the following quiz grades: <span class="math display">\[ 84,\ 91,\ 87,\ 84,\ 88,\ 93,\ 84\]</span></p></li>
+<li><p>Calculate the standard deviation and range for the following steptotals (in thousands): <span class="math display">\[9,\ 11,\ 7,\ 13,\ 10,\ 16\]</span></p></li>
+<li><p>Emmit surveyed students about their favorite breakfast. Create a visualization to help communicate the fact that 12 students preferred pancakes, 8 preferred bagels, 10 preferred smoothies, and 5 preferred cereal.</p></li>
+<li><p>Create a histogram using bin widths of 5 minutes (0-4.99, 5-9.99, etc.) <span class="math display">\[3,\ 4,\ 5,\ 5,\ 6,\ 6,\ 7,\ 7,\ 7,\ 8,\ 8,\ 8,\ 8,\ 9,\ 9,\ 10,\ 10,\ 12,\ 15,\ 19\]</span></p></li>
+<li><p>The following data describes the number of students in different courses. Calculate the mean study hours for each qualitative group.</p></li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Major</th>
+<th>Hours</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Biology</td>
+<td>10, 12, 11, 13, 19</td>
+</tr>
+<tr class="even">
+<td>Business</td>
+<td>27, 26, 18, 25, 17</td>
+</tr>
+<tr class="odd">
+<td>Sociology</td>
+<td>18, 10, 19, 17, 13</td>
+</tr>
+</tbody>
+</table>
+</div>
+
 
 
 </section>
