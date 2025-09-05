@@ -10,6 +10,13 @@ As we continue learning R, it’s important to understand how data is structured
 - Define and work with factors and ordered factors to represent categorical and ordinal data, including setting and renaming levels.
 :::
 
+::: {.callout-tip}
+## Supplemental Material
+<a href="Reading-Guide/L4-Reading-Guide.pdf" download>
+📄 Download the lecture's Reading Guide
+</a>
+:::
+
 ## Data Types in R
 
 So far we have seen how we can create variables in R. It is important to note that all objects in R have a type (the big three are **Doubles**, **Characters**, and **Logical**). A benefit to R is that we do not have to declare each variable and type, as it can figure all of that information out without us needing to do anything. Doubles consist of our numbers, which can be integers or decimal values. This is not the same as *floating point* values in other languages though. We can coerce the value to be an integer by placing an "L" after it (but there is no real benefit right now for integers over doubles so don't worry about it). Characters will be anything in quotes, whether it is a single letter, a word, a paragraph, a symbol, or a number. R will treat all characters the same. The last type we should discuss is the Logical type, which consists of TRUE and FALSE (yes it has to be in all caps) or the shortened T and F. If we are ever unsure of the type we are dealing with, we can use the *typeof()* function and R will tell us. 
@@ -66,7 +73,7 @@ mistake <- c(sales, "error")
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/HiZywFMysfU?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -163,7 +170,7 @@ $\$4.25,\ \$0,\ \$3.75,\ \$4.00,\ \$5.00,\ \$2.75,\ \$3.00$
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/TpH41iLGnl8?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -195,7 +202,7 @@ mileage: $6,\ 5,\ 6,\ 2,\ 4,\ 12,\ 5$
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/z-dvXfLzRdc?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -253,7 +260,7 @@ diff(range(x))
 ::: {.callout-tip title="Try it Out"}
 Emmit recorded the number of minutes he spent reading each day over the last week:
 
-reading time: $20,\ 35,\ 28,\ 40,\ 30,\ 33,\ 45$
+reading time: $20,\ 35,\ 28,\ 40,\ 30,\ 35,\ 45$
 
 - What is the total time Emmit spent reading?
 - What was his average (mean) reading time?
@@ -265,7 +272,7 @@ reading time: $20,\ 35,\ 28,\ 40,\ 30,\ 33,\ 45$
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/GQTyTI4ylmw?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -303,7 +310,7 @@ sleep time: $6.5,\ 7,\ 8,\ 6,\ 7.5,\ 9,\ 6.5$
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/OznKgjlzcaw?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -342,7 +349,7 @@ Emmit is organizing a survey about his favorite fruit stand, and asks his friend
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/nKDoYBoRpeY?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -405,7 +412,7 @@ Emmit is helping organize a welcome event for new students. As part of the plann
 
 ```{r}
 #| eval: false
-standing <- sample(c("Freshman", "Sophomore", "Junior", "Senior"), 10, replace=TRUE)
+classification <- c("Freshman", "Sophomore", "Junior", "Senior")
 ```
 
 
@@ -413,7 +420,7 @@ standing <- sample(c("Freshman", "Sophomore", "Junior", "Senior"), 10, replace=T
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/BM82HOMg06A?modestbranding=1&rel=0 >}}
 
 </details>
 :::
