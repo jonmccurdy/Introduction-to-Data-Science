@@ -20,6 +20,13 @@ Now that we’ve covered the basics of R, including simple calculations, variabl
 - Use special functions like which(), duplicated(), unique(), any(), and all() to summarize or filter vector data.
 :::
 
+::: {.callout-tip}
+## Supplemental Material
+<a href="Reading-Guide/L5-Reading-Guide.pdf" download>
+📄 Download the lecture's Reading Guide
+</a>
+:::
+
 ## Creating a Sequence of Numbers
 
 There are additional ways we could make a vector as well. If we wanted all of our numbers in a sequence then we could use the *seq()* function to do this. With this function, we can specify what our starting value is and what we want the sequence to do. The function also allows us to pass an argument into it which specifies what value we should increment the sequence by. If we do not specify what we should increment by then it will automatically default to 1. We can also count down if we would like. Finally, it should be mentioned that most functions do not require us to write the argument name as long as we pass them in the correct order (but we should probably keep doing it until we are more comfortable).
@@ -51,13 +58,13 @@ If we do not need to increment the sequence by a certain value then we could do 
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-Emmit is interested in displaying all of the possible GPA values rounded to 2 decimal places. How can he do this is the GPA must be between 0 and 4.0?
+Emmit is interested in displaying all possible GPA values rounded to 1 decimal place. How can he do this is the GPA must be between 0 and 4.0?
 
 <details>
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/vSOgfSK3mLc?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -99,7 +106,7 @@ Emmit surveys his friends regarding their favorite fruit, and determines that 7 
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/FoobCy8qXj0?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -143,7 +150,7 @@ Emmit is making a display for his smoothie stand and wants it to say "EMMIT smoo
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/Xn7Oc45MFto?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -186,13 +193,13 @@ x[c(1,3)]
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-Emmit has been operating the smoothie stand for a few weeks now and wants to calculate how many smoothies of each flavor he has sold. Help him create a named vector if he has sold 42 Strawberry, 37 Manhgo, and 28 Pineapple smoothies. 
+Emmit has been operating the smoothie stand for a few weeks now and wants to calculate how many smoothies of each flavor he has sold. Help him create a named vector if he has sold 42 Strawberry, 37 Mango, and 28 Pineapple smoothies. 
 
 <details>
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/AWs9jpm0Z6Y?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -235,20 +242,19 @@ While this function may seem a little complicated at first, it is a very powerfu
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-The smoothie stand has the following flavors. How can he display the flavors that start with Berry, end with Crush, or have two consecutive vowels.
+The smoothie stand has the following flavors. How can he display the flavors that start with Berry, end with Crush, have two consecutive vowels, and those containing a “t” followed by another letter.
 
 ```{r}
 flavors <- c("Mango Madness", "Berry Blast", "Peach Punch", "Pineapple Punch", 
              "Acai Antioxidant", "Tropical Berry Twist", "Citrus Crush", 
-             "Berry Goddess", "Chocolate Crush", "Vanilla Velvet")
+             "Berry Goodness", "Chocolate Crush", "Vanilla Velvet")
 ```
-
 
 <details>
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/1LHP4BVbyS8?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -308,18 +314,17 @@ x[x > 5 | x < 3 & x < 4]
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-Emmit has calculated the number of he has sold for each of the past 10 days. How many days did he sell less than 7.5 smoothies? How mant days did he sell either less than 5 or greater than 15 smoothies? 
+Emmit has calculated the number of smoothies he has sold for each of the past 10 days. How many days did he sell less than 7.5 smoothies? How many days did he sell either less than 5 or greater than 15 smoothies? 
 
 ```{r}
 sales <- c(12, 5, 9, 15, 7, 3, 10, 20, 7, 6)
 ```
 
-
 <details>
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/t-hoprP0x_A?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -363,14 +368,14 @@ Emmit wants to run a promotion where he randomly selects smoothie flavors to fea
 ```{r}
 flavors <- c("Mango Madness", "Berry Blast", "Peach Punch", "Pineapple Punch", 
              "Acai Antioxidant", "Tropical Berry Twist", "Citrus Crush", 
-             "Berry Goddess", "Chocolate Crush", "Vanilla Velvet")
+             "Berry Goodness", "Chocolate Crush", "Vanilla Velvet")
 ```
 
 <details>
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/5D6aXsaMwKw?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -420,18 +425,17 @@ all(x < 10)
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-Emmit has calculated the number of he has sold for each of the past 10 days. Using the functions in this section determine which days had sales greater than or equal to 15 and if the sales on a day matched a previous day's total.
+Emmit has calculated the number of smoothies he has sold for each of the past 10 days. Using the functions in this section determine which days had sales greater than or equal to 15 and if the sales on a day matched a previous day's total.
 
 ```{r}
 sales <- c(12, 5, 9, 15, 7, 3, 10, 20, 7, 6)
 ```
 
-
 <details>
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/S07OvU_7Rbs?modestbranding=1&rel=0 >}}
 
 </details>
 :::
