@@ -458,6 +458,11 @@ window.Quarto = {
    
   <ul>
   <li><a href="#reproducibility-using-rmarkdown" id="toc-reproducibility-using-rmarkdown" class="nav-link active" data-scroll-target="#reproducibility-using-rmarkdown"><span class="header-section-number">6.1</span> Reproducibility using RMarkdown</a></li>
+  <li><a href="#yaml-header" id="toc-yaml-header" class="nav-link" data-scroll-target="#yaml-header"><span class="header-section-number">6.2</span> YAML header</a></li>
+  <li><a href="#r-chunks-where-the-code-goes" id="toc-r-chunks-where-the-code-goes" class="nav-link" data-scroll-target="#r-chunks-where-the-code-goes"><span class="header-section-number">6.3</span> R Chunks (where the code goes!)</a></li>
+  <li><a href="#placing-our-explanations" id="toc-placing-our-explanations" class="nav-link" data-scroll-target="#placing-our-explanations"><span class="header-section-number">6.4</span> Placing our Explanations</a></li>
+  <li><a href="#knitting-the-document" id="toc-knitting-the-document" class="nav-link" data-scroll-target="#knitting-the-document"><span class="header-section-number">6.5</span> Knitting the Document</a></li>
+  <li><a href="#rmarkdown-tutorial" id="toc-rmarkdown-tutorial" class="nav-link" data-scroll-target="#rmarkdown-tutorial"><span class="header-section-number">6.6</span> RMarkdown Tutorial</a></li>
   </ul>
 </nav>
     </div>
@@ -495,10 +500,58 @@ window.Quarto = {
 <p>Within R there are a few different ways for us to stay organized. One way is to use <strong>scripts</strong> in R which will allow us to save our code as a .R file and then run the whole file with one command. Another way is to use <strong>text documents</strong> to save your code as a .txt file, but we cannot run this with a single command. You need to find out what works for you! I normally create my code in the console and then I copy and paste it into a text file when I want to save it. Others open a script and can run it line by line in there, you will just have to play around and create your style. But, when you do code make sure you create it and run it line by line. Very rarely would we want to create multiple lines of code and then run it and “hope” for the best by running it all at once.</p>
 <section id="reproducibility-using-rmarkdown" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="reproducibility-using-rmarkdown"><span class="header-section-number">6.1</span> Reproducibility using RMarkdown</h2>
-<p>Another system that students tend to like (and one we will be using) is RMarkdown. This is a file type in R that will allow us to place our code and comments/explanations side-by-side. We will then be able to “knit” (compile) the file together and it will output a Word document with the output displayed. We will go over this in class together, but to get started you will go to “File -<span class="math inline">\(&gt;\)</span> New File -<span class="math inline">\(&gt;\)</span> RMarkdown”. You may need to install some packages on the first run (just accept them). It will then ask you to pick a Title for the document and an output format (just choose Word or HTML but not PDF).</p>
-<p>RMarkdown relies on YAML (Yet Another Markup Language) so this may be similar to other Markup languages you may have used in other classes. We will just focus on the basics for now, but know that there is a lot of customization and implementations we could do. The Heading will determine the title, output format, and author/date (we will not need to alter anything in here). There are many different ways we can customize the output, but we will keep it fairly simple for now.</p>
-<p>One aspect that we will be adding/altering is the R “Chunks”. These are between the “` symbols and can be created by hitting the green”C” on the top right of the document. These are where we will place the R code (only the code, not the output!) that we want to run. Outside of the R chunks, we will place out explanations of the code/results so others can understand it. When we are done we will “Knit” it (top middle button) to make it into a Word or HTML document.</p>
-<p>“Knitting” the document will then compile the file. It will run your R code (or other languages if you specify it) and display the output directly following your code. This results in an organized and professional looking document without having to copy and paste our code/results.</p>
+<p>Another system that students tend to like (and one we will be using) is RMarkdown. This is a file type in R that will allow us to place our code comments/explanations, and output side-by-side. We will then be able to “knit” (compile) the file together and it will output a Word document with the output displayed. To access this you will first need to open RStudio, and then you will go to “File -<span class="math inline">\(&gt;\)</span> New File -<span class="math inline">\(&gt;\)</span> RMarkdown”. You may need to install some packages on the first run (just accept them). It will then ask you to pick a Title for the document and an output format (just choose Word or HTML, but not choose PDF).</p>
+<p>When you create the file, it should look something like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/L6-RMarkdown-Sample.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="yaml-header" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="yaml-header"><span class="header-section-number">6.2</span> YAML header</h2>
+<p>RMarkdown relies on YAML (Yet Another Markup Language) so this may be similar to other Markup languages you may have used in other classes. We will just focus on the basics for now, but know that there is a lot of customization and implementations we could do. The Heading will determine the title, output format, and author/date (we will not need to alter anything in here). There are many different ways we can customize the output, but we will keep it fairly simple for now. The YAML header can be seen below, with RStudio updating it automatically for us if we choose different settings.</p>
+<pre><code>---
+title: "Lecture-6-Practice"
+author: "Dr. McCurdy"
+date: "`r Sys.Date()`"
+output: word_document
+---</code></pre>
+</section>
+<section id="r-chunks-where-the-code-goes" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="r-chunks-where-the-code-goes"><span class="header-section-number">6.3</span> R Chunks (where the code goes!)</h2>
+<p>One aspect that we will be adding/altering is the R “Chunks”. These are between the``` symbols and can be created by hitting the green “C” on the top right of the document. These are where we will place the R code (only the code, not the output!) that we want to run. The first chunk of code that is automatically created for us is the setup chunk, which will be run but will not be displayed in the document. This is a good place to load any libraries you are working with or to import different datasets that the reader does not necessarily need to see the details for.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/L6-Initial-Chunk.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>The chunks that we create later on are where we will put our code. We can run the code chunk (and see what the output will look like) by hitting the green play button in the top right portion of the chunk. This will allow us to make sure the code works before we compile the document together. When making our chunk, there are a few different arguments that are available to us, such as <em>echo</em>, <em>eval</em>, <em>include</em>, <em>warning</em>, and <em>message</em>. But, for simplicity, we will ignore all of them for now and just use a chunk with the letter “r” in the curly brackets. In the example chunk below we can see how we are able to run our code in the chunk with the output displayed below it:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/L6-Example-Chunk.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="placing-our-explanations" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="placing-our-explanations"><span class="header-section-number">6.4</span> Placing our Explanations</h2>
+<p>Outside of the R chunks, we will place out explanations of the code/results so others can understand it. To create a “Header”, we can use the pound symbol (#) as long as there is a empty line above and below it with a space between the symbol and the word you want as the header. Using multiple pound symbols will result in smaller sub-headers.</p>
+<p>It is possible to emphasize different explanations or words:</p>
+<ul>
+<li>We can <em>italicize</em> words: <code>*italics*</code></li>
+<li>We can <strong>bold</strong> words: <code>**bold**</code></li>
+<li>We can make a bullet-point like by using the - symbol on each line</li>
+</ul>
+<p>Additional customization are possible, but we will not go into them right now. Just know that you can click the “Visual” button in the top left-hand corner of the document, and it will alter the file to look more like a “Word” document in terms of buttons to customize the file.</p>
+</section>
+<section id="knitting-the-document" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="knitting-the-document"><span class="header-section-number">6.5</span> Knitting the Document</h2>
+<p>When we are done placing our code and explanations, we will “Knit” it (top middle button) to make it into a Word or HTML document. “Knitting” the document will then compile the file. It will run your R code (or other languages if you specify it) and display the output directly following your code. This results in an organized and professional looking document without having to copy and paste our code/results.</p>
+<p>If the document fails to render, it might be because of a few different issues. The first might be that there is a syntax error with our code. It will usually direct you to the “chunk” that broke and tell you what is wrong with it. Another error that we might encounter is a “pandoc” error, which indicates that you currently have the Word document open, and thus is cant compile/overwrite the Word document unless it is closed.</p>
+</section>
+<section id="rmarkdown-tutorial" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="rmarkdown-tutorial"><span class="header-section-number">6.6</span> RMarkdown Tutorial</h2>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/3dNfcb8avPs?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 
 
 
