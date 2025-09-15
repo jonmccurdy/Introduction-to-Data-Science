@@ -16,13 +16,14 @@ Within R there are a few different ways for us to stay organized. One way is to 
     \href{https://youtu.be/wwTJtW4s7yU}{Using Scripts and Text Files}
 \end{watch}
 ```
+
 ## Reproducibility using RMarkdown
 
 Another system that students tend to like (and one we will be using) is RMarkdown. This is a file type in R that will allow us to place our code comments/explanations, and output side-by-side. We will then be able to "knit" (compile) the file together and it will output a Word document with the output displayed. To access this you will first need to open RStudio, and then you will go to "File -$>$ New File -$>$ RMarkdown". You may need to install some packages on the first run (just accept them). It will then ask you to pick a Title for the document and an output format (just choose Word or HTML, but not choose PDF).
 
 When you create the file, it should look something like this:
 
-![](images/L6-RMarkdown-Sample.png){fig-align="center"}
+![](images/L6-RMarkdown-Sample.PNG){fig-align="center"}
 
 ## YAML header
 
@@ -41,11 +42,11 @@ output: word_document
 
 One aspect that we will be adding/altering is the R "Chunks". These are between the\`\`\` symbols and can be created by hitting the green "C" on the top right of the document. These are where we will place the R code (only the code, not the output!) that we want to run. The first chunk of code that is automatically created for us is the setup chunk, which will be run but will not be displayed in the document. This is a good place to load any libraries you are working with or to import different datasets that the reader does not necessarily need to see the details for.
 
-![](images/L6-Initial-Chunk.png){fig-align="center"}
+![](images/L6-Initial-Chunk.PNG){fig-align="center"}
 
 The chunks that we create later on are where we will put our code. We can run the code chunk (and see what the output will look like) by hitting the green play button in the top right portion of the chunk. This will allow us to make sure the code works before we compile the document together. When making our chunk, there are a few different arguments that are available to us, such as *echo*, *eval*, *include*, *warning*, and *message*. But, for simplicity, we will ignore all of them for now and just use a chunk with the letter "r" in the curly brackets. In the example chunk below we can see how we are able to run our code in the chunk with the output displayed below it:
 
-![](images/L6-Example-Chunk.png){fig-align="center"}
+![](images/L6-Example-Chunk.PNG){fig-align="center"}
 
 ## Placing our Explanations
 
