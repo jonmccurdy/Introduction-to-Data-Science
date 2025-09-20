@@ -10,6 +10,13 @@ Within R, we can form structured data with multiple columns. These are called **
 - Use logical indexing to filter dataframe rows that meet specific criteria.
 :::
 
+::: {.callout-tip}
+## Supplemental Material
+<a href="Reading-Guide/L7-Reading-Guide.pdf" download>
+📄 Download the lecture's Reading Guide
+</a>
+:::
+
 ## Creating Dataframes
 
 Within a dataframe, the rows will represent an **observation**. Additionally, each vector (column) will have the same length as all of the others, resulting in a "rectangular" looking dataframe. We can make one ourselves by specifying the vectors in the *data.frame()* function. An example of this can be seen below:
@@ -44,7 +51,7 @@ Emmit is organizing a small conference and wants to keep track of attendees. Mak
 
 name <- c("Adam", "Brad", "Claire", "Donald", "Elaine", "Fiona")
 age <- c(30,49,32,28,27,33)
-role <- c("attendee", "speaker", "organizer", "attendeee", "attendee", "organizer")
+role <- c("attendee", "speaker", "organizer", "attendee", "attendee", "organizer")
 registered <- c(T, T, T, F, F, T)
 data.frame(name, age, role, registered)
 ```
@@ -53,7 +60,7 @@ data.frame(name, age, role, registered)
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/j0H832hEQgg?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -94,7 +101,7 @@ Using the dataframe you previously made for Emmit, add a new row to the list of 
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/gjFR0_Kcfpc?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -120,7 +127,7 @@ Using the dataframe you previously made for Emmit with Gracie now added, determi
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/l2OJlmbU4BI?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -159,7 +166,7 @@ Emmit decides that the dataframe for the conference should have different header
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/laW-yjj2IXg?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -213,7 +220,7 @@ Emmit would like to display some key information from the conference attendees. 
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/laJvXNU7bJc?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -241,7 +248,7 @@ Emmit decides that he does not need to record the attendee's age. He also found 
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/0DWMHEJzZmE?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -259,8 +266,8 @@ XXXX INSERT VIDEO XXXX
 - Create a dataframe in R pertaining to states on the East Coast:
   a) A vector containing the following states: "NY", "MD", "PA", "NJ", "VA"
   b) A vector containing the following median income values: 75000, 88000, 68000, 85000, 72000
-  c) A logicial vector based on if it is a costal state (only Pennsylvania is not on the coast)
-  e) Display all of the costal states
+  c) A logicial vector based on if it is a coastal state (only Pennsylvania is not on the coast)
+  e) Display all of the coastal states
   f) Display all of the rows where the median income is greater than 80000
   g) Display all of the rows where the state ends in a vowel or has a median income less than 77000
 :::
