@@ -571,12 +571,12 @@ Supplemental Material
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(names, ages, major, commuter)</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df, <span class="dv">5</span>) <span class="co"># Retrieves the first 5 rows (6 by default)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  names ages major commuter
-1  John   25  Data     TRUE
-2 Ringo   20 Cyber    FALSE
-3  Paul   21 Cyber     TRUE
-4  John   18  Math    FALSE
-5 Ringo   21  Math     TRUE</code></pre>
+<pre><code>   names ages      major commuter
+1 George   22 Undeclared     TRUE
+2   John   24 Undeclared     TRUE
+3   Paul   19   Comp-Sci     TRUE
+4  Ringo   24       Math    FALSE
+5   John   18 Undeclared    FALSE</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
@@ -617,10 +617,10 @@ Click to see the solution
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   10 obs. of  4 variables:
- $ names   : chr  "John" "Ringo" "Paul" "John" ...
- $ ages    : int  25 20 21 18 21 24 24 20 23 24
- $ major   : chr  "Data" "Cyber" "Cyber" "Math" ...
- $ commuter: logi  TRUE FALSE TRUE FALSE TRUE TRUE ...</code></pre>
+ $ names   : chr  "George" "John" "Paul" "Ringo" ...
+ $ ages    : int  22 24 19 24 18 20 19 22 24 18
+ $ major   : chr  "Undeclared" "Undeclared" "Comp-Sci" "Math" ...
+ $ commuter: logi  TRUE TRUE TRUE FALSE FALSE TRUE ...</code></pre>
 </div>
 </div>
 <p>We can also bind vectors together using the <em>cbind()</em> function, but we should be weary about this as the vector types will be altered to the “lowest” type if they are different. The function name <em>cbind()</em> stands for column bind, which will attach a new column on the end of another vector/dataframe. An example of this can be seen below where all of the columns are turned into characters</p>
@@ -628,20 +628,20 @@ Click to see the solution
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">cbind</span>(names, ages, major, commuter))</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df2,<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  names ages major commuter
-1  John   25  Data     TRUE
-2 Ringo   20 Cyber    FALSE
-3  Paul   21 Cyber     TRUE
-4  John   18  Math    FALSE
-5 Ringo   21  Math     TRUE</code></pre>
+<pre><code>   names ages      major commuter
+1 George   22 Undeclared     TRUE
+2   John   24 Undeclared     TRUE
+3   Paul   19   Comp-Sci     TRUE
+4  Ringo   24       Math    FALSE
+5   John   18 Undeclared    FALSE</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   10 obs. of  4 variables:
- $ names   : chr  "John" "Ringo" "Paul" "John" ...
- $ ages    : chr  "25" "20" "21" "18" ...
- $ major   : chr  "Data" "Cyber" "Cyber" "Math" ...
- $ commuter: chr  "TRUE" "FALSE" "TRUE" "FALSE" ...</code></pre>
+ $ names   : chr  "George" "John" "Paul" "Ringo" ...
+ $ ages    : chr  "22" "24" "19" "24" ...
+ $ major   : chr  "Undeclared" "Undeclared" "Comp-Sci" "Math" ...
+ $ commuter: chr  "TRUE" "TRUE" "TRUE" "FALSE" ...</code></pre>
 </div>
 </div>
 <p>We can also attach a new row on the end of a dataframe using the <em>rbind()</em> function. Once again though, we should be wary about this as we can potentially alter the column types.</p>
@@ -651,10 +651,10 @@ Click to see the solution
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(df_added, <span class="dv">5</span>) <span class="co"># Retrieves the last 5 observations of the dataframe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    names ages      major commuter
-7  George   24      Cyber    FALSE
-8    Paul   20      Cyber    FALSE
-9  George   23      Cyber     TRUE
-10   John   24       Math    FALSE
+7   Ringo   19      Cyber    FALSE
+8   Ringo   22   Comp-Sci    FALSE
+9  George   24       Math    FALSE
+10   Paul   18       Math     TRUE
 11   Pete   24 Percussion    FALSE</code></pre>
 </div>
 </div>
@@ -779,76 +779,76 @@ Click to see the solution
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  names ages major commuter
-1  John   25  Data     TRUE
-2 Ringo   20 Cyber    FALSE
-3  Paul   21 Cyber     TRUE
-4  John   18  Math    FALSE</code></pre>
+<pre><code>   names ages      major commuter
+1 George   22 Undeclared     TRUE
+2   John   24 Undeclared     TRUE
+3   Paul   19   Comp-Sci     TRUE
+4  Ringo   24       Math    FALSE</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">2</span>,<span class="dv">1</span>] <span class="co"># Element in the 2nd row and 1st column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Ringo"</code></pre>
+<pre><code>[1] "John"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">3</span>,] <span class="co"># Elements in the 3rd row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  names ages major commuter
-3  Paul   21 Cyber     TRUE</code></pre>
+<pre><code>  names ages    major commuter
+3  Paul   19 Comp-Sci     TRUE</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df[,<span class="dv">2</span>] <span class="co"># Elements in the 2nd column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 25 20 21 18 21 24 24 20 23 24</code></pre>
+<pre><code> [1] 22 24 19 24 18 20 19 22 24 18</code></pre>
 </div>
 </div>
 <p>We can also retrieve elements in a column by using a dollar sign ($) and then typing the column name. This resulting output will be a vector, not a dataframe, and will contain all of the values in that column.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "John"   "Ringo"  "Paul"   "John"   "Ringo"  "George" "George" "Paul"  
- [9] "George" "John"  </code></pre>
+<pre><code> [1] "George" "John"   "Paul"   "Ringo"  "John"   "John"   "Ringo"  "Ringo" 
+ [9] "George" "Paul"  </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>ages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 25 20 21 18 21 24 24 20 23 24</code></pre>
+<pre><code> [1] 22 24 19 24 18 20 19 22 24 18</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>major</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Data"  "Cyber" "Cyber" "Math"  "Math"  "Data"  "Cyber" "Cyber" "Cyber"
-[10] "Math" </code></pre>
+<pre><code> [1] "Undeclared" "Undeclared" "Comp-Sci"   "Math"       "Undeclared"
+ [6] "Data"       "Cyber"      "Comp-Sci"   "Math"       "Math"      </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>commuter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  TRUE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE</code></pre>
+<pre><code> [1]  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE</code></pre>
 </div>
 </div>
 <p>We can retrieve multiple rows and/or columns by passing a vector into our index-selection brackets. It should also be noted that we can select vector elements on a vector result. Additionally, we can pass a logical vector into the index-selection brackets to display values that meet certain criteria. Examples of these can be seen below:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)] <span class="co"># Rows 3 through 5 and columns 1 and 3 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  names major
-3  Paul Cyber
-4  John  Math
-5 Ringo  Math</code></pre>
+<pre><code>  names      major
+3  Paul   Comp-Sci
+4 Ringo       Math
+5  John Undeclared</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>ages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 25 20 21 18 21 24 24 20 23 24</code></pre>
+<pre><code> [1] 22 24 19 24 18 20 19 22 24 18</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>ages[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 20 21 18</code></pre>
+<pre><code>[1] 24 19 24</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>ages <span class="sc">&lt;=</span> <span class="dv">21</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE</code></pre>
+<pre><code> [1] FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>df[df<span class="sc">$</span>ages <span class="sc">&lt;=</span> <span class="dv">21</span>, ] <span class="co"># Displays just the TRUE rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  names ages major commuter
-2 Ringo   20 Cyber    FALSE
-3  Paul   21 Cyber     TRUE
-4  John   18  Math    FALSE
-5 Ringo   21  Math     TRUE
-8  Paul   20 Cyber    FALSE</code></pre>
+<pre><code>   names ages      major commuter
+3   Paul   19   Comp-Sci     TRUE
+5   John   18 Undeclared    FALSE
+6   John   20       Data     TRUE
+7  Ringo   19      Cyber    FALSE
+10  Paul   18       Math     TRUE</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">
@@ -878,18 +878,18 @@ Click to see the solution
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>df4 <span class="ot">&lt;-</span> df[<span class="sc">-</span><span class="dv">2</span>,] <span class="co"># Everything but the second row</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df4,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  names ages major commuter
-1  John   25  Data     TRUE
-3  Paul   21 Cyber     TRUE
-4  John   18  Math    FALSE</code></pre>
+<pre><code>   names ages      major commuter
+1 George   22 Undeclared     TRUE
+3   Paul   19   Comp-Sci     TRUE
+4  Ringo   24       Math    FALSE</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>df4 <span class="ot">&lt;-</span> df[,<span class="sc">-</span><span class="dv">3</span>] <span class="co"># Everything but the third column</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df4,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  names ages commuter
-1  John   25     TRUE
-2 Ringo   20    FALSE
-3  Paul   21     TRUE</code></pre>
+<pre><code>   names ages commuter
+1 George   22     TRUE
+2   John   24     TRUE
+3   Paul   19     TRUE</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Try it Out">

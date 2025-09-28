@@ -493,9 +493,9 @@ window.Quarto = {
    
   <ul>
   <li><a href="#the-basics-of-eda" id="toc-the-basics-of-eda" class="nav-link active" data-scroll-target="#the-basics-of-eda"><span class="header-section-number">8.1</span> The Basics of EDA</a></li>
-  <li><a href="#step-1-what-is-the-data" id="toc-step-1-what-is-the-data" class="nav-link" data-scroll-target="#step-1-what-is-the-data"><span class="header-section-number">8.2</span> Step 1: What is the Data?}</a></li>
+  <li><a href="#step-1-what-is-the-data" id="toc-step-1-what-is-the-data" class="nav-link" data-scroll-target="#step-1-what-is-the-data"><span class="header-section-number">8.2</span> Step 1: What is the Data?</a></li>
   <li><a href="#step-2-logical-vs.-physical" id="toc-step-2-logical-vs.-physical" class="nav-link" data-scroll-target="#step-2-logical-vs.-physical"><span class="header-section-number">8.3</span> Step 2: Logical vs.&nbsp;Physical</a></li>
-  <li><a href="#special-values-in-r" id="toc-special-values-in-r" class="nav-link" data-scroll-target="#special-values-in-r"><span class="header-section-number">8.4</span> Special Values in R}</a></li>
+  <li><a href="#special-values-in-r" id="toc-special-values-in-r" class="nav-link" data-scroll-target="#special-values-in-r"><span class="header-section-number">8.4</span> Special Values in R</a></li>
   <li><a href="#step-3-data-conditions" id="toc-step-3-data-conditions" class="nav-link" data-scroll-target="#step-3-data-conditions"><span class="header-section-number">8.5</span> Step 3: Data Conditions</a></li>
   <li><a href="#step-4-data-preparation" id="toc-step-4-data-preparation" class="nav-link" data-scroll-target="#step-4-data-preparation"><span class="header-section-number">8.6</span> Step 4: Data Preparation</a></li>
   <li><a href="#step-5-initial-summary" id="toc-step-5-initial-summary" class="nav-link" data-scroll-target="#step-5-initial-summary"><span class="header-section-number">8.7</span> Step 5: Initial Summary</a></li>
@@ -535,6 +535,19 @@ window.Quarto = {
 <li>Generate initial summaries using the summary() function and visualize quantitative and categorical variables to gain insight into distributions and patterns in the data.</li>
 </ul>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Supplemental Material
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="Reading-Guide/L8-Reading-Guide.pdf" download=""> 📄 Download the lecture’s Reading Guide </a></p>
+</div>
+</div>
 <section id="the-basics-of-eda" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="the-basics-of-eda"><span class="header-section-number">8.1</span> The Basics of EDA</h2>
 <p>Whenever we start working with a new dataset for the first time, we will want to carry out Exploratory Data Analysis (EDA) to understand what we are looking at. Some questions we may ask ourselves are: What does the data represent, What does the data look like, and Are there any problems (missing or unusual) with the data values? These questions will help us complete the first goal of EDA. We should note that these goals were designed/created by Professor Portier and they will not be found online or in other literature. The first goal, which will help us understand what our data is, can be seen below:</p>
@@ -551,7 +564,7 @@ window.Quarto = {
 </ul>
 </section>
 <section id="step-1-what-is-the-data" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="step-1-what-is-the-data"><span class="header-section-number">8.2</span> Step 1: What is the Data?}</h2>
+<h2 data-number="8.2" class="anchored" data-anchor-id="step-1-what-is-the-data"><span class="header-section-number">8.2</span> Step 1: What is the Data?</h2>
 <p>We can attempt to answer Step One: What is the Data, by looking at the logical structure (metadata) of the data. Normally datasets come with documentation that tells us how the data was captured, what the attributes are that are being measured, and the data types and units present in the dataset. This will be helpful to look at as a first glance of the dataset to understand what we are working with. There are a few datasets that we will regularly use in R, one is the “datasets” library (built into R) and the other in the “openintro” library. To access a library for the first time we need to install the package using the <em>install.packages()</em> function. We will only need to do this once. After we have the package installed, we will need to use the <em>library()</em> function every time we start a new session (or RMarkdown file) to access the functions/datasets inside the package. To learn more about the packages we can use the <em>help()</em> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package =</span> <span class="st">"datasets"</span>) <span class="co"># Datasets built-in to R</span></span>
@@ -574,7 +587,7 @@ Try it Out
 <summary>
 Click to see the solution
 </summary>
-<p>XXXX INSERT VIDEO XXXX</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/-Y2TVJR7y7w?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </details>
 </div>
 </div>
@@ -612,18 +625,18 @@ Try it Out
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Help Emmit look at the documentation for the “income_data” dataset in the “MSMU” library and verify that it matches the data avaliable in the package.</p>
+<p>Help Emmit look at the documentation for the “income_data” dataset in the “MSMU” library and verify that it matches the data available in the package.</p>
 <details>
 <summary>
 Click to see the solution
 </summary>
-<p>XXXX INSERT VIDEO XXXX</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/CJGmzn5gNsk?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </details>
 </div>
 </div>
 </section>
 <section id="special-values-in-r" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="special-values-in-r"><span class="header-section-number">8.4</span> Special Values in R}</h2>
+<h2 data-number="8.4" class="anchored" data-anchor-id="special-values-in-r"><span class="header-section-number">8.4</span> Special Values in R</h2>
 <p>After we have confirmed that the documentation and the data align with each other, we will want to investigate if there is anything unusual with the data. For instance, are there any missing or special values? A few special values that we might encounter are missing data (indicated as **NA<em>), non-numeric data (indicated as </em>NaN* which stands for Not a Number), and extreme values that are beyond the computer’s limits (indicated as <span class="math inline">\(\pm\)</span> <em>Inf</em>). Below we can see a few missing values when we look at the structure of the “airquality” dataset, as well as other ways in which we might encounter special values. Notice how in R the value <span class="math inline">\(-42/0\)</span> is <span class="math inline">\(-\infty\)</span> but in math we would consider it Undefined.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(airquality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -689,7 +702,7 @@ Try it Out
 <summary>
 Click to see the solution
 </summary>
-<p>XXXX INSERT VIDEO XXXX</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/noj9NMF27yA?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </details>
 </div>
 </div>
@@ -784,7 +797,7 @@ Try it Out
 <summary>
 Click to see the solution
 </summary>
-<p>XXXX INSERT VIDEO XXXX</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/cbYBvLEbVpY?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </details>
 </div>
 </div>
@@ -845,7 +858,7 @@ Try it Out
 <summary>
 Click to see the solution
 </summary>
-<p>XXXX INSERT VIDEO XXXX</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/HARo5cuLL6Y?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </details>
 </div>
 </div>
@@ -909,7 +922,7 @@ Try it Out
 <summary>
 Click to see the solution
 </summary>
-<p>XXXX INSERT VIDEO XXXX</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/zLFTSKEm-ak?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </details>
 </div>
 </div>
@@ -985,7 +998,7 @@ Try it Out
 <summary>
 Click to see the solution
 </summary>
-<p>XXXX INSERT VIDEO XXXX</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/Vi-MwUnWxa0?modestbranding=1&amp;rel=0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </details>
 </div>
 </div>

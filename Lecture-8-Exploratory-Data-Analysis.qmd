@@ -11,6 +11,13 @@ The Data Science Life-cycle consists of procuring the data, tidying the data to 
 - Generate initial summaries using the summary() function and visualize quantitative and categorical variables to gain insight into distributions and patterns in the data.
 :::
 
+::: {.callout-tip}
+## Supplemental Material
+<a href="Reading-Guide/L8-Reading-Guide.pdf" download>
+📄 Download the lecture's Reading Guide
+</a>
+:::
+
 ## The Basics of EDA
 
 Whenever we start working with a new dataset for the first time, we will want to carry out Exploratory Data Analysis (EDA) to understand what we are looking at. Some questions we may ask ourselves are: What does the data represent, What does the data look like, and Are there any problems (missing or unusual) with the data values? These questions will help us complete the first goal of EDA. We should note that these goals were designed/created by Professor Portier and they will not be found online or in other literature. The first goal, which will help us understand what our data is, can be seen below:
@@ -23,7 +30,7 @@ Whenever we start working with a new dataset for the first time, we will want to
     -   Step Five: Initial Summary
     -   Step Six: Data Visualization
 
-## Step 1: What is the Data?}
+## Step 1: What is the Data?
 
 We can attempt to answer Step One: What is the Data, by looking at the logical structure (metadata) of the data. Normally datasets come with documentation that tells us how the data was captured, what the attributes are that are being measured, and the data types and units present in the dataset. This will be helpful to look at as a first glance of the dataset to understand what we are working with. There are a few datasets that we will regularly use in R, one is the "datasets" library (built into R) and the other in the "openintro" library. To access a library for the first time we need to install the package using the *install.packages()* function. We will only need to do this once. After we have the package installed, we will need to use the *library()* function every time we start a new session (or RMarkdown file) to access the functions/datasets inside the package. To learn more about the packages we can use the *help()* function.
 
@@ -56,7 +63,7 @@ Emmit is taking an Introductory Data Science course and has learned about a pack
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/-Y2TVJR7y7w?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -83,18 +90,18 @@ str(mtcars) # Looking at the dataset structure
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-Help Emmit look at the documentation for the "income_data" dataset in the "MSMU" library and verify that it matches the data avaliable in the package.
+Help Emmit look at the documentation for the "income_data" dataset in the "MSMU" library and verify that it matches the data available in the package.
 
 <details>
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/CJGmzn5gNsk?modestbranding=1&rel=0 >}}
 
 </details>
 :::
 
-## Special Values in R}
+## Special Values in R
 
 After we have confirmed that the documentation and the data align with each other, we will want to investigate if there is anything unusual with the data. For instance, are there any missing or special values? A few special values that we might encounter are missing data (indicated as **NA*), non-numeric data (indicated as *NaN* which stands for Not a Number), and extreme values that are beyond the computer's limits (indicated as $\pm$ *Inf*). Below we can see a few missing values when we look at the structure of the "airquality" dataset, as well as other ways in which we might encounter special values. Notice how in R the value $-42/0$ is $-\infty$ but in math we would consider it Undefined.
 
@@ -139,7 +146,7 @@ Looking at the "income_data" dataset in the "MSMU" library, help Emmit determine
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/noj9NMF27yA?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -188,7 +195,7 @@ Emmit thinks that there are might be some unusual values present in the "income_
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/cbYBvLEbVpY?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -228,7 +235,7 @@ You and Emmit noticed that unusual values were present in the "Ages" and the "Sa
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/HARo5cuLL6Y?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -254,7 +261,7 @@ While the "Age" variable is beneficial, Emmit thinks that having a qualitative v
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/zLFTSKEm-ak?modestbranding=1&rel=0 >}}
 
 </details>
 :::
@@ -300,7 +307,7 @@ Help Emmit create a few different visualizations to understand the dataset.
 
 <summary>Click to see the solution</summary>
 
-XXXX INSERT VIDEO XXXX
+{{< video https://www.youtube.com/embed/Vi-MwUnWxa0?modestbranding=1&rel=0 >}}
 
 </details>
 :::
