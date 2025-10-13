@@ -2,8 +2,9 @@
     "tempName": "Untitled1",
     "source_window_id": "",
     "Source": "Source",
-    "cursorPosition": "10,25",
-    "scrollLine": "0",
+    "cursorPosition": "15,26",
+    "scrollLine": "3",
     "docOutlineVisible": "0",
-    "docOutlineSize": "325"
+    "docOutlineSize": "325",
+    "quartoPreviewFormat": "html"
 }

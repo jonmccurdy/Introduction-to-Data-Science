@@ -1,3 +1,0 @@
-"0","gamma_data <- rgamma(50, shape=2.5, scale=20000)"
-"0","hist(gamma_data, col=""lightblue"", main=""Salary of Population"", "
-"0","     freq=FALSE)"

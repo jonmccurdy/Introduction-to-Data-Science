@@ -11,9 +11,16 @@ When it comes to data, it normally follows some pattern. The trouble is trying t
 - Explain the Law of Large Numbers and how increasing sample size improves the accuracy of empirical probability estimates.
 :::
 
+::: {.callout-tip}
+## Supplemental Material
+<a href="Reading-Guide/L10-Reading-Guide.pdf" download>
+📄 Download the lecture's Reading Guide
+</a>
+:::
+
 ## Overview of Probability
 
-To understand probability distributions, we should probably have a brief review of the topic. Probability is the measure of the likelihood that an event will occur. This likelihood is expressed as a number between 0 and 1, where 0 will indicate impossibility and 1 indicate certainty. The value will always be between 0 and 1 with the sum of probabilities being equal to 1. Some short-hand which you might seen is *P(A)*, which indicates the ``probability of event A occurring". 
+To understand probability distributions, we should probably have a brief review of the topic. Probability is the measure of the likelihood that an event will occur. This likelihood is expressed as a number between 0 and 1, where 0 will indicate impossibility and 1 indicate certainty. The value will always be between 0 and 1 with the sum of probabilities being equal to 1. Some short-hand which you might seen is *P(A)*, which indicates the "probability of event A occurring". 
 
 \begin{watch}{}{}
     \href{https://youtu.be/BxHJLWyJWZo}{Probability Overview}
@@ -267,13 +274,13 @@ Lastly, we have seen throughout this lecture that as we increase the sample size
 
 ## Continuous Probability
 
-Last in this chapter we discussed some Discrete Distributions and were able to calculate the probability that a single event occurred. We can do a similar idea with continuous data except that instead of calculating $P(X=a)$, we will be calculating the probability of falling within a range of values such as $P(X<a)$ or $P(a\leq X \leq b)$. This should hopefully make sense as continuous data can take on any value in a given interval, so the probability that our backpack weighs exactly 6.4939 pounds is 0 since this is only 1 value with an infinite amount of possibilities if the scale can be infinitely precise. For the students who have taken calculus before, we (should) know that the integral at a single point, that is $\int_a^a f(x)\ dx$, is 0. 
+Previously in this chapter we discussed some Discrete Distributions and were able to calculate the probability that a single event occurred. We can do a similar idea with continuous data except that instead of calculating $P(X=a)$, we will be calculating the probability of falling within a range of values such as $P(X<a)$ or $P(a\leq X \leq b)$. This should hopefully make sense as continuous data can take on any value in a given interval, so the probability that our backpack weighs exactly 6.4939 pounds is 0 since this is only 1 value with an infinite amount of possibilities if the scale can be infinitely precise. For the students who have taken calculus before, we (should) know that the integral at a single point, that is $\int_a^a f(x)\ dx$, is 0. 
 
 ### Uniform Continuous Distribution
 
-The first distribution we will discuss is the **Uniform Continuous Distribution**. Similar to the Uniform Discrete Distribution, all possibilities within the interval $[a,b]$ have the same chance of being selected. The visualization of this distribution is essentially "flat" across the specified interval. The Uniform Continuous distribution can be described by the probability distribution $f(x)=\frac{1}{b-a}$ when $a\leq x \leq b$ and $f(x)=0$ otherwise. The mean will be $\mu=\frac{b+a}{2}$ and the standard deviation will be $\sigma = \sqrt{\frac{(b-a)^2}{12}}$\\
+The first distribution we will discuss is the **Uniform Continuous Distribution**. Similar to the Uniform Discrete Distribution, all possibilities within the interval $[a,b]$ have the same chance of being selected. The visualization of this distribution is essentially "flat" across the specified interval. The Uniform Continuous distribution can be described by the probability distribution $f(x)=\frac{1}{b-a}$ when $a\leq x \leq b$ and $f(x)=0$ otherwise. The mean will be $\mu=\frac{b+a}{2}$ and the standard deviation will be $\sigma = \sqrt{\frac{(b-a)^2}{12}}$
 
-Uniform Distributions occur when all of the ranges of outputs are equally likely. People's heights typically are not uniformly distributed (as most people are around 68 inches tall, with a few really short people and a few tall people). But, if we look at the decimal values of the height (for a person 68.283 inches tall if we just use the .283 portion) then that would be uniformly distributed. This idea of a continuous Uniform distribution is also seen in Random Number Generators, which are vital in simulations and computer applications! 
+Uniform Distributions occur when all of the ranges of outputs are equally likely. People's heights typically are not uniformly distributed (as most people are around 68 inches tall, with a few really short people and a few tall people). But, if we look at the decimal values of the height (for a person 68.283 inches tall if we just use the .283 portion) then that would most likely be uniformly distributed. This idea of a continuous Uniform distribution is also seen in Random Number Generators, which are vital in simulations and computer applications! 
 
 The code to simulate a uniform continuous distribution in R is fairly straightforward. We will use the *runif()* function which requires us to specify the number of random uniform numbers. We can also specify the minimum and maximum values for the digits. If we do not specify this then it will return values between 0 and 1. To view discrete data we used a barplot, but if we want to view the continuous data then we should utilize a histogram using the *hist()* function.
 
@@ -299,7 +306,7 @@ hist(uniform_data, col="lightblue", main="Uniform Distribution",
 
 ### Gamma Distribution
 
-The **Gamma Distribution** is another continuous distribution that has important aspects in the world of Data Science. This distribution has values that are always positive and right-skewed (meaning we have an outlier on the right side, making the "tail" longer). This distribution is particularly useful in describing the time until the $n^{\text{th}}$ Poisson event. We will not worry about ``math" of the function, but we will note that the curve is defined by shape $k$ and scale $\theta$. The mean will end up being $\mu=k\theta$ and the standard deviation will be $\sigma=\sqrt{k\theta^2}$
+The **Gamma Distribution** is another continuous distribution that has important aspects in the world of Data Science. This distribution has values that are always positive and right-skewed (meaning we have an outlier on the right side, making the "tail" longer). This distribution is particularly useful in describing the time until the $n^{\text{th}}$ Poisson event. We will not worry about "math" of the function, but we will note that the curve is defined by shape $k$ and scale $\theta$. The mean will end up being $\mu=k\theta$ and the standard deviation will be $\sigma=\sqrt{k\theta^2}$
 
 We should note that this distribution can be used for any data which we anticipate will be skewed, and does not have to deal with just the time until the $n^{\text{th}}$ Poisson event. To simulate random values for a gamma distribution we will use the *rgamma()* function where we can specify the number of values we want along with the shape, and either the scale or rate (sometimes we might also mention rate which is 1/scale). The visualization below shows what the distribution may look like. A density line has been drawn over the top of the histogram to help visualize the distribution.
 
@@ -366,7 +373,7 @@ lines(density(exp_data), col="red")
 
 ### Normal Distribution
 
-We will see that many characteristics in nature follow what we call the **Normal Distribution**. This is a uni-modal (one hump) symmetric distribution centered around the mean with the shape dependent on the standard deviation. You have probably heard people refer to the "bell" curve before since it tends to resemble the shape of a bell. Characteristics such as heights, grades, stock market returns, blood pressure, and many more things follow this distribution. It can be described by its mean $\mu$ and the standard deviation $\sigma$, both of which are arguments that we can decide.
+We will see that many characteristics in nature follow what we call the **Normal Distribution**. This is a uni-modal (one hump) symmetric distribution centered around the mean with the shape dependent on the standard deviation. You have probably heard people refer to the "bell" curve before since it tends to resemble the shape of a bell. Characteristics such as heights, grades, stock market returns, blood pressure, and many more things follow this distribution. It can be described by its mean ($\mu$) and the standard deviation ($\sigma$), both of which are arguments that we can decide.
 
 This is one of the most important distributions in statistics, as we will be revisiting this distribution continually throughout the rest of the semester. Later on, we will see why it is so important and how it relates to arguably one of the Top 3 Most Influential Theorems (the Central Limit Theorem). We can see the distribution at work if we want to look at the average height of students. We will assume the average height is 68 inches while the standard deviation is 3 inches.
 

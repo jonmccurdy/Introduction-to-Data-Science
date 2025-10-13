@@ -1,3 +1,0 @@
-"0",""
-"0","# Add legend to the Top Right"
-"0","legend(""topright"", legend=c(""shape=1, scale=2"", ""shape=2, scale=2"", ""shape=3, scale=2"", ""shape=5, scale=1"", ""shape=9, scale=0.5"", ""shape=7.5, scale=1""),col=c(""red"", ""blue"", ""green"", ""purple"", ""orange"", ""cyan""),lty=1, lwd=2, cex=0.7)"

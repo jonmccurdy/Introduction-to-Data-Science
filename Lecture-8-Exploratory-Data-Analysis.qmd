@@ -103,7 +103,7 @@ Help Emmit look at the documentation for the "income_data" dataset in the "MSMU"
 
 ## Special Values in R
 
-After we have confirmed that the documentation and the data align with each other, we will want to investigate if there is anything unusual with the data. For instance, are there any missing or special values? A few special values that we might encounter are missing data (indicated as **NA*), non-numeric data (indicated as *NaN* which stands for Not a Number), and extreme values that are beyond the computer's limits (indicated as $\pm$ *Inf*). Below we can see a few missing values when we look at the structure of the "airquality" dataset, as well as other ways in which we might encounter special values. Notice how in R the value $-42/0$ is $-\infty$ but in math we would consider it Undefined.
+After we have confirmed that the documentation and the data align with each other, we will want to investigate if there is anything unusual with the data. For instance, are there any missing or special values? A few special values that we might encounter are missing data (indicated as **NA**), non-numeric data (indicated as *NaN* which stands for Not a Number), and extreme values that are beyond the computer's limits (indicated as $\pm$ *Inf*). Below we can see a few missing values when we look at the structure of the "airquality" dataset, as well as other ways in which we might encounter special values. Notice how in R the value $-42/0$ is $-\infty$ but in math we would consider it Undefined.
 
 ```{r}
 str(airquality)
