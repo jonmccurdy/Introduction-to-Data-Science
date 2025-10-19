@@ -541,10 +541,39 @@ window.Quarto = {
 </header>
 
 
-<section id="center-statistics" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="center-statistics"><span class="header-section-number">11.1</span> Center Statistics</h2>
 <p>We have already done some Exploratory Data Analysis (EDA) in order to become familiar with the data. We asked ourselves what the logical and physical structure were, as well as if there were any “issues” with the data concerning missing values. We also started to prepare the data for future analysis by converting some columns to factors and occasionally creating new factor columns using the <em>cut()</em> function on a column composed of quantitative data. We finished off our Goal 1 of EDA by looking at a summary of the dataset and visualizing it in order to get a better idea of what the data we were working with looks like.</p>
 <p>Now that we are familiar with the dataset and know what it looks like, we can move on to describing the data. To describe the data, we can use <strong>descriptive statistics</strong>. The three of the big ways we will use to describe a dataset are the center, the spread, and the shape of the dataset. All of these will help us understand the data at a deeper level.</p>
+<div class="learning-goals">
+<ul>
+<li>Identify and explain key features used to describe a distribution: center, spread, and shape.<br>
+</li>
+<li>Distinguish between symmetric, left-skewed, and right-skewed distributions using visual and numerical cues.<br>
+</li>
+<li>Calculate and interpret quartiles, percentiles, and the interquartile range (IQR).<br>
+</li>
+<li>Compute and interpret measures of spread such as range, variance, and standard deviation.<br>
+</li>
+<li>Describe how skew affects the relationship between the mean and median.<br>
+</li>
+<li>Summarize and communicate the overall distribution of a dataset using numerical summaries and visual displays.<br>
+</li>
+</ul>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Supplemental Material
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="Reading-Guide/L11-Reading-Guide.pdf" download=""> 📄 Download the lecture’s Reading Guide </a></p>
+</div>
+</div>
+<section id="center-statistics" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="center-statistics"><span class="header-section-number">11.1</span> Center Statistics</h2>
 <section id="measures-of-central-tendency" class="level3" data-number="11.1.1">
 <h3 data-number="11.1.1" class="anchored" data-anchor-id="measures-of-central-tendency"><span class="header-section-number">11.1.1</span> Measures of Central Tendency</h3>
 <p>Describing the center of a dataset can help give us insight into what the data looks like, but we do lose some meaning when we reduce all of the data values down to a single representative value. Because we lose some meaning, multiple “competing” definitions of the center have emerged. These different definitions will allow us to identify patterns in the data that a single one by itself will not be able to tell us. We already know that there are multiple different ways in which we can describe the center of a dataset. We can do this with the <strong>mean</strong>, which is the average, the <strong>median</strong>, which is the middle of a sorted list, and the <strong>mode</strong>, which is where the highest occurring frequency happens.</p>
@@ -665,64 +694,49 @@ window.Quarto = {
 </section>
 <section id="mode" class="level3" data-number="11.1.5">
 <h3 data-number="11.1.5" class="anchored" data-anchor-id="mode"><span class="header-section-number">11.1.5</span> Mode</h3>
-<p>The mode is another descriptive statistic which might be useful in summarizing the data. This tells us which value occurs most frequently in a dataset. Unfortunately, there is no function in base R which calculates this for us, as the ‘<span class="math inline">\(mode()\)</span>’ function deals with the storage of an object and does not calculate the value occurring most frequently. We could create our own function in R in order to calculate it though:</p>
+<p>The mode is another descriptive statistic which might be useful in summarizing the data. This tells us which value occurs most frequently in a dataset. Unfortunately, there is no function in base R which calculates this for us, as the ‘<span class="math inline">\(mode()\)</span>’ function deals with the storage of an object and does not calculate the value occurring most frequently. The <code>MSMU</code> library contains a function which calculates this for us.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>MODE <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>     tbl <span class="ot">&lt;-</span> <span class="fu">table</span>(x)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">as.numeric</span>(<span class="fu">names</span>(tbl[tbl<span class="sc">==</span><span class="fu">max</span>(tbl)]))</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>     }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>Note</strong>: We will introduce a few functions in R over the next few sections. You should be focused on when to use them and how to interpret the output, not the actual code.</p>
-<p>What the function above is doing is allowing us to pass a vector into the function and it is then creating a table of all of the different values. It then identifies which value in the table is the largest and searches the table for any values that are equal to this value (since there can be multiple modes). It then selects all of them that are the maximum value and prints out the names of the selected values. Below is an example to see the function at work:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mtcars<span class="sc">$</span>cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MSMU)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(mtcars<span class="sc">$</span>cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  4  6  8 
 11  7 14 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">MODE</span>(mtcars<span class="sc">$</span>cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">MODE</span>(mtcars<span class="sc">$</span>cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8</code></pre>
 </div>
 </div>
 <p>Our function will also be able to determine the mode if there are multiple occurrences of the largest value:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>data_example <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">15</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">16</span>, <span class="dv">17</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data_example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>data_example <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">15</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">16</span>, <span class="dv">17</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data_example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>data_example
 10 12 13 14 15 16 17 
  3  1  2  1  3  2  1 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">MODE</span>(data_example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">MODE</span>(data_example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10 15</code></pre>
 </div>
 </div>
-<p>The function that we created only works for quantitative discrete data though. Continuous data has too few repeats due to the values being able to be anything within a given interval. This would result in our function identifying every value as the mode, which is not very helpful. We could use our density function to estimate the mode though. This would tell us which value on our density function is the highest. Below is the code for that (again, it is not vital for us to understand how to write functions in R right now):</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>estimate_mode <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>     from<span class="ot">=</span><span class="fu">min</span>(x, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>     to<span class="ot">=</span><span class="fu">max</span>(x, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>     d <span class="ot">&lt;-</span> <span class="fu">density</span>(x, <span class="at">from=</span>from, <span class="at">to=</span>to, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>     d<span class="sc">$</span>x[<span class="fu">which.max</span>(d<span class="sc">$</span>y)]</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>     }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>The function that we created only works for quantitative discrete data though. Continuous data has too few repeats due to the values being able to be anything within a given interval. This would result in our function identifying every value as the mode, which is not very helpful. We could use our density function to estimate the mode though. This would tell us which value on our density function is the highest. Once again, a function in the <code>MSMU</code> library helps us with this calculation.</p>
 <p>If we were to randomly generate 1,000 observations from the normal distribution and plot it we could see the density plot is largest around 53. The estimated mode tells us the density line is the tallest around 52.8, which confirms our visualization. The black vertical line was inputted to help show where 52.8 was in the graph. We should be careful in using our function, as it only works for continuous data with a single peak. If we have bi-modal data (with 2 peaks) then we would have to create a new function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="dv">50</span>,<span class="dv">8</span>)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_mode</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="dv">50</span>,<span class="dv">8</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_mode</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 50.65689</code></pre>
+<pre><code>[1] 50.50951</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">col=</span><span class="st">"lightblue"</span>, <span class="at">freq=</span><span class="cn">FALSE</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(x), <span class="at">col=</span><span class="st">"red"</span>)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">52.81717</span>, <span class="at">col=</span><span class="st">"black"</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">col=</span><span class="st">"lightblue"</span>, <span class="at">freq=</span><span class="cn">FALSE</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(x), <span class="at">col=</span><span class="st">"red"</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">52.81717</span>, <span class="at">col=</span><span class="st">"black"</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lecture-11-Describing-a-Distribution_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lecture-11-Describing-a-Distribution_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -733,16 +747,16 @@ window.Quarto = {
 <p>We have already talked some about the median and quartiles. We could calculate the <span class="math inline">\(p^{\text{th}}\)</span> quantile which is the value where <span class="math inline">\(100\cdot p%\)</span> of the data is less than the value. This also means that <span class="math inline">\(100\cdot (1-p)%\)</span> of the data is more than this value. If we are in the <span class="math inline">\(90^\text{th}\)</span> percentile for intelligence then we are really smart since we score better than 90% of people. But, if we are in the <span class="math inline">\(17^\text{th}\)</span> percentile for salary then we know we are only making more money than 17% of people (and we should probably ask for a raise).</p>
 <p>In order to calculate different quantiles in R, we could use the ‘<span class="math inline">\(quantile()\)</span>’ function. We need to pass a vector into it and tell it where we want to set the breaks (as decimals). We can do this using the sequence function. Below is an example of how we could do it with quartiles and quintiles:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>,<span class="at">to=</span><span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>,<span class="at">to=</span><span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.00 0.25 0.50 0.75 1.00</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>,<span class="at">to=</span><span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.25</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>,<span class="at">to=</span><span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.25</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    0%    25%    50%    75%   100% 
 10.400 15.425 19.200 22.800 33.900 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>,<span class="at">to=</span><span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>,<span class="at">to=</span><span class="dv">1</span>,<span class="at">by=</span><span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.0 0.2 0.4 0.6 0.8 1.0</code></pre>
 </div>
@@ -750,37 +764,22 @@ window.Quarto = {
 </section>
 <section id="summarizing-the-center-and-position" class="level3" data-number="11.1.7">
 <h3 data-number="11.1.7" class="anchored" data-anchor-id="summarizing-the-center-and-position"><span class="header-section-number">11.1.7</span> Summarizing the Center and Position</h3>
-<p>Similar to the mode function we created earlier, we could create functions in R to put all of the information in a single place for us. Be careful though, as passing continuous data into it may result in everything being outputted as a mode (you can always remove the MODE function if you are dealing with continuous data):</p>
+<p>There is a function within the library which allows us to put all of the information in a single place for us to analyze:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>center_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="at">mean=</span><span class="fu">round</span>(<span class="fu">mean</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="dv">2</span>),</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">median=</span><span class="fu">round</span>(<span class="fu">median</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="dv">2</span>),</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">trim25=</span><span class="fu">round</span>(<span class="fu">mean</span>(x,<span class="at">trim=</span>.<span class="dv">25</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="dv">2</span>),</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">trim10=</span><span class="fu">round</span>(<span class="fu">mean</span>(x,<span class="at">trim=</span>.<span class="dv">10</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="dv">2</span>),</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">mode=</span><span class="fu">round</span>(<span class="fu">MODE</span>(x),<span class="dv">2</span>),</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">est_mode=</span><span class="fu">round</span>(<span class="fu">estimate_mode</span>(x),<span class="dv">2</span>)</span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="fu">center_stats</span>(iris<span class="sc">$</span>Sepal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">center_stats</span>(iris<span class="sc">$</span>Sepal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    mean   median   trim25   trim10     mode est_mode 
-    5.84     5.80     5.80     5.81     5.00     5.72 </code></pre>
+<pre><code>    mean   median   trim25   trim10 est_mode 
+    5.84     5.80     5.80     5.81     5.72 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">center_stats</span>(airquality<span class="sc">$</span>Ozone)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">center_stats</span>(airquality<span class="sc">$</span>Ozone)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    mean   median   trim25   trim10     mode est_mode 
-   42.13    31.50    33.40    37.80    23.00    20.61 </code></pre>
+<pre><code>    mean   median   trim25   trim10 est_mode 
+   42.13    31.50    33.40    37.80    20.61 </code></pre>
 </div>
 </div>
-<p>We could do something similar with our position summary as well and view the quartiles and quantiles:</p>
+<p>We also have something similar with our position summary as well to view the quartiles and quantiles:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>position_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">list</span>(<span class="at">quint=</span><span class="fu">quantile</span>(x,<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">2</span>), <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">quart=</span><span class="fu">quantile</span>(x,<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,.<span class="dv">25</span>), <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="fu">position_stats</span>(iris<span class="sc">$</span>Sepal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">position_stats</span>(iris<span class="sc">$</span>Sepal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$quint
   0%  20%  40%  60%  80% 100% 
@@ -794,7 +793,7 @@ $quart
 <p>These center stats and position stats might indicate to use the the Sepal Length of an iris is symmetric since the mean and median are roughly the same, with no real differences in the mean and trimmed mean. Additionally, the position stats do not show too much reason to be concerned as the distance between the 25th and 50th percentile is roughly the same as the distance between the 50th and 75th percentile. We can make the same argument for the bottom half of the data and the top half of the data and get similar results. We will see in future sections how we can quantify the symmetry of the dataset using a formula/number.</p>
 <p>The last example we will look at in this section are the calculations for the Ozone variable in the “airquality” dataset. The center stats were carried out above and it indicates that this variable is not symmetric since the mean and median are far apart along with the mean and trimmed mean being different. Interpreting the position stats for the variable give us similar results. We can see that the top half of the dataset is much more spread out then the bottom half of the dataset, indicating that we probably have a skewed distribution.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">position_stats</span>(airquality<span class="sc">$</span>Ozone)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">position_stats</span>(airquality<span class="sc">$</span>Ozone)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$quint
   0%  20%  40%  60%  80% 100% 
@@ -805,32 +804,31 @@ $quart
   1.00  18.00  31.50  63.25 168.00 </code></pre>
 </div>
 </div>
-<p>It is important to note that these outputs will not definitively prove if the distribution is symmetric or not. We will need to utilize all of the information we learn over the next few lectures along with a visualization to make any determination. Because we will be utilizing these functions that we have created throughout the rest of the course, I encourage you to save them somewhere so that you can run them when needed (like when you start a new session in R or if you need to use the functions in an RMarkdown document).</p>
+<p>It is important to note that these outputs will not definitively prove if the distribution is symmetric or not. We will need to utilize all of the information we learn over the next few sections along with a visualization to make any determination.</p>
 </section>
 </section>
 <section id="spread-statistics" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="spread-statistics"><span class="header-section-number">11.2</span> Spread Statistics</h2>
-<p>There are a few descriptive statistics that we should look at in order to gain more information about our data. The three big ones are the center of the data, the spread of the data, and the skewness of the data. We have already seen how central tendency can tell us about a dataset in terms of the symmetry of the data. In this lecture, we will look into what the spread of the data can tell and relate some of this information back to the idea of symmetry.</p>
-<p>Let’s assume that we are given two different sets of data regarding salaries at two different companies. If I told you that employees at both companies earned an average of $75,000 then might consider both sets of data to be about the same. This is not quite true though, as every employee at Company A could make exactly $75,000 while most employees at Company B make $50,000 with a single outlier (probably the CEO) making a ton of money, thus bringing the mean to $75,000. This example should show us that the central tendency of a dataset by itself does not tell us the whole picture, we also need to provide the spread of the data. There are a few different ways that we can describe the spread of our data; the two simplest methods would be using our Range Difference and our Standard Deviation (two methods we have already discussed).</p>
+<p>In this section, we will look into what the spread of the data can tell and relate some of this information back to the idea of symmetry. Let’s assume that we are given two different sets of data regarding salaries at two different companies. If I told you that employees at both companies earned an average of $75,000 then might consider both sets of data to be about the same. This is not quite true though, as every employee at Company A could make exactly $75,000 while most employees at Company B make $50,000 with a single outlier (probably the CEO) making a ton of money, thus bringing the mean to $75,000. This example should show us that the central tendency of a dataset by itself does not tell us the whole picture, we also need to provide the spread of the data. There are a few different ways that we can describe the spread of our data; the two simplest methods would be using our Range Difference and our Standard Deviation (two methods we have already discussed).</p>
 <section id="variance" class="level3" data-number="11.2.1">
 <h3 data-number="11.2.1" class="anchored" data-anchor-id="variance"><span class="header-section-number">11.2.1</span> Variance</h3>
 <p>One way to describe the range of a dataset is to calculate the variance of the data. This will tell us how far (on average) data varies from the mean. This should sound extremely similar to our standard deviation, which is expected since the two are related. In fact, the variance (<span class="math inline">\(\sigma^2\)</span>) is the standard deviation (<span class="math inline">\(\sigma\)</span>) squared. Its exact formula can be seen below: <span class="math display">\[ \text{variance } = \sigma^2 = \frac{\sum_{i=1}^n (x_1-\bar{x})^2}{n-1}\]</span></p>
 <p>It should be noted that the units are squared for variance. This means that if our data is measuring pounds then the variance will be in pounds<span class="math inline">\(^2\)</span>. Taking the square root of the variance will give us the standard deviation. The idea of variance and standard deviation allows us to compare two sets of data that have the same units. Below, we can see the calculation in R using a formula and the built-in function and how it relates to standard deviation:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">8</span>)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="fu">length</span>(x)<span class="sc">-</span><span class="dv">1</span>) <span class="co"># Variance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">8</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((x<span class="sc">-</span><span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(<span class="fu">length</span>(x)<span class="sc">-</span><span class="dv">1</span>) <span class="co"># Variance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6.8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6.8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">6.8</span>) <span class="co"># Standard Deviation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fl">6.8</span>) <span class="co"># Standard Deviation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.607681</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.607681</code></pre>
 </div>
@@ -839,8 +837,8 @@ $quart
 </section>
 <section id="inter-quartile-range-iqr" class="level3" data-number="11.2.2">
 <h3 data-number="11.2.2" class="anchored" data-anchor-id="inter-quartile-range-iqr"><span class="header-section-number">11.2.2</span> Inter-Quartile Range (IQR)</h3>
-<p>Another way that we can describe the spread of the data is through quartiles. We touched on quartiles in the previous section and mentioned that they break up the data into ``quarters”. In order to calculate the different quartile values (First Quartile=Q1, Second Quartile=Median=Q2, and Third Quartile=Q3) we will first need to order our data from smallest to largest and then identify the middle value. This middle value of the dataset will be the median, also known as Q2. This tells us the value such that 50% of the data is below it and 50% of the data is above it.</p>
-<p>Once we have found the median, we can break our data up into a “lower” half and an ``upper” half. We then find the median of each of those groups and that tells us what our Q1 and Q3 are. The First Quartile (Q1) will tell us the value such that 25% of the data is below it (and thus 75% of the data is above it). Likewise, the Third Quartile (Q3) will tell us the value such that 75% of the data is below is (and thus 25% of the data is above it). An example of this can be seen in the dataset below:</p>
+<p>Another way that we can describe the spread of the data is through quartiles. We touched on quartiles in the previous section and mentioned that they break up the data into “quarters”. In order to calculate the different quartile values (First Quartile=Q1, Second Quartile=Median=Q2, and Third Quartile=Q3) we will first need to order our data from smallest to largest and then identify the middle value. This middle value of the dataset will be the median, also known as Q2. This tells us the value such that 50% of the data is below it and 50% of the data is above it.</p>
+<p>Once we have found the median, we can break our data up into a “lower” half and an “upper” half. We then find the median of each of those groups and that tells us what our Q1 and Q3 are. The First Quartile (Q1) will tell us the value such that 25% of the data is below it (and thus 75% of the data is above it). Likewise, the Third Quartile (Q3) will tell us the value such that 75% of the data is below is (and thus 25% of the data is above it). An example of this can be seen in the dataset below:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/L11-Quartiles.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
@@ -848,23 +846,23 @@ $quart
 </div>
 <p>It should probably be mentioned that R sometimes calculates quartiles a little bit differently than you may expect. That is because there are actually nine(!) different ways programmed in R. We can choose different methods using the ‘type=’ argument in our ‘quantile()’ function. Below is an example of carrying out the process in R and seeing that we get different results than the picture above depending on the type we select to caclulate the quartiles. Don’t worry about the small differences or the details as all of the results will give us similar values, and it will not affect any calculations we do. I just wanted to point this out in case we try finding it by hand or use an online calculator and then compare it to R and notice that it is different.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">26</span>, <span class="dv">27</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">40</span>, <span class="dv">44</span>, <span class="dv">50</span>, <span class="dv">52</span>, <span class="dv">55</span>, <span class="dv">57</span>)</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">26</span>, <span class="dv">27</span>, <span class="dv">30</span>, <span class="dv">32</span>, <span class="dv">40</span>, <span class="dv">44</span>, <span class="dv">50</span>, <span class="dv">52</span>, <span class="dv">55</span>, <span class="dv">57</span>)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   24.00   26.75   36.00   38.50   50.50   57.00 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">25</span>,.<span class="dv">50</span>,.<span class="dv">75</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">25</span>,.<span class="dv">50</span>,.<span class="dv">75</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   0%   25%   50%   75%  100% 
 24.00 26.75 36.00 50.50 57.00 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">25</span>,.<span class="dv">50</span>,.<span class="dv">75</span>,<span class="dv">1</span>), <span class="at">type=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">25</span>,.<span class="dv">50</span>,.<span class="dv">75</span>,<span class="dv">1</span>), <span class="at">type=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  0%  25%  50%  75% 100% 
 24.0 26.5 36.0 51.0 57.0 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">25</span>,.<span class="dv">50</span>,.<span class="dv">75</span>,<span class="dv">1</span>), <span class="at">type=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">25</span>,.<span class="dv">50</span>,.<span class="dv">75</span>,<span class="dv">1</span>), <span class="at">type=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   0%   25%   50%   75%  100% 
 24.00 26.25 36.00 51.50 57.00 </code></pre>
@@ -879,32 +877,32 @@ $quart
 </div>
 <p>We can calculate the Inter-Quartile Range, as well as our other quartile ranges used in our “Quartile Analysis” using the quantile function in R. We can see that the two halves are not the same “size”, indicating potential positive skew due to the “right side” being bigger then the “left side”.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(mtcars<span class="sc">$</span>mpg) <span class="sc">-</span> <span class="fu">min</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(mtcars<span class="sc">$</span>mpg) <span class="sc">-</span> <span class="fu">min</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8.8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(mtcars<span class="sc">$</span>mpg) <span class="sc">-</span> <span class="fu">median</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(mtcars<span class="sc">$</span>mpg) <span class="sc">-</span> <span class="fu">median</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 14.7</code></pre>
 </div>
 </div>
 <p>Looking at the different Quartile Ranges we can see that the middle sections are fairly symmetric, which indicates that the tails may be the thing causing the skew to occur.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(mtcars<span class="sc">$</span>mpg) <span class="sc">-</span> <span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, .<span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(mtcars<span class="sc">$</span>mpg) <span class="sc">-</span> <span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, .<span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  25% 
 3.775 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, .<span class="dv">75</span>) <span class="sc">-</span> <span class="fu">median</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, .<span class="dv">75</span>) <span class="sc">-</span> <span class="fu">median</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>75% 
 3.6 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We have a symmetric middle since values are about the same</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We have a symmetric middle since values are about the same</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also calculate our IQR in R and we can see that 50% of our data only falls over a range of roughly 7.4 mpg.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, .<span class="dv">75</span>) <span class="sc">-</span> <span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, .<span class="dv">25</span>) <span class="co"># This is our IQR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, .<span class="dv">75</span>) <span class="sc">-</span> <span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, .<span class="dv">25</span>) <span class="co"># This is our IQR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  75% 
 7.375 </code></pre>
@@ -912,17 +910,17 @@ $quart
 </div>
 <p>Finally, looking at our quartile ranges for the tails we can see that the skewness is on the right side due to the upper 25% of the data taking up more room than the lower 25% of the data.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, .<span class="dv">25</span>) <span class="sc">-</span> <span class="fu">min</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, .<span class="dv">25</span>) <span class="sc">-</span> <span class="fu">min</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  25% 
 5.025 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(mtcars<span class="sc">$</span>mpg)<span class="sc">-</span><span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg,.<span class="dv">75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(mtcars<span class="sc">$</span>mpg)<span class="sc">-</span><span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg,.<span class="dv">75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> 75% 
 11.1 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># May indicate a positive skew since right-half is bigger than left-half</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># May indicate a positive skew since right-half is bigger than left-half</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="z-score-normalization" class="level3" data-number="11.2.3">
@@ -937,31 +935,23 @@ $quart
 </div>
 <p>Note that the idea of normalized data can be carried out on any set of data as well as descriptive statistics, allowing us to indicate the skew of the data. Below is an example of standardizing the data in R making it easier to see the right-skew:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( (mtcars<span class="sc">$</span>mpg<span class="sc">-</span><span class="fu">mean</span>(mtcars<span class="sc">$</span>mpg))<span class="sc">/</span><span class="fu">sd</span>(mtcars<span class="sc">$</span>mpg) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( (mtcars<span class="sc">$</span>mpg<span class="sc">-</span><span class="fu">mean</span>(mtcars<span class="sc">$</span>mpg))<span class="sc">/</span><span class="fu">sd</span>(mtcars<span class="sc">$</span>mpg) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 -1.6079 -0.7741 -0.1478  0.0000  0.4495  2.2913 </code></pre>
 </div>
 </div>
-<p>We could also compare the percentages within 1, 2, and 3 standard deviations if we were to write a function. It will allow us to learn about where the data lies as well as the thickness of the tails, which we will discuss in the next section. Once again, we do not need to understand how to write a function in R, we just need to know the general idea of what it is doing.</p>
+<p>We could also compare the percentages within 1, 2, and 3 standard deviations if we were to write a function. It will allow us to learn about where the data lies as well as the thickness of the tails, which we will discuss in the next section. We can use this function to see what percent of the data is within 1, 2, and 3 standard deviations. We know that a normal distribution will roughly follow the 68-95-99.7 rule in terms of the spread of the data. If I were to do this in R I could get the following results:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>pct <span class="ot">&lt;-</span> <span class="cf">function</span>(x,n) {</span>
-<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>     lbnd <span class="ot">&lt;-</span> <span class="fu">mean</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">-</span> n<span class="sc">*</span><span class="fu">sd</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>     ubnd <span class="ot">&lt;-</span> <span class="fu">mean</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">+</span> n<span class="sc">*</span><span class="fu">sd</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>     (pct <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">length</span>(x[x<span class="sc">&gt;=</span>lbnd <span class="sc">&amp;</span> x<span class="sc">&lt;=</span>ubnd])<span class="sc">/</span><span class="fu">length</span>(x)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">2</span>))</span>
-<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We can use this function to see what percent of the data is within 1, 2, and 3 standard deviations. We know that a normal distribution will roughly follow the 68-95-99.7 rule in terms of the spread of the data. If I were to do this in R I could get the following results:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pct</span>(mtcars<span class="sc">$</span>mpg, <span class="dv">1</span>) <span class="co"># Expecting 68</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pct</span>(mtcars<span class="sc">$</span>mpg, <span class="dv">1</span>) <span class="co"># Expecting 68</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 75</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pct</span>(mtcars<span class="sc">$</span>mpg, <span class="dv">2</span>) <span class="co"># Expecting 95</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pct</span>(mtcars<span class="sc">$</span>mpg, <span class="dv">2</span>) <span class="co"># Expecting 95</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 93.75</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pct</span>(mtcars<span class="sc">$</span>mpg, <span class="dv">3</span>) <span class="co"># Expecting 99.7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pct</span>(mtcars<span class="sc">$</span>mpg, <span class="dv">3</span>) <span class="co"># Expecting 99.7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 100</code></pre>
 </div>
@@ -970,21 +960,11 @@ $quart
 </section>
 <section id="summarizing-the-spread-using-functions" class="level3" data-number="11.2.4">
 <h3 data-number="11.2.4" class="anchored" data-anchor-id="summarizing-the-spread-using-functions"><span class="header-section-number">11.2.4</span> Summarizing the Spread using Functions</h3>
-<p>We could build a function to help us summarize the spread of our data. This function will calculate the standard deviation, IQR, the normalized minimum, maximum, and range as well as the percentage of data within 1, 2, and 3 standard deviations:</p>
+<p>Like above, we have a function provided in the <code>MSMU</code> library which will calculate the standard deviation, IQR, the normalized minimum, maximum, and range as well as the percentage of data within 1, 2, and 3 standard deviations and put all of the information in one place for us to view.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>spread_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(<span class="at">sd=</span><span class="fu">round</span>(<span class="fu">sd</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="dv">2</span>),</span>
-<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">iqr=</span><span class="fu">round</span>(<span class="fu">IQR</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>),<span class="dv">2</span>),</span>
-<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">minz=</span><span class="fu">round</span>(<span class="fu">range</span>(<span class="fu">scale</span>(x),<span class="at">na.rm=</span><span class="cn">TRUE</span>)[<span class="dv">1</span>],<span class="dv">2</span>),</span>
-<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">maxz=</span><span class="fu">round</span>(<span class="fu">range</span>(<span class="fu">scale</span>(x),<span class="at">na.rm=</span><span class="cn">TRUE</span>)[<span class="dv">2</span>],<span class="dv">2</span>),</span>
-<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">diffz=</span><span class="fu">round</span>(<span class="fu">diff</span>(<span class="fu">range</span>(<span class="fu">scale</span>(x),<span class="at">na.rm=</span><span class="cn">TRUE</span>)),<span class="dv">2</span>),</span>
-<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">prp1=</span><span class="fu">round</span>(<span class="fu">pct</span>(x,<span class="dv">1</span>),<span class="dv">2</span>),</span>
-<span id="cb97-8"><a href="#cb97-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">prp2=</span><span class="fu">round</span>(<span class="fu">pct</span>(x,<span class="dv">2</span>),<span class="dv">2</span>),</span>
-<span id="cb97-9"><a href="#cb97-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">prp3=</span><span class="fu">round</span>(<span class="fu">pct</span>(x,<span class="dv">3</span>),<span class="dv">2</span>))</span>
-<span id="cb97-10"><a href="#cb97-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb97-11"><a href="#cb97-11" aria-hidden="true" tabindex="-1"></a><span class="fu">spread_stats</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spread_stats</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    sd    iqr   minz   maxz  diffz   prp1   prp2   prp3 
+<pre><code>    sd    iqr   minz   maxz  diffz   pct1   pct2   pct3 
   6.03   7.38  -1.61   2.29   3.90  75.00  93.75 100.00 </code></pre>
 </div>
 </div>
@@ -992,29 +972,22 @@ $quart
 </section>
 <section id="skew-statistics" class="level2" data-number="11.3">
 <h2 data-number="11.3" class="anchored" data-anchor-id="skew-statistics"><span class="header-section-number">11.3</span> Skew Statistics</h2>
-<p>So far we have discussed what the center and the spread of the data can tell us about symmetry. Remember that for data to be symmetric the mean has to equal the median. In this lecture, we will look into how we can measure the shape of the distribution using symmetry, skewness, and the tails of the data.</p>
+<p>So far we have discussed what the center and the spread of the data can tell us about symmetry. Remember that for data to be symmetric the mean has to equal the median. In this section, we will look into how we can measure the shape of the distribution using symmetry, skewness, and the tails of the data.</p>
 <section id="skewness" class="level3" data-number="11.3.1">
 <h3 data-number="11.3.1" class="anchored" data-anchor-id="skewness"><span class="header-section-number">11.3.1</span> Skewness</h3>
 <p>We have seen that extreme values have the potential to impact the mean. This can cause the data to be skewed to either the right side or to the left side. Extreme values above the mean make the tail longer on the right while extreme values below the mean make the tail longer on the left. We can quantify skew using the following formula:</p>
 <p><span class="math display">\[ \text{skew}=\frac{\frac{1}{n}\sum_{i=1}^n (x_i - \bar{x})^3}{s^3} = \frac{1}{n} \sum_{i=1}^n z_i^3 \]</span></p>
-<p>If the value of the skew is positive then the data will be right-skewed and if the skew is negative then it will be left-skewed. A skew of 0 will indicate that we may have a symmetric distribution. Values between -0.5 and 0.5 can probably be considered fairly symmetric. If the skew lies between -0.5 and -1 or 0.5 and 1 then we can consider it moderately skewed, and values more extreme will be considered highly skewed. We have a formula in R that we can implement to calculate the skew for us:</p>
+<p>If the value of the skew is positive then the data will be right-skewed and if the skew is negative then it will be left-skewed. A skew of 0 will indicate that we may have a symmetric distribution. Values between -0.5 and 0.5 can probably be considered fairly symmetric. If the skew lies between -0.5 and -1 or 0.5 and 1 then we can consider it moderately skewed, and values more extreme will be considered highly skewed. We have a formula in R that we can implement to calculate the skew for us. We can test this function out on data we have shown to be both skewed and symmetric:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>skew <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>            z <span class="ot">&lt;-</span> (x<span class="sc">-</span><span class="fu">mean</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>))<span class="sc">/</span><span class="fu">sd</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">mean</span>(z<span class="sc">^</span><span class="dv">3</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We can test this function out on data we have shown to be both skewed and symmetric:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skew</span>(<span class="fu">rgamma</span>(<span class="dv">500</span>,<span class="dv">2</span>,<span class="at">scale=</span><span class="dv">5</span>)) <span class="co"># Have shown this to be skewed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skew</span>(<span class="fu">rgamma</span>(<span class="dv">500</span>,<span class="dv">2</span>,<span class="at">scale=</span><span class="dv">5</span>)) <span class="co"># Have shown this to be skewed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9609337</code></pre>
+<pre><code>[1] 1.466067</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skew</span>(<span class="fu">rnorm</span>(<span class="dv">500</span>,<span class="dv">0</span>,<span class="dv">2</span>)) <span class="co"># Have shown this to be symmetric</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skew</span>(<span class="fu">rnorm</span>(<span class="dv">500</span>,<span class="dv">0</span>,<span class="dv">2</span>)) <span class="co"># Have shown this to be symmetric</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.1135714</code></pre>
+<pre><code>[1] 0.02605967</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skew</span>(mtcars<span class="sc">$</span>mpg) <span class="co"># Have shown this to be moderately skewed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skew</span>(mtcars<span class="sc">$</span>mpg) <span class="co"># Have shown this to be moderately skewed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.610655</code></pre>
 </div>
@@ -1033,37 +1006,24 @@ $quart
 <p>This idea of looking at the tails is important in allowing us to compare the data with a normal distribution. We know through the 68-95-99.7 rule that if we have a normal distribution then roughly 68% of the data is within 1 standard deviation, 95% of the data is within 2 standard deviations, and 99.7% of the data is within 3 standard deviations. So, if we calculate the proportion of data within 1 standard deviation from the mean and get a value less than 68% then we have the potential for thicker tails (and thus more extreme values), while a value greater than 68% indicates that we have thinner tails (and thus fewer extreme values).</p>
 <p>We can also quantify the kurtosis with the formula below. If the kurtosis is positive then we have more values in the tails (leptokurtic) and if the kurtosis is negative then we have fewer values in the tails than a normal distribution (platykurtic).</p>
 <p><span class="math display">\[ \text{kurtosis} = \frac{1}{n} \sum_{i=1}^n z_i^4 - 3 \]</span></p>
-<p>We can create a function in R that will calculate the kurtosis for us:</p>
+<p>We can then use the <code>kurt()</code> function to calculate the kurtosis for the ‘mpg’ vector in the ‘mtcars’ dataset. In the previous lecture, we saw that 100% of the data was within 3 standard deviations, implying that it has thinner tails than a normal distribution. Therefore we would expect the kurtosis to be negative.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>kurt <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>            z <span class="ot">&lt;-</span> (x<span class="sc">-</span><span class="fu">mean</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>))<span class="sc">/</span><span class="fu">sd</span>(x,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">mean</span>(z<span class="sc">^</span><span class="dv">4</span>,<span class="at">na.rm=</span><span class="cn">TRUE</span>) <span class="sc">-</span> <span class="dv">3</span></span>
-<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>We can then use this function to calculate the kurtosis for the ‘mpg’ vector in the ‘mtcars’ dataset. In the previous lecture, we saw that 100% of the data was within 3 standard deviations, implying that it has thinner tails than a normal distribution. Therefore we would expect the kurtosis to be negative.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kurt</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kurt</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.372766</code></pre>
 </div>
 </div>
-<p>We could also write a function to combine the skew and kurtosis calculations into a single function to use. For instance, we can see in the dataset ‘mlb_teams’ that the Wins column is moderately skewed left and that it has thicker tails than the normal distribution.</p>
+<p>There is a function which will provide a summary of the skew and kurtosis calculations into a single function to use. For instance, we can see in the dataset ‘mlb_teams’ that the Wins column is moderately skewed left and that it has thicker tails than the normal distribution.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>shape_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">c</span>(<span class="at">skew=</span><span class="fu">round</span>(<span class="fu">skew</span>(x),<span class="dv">2</span>),</span>
-<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">kurt=</span><span class="fu">round</span>(<span class="fu">kurt</span>(x),<span class="dv">2</span>))</span>
-<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shape_stats</span>(mlb_teams<span class="sc">$</span>wins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shape_stats</span>(mlb_teams<span class="sc">$</span>wins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> skew  kurt 
 -0.75  0.82 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shape_stats</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shape_stats</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> skew  kurt 
  0.61 -0.37 </code></pre>
@@ -1072,7 +1032,7 @@ $quart
 </section>
 <section id="mode-and-shape" class="level3" data-number="11.3.3">
 <h3 data-number="11.3.3" class="anchored" data-anchor-id="mode-and-shape"><span class="header-section-number">11.3.3</span> Mode and Shape</h3>
-<p>The Mode of a distribution is directly related to the shape. If we have symmetric data and it is uni-modal (one mode) then all of the values are clustered around a single point. If data is bi-modal (two modes) then the data is clustered around two points. We could extend this idea of clustering to occur around multiple points. Typically, if there are multiple modes then there are probably multiple populations included in the dataset. This may be able to be ``broken” apart using categorical variables. An example of this would be the average height of students may be bi-modal due to males and females having different average heights.</p>
+<p>The Mode of a distribution is directly related to the shape. If we have symmetric data and it is uni-modal (one mode) then all of the values are clustered around a single point. If data is bi-modal (two modes) then the data is clustered around two points. We could extend this idea of clustering to occur around multiple points. Typically, if there are multiple modes then there are probably multiple populations included in the dataset. This may be able to be “broken” apart using categorical variables. An example of this would be the average height of students may be bi-modal due to males and females having different average heights.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/L11-Modals.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
@@ -1084,15 +1044,15 @@ $quart
 <p>Now that we can look at the center, the spread, and the skew of the data we can start talking about how to assess the data. We might ask ourselves what relationships and patterns can be seen and what transformations might help us gain a deeper understanding of the data.</p>
 <p>Looking at the ‘babies’ dataframe with a specific focus on the ‘bwt’ column, we can run through our exercises to learn about the center, spread, and skew. We should be able to determine that this is unimodal data which has a slight negative skew and slightly thicker tails than a normal distribution. There is also a minimal impact from extreme values. We can visualize this data and compare it to a normal distribution (the red line) to see how it would compare:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(babies<span class="sc">$</span>bwt,<span class="at">freq=</span><span class="cn">FALSE</span>)</span>
-<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(babies<span class="sc">$</span>bwt),<span class="at">col=</span><span class="st">"blue"</span>)</span>
-<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>xfit <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(babies<span class="sc">$</span>bwt),.<span class="dv">1</span>)</span>
-<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>yfit <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(xfit,<span class="at">mean=</span><span class="fu">mean</span>(babies<span class="sc">$</span>bwt), <span class="at">sd=</span><span class="fu">sd</span>(babies<span class="sc">$</span>bwt,<span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
-<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xfit, yfit, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(babies<span class="sc">$</span>bwt,<span class="at">freq=</span><span class="cn">FALSE</span>)</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(babies<span class="sc">$</span>bwt),<span class="at">col=</span><span class="st">"blue"</span>)</span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a>xfit <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="fu">max</span>(babies<span class="sc">$</span>bwt),.<span class="dv">1</span>)</span>
+<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a>yfit <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(xfit,<span class="at">mean=</span><span class="fu">mean</span>(babies<span class="sc">$</span>bwt), <span class="at">sd=</span><span class="fu">sd</span>(babies<span class="sc">$</span>bwt,<span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
+<span id="cb109-5"><a href="#cb109-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xfit, yfit, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Lecture-11-Describing-a-Distribution_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Lecture-11-Describing-a-Distribution_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
