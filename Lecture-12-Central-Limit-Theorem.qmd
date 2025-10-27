@@ -2,6 +2,23 @@
 
 In this section, we will run through some simulations to see the Central Limit Theorem in action. There will be a good amount of code and outputs, but the majority of the code is virtually the same thing. You are encouraged to run through the code yourself and play around with it to see what each piece may do.
 
+::: learning-goals
+
+- Explain the relationship between populations and samples in statistical inference.
+- Describe how the Law of Large Numbers connects to sampling variability.
+- Differentiate between a sample distribution and a sampling distribution.
+- Interpret how sample size affects the mean and standard deviation of a sampling distribution.
+- State and explain the Central Limit Theorem and its importance in data science.
+:::
+
+::: {.callout-tip}
+## Supplemental Material
+<a href="Reading-Guide/L12-Reading-Guide.pdf" download>
+📄 Download the lecture's Reading Guide
+</a>
+:::
+
+
 ## Probability
 
 In order have have a solid grasp of statistics and data science, one needs to understand probability. We will say that P(event), which is read as "the probability of an event", tells us the likelihood of an event occurring. For discrete data it might be a specific value and for continuous data it may be a range of values. The probability must always be between 0 and 1, that is $0\leq P(\text{event})\leq 1$. The closer the value is to 0 the less likely the event is to occur, and the closer to 1 it is the more likely the event is to occur.
