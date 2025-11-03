@@ -2,6 +2,22 @@
 
 When we were showing the Central Limit Theorem through simulations, we were able to generate random samples over and over again to see that the sampling distribution did follow a normal distribution when the sample size was sufficiently large. But, in the "real world" we are not able to generate an infinite number of samples, rather we are given a single sample and told to analyze it and try to figure out what the population mean is. We will want to come up with a way to state how confident we are about our estimation of the population mean.
 
+::: learning-goals
+
+- Explain what a confidence interval represents and how it relates to sampling variability.
+- Distinguish between confidence intervals constructed using the $z$-distribution and the $t$-distribution.
+- Calculate and interpret confidence intervals for population means when $\sigma$ is known and unknown.
+- Describe how confidence level, sample size, and standard deviation affect the width of a confidence interval.
+:::
+
+::: {.callout-tip}
+## Supplemental Material
+<a href="Reading-Guide/L13-Reading-Guide.pdf" download>
+📄 Download the lecture's Reading Guide
+</a>
+:::
+
+
 ## Estimating Parameters
 
 Often we are interested in determining the population mean, and to do this we have to estimate the population mean ($\mu$) with the sample mean ($\overline{x}$). We can see an example of this by generating 10 values from a normal distribution with a mean of 50 and a standard deviation of 4 and noticing that the sample mean is never exactly the population mean (50).
@@ -137,6 +153,8 @@ Now we know that the sampling distribution will approach a normal distribution a
 Let's look at an example of something we might encounter while working on a problem. We will use the 'absenteeism' dataset in the 'openintro' library and construct a $95\%$ confidence interval for the mean number of days missed. We can also see that a function exists in R that will virtually calculate it for us, though we want to only use it to verify our results for now:
 
 ```{r}
+#| warning: false
+#| message: false
 library(openintro)
 x <- absenteeism$days # Just so I dont have to keep rewriting it
 mean(x) + c(-1,1)*qt(.975, df=length(x)-1)*sd(x)/sqrt(length(x))

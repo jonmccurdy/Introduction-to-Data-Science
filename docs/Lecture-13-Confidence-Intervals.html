@@ -526,17 +526,38 @@ window.Quarto = {
 
 
 <p>When we were showing the Central Limit Theorem through simulations, we were able to generate random samples over and over again to see that the sampling distribution did follow a normal distribution when the sample size was sufficiently large. But, in the “real world” we are not able to generate an infinite number of samples, rather we are given a single sample and told to analyze it and try to figure out what the population mean is. We will want to come up with a way to state how confident we are about our estimation of the population mean.</p>
+<div class="learning-goals">
+<ul>
+<li>Explain what a confidence interval represents and how it relates to sampling variability.</li>
+<li>Distinguish between confidence intervals constructed using the <span class="math inline">\(z\)</span>-distribution and the <span class="math inline">\(t\)</span>-distribution.</li>
+<li>Calculate and interpret confidence intervals for population means when <span class="math inline">\(\sigma\)</span> is known and unknown.</li>
+<li>Describe how confidence level, sample size, and standard deviation affect the width of a confidence interval.</li>
+</ul>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Supplemental Material
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="Reading-Guide/L13-Reading-Guide.pdf" download=""> 📄 Download the lecture’s Reading Guide </a></p>
+</div>
+</div>
 <section id="estimating-parameters" class="level2" data-number="13.1">
 <h2 data-number="13.1" class="anchored" data-anchor-id="estimating-parameters"><span class="header-section-number">13.1</span> Estimating Parameters</h2>
 <p>Often we are interested in determining the population mean, and to do this we have to estimate the population mean (<span class="math inline">\(\mu\)</span>) with the sample mean (<span class="math inline">\(\overline{x}\)</span>). We can see an example of this by generating 10 values from a normal distribution with a mean of 50 and a standard deviation of 4 and noticing that the sample mean is never exactly the population mean (50).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="dv">50</span>,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 51.32674</code></pre>
+<pre><code>[1] 51.7052</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="dv">50</span>,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 50.86591</code></pre>
+<pre><code>[1] 50.47964</code></pre>
 </div>
 </div>
 <p>We have seen though that our sample mean will not be the same as our population mean, so we might want to ask ourselves how confident we are that the sample mean is the same or close to the population mean. This is the idea of the confidence interval, as it will allow us to account for variability and say something like: “We don’t know what the actual population mean is, but we are pretty sure it is somewhere in between these two values”.</p>
@@ -675,28 +696,13 @@ window.Quarto = {
 <p>Now we know that the sampling distribution will approach a normal distribution as the sample size gets sufficiently large. This allows us to use the <span class="math inline">\(z-\)</span>score to scale the standard error when we know the population standard deviation. But, since we are using the <span class="math inline">\(t-\)</span>distribution then we can’t quite use the Central Limit Theorem exactly. For our purposes, we will say that we can use the <span class="math inline">\(t-\)</span>distribution when the absolute value of the skew is as follows: <strong>(a)</strong> <span class="math inline">\(|\text{skew}|&lt; 0.5\)</span> then <span class="math inline">\(n&gt;15\)</span>, <strong>(b)</strong> <span class="math inline">\(|\text{skew}|&lt; 1.0\)</span> then <span class="math inline">\(n&gt;30\)</span>, and <span class="math inline">\(|\text{skew}|&gt; 1.0\)</span> then <span class="math inline">\(n&gt;60\)</span>. This is because we know that we require larger sample sizes for the sampling distribution to look symmetrical when the data is heavily skewed.</p>
 <p>Let’s look at an example of something we might encounter while working on a problem. We will use the ‘absenteeism’ dataset in the ‘openintro’ library and construct a <span class="math inline">\(95\%\)</span> confidence interval for the mean number of days missed. We can also see that a function exists in R that will virtually calculate it for us, though we want to only use it to verify our results for now:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'openintro' was built under R version 4.3.3</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: airports</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: cherryblossom</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: usdata</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'usdata' was built under R version 4.3.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> absenteeism<span class="sc">$</span>days <span class="co"># Just so I dont have to keep rewriting it</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qt</span>(.<span class="dv">975</span>, <span class="at">df=</span><span class="fu">length</span>(x)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openintro)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> absenteeism<span class="sc">$</span>days <span class="co"># Just so I dont have to keep rewriting it</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qt</span>(.<span class="dv">975</span>, <span class="at">df=</span><span class="fu">length</span>(x)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="fu">sd</span>(x)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 13.80032 19.11749</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, <span class="at">conf.level =</span> .<span class="dv">95</span>)<span class="sc">$</span>conf.int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, <span class="at">conf.level =</span> .<span class="dv">95</span>)<span class="sc">$</span>conf.int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 13.80032 19.11749
 attr(,"conf.level")
@@ -711,15 +717,15 @@ attr(,"conf.level")
 <p><span class="math display">\[ \hat{p} \pm z_* \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} = \left(\hat{p} - z_* \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}, \hat{p} + z_* \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\right) \]</span></p>
 <p>To see this in practice we will look at the same ‘absenteeism’ dataset in the ‘openintro’ library. We will want to create a <span class="math inline">\(95\%\)</span> confidence interval for the proportion of males classified as having chronic absences. There are functions in R that will calculate it for us similar to the <span class="math inline">\(t.test()\)</span> but we will just write it out for now.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(absenteeism<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(absenteeism<span class="sc">$</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  F  M 
 80 66 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>phat <span class="ot">&lt;-</span> <span class="dv">66</span><span class="sc">/</span><span class="fu">length</span>(absenteeism<span class="sc">$</span>sex)</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(phat<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>phat)<span class="sc">/</span><span class="fu">length</span>(absenteeism<span class="sc">$</span>sex))</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>phat <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qnorm</span>(.<span class="dv">975</span>)<span class="sc">*</span>se</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>phat <span class="ot">&lt;-</span> <span class="dv">66</span><span class="sc">/</span><span class="fu">length</span>(absenteeism<span class="sc">$</span>sex)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(phat<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>phat)<span class="sc">/</span><span class="fu">length</span>(absenteeism<span class="sc">$</span>sex))</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>phat <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qnorm</span>(.<span class="dv">975</span>)<span class="sc">*</span>se</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3713246 0.5327849</code></pre>
 </div>
