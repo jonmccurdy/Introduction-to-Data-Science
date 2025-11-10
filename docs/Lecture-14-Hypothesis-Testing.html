@@ -492,7 +492,11 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link active" data-scroll-target="#hypothesis-testing"><span class="header-section-number">14.1</span> Hypothesis Testing</a></li>
+  <li><a href="#setting-up-to-problem" id="toc-setting-up-to-problem" class="nav-link active" data-scroll-target="#setting-up-to-problem"><span class="header-section-number">14.1</span> Setting Up to Problem</a></li>
+  <li><a href="#possible-conclusions" id="toc-possible-conclusions" class="nav-link" data-scroll-target="#possible-conclusions"><span class="header-section-number">14.2</span> Possible Conclusions</a></li>
+  <li><a href="#significance-levels-and-test-statistics" id="toc-significance-levels-and-test-statistics" class="nav-link" data-scroll-target="#significance-levels-and-test-statistics"><span class="header-section-number">14.3</span> Significance Levels and Test Statistics</a></li>
+  <li><a href="#hypothesis-testing-steps" id="toc-hypothesis-testing-steps" class="nav-link" data-scroll-target="#hypothesis-testing-steps"><span class="header-section-number">14.4</span> Hypothesis Testing Steps</a></li>
+  <li><a href="#hypothesis-testing-examples" id="toc-hypothesis-testing-examples" class="nav-link" data-scroll-target="#hypothesis-testing-examples"><span class="header-section-number">14.5</span> Hypothesis Testing Examples</a></li>
   </ul>
 </nav>
     </div>
@@ -519,10 +523,42 @@ window.Quarto = {
 
 
 <p>Confidence Intervals and Hypothesis Testing both allow us to make inferences about a population using just the sample. With this, we can predict the likelihood of population values and state confidence in our results. We have seen that the confidence interval lets us say something along the lines of: “We are pretty certain the population mean is within this interval”. Hypothesis testing will allow us to do something similar, but instead, we will be able to compare our sample value to the claimed population value.</p>
-<section id="hypothesis-testing" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="hypothesis-testing"><span class="header-section-number">14.1</span> Hypothesis Testing</h2>
+<div class="learning-goals">
+<ul>
+<li>Explain the purpose of hypothesis testing and how it relates to confidence intervals.<br>
+</li>
+<li>Identify the null hypothesis (<span class="math inline">\(H_0\)</span>) and alternative hypothesis (<span class="math inline">\(H_A\)</span>) in a given context.<br>
+</li>
+<li>Interpret the meaning of “rejecting” and “failing to reject” the null hypothesis.<br>
+</li>
+<li>Know how to calculate a test statistic and p-value.</li>
+<li>Connect the idea of sampling variability to the rejection regions in a normal distribution.<br>
+</li>
+</ul>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Supplemental Material
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="Reading-Guide/L14-Reading-Guide.pdf" download=""> 📄 Download the lecture’s Reading Guide </a></p>
+</div>
+</div>
+<section id="setting-up-to-problem" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="setting-up-to-problem"><span class="header-section-number">14.1</span> Setting Up to Problem</h2>
 <p>To perform a hypothesis test, we first have to make a claim about the population. This is what we will call the hypothesis. The null hypothesis (written as <span class="math inline">\(H_0\)</span>) means there is no difference in the data while the alternative hypothesis (written as <span class="math inline">\(H_A\)</span>) indicates there is a difference in the data. For instance, if we are interested in seeing if the mean is different than 7 then our starting assumption will be <span class="math inline">\(H_0: \mu= 82.3\)</span> while the alternative hypothesis will be <span class="math inline">\(H_A: \mu \neq 82.3\)</span>. Another example is the judicial system in the United States. The idea is built on the premise that all suspects are innocent unless proven guilty. So, the starting assumption is that the client is innocent and it is the prosecutor’s job to convince us otherwise. Therefore, the null hypothesis will be <span class="math inline">\(H_0: \text{Innocent}\)</span> while the alternative hypothesis will be <span class="math inline">\(H_A: \text{Guilty}\)</span>.</p>
+</section>
+<section id="possible-conclusions" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="possible-conclusions"><span class="header-section-number">14.2</span> Possible Conclusions</h2>
 <p>It is vital to realize that there are only 2 conclusions we can make in hypothesis testing. The first is that we can reject the null hypothesis in favor of the alternative hypothesis and the second is that we can fail to reject the null hypothesis. Failing to reject the null hypothesis means that there is no evidence to suggest the initial claim is wrong. What we can never do though is to accept the null hypothesis. Going back to our court example might help us realize this. When the jury comes back after deliberations they either proclaim the defendant is guilty (they have rejected the null hypothesis and said that there is enough evidence to say they are not innocent) or the defendant is not guilty (they have failed to reject the null hypothesis and said they do not have enough evidence to say the defendant is guilty). What they do not do is accept the null hypothesis, that is they do not proclaim the defendant innocent (as they can never be 100% sure), all they can do is say that enough evidence has been produced to show them guilty or enough evidence has not been produced to show them guilty.</p>
+</section>
+<section id="significance-levels-and-test-statistics" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="significance-levels-and-test-statistics"><span class="header-section-number">14.3</span> Significance Levels and Test Statistics</h2>
 <p>The way we will do hypothesis testing is similar to confidence intervals, and they are both interconnected. Let’s look at a normal distribution centered around the population mean (which is usually the null hypothesis). We know from the previous sections that if we take a bunch of samples from the population, <span class="math inline">\(95\%\)</span> of the sample means will fall in the “white” region while <span class="math inline">\(5\%\)</span> of the sample means will fall in the “blue” region. If our sample mean falls in the “blue” region and is far away from the population mean, we will usually pause and question whether our sample actually came from the same population or not, as it is unlikely to be far away from <span class="math inline">\(\mu\)</span>. We could just have an unlucky sample, as it does fall in the blue region <span class="math inline">\(5\%\)</span> of the time though.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -530,8 +566,11 @@ window.Quarto = {
 </figure>
 </div>
 <p>There are a few pieces of information that should be addressed before actually carrying out our hypothesis test. The first is the significance level (<span class="math inline">\(\alpha\)</span>), and this will identify the region where the probability of observing values under the null hypothesis is <span class="math inline">\(\alpha\)</span>. In this class we will have the significance level be <span class="math inline">\(5\%\)</span>, meaning <span class="math inline">\(\alpha/2 = 2.5\%\)</span> is on each side. The “blue” sections are the area beyond the quantile associated with specified significance levels and we will call this the rejection region. If our value falls in the rejection region then we will reject the null hypothesis. Since we normally deal with the standard normal distribution, we will want to normalize our value, and we will call this our test statistic. The test statistic can be found in the following way:</p>
-<p><span class="math display">\[ \text{test statistic} = \frac{\text{observed - hypothesis}}{\text{standard error}} \]</span></p>
+<p><span class="math display">\[ \text{test statistic} = \frac{\text{observed - hypothesis}}{\text{standard error}} \]</span> ## P-values</p>
 <p>The last important piece of the puzzle for us is the idea of the <span class="math inline">\(p-\)</span>value. This <span class="math inline">\(p-\)</span>value is the probability of observing a data value as or more extreme than the test statistic if the null hypothesis was true at the time. This will help us see if the sample mean occurred by chance or if it was highly unlikely to occur by chance then we might say the null hypothesis was not true. Particularly, if the <span class="math inline">\(p-\)</span>value <span class="math inline">\(&lt;\)</span> significance level then we will reject the null hypothesis, and if the <span class="math inline">\(p-\)</span>value <span class="math inline">\(&gt;\)</span> significance level then we will fail to reject the null hypothesis.</p>
+</section>
+<section id="hypothesis-testing-steps" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="hypothesis-testing-steps"><span class="header-section-number">14.4</span> Hypothesis Testing Steps</h2>
 <p>There are different types of hypothesis tests out there. In this class we will just be looking at the two-sided tests, meaning <span class="math inline">\(\alpha/2\)</span> is on each side. This will also result in the null hypothesis always having equality and the alternative hypothesis being not equal to. You may wish to do a one-sided test and have the alternative hypothesis be less than or greater than some value, in which you will have to alter your rejection region to have <span class="math inline">\(\alpha\)</span> on one side. But, to find the <span class="math inline">\(p-\)</span>value we can use the <span class="math inline">\(pnorm()\)</span> and the <span class="math inline">\(pt()\)</span> functions similar to how we used the <span class="math inline">\(qnorm()\)</span> and the <span class="math inline">\(qt()\)</span> in previous lessons. The general steps for hypothesis testing can be found below, with it working the same way for means and proportions:</p>
 <ol type="1">
 <li>Formulate your Hypothesis</li>
@@ -541,6 +580,9 @@ window.Quarto = {
 <li>Calculate the <span class="math inline">\(p-\)</span>value</li>
 <li>Compare the <span class="math inline">\(p-\)</span>value to the significance level</li>
 </ol>
+</section>
+<section id="hypothesis-testing-examples" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="hypothesis-testing-examples"><span class="header-section-number">14.5</span> Hypothesis Testing Examples</h2>
 <p>Let’s look at a few examples and run through the process of hypothesis testing. The nutrition label on a bag of potato chips says that a one-ounce (28-grams) serving of potato chips has 130 calories with a standard deviation of 17. A random sample of 35 bags yielded a sample mean of 134 calories. Is there evidence that the nutrition label does not provide an accurate measure of calories in the bags of potato chips?</p>
 <p>Our first step is to formulate our hypothesis, and since we want to see if the calories are correct on the bag then we will want to use that. The starting assumption is that there are 130 calories in the bag and we want to test this claim. This gives us the following setup:</p>
 <p><span class="math display">\[ H_0: \mu = 130 \\ H_A: \mu \neq 130\]</span></p>

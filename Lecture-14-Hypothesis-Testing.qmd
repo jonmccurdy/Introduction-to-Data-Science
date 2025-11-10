@@ -2,11 +2,30 @@
 
 Confidence Intervals and Hypothesis Testing both allow us to make inferences about a population using just the sample. With this, we can predict the likelihood of population values and state confidence in our results. We have seen that the confidence interval lets us say something along the lines of: "We are pretty certain the population mean is within this interval". Hypothesis testing will allow us to do something similar, but instead, we will be able to compare our sample value to the claimed population value.
 
-## Hypothesis Testing
+::: learning-goals
+-   Explain the purpose of hypothesis testing and how it relates to confidence intervals.\
+-   Identify the null hypothesis ($H_0$) and alternative hypothesis ($H_A$) in a given context.\
+-   Interpret the meaning of “rejecting” and “failing to reject” the null hypothesis.\
+-   Know how to calculate a test statistic and p-value.
+-   Connect the idea of sampling variability to the rejection regions in a normal distribution.\
+:::
+
+::: {.callout-tip}
+## Supplemental Material
+<a href="Reading-Guide/L14-Reading-Guide.pdf" download>
+📄 Download the lecture's Reading Guide
+</a>
+:::
+
+## Setting Up to Problem
 
 To perform a hypothesis test, we first have to make a claim about the population. This is what we will call the hypothesis. The null hypothesis (written as $H_0$) means there is no difference in the data while the alternative hypothesis (written as $H_A$) indicates there is a difference in the data. For instance, if we are interested in seeing if the mean is different than 7 then our starting assumption will be $H_0: \mu= 82.3$ while the alternative hypothesis will be $H_A: \mu \neq 82.3$. Another example is the judicial system in the United States. The idea is built on the premise that all suspects are innocent unless proven guilty. So, the starting assumption is that the client is innocent and it is the prosecutor's job to convince us otherwise. Therefore, the null hypothesis will be $H_0: \text{Innocent}$ while the alternative hypothesis will be $H_A: \text{Guilty}$.
 
+## Possible Conclusions
+
 It is vital to realize that there are only 2 conclusions we can make in hypothesis testing. The first is that we can reject the null hypothesis in favor of the alternative hypothesis and the second is that we can fail to reject the null hypothesis. Failing to reject the null hypothesis means that there is no evidence to suggest the initial claim is wrong. What we can never do though is to accept the null hypothesis. Going back to our court example might help us realize this. When the jury comes back after deliberations they either proclaim the defendant is guilty (they have rejected the null hypothesis and said that there is enough evidence to say they are not innocent) or the defendant is not guilty (they have failed to reject the null hypothesis and said they do not have enough evidence to say the defendant is guilty). What they do not do is accept the null hypothesis, that is they do not proclaim the defendant innocent (as they can never be 100% sure), all they can do is say that enough evidence has been produced to show them guilty or enough evidence has not been produced to show them guilty.
+
+## Significance Levels and Test Statistics
 
 The way we will do hypothesis testing is similar to confidence intervals, and they are both interconnected. Let's look at a normal distribution centered around the population mean (which is usually the null hypothesis). We know from the previous sections that if we take a bunch of samples from the population, $95\%$ of the sample means will fall in the "white" region while $5\%$ of the sample means will fall in the "blue" region. If our sample mean falls in the "blue" region and is far away from the population mean, we will usually pause and question whether our sample actually came from the same population or not, as it is unlikely to be far away from $\mu$. We could just have an unlucky sample, as it does fall in the blue region $5\%$ of the time though.
 
@@ -14,9 +33,11 @@ The way we will do hypothesis testing is similar to confidence intervals, and th
 
 There are a few pieces of information that should be addressed before actually carrying out our hypothesis test. The first is the significance level ($\alpha$), and this will identify the region where the probability of observing values under the null hypothesis is $\alpha$. In this class we will have the significance level be $5\%$, meaning $\alpha/2 = 2.5\%$ is on each side. The "blue" sections are the area beyond the quantile associated with specified significance levels and we will call this the rejection region. If our value falls in the rejection region then we will reject the null hypothesis. Since we normally deal with the standard normal distribution, we will want to normalize our value, and we will call this our test statistic. The test statistic can be found in the following way:
 
-$$ \text{test statistic} = \frac{\text{observed - hypothesis}}{\text{standard error}} $$
+$$ \text{test statistic} = \frac{\text{observed - hypothesis}}{\text{standard error}} $$ \## P-values
 
 The last important piece of the puzzle for us is the idea of the $p-$value. This $p-$value is the probability of observing a data value as or more extreme than the test statistic if the null hypothesis was true at the time. This will help us see if the sample mean occurred by chance or if it was highly unlikely to occur by chance then we might say the null hypothesis was not true. Particularly, if the $p-$value $<$ significance level then we will reject the null hypothesis, and if the $p-$value $>$ significance level then we will fail to reject the null hypothesis.
+
+## Hypothesis Testing Steps
 
 There are different types of hypothesis tests out there. In this class we will just be looking at the two-sided tests, meaning $\alpha/2$ is on each side. This will also result in the null hypothesis always having equality and the alternative hypothesis being not equal to. You may wish to do a one-sided test and have the alternative hypothesis be less than or greater than some value, in which you will have to alter your rejection region to have $\alpha$ on one side. But, to find the $p-$value we can use the $pnorm()$ and the $pt()$ functions similar to how we used the $qnorm()$ and the $qt()$ in previous lessons. The general steps for hypothesis testing can be found below, with it working the same way for means and proportions:
 
@@ -26,6 +47,8 @@ There are different types of hypothesis tests out there. In this class we will j
 4.  Calculate the Test Statistic
 5.  Calculate the $p-$value
 6.  Compare the $p-$value to the significance level
+
+## Hypothesis Testing Examples
 
 Let's look at a few examples and run through the process of hypothesis testing. The nutrition label on a bag of potato chips says that a one-ounce (28-grams) serving of potato chips has 130 calories with a standard deviation of 17. A random sample of 35 bags yielded a sample mean of 134 calories. Is there evidence that the nutrition label does not provide an accurate measure of calories in the bags of potato chips?
 
@@ -59,7 +82,6 @@ Next, we can calculate our standard error and the test statistic as follows:
 #| warning: false
 library(openintro)
 ```
-
 
 ```{r}
 se <- sd(births$weight)/sqrt(length(births$weight))
