@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -451,8 +486,17 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introductory-example" id="toc-introductory-example" class="nav-link active" data-scroll-target="#introductory-example"><span class="header-section-number">16.1</span> Introductory Example</a></li>
+  <li><a href="#interpreting-the-coefficients" id="toc-interpreting-the-coefficients" class="nav-link" data-scroll-target="#interpreting-the-coefficients"><span class="header-section-number">16.2</span> Interpreting the Coefficients</a></li>
+  <li><a href="#making-predictions" id="toc-making-predictions" class="nav-link" data-scroll-target="#making-predictions"><span class="header-section-number">16.3</span> Making Predictions</a></li>
+  <li><a href="#cautions" id="toc-cautions" class="nav-link" data-scroll-target="#cautions"><span class="header-section-number">16.4</span> Cautions</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -476,10 +520,107 @@ window.Quarto = {
 </header>
 
 
-<p>WORK IN PROGRESS</p>
+<p>One of the cool things about data science that you will see in future courses is the ability to make predictions using a dataset. The most basic way this can be done is by drawing a line of best fit that is close to as many data points as possible. We can then use this line to predict where other values may lie. As you go on to study machine learning, you will learn even more powerful ways to make predictions and classifications.</p>
+<div class="learning-goals">
+<ul>
+<li>Explain the purpose of a line of best fit and how it can be used to make predictions.</li>
+<li>Identify the independent and dependent variables in a linear relationship.</li>
+<li>Interpret the meaning of the slope and intercept in the context of a problem.</li>
+<li>Use R to create a line of best fit with <code>lm()</code> and visualize it with <code>plot()</code> and <code>abline()</code>.</li>
+<li>Make predictions using a linear model and understand the limitations of extrapolation.</li>
+</ul>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Supplemental Material
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="Reading-Guide/L16-Reading-Guide.pdf" download=""> 📄 Download the lecture’s Reading Guide </a></p>
+</div>
+</div>
+<section id="introductory-example" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="introductory-example"><span class="header-section-number">16.1</span> Introductory Example</h2>
+<p>To understand how this will work without going too far into the theory, we will look at a basic example. Let’s say that we are interested in trying to predict how long (in feet) it will take a car to come to a complete stop given that they are driving a certain speed. Luckily we found a dataset in R that contains some of this information and we can make a visual plot of the data. To do this, we will use the <code>plot()</code> function and specify the two variables we are wanting to look at; speed and distance. We will plot the <strong>independent variable</strong> on the x-axis (this is the variable we will use to make a prediction), and the <strong>dependent variable</strong> on the y-axis (this is the variable we want to predict).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars<span class="sc">$</span>speed, cars<span class="sc">$</span>dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lecture-16-Line-of-Best-Fit_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Looking at the plot above, we can see that the data appears to have a linear relationship. This means that when we plot the points they appear to be distributed in roughly a line. Note that they will not always follow an exact line.</p>
+<p>To create the line of best fit we will need to do some math. The whole idea of it is to be to identify a line which gets as close to all of the points as possible. Luckily for us we will let R do all of the math, but it is important to still understand what is happening with the algorithm. To do this, we will use the <code>lm()</code> (linear model) function inside of R. We will first pass the <strong>dependent variable</strong> (the one we are trying to predict) into the function and then we will pass the <strong>independent variable</strong> (the one we are using to make a prediction) into the function separated by a tilde (~).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(cars<span class="sc">$</span>dist <span class="sc">~</span> cars<span class="sc">$</span>speed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = cars$dist ~ cars$speed)
+
+Coefficients:
+(Intercept)   cars$speed  
+    -17.579        3.932  </code></pre>
+</div>
+</div>
+</section>
+<section id="interpreting-the-coefficients" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="interpreting-the-coefficients"><span class="header-section-number">16.2</span> Interpreting the Coefficients</h2>
+<p>Using the output above, we are able to build our line-of-best fit. After all, a line requires two pieces of information; a slope and an intercept. This is typically written as <span class="math inline">\(y=mx+b\)</span>. The output above gives us both of those pieces of information. This would allow us to write the line as:</p>
+<p><span class="math display">\[ \text{distance} = 3.932\times \text{speed} - 17.579 \]</span> Given this line-of-best fit, we can go about interpreting the different coefficients. Having a slope of <span class="math inline">\(3.932\)</span> will indicate the distance will increase on average by <span class="math inline">\(3.932\)</span> units for each additional <span class="math inline">\(1\)</span> mph increase in speed. This should make sense if we plug in a few ``practice” numbers into the function above (say speeds of 20 and 21) we can see the expected distance will take <span class="math inline">\(3.932\)</span> feet longer. A positive slope would indicate a positive relationship (both of them increase together), a negative slope would indicate a negative relationship (as one increases the other decreases), and a slope of 0 would indicate no relationship is present (one variable does not impact the other variable).</p>
+<p>To interpret the y-intercept we would say that when the speed is <span class="math inline">\(0\)</span> miles per hour, it will take <span class="math inline">\(-17.579\)</span> feet for the car to stop. We do not interpret this literally. Instead, it simply represents where the line crosses the y-axis and helps position the model mathematically. So, it is important to note that not every part of the model will have a meaningful interpretation, especially when the intercept corresponds to an impossible or unrealistic value.</p>
+</section>
+<section id="making-predictions" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="making-predictions"><span class="header-section-number">16.3</span> Making Predictions</h2>
+<p>Once we have our line-of-best fit created, we can go about making predictions and estimations. To visualize the predictions we can plot both our dataset and the linear model using the <code>abline()</code> function. This will allow us to see the line-of-best fit on top of our data, which will help us verify that we put the variables in the correct order when we built the model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>linear_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(cars<span class="sc">$</span>dist <span class="sc">~</span> cars<span class="sc">$</span>speed)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars<span class="sc">$</span>speed, cars<span class="sc">$</span>dist)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(linear_model, <span class="at">col=</span><span class="st">"red"</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lecture-16-Line-of-Best-Fit_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To make predictions we can simply input values into the equation of our model. So, say we were interested in finding the distance it takes to stop if we are driving at 20 miles per hour. We can evaluate the function as:</p>
+<p><span class="math display">\[ \text{distance} = 3.932\times 20 - 17.579 = 61.061 \text{ feet}\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fl">3.932</span><span class="sc">*</span><span class="dv">20</span> <span class="sc">-</span> <span class="fl">17.579</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 61.061</code></pre>
+</div>
+</div>
+</section>
+<section id="cautions" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="cautions"><span class="header-section-number">16.4</span> Cautions</h2>
+<p>There are a few specific thing that we need to watch out for when we make a line-of-best fit. The first being that we need to make sure our two variables are linearly related. It will not be beneficial to use a straight line to model two variables if they have a non-linear pattern. An example of this is the <code>data_210_census</code> dataset in the <code>MSMU</code> library. We can clearly see below that age and salary do not follow a linear relationship, as the values start increasing and then around age 50 they start decreasing. Therefore, we would want to use a different model (one that would be discussed in a machine learning course) to make predictions on this dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MSMU)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data_210_census<span class="sc">$</span>age, data_210_census<span class="sc">$</span>salary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lecture-16-Line-of-Best-Fit_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Another thing we should be cautious about is that we can only make predictions on the range of values that we used to make our model. When we built our line-of-best fit to model the distance a car will take to stop given our speed, we only used cars going between 4 and 25 miles per hour. Therefore, we would not want to make a prediction about a car going <span class="math inline">\(60\)</span> miles per hour, because that is too far away from our training dataset. This is called extrapolation, and it is not reliable because we do not know whether the relationship continues outside our data.</p>
 
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

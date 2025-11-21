@@ -3,11 +3,11 @@
 Confidence Intervals and Hypothesis Testing both allow us to make inferences about a population using just the sample. With this, we can predict the likelihood of population values and state confidence in our results. We have seen that the confidence interval lets us say something along the lines of: "We are pretty certain the population mean is within this interval". Hypothesis testing will allow us to do something similar, but instead, we will be able to compare our sample value to the claimed population value.
 
 ::: learning-goals
--   Explain the purpose of hypothesis testing and how it relates to confidence intervals.\
--   Identify the null hypothesis ($H_0$) and alternative hypothesis ($H_A$) in a given context.\
--   Interpret the meaning of “rejecting” and “failing to reject” the null hypothesis.\
+-   Explain the purpose of hypothesis testing and how it relates to confidence intervals.
+-   Identify the null hypothesis ($H_0$) and alternative hypothesis ($H_A$) in a given context.
+-   Interpret the meaning of “rejecting” and “failing to reject” the null hypothesis.
 -   Know how to calculate a test statistic and p-value.
--   Connect the idea of sampling variability to the rejection regions in a normal distribution.\
+-   Connect the idea of sampling variability to the rejection regions in a normal distribution.
 :::
 
 ::: {.callout-tip}
