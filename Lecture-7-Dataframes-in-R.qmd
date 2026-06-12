@@ -1,20 +1,18 @@
 # Dataframes in R
 
-Within R, we can form structured data with multiple columns. These are called **Dataframes** and are comparable to the way a spreadsheet may look. Within each dataframe, multiple columns can be present, with each column being a vector. Additionally, the column types may vary, as we can have a numeric vector, a logical vector, and a character vector all in the same dataframe. It is important to talk about dataframes as this is the predominant data structure in R. Almost all of the datasets that we encounter will be formatted as a dataframe. 
+Within R, we can form structured data with multiple columns. These are called **Dataframes** and are comparable to the way a spreadsheet may look. Within each dataframe, multiple columns can be present, with each column being a vector. Additionally, the column types may vary, as we can have a numeric vector, a logical vector, and a character vector all in the same dataframe. It is important to talk about dataframes as this is the predominant data structure in R. Almost all of the datasets that we encounter will be formatted as a dataframe.
 
 ::: learning-goals
-
-- Understand what a dataframe is and how to create dataframes from vectors using the data.frame() function.
-- Interpret the structure of a dataframe using str() along with how to access elements of a dataframe using both bracket notation and the dollar sign syntax.
-- Modify dataframes by renaming columns, removing rows or columns, and appending new data.
-- Use logical indexing to filter dataframe rows that meet specific criteria.
+-   Understand what a dataframe is and how to create dataframes from vectors using the data.frame() function.
+-   Interpret the structure of a dataframe using str() along with how to access elements of a dataframe using both bracket notation and the dollar sign syntax.
+-   Modify dataframes by renaming columns, removing rows or columns, and appending new data.
+-   Use logical indexing to filter dataframe rows that meet specific criteria.
 :::
 
-::: {.callout-tip}
+::: callout-tip
 ## Supplemental Material
-<a href="Reading-Guide/L7-Reading-Guide.pdf" download>
-📄 Download the lecture's Reading Guide
-</a>
+
+<a href="Reading-Guide/L7-Reading-Guide.pdf" download> 📄 Download the lecture's Reading Guide </a>
 :::
 
 ## Creating Dataframes
@@ -82,7 +80,7 @@ head(df2,5)
 str(df2)
 ```
 
-We can also attach a new row on the end of a dataframe using the *rbind()* function. Once again though, we should be wary about this as we can potentially alter the column types. 
+We can also attach a new row on the end of a dataframe using the *rbind()* function. Once again though, we should be wary about this as we can potentially alter the column types.
 
 ```{r}
 data_to_be_added <- c("Pete", 24, "Percussion", FALSE)
@@ -121,7 +119,7 @@ ncol(df)
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-Using the dataframe you previously made for Emmit with Gracie now added, determine the number of rows and columns the dataframe has. 
+Using the dataframe you previously made for Emmit with Gracie now added, determine the number of rows and columns the dataframe has.
 
 <details>
 
@@ -145,8 +143,7 @@ df3 <- data.frame("singles"=x, "tens"=y, "twenties"=z)
 head(df3)
 ```
 
-
-If we do not name them during the creation of the dataframe or we have a dataframe already in R and we want to rename the column names then we can do this using the *colnames()* function. 
+If we do not name them during the creation of the dataframe or we have a dataframe already in R and we want to rename the column names then we can do this using the *colnames()* function.
 
 ```{r}
 df3 <- data.frame(x,y,z)
@@ -160,7 +157,7 @@ head(df3,4)
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-Emmit decides that the dataframe for the conference should have different header names. Alter the dataframe so the column names are now: "participant_name", "participant_age", "conference_role", and "paid". 
+Emmit decides that the dataframe for the conference should have different header names. Alter the dataframe so the column names are now: "participant_name", "participant_age", "conference_role", and "paid".
 
 <details>
 
@@ -173,9 +170,9 @@ Emmit decides that the dataframe for the conference should have different header
 
 ## Dataframe Index Selection
 
-Accessing dataframe elements will be similar to accessing vector elements except now we are dealing with a 2-dimensional object in R. Thus, we will need to specify both dimensions (row and column). You will hear me say over and over again in class: "Dataframes index by Row comma Column". Within our index selection brackets, we will need to have the comma present. If we put nothing before the comma it will indicate all rows, while nothing after the comma will indicate all columns. 
+Accessing dataframe elements will be similar to accessing vector elements except now we are dealing with a 2-dimensional object in R. Thus, we will need to specify both dimensions (row and column). You will hear me say over and over again in class: "Dataframes index by Row comma Column". Within our index selection brackets, we will need to have the comma present. If we put nothing before the comma it will indicate all rows, while nothing after the comma will indicate all columns.
 
-If we would wish to display the element in the second row and first column we would make sure we call our dataframe and then in the index selection brackets we would say '[2,1]'. If we wanted to display the 3rd observation (3rd row) then we could just say '[3,]' in our index-selection brackets. To display all of the elements in the 2nd column we would say '[,2]' in our index-selection brackets. An example of this can be seen below:
+If we would wish to display the element in the second row and first column we would make sure we call our dataframe and then in the index selection brackets we would say '\[2,1\]'. If we wanted to display the 3rd observation (3rd row) then we could just say '\[3,\]' in our index-selection brackets. To display all of the elements in the 2nd column we would say '\[,2\]' in our index-selection brackets. An example of this can be seen below:
 
 ```{r}
 head(df, 4)
@@ -184,7 +181,7 @@ df[3,] # Elements in the 3rd row
 df[,2] # Elements in the 2nd column
 ```
 
-We can also retrieve elements in a column by using a dollar sign ($) and then typing the column name. This resulting output will be a vector, not a dataframe, and will contain all of the values in that column.
+We can also retrieve elements in a column by using a dollar sign (\$) and then typing the column name. This resulting output will be a vector, not a dataframe, and will contain all of the values in that column.
 
 ```{r}
 df$names
@@ -214,7 +211,7 @@ df[df$ages <= 21, ] # Displays just the TRUE rows
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-Emmit would like to display some key information from the conference attendees. First he would like to display all of the people that are speaking, then he would like to display all of the people who are under the age of 35, and finally he would like to display all of the people who are either attendees and have paid the registration fee. 
+Emmit would like to display some key information from the conference attendees. First he would like to display all of the people that are speaking, then he would like to display all of the people who are under the age of 35, and finally he would like to display all of the people who are either attendees and have paid the registration fee.
 
 <details>
 
@@ -253,21 +250,41 @@ Emmit decides that he does not need to record the attendee's age. He also found 
 </details>
 :::
 
-::: {.practice-it}
-- Create a dataframe in R pertaining to cities in New York:
-  a) A vector called cities with "Albany", "Buffalo", "Syracuse", "Rochester", "Ithaca" all included  
-  b) A vector called population with the values 97500, 255000, 142000, 210000, 32000
-  c) A logical vector called capital with Albany set to True and the rest being False
-  d) Display the structure of the dataframe.
-  e) Add a new column using *cbind()* called temperature with the values: 48,46,47,49,45.
-  f) Use *rbind()* to add the row: "Binghamton", 47000, FALSE, 44.
-  g) Explain what happens to the column types after adding the row.
+::: {.chapter-resources}
 
-- Create a dataframe in R pertaining to states on the East Coast:
-  a) A vector containing the following states: "NY", "MD", "PA", "NJ", "VA"
-  b) A vector containing the following median income values: 75000, 88000, 68000, 85000, 72000
-  c) A logicial vector based on if it is a coastal state (only Pennsylvania is not on the coast)
-  e) Display all of the coastal states
-  f) Display all of the rows where the median income is greater than 80000
-  g) Display all of the rows where the state ends in a vowel or has a median income less than 77000
+<div class="chapter-resources-header">
+  <a href="https://youtu.be/4Da_KgvcpWo" target="_blank">Lecture Video</a>
+</div>
+
+<div class="chapter-resources-grid">
+  <div><a href="Assignments/Data-200-L7-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a></div>
+  <div><a href="https://youtu.be/LfxDU7bCm_o" target="_blank">In-Class Exercises Video Solutions</a></div>
+</div>
+
+<div class="chapter-resources-footer lab-row">
+  <a href="Assignments/Data-200-L7-Lab.pdf" target="_blank">Lab Problems</a>
+</div>
+
+<div class="chapter-resources-footer problem-set-row">
+  <a href="Assignments/Data-200-L7-Problem-Set.pdf" target="_blank">Problem Set Questions</a>
+</div>
+
 :::
+
+<!-- ::: practice-it -->
+<!-- -   Create a dataframe in R pertaining to cities in New York: -->
+<!--     a)  A vector called cities with "Albany", "Buffalo", "Syracuse", "Rochester", "Ithaca" all included\ -->
+<!--     b)  A vector called population with the values 97500, 255000, 142000, 210000, 32000 -->
+<!--     c)  A logical vector called capital with Albany set to True and the rest being False -->
+<!--     d)  Display the structure of the dataframe. -->
+<!--     e)  Add a new column using *cbind()* called temperature with the values: 48,46,47,49,45. -->
+<!--     f)  Use *rbind()* to add the row: "Binghamton", 47000, FALSE, 44. -->
+<!--     g)  Explain what happens to the column types after adding the row. -->
+<!-- -   Create a dataframe in R pertaining to states on the East Coast: -->
+<!--     a)  A vector containing the following states: "NY", "MD", "PA", "NJ", "VA" -->
+<!--     b)  A vector containing the following median income values: 75000, 88000, 68000, 85000, 72000 -->
+<!--     c)  A logicial vector based on if it is a coastal state (only Pennsylvania is not on the coast) -->
+<!--     d)  Display all of the coastal states -->
+<!--     e)  Display all of the rows where the median income is greater than 80000 -->
+<!--     f)  Display all of the rows where the state ends in a vowel or has a median income less than 77000 -->
+<!-- ::: -->

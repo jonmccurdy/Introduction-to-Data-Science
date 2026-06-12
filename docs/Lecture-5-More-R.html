@@ -1022,25 +1022,25 @@ Click to see the solution
 <div class="cell">
 <div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4 4 8 2 2</code></pre>
+<pre><code>[1] 9 3 1 5 5</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4 4 9 7 6</code></pre>
+<pre><code>[1] 6 7 3 4 1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2 2 9 7 8</code></pre>
+<pre><code>[1] 10  1  3  5  8</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">15</span>, <span class="at">replace=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error in sample.int(length(x), size, replace, prob) : cannot take a sample larger than the population when 'replace = FALSE'</span></p>
+<p><span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error in sample.int(length(x), size, replace, prob) : cannot take a sample larger than the population when ‘replace = FALSE’</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">15</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 2 2 9 7 8 8 8 6 1 7 6 9 3 3 8</code></pre>
+<pre><code> [1]  6  2 10  2  6  6  3  2  4  9  5 10  4  1  6</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb140-2"><a href="#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="dv">10</span>, <span class="at">replace=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1166,35 +1166,44 @@ Click to see the solution
 <h2 data-number="5.9" class="anchored" data-anchor-id="getting-help"><span class="header-section-number">5.9</span> Getting Help</h2>
 <p>While I have thrown a lot of information at you in this lecture, know that R provides help and resources for all functions. So, if we are ever confused about a specific function or do not know what parameters we can pass into the function, then we can always use a question mark to search for the documentation. That is if we are curious about the <em>mean()</em> function then we can type ?mean.</p>
 <p>Using two question marks will search the database for the phrase if we are unsure what the function is called. For instance, we could type ?? “Standard Deviation” if we are unsure of the name of the function. Do not worry if you cannot remember everything, as you use it more and more it will become second nature. Even I have to regularly look at the R Documentation to see examples and to see what the options are for each function.</p>
-<div class="practice-it">
-<ul>
-<li><p>Create sequences in R to do the following:</p>
-<ol type="a">
-<li>Create a sequence of numbers from 1 to 20 incrementing by 3 using the <code>seq()</code> function.<br>
-</li>
-<li>Using the <code>rep()</code> function, create a vector that contains the elements 5, 10, and 15, where 5 is repeated 3 times, 10 is repeated 2 times, and 15 is repeated 4 times.<br>
-</li>
-<li>Using the built-in <code>letters</code> vector, extract and display the letters at the 3rd, 6th, 9th, and 12th positions.</li>
-<li>Name the vector <code>c(50, 100, 200)</code> with the names <code>"Small"</code>, <code>"Medium"</code>, and <code>"Large"</code>, then access the element named <code>"Medium"</code>.</li>
-</ol></li>
-<li><p>Create a vector <code>states</code> with values: “California”, “Colorado”, “Connecticut”, “Delaware”, “Florida”, “Georgia”, “Hawaii”, “Idaho”, “Illinois”, “Indiana”</p>
-<ol type="a">
-<li>Use <code>grep()</code> to find all states that start with the letter <code>"C"</code> and display those states.</li>
-<li>Use <code>grep()</code> to find all states that end with the letter <code>"a"</code> and display those states.</li>
-<li>Use <code>grep()</code> to find all states that contain the letters <code>"_n"</code> (with _ being any letter) or <code>"or"</code>.</li>
-<li>Use logical operators to display all states that contain either <code>"Florida"</code> or <code>"Georgia"</code>.</li>
-</ol></li>
-<li><p>Use the <code>sample()</code> function to randomly select 7 values from the numbers 1 through 20 <em>without replacement</em>.</p></li>
-<li><p>Create a vector <code>temperature</code> with the values 72, 75, 78, 80, 77, 74, 91, 84, 85, 93, 80.</p>
-<ol type="a">
-<li>Use the <code>which()</code> function to find the indices where the daily temperature is equal to 80</li>
-<li>Use the <code>duplicated()</code> function to identify which day’s temperatures are duplicates.</li>
-<li>Use the <code>unique()</code> function to get the distinct daily temperature values.</li>
-<li>Use the <code>any()</code> function to check if any days have temperatures below 80.</li>
-<li>Use the <code>all()</code> function to check if all days have temperatures 80 or less.</li>
-</ol></li>
-</ul>
+<div class="chapter-resources">
+<div class="chapter-resources-header">
+<p><a href="https://youtu.be/_yTwoBF75qI" target="_blank">Lecture Video</a></p>
 </div>
+<div class="chapter-resources-grid">
+<div>
+<a href="Assignments/Data-200-L5-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a>
+</div>
+<div>
+<a href="https://youtu.be/u38e_sN-gRU" target="_blank">In-Class Exercises Video Solutions</a>
+</div>
+</div>
+<div class="chapter-resources-footer lab-row">
+<p><a href="Assignments/Data-200-L5-Lab.pdf" target="_blank">Lab Problems</a></p>
+</div>
+<div class="chapter-resources-footer problem-set-row">
+<p><a href="Assignments/Data-200-L5-Problem-Set.pdf" target="_blank">Problem Set Questions</a></p>
+</div>
+</div>
+<!-- ::: practice-it -->
+<!-- -   Create sequences in R to do the following: -->
+<!--     a)  Create a sequence of numbers from 1 to 20 incrementing by 3 using the `seq()` function.\ -->
+<!--     b)  Using the `rep()` function, create a vector that contains the elements 5, 10, and 15, where 5 is repeated 3 times, 10 is repeated 2 times, and 15 is repeated 4 times.\ -->
+<!--     c)  Using the built-in `letters` vector, extract and display the letters at the 3rd, 6th, 9th, and 12th positions. -->
+<!--     d)  Name the vector `c(50, 100, 200)` with the names `"Small"`, `"Medium"`, and `"Large"`, then access the element named `"Medium"`. -->
+<!-- -   Create a vector `states` with values: "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana" -->
+<!--     a)  Use `grep()` to find all states that start with the letter `"C"` and display those states. -->
+<!--     b)  Use `grep()` to find all states that end with the letter `"a"` and display those states. -->
+<!--     c)  Use `grep()` to find all states that contain the letters `"_n"` (with \_ being any letter) or `"or"`. -->
+<!--     d)  Use logical operators to display all states that contain either `"Florida"` or `"Georgia"`. -->
+<!-- -   Use the `sample()` function to randomly select 7 values from the numbers 1 through 20 *without replacement*. -->
+<!-- -   Create a vector `temperature` with the values 72, 75, 78, 80, 77, 74, 91, 84, 85, 93, 80. -->
+<!--     a)  Use the `which()` function to find the indices where the daily temperature is equal to 80 -->
+<!--     b)  Use the `duplicated()` function to identify which day's temperatures are duplicates. -->
+<!--     c)  Use the `unique()` function to get the distinct daily temperature values. -->
+<!--     d)  Use the `any()` function to check if any days have temperatures below 80. -->
+<!--     e)  Use the `all()` function to check if all days have temperatures 80 or less. -->
+<!-- ::: -->
 
 
 

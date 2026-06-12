@@ -13,18 +13,16 @@ y
 Now that we’ve covered the basics of R, including simple calculations, variables, and vectors, it’s time to dive a little deeper. In this section, we will explore more of R’s built-in functionality that makes data manipulation efficient and expressive. You’ll learn how to generate sequences, replicate values, name vector elements, and search using patterns. We’ll also explore special functions that help us handle data more effectively. These tools will become essential as we begin working with larger and more complex datasets.
 
 ::: learning-goals
-
-- Generate numeric and character vectors using functions like seq(), rep(), and sample().
-- Use indexing techniques to select specific elements from a vector.
-- Apply pattern matching with grep() and understand how regular expressions work within R.
-- Use special functions like which(), duplicated(), unique(), any(), and all() to summarize or filter vector data.
+-   Generate numeric and character vectors using functions like seq(), rep(), and sample().
+-   Use indexing techniques to select specific elements from a vector.
+-   Apply pattern matching with grep() and understand how regular expressions work within R.
+-   Use special functions like which(), duplicated(), unique(), any(), and all() to summarize or filter vector data.
 :::
 
-::: {.callout-tip}
+::: callout-tip
 ## Supplemental Material
-<a href="Reading-Guide/L5-Reading-Guide.pdf" download>
-📄 Download the lecture's Reading Guide
-</a>
+
+<a href="Reading-Guide/L5-Reading-Guide.pdf" download> 📄 Download the lecture's Reading Guide </a>
 :::
 
 ## Creating a Sequence of Numbers
@@ -113,7 +111,7 @@ Emmit surveys his friends regarding their favorite fruit, and determines that 7 
 
 ## Creating a Vector of Letters
 
-As a quick reminder (since it is very important), R starts indexing at 1. This means that the first element in a vector is in the '1' index. Other languages, like Python, start counting at 0 but we will start counting at 1 in R. In R there is a vector called 'letters' that contains all of the lower-case letters. If we want to find out what the 4th letter is then we can use our "index-selection" brackets. We can also pass a vector into the index selection brackets as well, which includes sequences and replicated vectors (as long as they are numeric). There is also a vector in R called `LETTERS' which acts the same way but contains all capitalized letters.
+As a quick reminder (since it is very important), R starts indexing at 1. This means that the first element in a vector is in the '1' index. Other languages, like Python, start counting at 0 but we will start counting at 1 in R. In R there is a vector called 'letters' that contains all of the lower-case letters. If we want to find out what the 4th letter is then we can use our "index-selection" brackets. We can also pass a vector into the index selection brackets as well, which includes sequences and replicated vectors (as long as they are numeric). There is also a vector in R called \`LETTERS' which acts the same way but contains all capitalized letters.
 
 ```{r}
 x <- letters # Saving the vector to 'x' for simplicity
@@ -193,7 +191,7 @@ x[c(1,3)]
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-Emmit has been operating the smoothie stand for a few weeks now and wants to calculate how many smoothies of each flavor he has sold. Help him create a named vector if he has sold 42 Strawberry, 37 Mango, and 28 Pineapple smoothies. 
+Emmit has been operating the smoothie stand for a few weeks now and wants to calculate how many smoothies of each flavor he has sold. Help him create a named vector if he has sold 42 Strawberry, 37 Mango, and 28 Pineapple smoothies.
 
 <details>
 
@@ -206,14 +204,13 @@ Emmit has been operating the smoothie stand for a few weeks now and wants to cal
 
 ## Index Selection using GREP
 
-One very powerful tool in R that allows us to search a string for a specific pattern is the *grep()* function. This stands for Global/Regular Expression/Print and is important to us as it will allow us to identify all of the elements containing a specific pattern. To see this function in action we will utilize the "euro" vector which is a named vector available to us in R. 
+One very powerful tool in R that allows us to search a string for a specific pattern is the *grep()* function. This stands for Global/Regular Expression/Print and is important to us as it will allow us to identify all of the elements containing a specific pattern. To see this function in action we will utilize the "euro" vector which is a named vector available to us in R.
 
 ```{r}
 euro
 ```
 
-
-Before we jump into using the function though, we will want to discuss some of the syntax that the *grep()* uses. The first is that it expects us to pass a pattern into it using quotation marks. If we type a $\wedge$ at the beginning of the pattern then it will search for strings **starting with** the pattern. If we type a $ at the end of the pattern then it will search for strings **ending with** the pattern. A single period will stand for any character, and characters in brackets will mean "any of these characters". After we specify the pattern we will need to also specify where we are looking for the pattern, and in our case, it will be the names of the euro vector. The output for this function will be the indices of the elements which contain the specified pattern. 
+Before we jump into using the function though, we will want to discuss some of the syntax that the *grep()* uses. The first is that it expects us to pass a pattern into it using quotation marks. If we type a $\wedge$ at the beginning of the pattern then it will search for strings **starting with** the pattern. If we type a \$ at the end of the pattern then it will search for strings **ending with** the pattern. A single period will stand for any character, and characters in brackets will mean "any of these characters". After we specify the pattern we will need to also specify where we are looking for the pattern, and in our case, it will be the names of the euro vector. The output for this function will be the indices of the elements which contain the specified pattern.
 
 ```{r}
 names(euro)
@@ -234,8 +231,7 @@ grep(".[EI].", names(euro)) # Indices of elements containing _E_ or _I_
 euro[grep(".[EI].", names(euro))] # Names containing _E_ or _I_
 ```
 
-
-While this function may seem a little complicated at first, it is a very powerful tool that will allow us to filter out observations that meet certain criteria. One example might be searching a vector for all observations with the last name "Smith" or for people whose first name starts with the letters "Ca". 
+While this function may seem a little complicated at first, it is a very powerful tool that will allow us to filter out observations that meet certain criteria. One example might be searching a vector for all observations with the last name "Smith" or for people whose first name starts with the letters "Ca".
 
 \begin{watch}{}{}
     \href{https://youtu.be/BDRppgPi8-E}{Index Selection using GREP}
@@ -261,7 +257,7 @@ flavors <- c("Mango Madness", "Berry Blast", "Peach Punch", "Pineapple Punch",
 
 ## Logical Vectors and Index Selection
 
-We briefly saw it in the previous lecture, but it is important for us to practice accessing vector elements using logical vectors. If any logical operator ($<,<=, >, >=, ==, !=$) is used to compare vectors, the resulting output will be a logical vector. This will always be the case! It is good practice to think about what the outputted results will be before we even run the code instead of just "hoping for the best". 
+We briefly saw it in the previous lecture, but it is important for us to practice accessing vector elements using logical vectors. If any logical operator ($<,<=, >, >=, ==, !=$) is used to compare vectors, the resulting output will be a logical vector. This will always be the case! It is good practice to think about what the outputted results will be before we even run the code instead of just "hoping for the best".
 
 We can access the vector elements using logical vectors in two ways; explicitly and implicitly. Doing it explicitly would mean we save the logical vector to a new variable and then use the new variable in our index-selection brackets while doing it implicitly would mean we place the logical comparison into the index-selection brackets directly. I prefer the implicit method as we do not have to re-run the code if the original vector changes. Both examples can be seen below:
 
@@ -280,7 +276,6 @@ length(x >= 7) # Length of the vector is 11 elements
 sum(x >= 7) # Adding the logical vector: TRUE = 1, FALSE = 0
 x[x >= 7] # Displaying just the values whose index is TRUE
 ```
-
 
 We can expand our capabilities with logical operators and introduce a few new operators which will allow us to evaluate multiple conditions at the same time. These include & (which represents **and**), $\vert$ (which represents **or** and is the pipe symbol above the enter key), and ! (which represents **not**). The **and** will require both conditions to be true for the output to be true, the **or** only requires one condition to be true for the output to be true, and the **not** "flips" the final output to be the opposite.
 
@@ -314,7 +309,7 @@ x[x > 5 | x < 3 & x < 4]
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-Emmit has calculated the number of smoothies he has sold for each of the past 10 days. How many days did he sell less than 7.5 smoothies? How many days did he sell either less than 5 or greater than 15 smoothies? 
+Emmit has calculated the number of smoothies he has sold for each of the past 10 days. How many days did he sell less than 7.5 smoothies? How many days did he sell either less than 5 or greater than 15 smoothies?
 
 ```{r}
 sales <- c(12, 5, 9, 15, 7, 3, 10, 20, 7, 6)
@@ -339,13 +334,12 @@ sample(1:10, 5, replace=TRUE)
 sample(1:10, 5, replace=TRUE)
 ```
 
-
 ```{r}
 #| eval: FALSE
 sample(1:10, 15, replace=FALSE)
 ```
-<span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error in sample.int(length(x), size, replace, prob) : 
-  cannot take a sample larger than the population when &#39;replace = FALSE&#39;</span>
+
+[Error in sample.int(length(x), size, replace, prob) : cannot take a sample larger than the population when 'replace = FALSE']{style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;"}
 
 ```{r}
 sample(1:10, 15, replace=TRUE)
@@ -398,7 +392,6 @@ which(x > 40) # Indices with values greater than 40
 x[which(x > 40)] # Values greater than 40
 ```
 
-
 Other functions which may be of use to us are the *duplicated()* function and the *unique()* function. The first function, *duplicated()*, will return a logical vector with TRUE after the first occurrence of duplicated values. So, the second time (and additional times) a number appears it will output TRUE. The *unique()* function will return just the unique values of the vector, meaning it will remove all of the duplicated values.
 
 ```{r}
@@ -407,8 +400,7 @@ duplicated(x)
 unique(x)
 ```
 
-
-Two other functions that will result in a single logical output are the *any()* and the *all()* function. These will do what their names sound like, that is they will see if any values in the vector meet certain criteria and if all values in the vector meet certain criteria. 
+Two other functions that will result in a single logical output are the *any()* and the *all()* function. These will do what their names sound like, that is they will see if any values in the vector meet certain criteria and if all values in the vector meet certain criteria.
 
 ```{r}
 x
@@ -450,26 +442,51 @@ Using two question marks will search the database for the phrase if we are unsur
     \href{https://youtu.be/SE8j5P77XUo}{Getting Help in R}
 \end{watch}
 
-::: {.practice-it}
-- Create sequences in R to do the following:
-  a) Create a sequence of numbers from 1 to 20 incrementing by 3 using the `seq()` function.  
-  b) Using the `rep()` function, create a vector that contains the elements 5, 10, and 15, where 5 is repeated 3 times, 10 is repeated 2 times, and 15 is repeated 4 times.  
-  c) Using the built-in `letters` vector, extract and display the letters at the 3rd, 6th, 9th, and 12th positions.
-  d) Name the vector `c(50, 100, 200)` with the names `"Small"`, `"Medium"`, and `"Large"`, then access the element named `"Medium"`.
 
+::: {.chapter-resources}
 
-- Create a vector `states` with values: "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana"  
-  a) Use `grep()` to find all states that start with the letter `"C"` and display those states.
-  b) Use `grep()` to find all states that end with the letter `"a"` and display those states.
-  c) Use `grep()` to find all states that contain the letters `"_n"` (with _ being any letter) or `"or"`.
-  d) Use logical operators to display all states that contain either `"Florida"` or `"Georgia"`.
+<div class="chapter-resources-header">
+  <a href="https://youtu.be/_yTwoBF75qI" target="_blank">Lecture Video</a>
+</div>
 
-- Use the `sample()` function to randomly select 7 values from the numbers 1 through 20 *without replacement*.
+<div class="chapter-resources-grid">
+  <div><a href="Assignments/Data-200-L5-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a></div>
+  <div><a href="https://youtu.be/u38e_sN-gRU" target="_blank">In-Class Exercises Video Solutions</a></div>
+</div>
 
-- Create a vector `temperature` with the values 72, 75, 78, 80, 77, 74, 91, 84, 85, 93, 80.  
-  a) Use the `which()` function to find the indices where the daily temperature is equal to 80
-  b) Use the `duplicated()` function to identify which day's temperatures are duplicates.
-  c) Use the `unique()` function to get the distinct daily temperature values.
-  d) Use the `any()` function to check if any days have temperatures below 80.
-  e) Use the `all()` function to check if all days have temperatures 80 or less.
+<div class="chapter-resources-footer lab-row">
+  <a href="Assignments/Data-200-L5-Lab.pdf" target="_blank">Lab Problems</a>
+</div>
+
+<div class="chapter-resources-footer problem-set-row">
+  <a href="Assignments/Data-200-L5-Problem-Set.pdf" target="_blank">Problem Set Questions</a>
+</div>
+
 :::
+
+
+<!-- ::: practice-it -->
+<!-- -   Create sequences in R to do the following: -->
+
+<!--     a)  Create a sequence of numbers from 1 to 20 incrementing by 3 using the `seq()` function.\ -->
+<!--     b)  Using the `rep()` function, create a vector that contains the elements 5, 10, and 15, where 5 is repeated 3 times, 10 is repeated 2 times, and 15 is repeated 4 times.\ -->
+<!--     c)  Using the built-in `letters` vector, extract and display the letters at the 3rd, 6th, 9th, and 12th positions. -->
+<!--     d)  Name the vector `c(50, 100, 200)` with the names `"Small"`, `"Medium"`, and `"Large"`, then access the element named `"Medium"`. -->
+
+<!-- -   Create a vector `states` with values: "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana" -->
+
+<!--     a)  Use `grep()` to find all states that start with the letter `"C"` and display those states. -->
+<!--     b)  Use `grep()` to find all states that end with the letter `"a"` and display those states. -->
+<!--     c)  Use `grep()` to find all states that contain the letters `"_n"` (with \_ being any letter) or `"or"`. -->
+<!--     d)  Use logical operators to display all states that contain either `"Florida"` or `"Georgia"`. -->
+
+<!-- -   Use the `sample()` function to randomly select 7 values from the numbers 1 through 20 *without replacement*. -->
+
+<!-- -   Create a vector `temperature` with the values 72, 75, 78, 80, 77, 74, 91, 84, 85, 93, 80. -->
+
+<!--     a)  Use the `which()` function to find the indices where the daily temperature is equal to 80 -->
+<!--     b)  Use the `duplicated()` function to identify which day's temperatures are duplicates. -->
+<!--     c)  Use the `unique()` function to get the distinct daily temperature values. -->
+<!--     d)  Use the `any()` function to check if any days have temperatures below 80. -->
+<!--     e)  Use the `all()` function to check if all days have temperatures 80 or less. -->
+<!-- ::: -->

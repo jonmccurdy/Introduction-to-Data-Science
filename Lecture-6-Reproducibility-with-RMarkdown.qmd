@@ -9,13 +9,17 @@ Switching gears, we are at the point of our Data Science journey where we want t
 -   Use the Knit feature to compile an RMarkdown file into a Word or HTML document that combines code, output, and commentary.
 :::
 
+::: callout-tip
+## Supplemental Material
+
+<a href="Reading-Guide/L6-Reading-Guide.pdf" download> 📄 Download the lecture's Reading Guide </a>
+:::
+
 Within R there are a few different ways for us to stay organized. One way is to use **scripts** in R which will allow us to save our code as a .R file and then run the whole file with one command. Another way is to use **text documents** to save your code as a .txt file, but we cannot run this with a single command. You need to find out what works for you! I normally create my code in the console and then I copy and paste it into a text file when I want to save it. Others open a script and can run it line by line in there, you will just have to play around and create your style. But, when you do code make sure you create it and run it line by line. Very rarely would we want to create multiple lines of code and then run it and "hope" for the best by running it all at once.
 
-```{=tex}
 \begin{watch}{}{}
     \href{https://youtu.be/wwTJtW4s7yU}{Using Scripts and Text Files}
 \end{watch}
-```
 
 ## Reproducibility using RMarkdown
 
@@ -64,14 +68,30 @@ Additional customization are possible, but we will not go into them right now. J
 
 When we are done placing our code and explanations, we will "Knit" it (top middle button) to make it into a Word or HTML document. "Knitting" the document will then compile the file. It will run your R code (or other languages if you specify it) and display the output directly following your code. This results in an organized and professional looking document without having to copy and paste our code/results.
 
-If the document fails to render, it might be because of a few different issues. The first might be that there is a syntax error with our code. It will usually direct you to the "chunk" that broke and tell you what is wrong with it. Another error that we might encounter is a "pandoc" error, which indicates that you currently have the Word document open, and thus is cant compile/overwrite the Word document unless it is closed. 
+If the document fails to render, it might be because of a few different issues. The first might be that there is a syntax error with our code. It will usually direct you to the "chunk" that broke and tell you what is wrong with it. Another error that we might encounter is a "pandoc" error, which indicates that you currently have the Word document open, and thus is cant compile/overwrite the Word document unless it is closed.
 
 ## RMarkdown Tutorial
 
 {{< video https://www.youtube.com/embed/3dNfcb8avPs?modestbranding=1&rel=0 >}}
 
-```{=tex}
 \begin{watch}{}{}
     \href{https://youtu.be/Sm6aMty-xiE}{Using RMarkdown}
 \end{watch}
-```
+
+
+::: {.chapter-resources}
+
+<div class="chapter-resources-grid">
+  <div><a href="Assignments/Data-200-L6-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a></div>
+  <div><a href="https://youtu.be/iQmeLD6f9J0" target="_blank">In-Class Exercises Video Solutions</a></div>
+</div>
+
+<div class="chapter-resources-footer lab-row">
+  <a href="Assignments/Data-200-L6-Lab.pdf" target="_blank">Lab Problems</a>
+</div>
+
+<div class="chapter-resources-footer problem-set-row">
+  <a href="Assignments/Data-200-L6-Problem-Set.pdf" target="_blank">Problem Set Questions</a>
+</div>
+
+:::

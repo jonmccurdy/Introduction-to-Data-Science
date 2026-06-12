@@ -2,9 +2,13 @@
     "tempName": "Untitled1",
     "source_window_id": "",
     "Source": "Source",
-    "cursorPosition": "18,3",
-    "scrollLine": "0",
+    "cursorPosition": "434,47",
+    "scrollLine": "420",
     "docOutlineVisible": "0",
     "docOutlineSize": "325",
-    "quartoPreviewFormat": "html"
+    "quartoPreviewFormat": "html",
+    "rmdVisualMode": "false",
+    "rmdVisualWrapConfigured": "true",
+    "rmdVisualModeLocation": "2:0",
+    "rmdVisualCollapsedChunks": ""
 }

@@ -3,3 +3,121 @@
   padding: 0em;
   border-left: 3px solid #002855;
 }
+
+/* ===== Chapter Resources Box ===== */
+
+.chapter-resources {
+  position: relative;
+  border: 2px solid #3a9fff;
+  border-radius: 6px;
+  margin-top: 3em;        /* space for the ribbon */
+  overflow: visible;
+  font-size: 1.05em;
+}
+
+/* Ribbon label */
+.chapter-resources::before {
+  content: "📦 Chapter Resources";
+  position: absolute;
+  top: -1.6em;
+  left: 1em;
+  background-color: #3a9fff;
+  color: white;
+  padding: 0.4em 1em;
+  border-radius: 0.6em;
+  font-weight: 600;
+  font-size: 1.08em;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+/* ===== Shared row style (no flexbox; use line-height) ===== */
+
+.chapter-resources-header,
+.chapter-resources-grid > div,
+.chapter-resources-footer {
+  height: 2.4rem;             /* row height */
+  line-height: 2.4rem;        /* vertical centering */
+  text-align: center;         /* horizontal centering */
+  font-weight: 500;
+  border-bottom: 1px solid #3a9fff;
+  padding: 0 0.5rem;
+}
+
+/* If you want to nudge text DOWN slightly, 
+   make line-height a bit smaller, e.g. 2.2rem instead of 2.4rem. */
+
+/* ===== Link styling ===== */
+
+.chapter-resources a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.chapter-resources a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ===== Hover row colors ===== */
+
+/* Lecture row */
+.chapter-resources-header:hover {
+  background-color: #dce6ff !important;
+}
+
+/* In-Class row */
+.chapter-resources-grid > div:nth-child(1):hover,
+.chapter-resources-grid > div:nth-child(2):hover {
+  background-color: #fdf5d2 !important;
+}
+
+/* Lab row */
+.chapter-resources-footer.lab-row:hover {
+  background-color: #d9f7d3 !important;
+}
+
+/* Problem Set row */
+.chapter-resources-footer.problem-set-row:hover {
+  background-color: #c3b2ff !important;
+}
+
+
+/* ===== Base row colors non-hover ===== */
+
+/* Lecture row */
+.chapter-resources-header {
+  background-color: #dce6ff;
+}
+
+/* In-Class row */
+.chapter-resources-grid > div:nth-child(1),
+.chapter-resources-grid > div:nth-child(2) {
+  background-color: #fdf5d2;
+}
+
+/* Lab row */
+.chapter-resources-footer.lab-row {
+  background-color: #d9f7d3;
+}
+
+/* Problem Set row */
+.chapter-resources-footer.problem-set-row {
+  background-color: #c3b2ff;
+  border-bottom: none;
+}
+
+/* ===== Two-column grid layout ===== */
+
+.chapter-resources-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.chapter-resources-grid > div {
+  border-right: 1px solid #3a9fff;
+}
+
+.chapter-resources-grid > div:nth-child(2n) {
+  border-right: none;
+}

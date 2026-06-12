@@ -553,11 +553,11 @@ Supplemental Material
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="dv">50</span>,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 50.13253</code></pre>
+<pre><code>[1] 50.40103</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>,<span class="dv">50</span>,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 50.69563</code></pre>
+<pre><code>[1] 49.95746</code></pre>
 </div>
 </div>
 <p>We have seen though that our sample mean will not be the same as our population mean, so we might want to ask ourselves how confident we are that the sample mean is the same or close to the population mean. This is the idea of the confidence interval, as it will allow us to account for variability and say something like: “We don’t know what the actual population mean is, but we are pretty sure it is somewhere in between these two values”.</p>
@@ -728,6 +728,25 @@ attr(,"conf.level")
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>phat <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span><span class="fu">qnorm</span>(.<span class="dv">975</span>)<span class="sc">*</span>se</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3713246 0.5327849</code></pre>
+</div>
+</div>
+<div class="chapter-resources">
+<div class="chapter-resources-header">
+<p><a href="https://youtu.be/HAcgRDGAN-g" target="_blank">Lecture Video</a></p>
+</div>
+<div class="chapter-resources-grid">
+<div>
+<a href="Assignments/Data-200-L13-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a>
+</div>
+<div>
+<a href="https://youtu.be/4ODwvdAL2go" target="_blank">In-Class Exercises Video Solutions</a>
+</div>
+</div>
+<div class="chapter-resources-footer lab-row">
+<p><a href="Assignments/Data-200-L13-Lab.pdf" target="_blank">Lab Problems</a></p>
+</div>
+<div class="chapter-resources-footer problem-set-row">
+<p><a href="Assignments/Data-200-L13-Problem-Set.pdf" target="_blank">Problem Set Questions</a></p>
 </div>
 </div>
 

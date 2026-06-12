@@ -1,8 +1,23 @@
 # Visualizations
 
+One of the most important parts of data science is learning how to communicate what we see in data. While summary statistics can give us helpful numbers, visualizations allow us to notice patterns, trends, outliers, and relationships that might be difficult to see from numbers alone. In this lecture, we will look at different ways to visualize quantitative and qualitative variables using base R graphics. These visualizations will help us better understand datasets before making conclusions or running more advanced analyses.
+
+::: learning-goals
+-   Identify which visualizations are appropriate for quantitative variables and which are appropriate for qualitative variables.
+-   Create and interpret common quantitative visualizations such as dot plots, histograms, density plots, boxplots, and QQ plots.
+-   Create and interpret common qualitative visualizations such as frequency tables, pie charts, barplots, and Pareto charts.
+-   Use R arguments such as `main`, `xlab`, `ylab`, `col`, `border`, `breaks`, annd `freq` to improve graph readability.
+:::
+
+::: callout-tip
+## Supplemental Material
+
+<a href="Reading-Guide/L15-Reading-Guide.pdf" download> 📄 Download the lecture's Reading Guide </a>
+:::
+
 ## Quantitative Visualizations
 
-Creating visualizations may help one to assess and describe the data more thoroughly. Doing so will allow one to potentially see new relationships and patterns that were not noticed in the initial summary. Luckily for us, R has several powerful tools to generate graphics. In this course, we will be using the Base graphics library, but in future courses, we will introduce the more powerful ggplot2 library. 
+Creating visualizations may help one to assess and describe the data more thoroughly. Doing so will allow one to potentially see new relationships and patterns that were not noticed in the initial summary. Luckily for us, R has several powerful tools to generate graphics. In this course, we will be using the Base graphics library, but in future courses, we will introduce the more powerful ggplot2 library.
 
 ### Dot Plots
 
@@ -54,10 +69,9 @@ plot(density(mtcars$mpg), xlim=c(5,38), ylim=c(0,.08), main="Density Plot")
 polygon(density(mtcars$mpg), col="lightblue", border="red")
 ```
 
-
 ### Combining Histograms with Density Plots
 
-We have seen how we can add the density line on top of the histogram before. Remember that when combining the histogram and the density line, we need to specify in the histogram that frequency is false. In this section, we will introduce a few other arguments which will assist us in presenting the data. 
+We have seen how we can add the density line on top of the histogram before. Remember that when combining the histogram and the density line, we need to specify in the histogram that frequency is false. In this section, we will introduce a few other arguments which will assist us in presenting the data.
 
 ```{r}
 hist(mtcars$mpg, breaks=10, col="lightblue", freq=FALSE)
@@ -73,7 +87,6 @@ hist(mtcars$mpg, breaks=10, col="lightblue", freq=FALSE)
 rug(jitter(mtcars$mpg))
 lines(density(mtcars$mpg), col="red")
 ```
-
 
 ### Combining Histograms with Normal Curves
 
@@ -97,8 +110,7 @@ yfit <- dnorm(xfit,mean=mean(mtcars$mpg),sd=sd(mtcars$mpg))
 lines(xfit, yfit, col="red", lwd=2)
 ```
 
-In the plot above, we can see the density of the data with the dashed blue line and compare it to the red line which is the normal distribution. 
-
+In the plot above, we can see the density of the data with the dashed blue line and compare it to the red line which is the normal distribution.
 
 ### Box Plots
 
@@ -107,7 +119,6 @@ Box Plots will allow us to visualize the data using the quantiles and the IQR. T
 ```{r}
 boxplot(mtcars$mpg, col="lightblue", horizontal = TRUE)
 ```
-
 
 ### Quantile-Quantile Plots (QQ Plot)
 
@@ -138,7 +149,6 @@ Now we will see how we can use 2 different plots at the same time. We should als
 library(openintro)
 ```
 
-
 ```{r}
 #| eval: false
 hist(babies$bwt, col="lightblue", main="Symmetric Data")
@@ -156,7 +166,6 @@ hist(babies$bwt, col="lightblue", main="Symmetric Data")
 qqnorm(babies$bwt)
 qqline(babies$bwt, col="red", lwd=2)
 ```
-
 
 ```{r}
 #| eval: false
@@ -177,7 +186,6 @@ hist(mlb_teams$triples, main="Right Skewed", col="lightblue")
 qqnorm(mlb_teams$triples)
 qqline(mlb_teams$triples, col="red", lwd=2)
 ```
-
 
 ```{r}
 #| eval: false
@@ -242,7 +250,7 @@ par(mfrow=c(1,1))
 ```
 
 ## Qualitative Visualizations
- 
+
 We have seen several ways we can visualize quantitative data with dot plots, histograms, density plots, and box plots. However, we have to use a different approach if we wish to visualize qualitative data since these are categories and not necessarily numbers. One of the easiest (and potentially the best) ways to describe categorical data is to either use counts or proportions. Since it does not necessarily make sense to find the mean of categorical data, we just want to count the number of observations in the category
 
 ### Frequency Tables
@@ -253,7 +261,7 @@ We can calculate the number of values in each category relatively easily using t
 table(mlb_players_18$position)
 ```
 
-We can place the table function within the *addmargins()* function to print out the total of all of the counts. 
+We can place the table function within the *addmargins()* function to print out the total of all of the counts.
 
 ```{r}
 addmargins(table(mlb_players_18$position))
@@ -328,7 +336,7 @@ fan.plot(table_cat, labels=my_labels,
 
 ### Bar Plots
 
-While histograms are used for quantitative data, bar plots can be used for qualitative data. We have seen this process before, as we have to pass a table into the *barplot()* function. 
+While histograms are used for quantitative data, bar plots can be used for qualitative data. We have seen this process before, as we have to pass a table into the *barplot()* function.
 
 ```{r}
 barplot(table(mlb_players_18$position_cat), 
@@ -350,24 +358,24 @@ barplot(table(mlb_players_18$position), col=rainbow(10),
         las=2, main="Barplot of Positions")
 ```
 
-### Waffle Plot
+<!-- ### Waffle Plot -->
 
-The Waffle Plot is similar to the pie chart but it creates little squares for each category. The more squares a category has the more observations there are. This easily allows one to compare different groups. It should be mentioned that the squares are scaled by a vector of values (we can decide how much each square is "worth"). For this graphic, we will need the 'waffle' package, which may need to be installed before using it if is the first time using it.
+<!-- The Waffle Plot is similar to the pie chart but it creates little squares for each category. The more squares a category has the more observations there are. This easily allows one to compare different groups. It should be mentioned that the squares are scaled by a vector of values (we can decide how much each square is "worth"). For this graphic, we will need the 'waffle' package, which may need to be installed before using it if is the first time using it. -->
 
-```{r}
-#| warning: false
+<!-- ```{r} -->
+<!-- #| warning: false -->
 
-library(waffle)
-bcnt <- as.vector(table(mlb_players_18$position))
-names(bcnt) <- names(table(mlb_players_18$position))
-waffle(bcnt/10, rows=8, col=rainbow(10), 
-       title="Waffle Plot of Position Players", 
-       xlab="1 square=10 players")
-```
+<!-- library(waffle) -->
+<!-- bcnt <- as.vector(table(mlb_players_18$position)) -->
+<!-- names(bcnt) <- names(table(mlb_players_18$position)) -->
+<!-- waffle(bcnt/10, rows=8, col=rainbow(10),  -->
+<!--        title="Waffle Plot of Position Players",  -->
+<!--        xlab="1 square=10 players") -->
+<!-- ``` -->
 
 ### Pareto Chart
 
-The last visualization type we will discuss in this section is the Pareto Chart. This is a chart that is very similar to the bar chart, except the categories are sorted in order from largest to smallest. This allows for the comparison of similarly sized groups. An additional element typically included is the cumulative percentage of occurrences. This will allow you to see what percentage of the observations are in the category or the categories that have come before it. This graphic relies on the `qcc' package, which may need to be installed before using it if is the first time using it.
+The last visualization type we will discuss in this section is the Pareto Chart. This is a chart that is very similar to the bar chart, except the categories are sorted in order from largest to smallest. This allows for the comparison of similarly sized groups. An additional element typically included is the cumulative percentage of occurrences. This will allow you to see what percentage of the observations are in the category or the categories that have come before it. This graphic relies on the \`qcc' package, which may need to be installed before using it if is the first time using it.
 
 ```{r}
 #| warning: false
@@ -387,3 +395,24 @@ names(bcnt) <- names(table(mlb_players_18$position_cat))
 pareto.chart(bcnt,main="Pareto Chart Positions",
              xlab="Alignment")
 ```
+
+::: {.chapter-resources}
+
+<div class="chapter-resources-header">
+  <a href="https://youtu.be/piPfY4lBecQ" target="_blank">Lecture Video</a>
+</div>
+
+<div class="chapter-resources-grid">
+  <div><a href="Assignments/Data-200-L15-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a></div>
+  <div><a href="https://youtu.be/Zj0Qjf7whFg" target="_blank">In-Class Exercises Video Solutions</a></div>
+</div>
+
+<div class="chapter-resources-footer lab-row">
+  <a href="Assignments/Data-200-L15-Lab.pdf" target="_blank">Lab Problems</a>
+</div>
+
+<div class="chapter-resources-footer problem-set-row">
+  <a href="Assignments/Data-200-L15-Problem-Set.pdf" target="_blank">Problem Set Questions</a>
+</div>
+
+:::

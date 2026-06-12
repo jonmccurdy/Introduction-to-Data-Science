@@ -3,17 +3,15 @@
 One of the goals of this class is learning how to describe data and use it to convey information about the variable of interest. To do this, we will need to discuss some basic statistical formulas that we will use throughout the semester. We will need to learn "how to do" the math in this section, but we should also put an emphasis on the meaning of each term and what it is telling us. Later on in this course, we will be able to calculate all of these formulas using computer software, but we will still need to know what the results are telling us.
 
 ::: learning-goals
-
-- Understand the ways to describe the center and spread of a dataset, including mean, median, mode, range, and standard deviation, and what each measure conveys about the data.
-- Interpret how outliers influence statistical measures and use tools like z-scores and standard deviation ranges to identify unusual observations.
-- Compare and interpret center and spread within subgroups to draw meaningful conclusions about categorical variables.
+-   Understand the ways to describe the center and spread of a dataset, including mean, median, mode, range, and standard deviation, and what each measure conveys about the data.
+-   Interpret how outliers influence statistical measures and use tools like z-scores and standard deviation ranges to identify unusual observations.
+-   Compare and interpret center and spread within subgroups to draw meaningful conclusions about categorical variables.
 :::
 
-::: {.callout-tip}
+::: callout-tip
 ## Supplemental Material
-<a href="Reading-Guide/L2-Reading-Guide.pdf" download>
-📄 Download the lecture's Reading Guide
-</a>
+
+<a href="Reading-Guide/L2-Reading-Guide.pdf" download> 📄 Download the lecture's Reading Guide </a>
 :::
 
 ## Describing the Center
@@ -54,7 +52,7 @@ Emmit is trying to evaluate how well-attended the recent campus speaker series w
 
 $52,\ 73,\ 84,\ 73,\ 82,\ 253,\ 82,\ 48,\ 73,\ 80$
 
-If Emmit claims that "around 90 people come to each event," is that accurate? 
+If Emmit claims that "around 90 people come to each event," is that accurate?
 
 <details>
 
@@ -72,7 +70,6 @@ Another way to describe a dataset is to talk about the spread of the data. Much 
 An alternative way to discuss the spread of data is by calculating the **standard deviation**. This is a measure that tells us how far apart on average the values are from the mean. This calculation requires a few steps, with the first being to calculate the mean of the data. Second, you will need to calculate how far each value deviates from the mean (that is the value - mean). Third you will need to square all of the deviations, with the fourth step being adding up all of these squared deviations. Finally, you will divide by the number of observations minus 1 and then take the square root. While this sounds complicated, it can be done by making a table. An example of this can be seen below:
 
 ![](images/L2-Standard-Deviation.png){fig-align="center"}
-
 
 Looking at the example above, we can see that the data values are on average 1,137.5 away from the mean. Similar to the mean, the standard deviation is also affected by outliers. If we were to temporarily remove the outlier (Siena) then the standard deviation would drop to roughly 535.8 It is important to understand what the standard deviation is telling us and the general method for calculating it, as the topic will come up throughout this semester and your Data Science journey.
 
@@ -166,7 +163,6 @@ We can also use visualizations to try and determine if relationships exist betwe
 
 Based on our plot, it appears that as student enrollment has no affect on basketball attendance. This does not make sense, as we would probably expect schools with more students to have more fans at the games. This may indicate that we are missing some other confounding variable that is causing some confusion in our results (like population of the surrounding area or even cost of attendance?).
 
-
 ```{r}
 #| echo: false
 #| warning: false
@@ -237,7 +233,6 @@ kable(college_data,
       col.names = c("College", "Mean Attendance", "Student Enrollment", "Religious", "State"))
 ```
 
-
 It is a relatively straightforward procedure, but we can do a **count** by category and see that 10 schools are Catholic and 3 schools that are not Catholic. We could do something similar with their locations and note that 6 schools are in New York, 3 are in Connecticut, 2 are in New Jersey, 1 is in Maryland, and 1 is in Massachusetts. To visualize categorical data we can use a **barplot**. This is similar to the histogram but the bars will not touch each other. Below is a visualization for both counts:
 
 ```{r}
@@ -282,12 +277,12 @@ kable(tbl, col.names = c("State", "Mean Attendance"))
 ::: {.callout-tip title="Try it Out"}
 Emmit surveyed 30 students, asking what type of student club they were in and how many hours per week they typically spent participating. Using the information below, help him create a bar chart for the number of students in each club type and then which club type has the highest average time commitment.
 
-| Club Type  | Hours per Week (per student)                      |
-|------------|---------------------------------------------------|
-| Academic   | 3, 4, 2, 5, 3                                     |
-| Sports     | 8, 10, 7, 9, 6, 10, 8                             |
-| Arts       | 5, 4, 6, 5, 7, 4                                  |
-| Service    | 2, 3, 4, 3, 2, 1, 2, 3, 2                         |
+| Club Type | Hours per Week (per student) |
+|-----------|------------------------------|
+| Academic  | 3, 4, 2, 5, 3                |
+| Sports    | 8, 10, 7, 9, 6, 10, 8        |
+| Arts      | 5, 4, 6, 5, 7, 4             |
+| Service   | 2, 3, 4, 3, 2, 1, 2, 3, 2    |
 
 <details>
 
@@ -298,32 +293,47 @@ Emmit surveyed 30 students, asking what type of student club they were in and ho
 </details>
 :::
 
-::: practice-it
+::: {.chapter-resources}
 
-<br>
+<div class="chapter-resources-header">
+  <a href="https://youtu.be/0z47_70IYtg" target="_blank">Lecture Video</a>
+</div>
 
-1)   George Carlin once said "Think of how stupid the average person is, and realize half of them are stupider than that." What descriptive statistic is he referencing here?
+<div class="chapter-resources-grid">
+  <div><a href="Assignments/Data-200-L2-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a></div>
+  <div><a href="https://youtu.be/Ok56nlkQcVY" target="_blank">In-Class Exercises Video Solutions</a></div>
+</div>
 
-2)   What is the difference between a bar chart and a histogram?
+<div class="chapter-resources-footer lab-row">
+  <a href="Assignments/Data-200-L2-Lab.pdf" target="_blank">Lab Problems</a>
+</div>
 
-3)   Find the mean, median, and mode for the following quiz grades:
-$$ 84,\ 91,\ 87,\ 84,\ 88,\ 93,\ 84$$
+<div class="chapter-resources-footer problem-set-row">
+  <a href="Assignments/Data-200-L2-Problem-Set.pdf" target="_blank">Problem Set Questions</a>
+</div>
 
-4) Calculate the standard deviation and range for the following steptotals (in thousands):
-$$9,\ 11,\ 7,\ 13,\ 10,\ 16$$
-
-5) Emmit surveyed students about their favorite breakfast. Create a visualization to help communicate the fact that 12 students preferred pancakes, 8 preferred bagels, 10 preferred smoothies, and 5 preferred cereal.
-
-6) Create a histogram using bin widths of 5 minutes (0-4.99, 5-9.99, etc.) 
-$$3,\ 4,\ 5,\ 5,\ 6,\ 6,\ 7,\ 7,\ 7,\ 8,\ 8,\ 8,\ 8,\ 9,\ 9,\ 10,\ 10,\ 12,\ 15,\ 19$$
-
-7) The following data describes the number of students in different courses. Calculate the mean study hours for each qualitative group.
-
-| Major     | Hours                  |
-|-----------|------------------------|
-| Biology   | 10, 12, 11, 13, 19     |
-| Business  | 27, 26, 18, 25, 17     |
-| Sociology | 18, 10, 19, 17, 13     |
 :::
 
+<!-- ::: practice-it -->
+<!-- <br> -->
 
+<!-- 1)  George Carlin once said "Think of how stupid the average person is, and realize half of them are stupider than that." What descriptive statistic is he referencing here? -->
+
+<!-- 2)  What is the difference between a bar chart and a histogram? -->
+
+<!-- 3)  Find the mean, median, and mode for the following quiz grades: $$ 84,\ 91,\ 87,\ 84,\ 88,\ 93,\ 84$$ -->
+
+<!-- 4)  Calculate the standard deviation and range for the following steptotals (in thousands): $$9,\ 11,\ 7,\ 13,\ 10,\ 16$$ -->
+
+<!-- 5)  Emmit surveyed students about their favorite breakfast. Create a visualization to help communicate the fact that 12 students preferred pancakes, 8 preferred bagels, 10 preferred smoothies, and 5 preferred cereal. -->
+
+<!-- 6)  Create a histogram using bin widths of 5 minutes (0-4.99, 5-9.99, etc.) $$3,\ 4,\ 5,\ 5,\ 6,\ 6,\ 7,\ 7,\ 7,\ 8,\ 8,\ 8,\ 8,\ 9,\ 9,\ 10,\ 10,\ 12,\ 15,\ 19$$ -->
+
+<!-- 7)  The following data describes the number of students in different courses. Calculate the mean study hours for each qualitative group. -->
+
+<!-- | Major     | Hours              | -->
+<!-- |-----------|--------------------| -->
+<!-- | Biology   | 10, 12, 11, 13, 19 | -->
+<!-- | Business  | 27, 26, 18, 25, 17 | -->
+<!-- | Sociology | 18, 10, 19, 17, 13 | -->
+<!-- ::: -->

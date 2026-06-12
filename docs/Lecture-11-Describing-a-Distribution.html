@@ -728,7 +728,7 @@ Supplemental Material
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>,<span class="dv">50</span>,<span class="dv">8</span>)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate_mode</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 49.51637</code></pre>
+<pre><code>[1] 50.84116</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">col=</span><span class="st">"lightblue"</span>, <span class="at">freq=</span><span class="cn">FALSE</span>)</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(x), <span class="at">col=</span><span class="st">"red"</span>)</span>
@@ -981,11 +981,11 @@ $quart
 <div class="cell">
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skew</span>(<span class="fu">rgamma</span>(<span class="dv">500</span>,<span class="dv">2</span>,<span class="at">scale=</span><span class="dv">5</span>)) <span class="co"># Have shown this to be skewed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.552674</code></pre>
+<pre><code>[1] 1.006002</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skew</span>(<span class="fu">rnorm</span>(<span class="dv">500</span>,<span class="dv">0</span>,<span class="dv">2</span>)) <span class="co"># Have shown this to be symmetric</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.09816671</code></pre>
+<pre><code>[1] 0.1475814</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skew</span>(mtcars<span class="sc">$</span>mpg) <span class="co"># Have shown this to be moderately skewed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1055,6 +1055,25 @@ $quart
 <p><img src="Lecture-11-Describing-a-Distribution_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
+</div>
+</div>
+<div class="chapter-resources">
+<div class="chapter-resources-header">
+<p><a href="https://youtu.be/7IwXPnWj0ks" target="_blank">Lecture Video</a></p>
+</div>
+<div class="chapter-resources-grid">
+<div>
+<a href="Assignments/Data-200-L11-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a>
+</div>
+<div>
+<a href="https://youtu.be/TLNLRgaU9Q8" target="_blank">In-Class Exercises Video Solutions</a>
+</div>
+</div>
+<div class="chapter-resources-footer lab-row">
+<p><a href="Assignments/Data-200-L11-Lab.pdf" target="_blank">Lab Problems</a></p>
+</div>
+<div class="chapter-resources-footer problem-set-row">
+<p><a href="Assignments/Data-200-L11-Problem-Set.pdf" target="_blank">Problem Set Questions</a></p>
 </div>
 </div>
 

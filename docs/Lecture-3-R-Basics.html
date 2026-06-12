@@ -562,7 +562,7 @@ Supplemental Material
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Hello R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error: unexpected symbol in "Hello R"</span></p>
+<p><span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error: unexpected symbol in “Hello R”</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">"Hello R"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -742,7 +742,7 @@ Click to see the solution
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>value3 <span class="co"># will have a syntax error since value3 does not exist</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error: object 'value3' not found</span></p>
+<p><span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error: object ‘value3’ not found</span></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>value3 <span class="ot">&lt;-</span> value1<span class="sc">*</span>value2</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>value3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -809,18 +809,35 @@ Click to see the solution
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error: object 'x' not found</span></p>
+<p><span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error: object ‘x’ not found</span></p>
 <p>If you need to close R then you can either close it by using the command <em>q()</em> or by just exiting the window. When you close R it will ask you if you want to “Save workspace image?”. What this is asking is if you would like to save all of your current objects in R (all of the variables and functions you have made) and have them available to you in your future R sessions. If you select yes then it will be saved under your current directory under the file .RData. Most things we will be doing in this class will not need to be saved in this manner as it will be easy to recreate everything quickly if we do need something again.</p>
-<div class="practice-it">
-<p><br></p>
-<ol type="1">
-<li><p>What is the purpose of parentheses in R calculations? Give an example where parentheses change the result of an expression.</p></li>
-<li><p>Write the following expression in R syntax:<br>
-<span class="math inline">\(\left(3 + \frac{12\times 2}{2+1}\right)^2 - 5^2\)</span></p></li>
-<li><p>Create a variable called <code>price</code> and assign it the value 4.25. Then create another variable called <code>quantity</code> with the value 6. Create a third variable <code>total</code> that multiplies <code>price</code> by <code>quantity</code>. What is the value of <code>total</code>?</p></li>
-<li><p>After creating the variable <code>total</code> in the previous problem, use the <code>rm()</code> function to remove <code>total</code> from your environment. What happens if you try to display <code>total</code> after removing it?</p></li>
-</ol>
+<div class="chapter-resources">
+<div class="chapter-resources-header">
+<p><a href="https://youtu.be/iz72fnh5Pcc" target="_blank">Lecture Video</a></p>
 </div>
+<div class="chapter-resources-grid">
+<div>
+<a href="Assignments/Data-200-L3-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a>
+</div>
+<div>
+<a href="https://youtu.be/OeXWAKwbzXg" target="_blank">In-Class Exercises Video Solutions</a>
+</div>
+</div>
+<div class="chapter-resources-footer lab-row">
+<p><a href="Assignments/Data-200-L3-Lab.pdf" target="_blank">Lab Problems</a></p>
+</div>
+<div class="chapter-resources-footer problem-set-row">
+<p><a href="Assignments/Data-200-L3-Problem-Set.pdf" target="_blank">Problem Set Questions</a></p>
+</div>
+</div>
+<!-- ::: practice-it -->
+<!-- <br> -->
+<!-- 1)  What is the purpose of parentheses in R calculations? Give an example where parentheses change the result of an expression. -->
+<!-- 2)  Write the following expression in R syntax:\ -->
+<!--     $\left(3 + \frac{12\times 2}{2+1}\right)^2 - 5^2$ -->
+<!-- 3)  Create a variable called `price` and assign it the value 4.25. Then create another variable called `quantity` with the value 6. Create a third variable `total` that multiplies `price` by `quantity`. What is the value of `total`? -->
+<!-- 4)  After creating the variable `total` in the previous problem, use the `rm()` function to remove `total` from your environment. What happens if you try to display `total` after removing it? -->
+<!-- ::: -->
 
 
 

@@ -509,8 +509,7 @@ window.Quarto = {
   <li><a href="#pie-chart" id="toc-pie-chart" class="nav-link" data-scroll-target="#pie-chart"><span class="header-section-number">15.2.2</span> Pie Chart</a></li>
   <li><a href="#fan-plots" id="toc-fan-plots" class="nav-link" data-scroll-target="#fan-plots"><span class="header-section-number">15.2.3</span> Fan Plots</a></li>
   <li><a href="#bar-plots" id="toc-bar-plots" class="nav-link" data-scroll-target="#bar-plots"><span class="header-section-number">15.2.4</span> Bar Plots</a></li>
-  <li><a href="#waffle-plot" id="toc-waffle-plot" class="nav-link" data-scroll-target="#waffle-plot"><span class="header-section-number">15.2.5</span> Waffle Plot</a></li>
-  <li><a href="#pareto-chart" id="toc-pareto-chart" class="nav-link" data-scroll-target="#pareto-chart"><span class="header-section-number">15.2.6</span> Pareto Chart</a></li>
+  <li><a href="#pareto-chart" id="toc-pareto-chart" class="nav-link" data-scroll-target="#pareto-chart"><span class="header-section-number">15.2.5</span> Pareto Chart</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -537,6 +536,28 @@ window.Quarto = {
 </header>
 
 
+<p>One of the most important parts of data science is learning how to communicate what we see in data. While summary statistics can give us helpful numbers, visualizations allow us to notice patterns, trends, outliers, and relationships that might be difficult to see from numbers alone. In this lecture, we will look at different ways to visualize quantitative and qualitative variables using base R graphics. These visualizations will help us better understand datasets before making conclusions or running more advanced analyses.</p>
+<div class="learning-goals">
+<ul>
+<li>Identify which visualizations are appropriate for quantitative variables and which are appropriate for qualitative variables.</li>
+<li>Create and interpret common quantitative visualizations such as dot plots, histograms, density plots, boxplots, and QQ plots.</li>
+<li>Create and interpret common qualitative visualizations such as frequency tables, pie charts, barplots, and Pareto charts.</li>
+<li>Use R arguments such as <code>main</code>, <code>xlab</code>, <code>ylab</code>, <code>col</code>, <code>border</code>, <code>breaks</code>, annd <code>freq</code> to improve graph readability.</li>
+</ul>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Supplemental Material
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="Reading-Guide/L15-Reading-Guide.pdf" download=""> 📄 Download the lecture’s Reading Guide </a></p>
+</div>
+</div>
 <section id="quantitative-visualizations" class="level2" data-number="15.1">
 <h2 data-number="15.1" class="anchored" data-anchor-id="quantitative-visualizations"><span class="header-section-number">15.1</span> Quantitative Visualizations</h2>
 <p>Creating visualizations may help one to assess and describe the data more thoroughly. Doing so will allow one to potentially see new relationships and patterns that were not noticed in the initial summary. Luckily for us, R has several powerful tools to generate graphics. In this course, we will be using the Base graphics library, but in future courses, we will introduce the more powerful ggplot2 library.</p>
@@ -989,17 +1010,27 @@ window.Quarto = {
 </div>
 </div>
 </div>
+<!-- ### Waffle Plot -->
+<!-- The Waffle Plot is similar to the pie chart but it creates little squares for each category. The more squares a category has the more observations there are. This easily allows one to compare different groups. It should be mentioned that the squares are scaled by a vector of values (we can decide how much each square is "worth"). For this graphic, we will need the 'waffle' package, which may need to be installed before using it if is the first time using it. -->
+<!-- ```{r} -->
+<!-- #| warning: false -->
+<!-- library(waffle) -->
+<!-- bcnt <- as.vector(table(mlb_players_18$position)) -->
+<!-- names(bcnt) <- names(table(mlb_players_18$position)) -->
+<!-- waffle(bcnt/10, rows=8, col=rainbow(10),  -->
+<!--        title="Waffle Plot of Position Players",  -->
+<!--        xlab="1 square=10 players") -->
+<!-- ``` -->
 </section>
-<section id="waffle-plot" class="level3" data-number="15.2.5">
-<h3 data-number="15.2.5" class="anchored" data-anchor-id="waffle-plot"><span class="header-section-number">15.2.5</span> Waffle Plot</h3>
-<p>The Waffle Plot is similar to the pie chart but it creates little squares for each category. The more squares a category has the more observations there are. This easily allows one to compare different groups. It should be mentioned that the squares are scaled by a vector of values (we can decide how much each square is “worth”). For this graphic, we will need the ‘waffle’ package, which may need to be installed before using it if is the first time using it.</p>
+<section id="pareto-chart" class="level3" data-number="15.2.5">
+<h3 data-number="15.2.5" class="anchored" data-anchor-id="pareto-chart"><span class="header-section-number">15.2.5</span> Pareto Chart</h3>
+<p>The last visualization type we will discuss in this section is the Pareto Chart. This is a chart that is very similar to the bar chart, except the categories are sorted in order from largest to smallest. This allows for the comparison of similarly sized groups. An additional element typically included is the cumulative percentage of occurrences. This will allow you to see what percentage of the observations are in the category or the categories that have come before it. This graphic relies on the `qcc’ package, which may need to be installed before using it if is the first time using it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(waffle)</span>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qcc)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>bcnt <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">table</span>(mlb_players_18<span class="sc">$</span>position))</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(bcnt) <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">table</span>(mlb_players_18<span class="sc">$</span>position))</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">waffle</span>(bcnt<span class="sc">/</span><span class="dv">10</span>, <span class="at">rows=</span><span class="dv">8</span>, <span class="at">col=</span><span class="fu">rainbow</span>(<span class="dv">10</span>), </span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">"Waffle Plot of Position Players"</span>, </span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab=</span><span class="st">"1 square=10 players"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">pareto.chart</span>(bcnt,<span class="at">main=</span><span class="st">"Pareto Chart Positions"</span>,</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">xlab=</span><span class="st">"Alignment"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1008,34 +1039,16 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section>
-<section id="pareto-chart" class="level3" data-number="15.2.6">
-<h3 data-number="15.2.6" class="anchored" data-anchor-id="pareto-chart"><span class="header-section-number">15.2.6</span> Pareto Chart</h3>
-<p>The last visualization type we will discuss in this section is the Pareto Chart. This is a chart that is very similar to the bar chart, except the categories are sorted in order from largest to smallest. This allows for the comparison of similarly sized groups. An additional element typically included is the cumulative percentage of occurrences. This will allow you to see what percentage of the observations are in the category or the categories that have come before it. This graphic relies on the `qcc’ package, which may need to be installed before using it if is the first time using it.</p>
+<p>We can see this with fewer categories as well and can see the amount in each category plus the percentage of observations in the category and the categories before it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qcc)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>bcnt <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">table</span>(mlb_players_18<span class="sc">$</span>position))</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(bcnt) <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">table</span>(mlb_players_18<span class="sc">$</span>position))</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">pareto.chart</span>(bcnt,<span class="at">main=</span><span class="st">"Pareto Chart Positions"</span>,</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">xlab=</span><span class="st">"Alignment"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>bcnt <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">table</span>(mlb_players_18<span class="sc">$</span>position_cat))</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(bcnt) <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">table</span>(mlb_players_18<span class="sc">$</span>position_cat))</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pareto.chart</span>(bcnt,<span class="at">main=</span><span class="st">"Pareto Chart Positions"</span>,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">xlab=</span><span class="st">"Alignment"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="Lecture-15-Visualizations_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We can see this with fewer categories as well and can see the amount in each category plus the percentage of observations in the category and the categories before it.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>bcnt <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">table</span>(mlb_players_18<span class="sc">$</span>position_cat))</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(bcnt) <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">table</span>(mlb_players_18<span class="sc">$</span>position_cat))</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pareto.chart</span>(bcnt,<span class="at">main=</span><span class="st">"Pareto Chart Positions"</span>,</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">xlab=</span><span class="st">"Alignment"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Lecture-15-Visualizations_files/figure-html/unnamed-chunk-38-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1047,6 +1060,25 @@ Pareto chart analysis for bcnt
   Infield   282.000000  924.000000   22.204724    72.755906
   Outfield  225.000000 1149.000000   17.716535    90.472441
   Other     121.000000 1270.000000    9.527559   100.000000</code></pre>
+</div>
+</div>
+<div class="chapter-resources">
+<div class="chapter-resources-header">
+<p><a href="https://youtu.be/piPfY4lBecQ" target="_blank">Lecture Video</a></p>
+</div>
+<div class="chapter-resources-grid">
+<div>
+<a href="Assignments/Data-200-L15-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a>
+</div>
+<div>
+<a href="https://youtu.be/Zj0Qjf7whFg" target="_blank">In-Class Exercises Video Solutions</a>
+</div>
+</div>
+<div class="chapter-resources-footer lab-row">
+<p><a href="Assignments/Data-200-L15-Lab.pdf" target="_blank">Lab Problems</a></p>
+</div>
+<div class="chapter-resources-footer problem-set-row">
+<p><a href="Assignments/Data-200-L15-Problem-Set.pdf" target="_blank">Problem Set Questions</a></p>
 </div>
 </div>
 

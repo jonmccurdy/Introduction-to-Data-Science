@@ -5,8 +5,9 @@
     "Source": "Source",
     "docOutlineVisible": "0",
     "rmdVisualCollapsedChunks": "",
-    "rmdVisualModeLocation": "5038:1370.9090576171875",
-    "cursorPosition": "15,0",
-    "scrollLine": "0",
-    "quartoPreviewFormat": "html"
+    "rmdVisualModeLocation": "2205:10.285714149475098",
+    "cursorPosition": "119,3",
+    "scrollLine": "109",
+    "quartoPreviewFormat": "html",
+    "disableDependencyDiscovery": "1"
 }

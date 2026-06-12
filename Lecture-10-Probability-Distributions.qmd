@@ -1,26 +1,24 @@
 # Probability Distributions
 
-When it comes to data, it normally follows some pattern. The trouble is trying to identify what the pattern is. There are a few ways we could do this; one way is to try and guess the pattern using specific examples or we could observe large amounts of data to try and find a pattern. The first method will require us to learn about different probability distributions and their properties while the second method will require simulating datasets and looking at the results. 
+When it comes to data, it normally follows some pattern. The trouble is trying to identify what the pattern is. There are a few ways we could do this; one way is to try and guess the pattern using specific examples or we could observe large amounts of data to try and find a pattern. The first method will require us to learn about different probability distributions and their properties while the second method will require simulating datasets and looking at the results.
 
 ::: learning-goals
-
-- Understand the difference between theoretical and empirical probability and how to calculate each using formulas and simulations.  
-- Describe and simulate common discrete probability distributions: Bernoulli, Binomial, Uniform Discrete, and Poisson.  
-- Explore continuous probability distributions such as Uniform Continuous, Gamma, Exponential, and Normal, including their properties and R simulations.  
-- Apply R functions like *matrix()* and *apply()* to simulate repeated trials and summarize outcomes in probability problems.  
-- Explain the Law of Large Numbers and how increasing sample size improves the accuracy of empirical probability estimates.
+-   Understand the difference between theoretical and empirical probability and how to calculate each using formulas and simulations.
+-   Describe and simulate common discrete probability distributions: Bernoulli, Binomial, Uniform Discrete, and Poisson.
+-   Explore continuous probability distributions such as Uniform Continuous, Gamma, Exponential, and Normal, including their properties and R simulations.
+-   Apply R functions like *matrix()* and *apply()* to simulate repeated trials and summarize outcomes in probability problems.
+-   Explain the Law of Large Numbers and how increasing sample size improves the accuracy of empirical probability estimates.
 :::
 
-::: {.callout-tip}
+::: callout-tip
 ## Supplemental Material
-<a href="Reading-Guide/L10-Reading-Guide.pdf" download>
-📄 Download the lecture's Reading Guide
-</a>
+
+<a href="Reading-Guide/L10-Reading-Guide.pdf" download> 📄 Download the lecture's Reading Guide </a>
 :::
 
 ## Overview of Probability
 
-To understand probability distributions, we should probably have a brief review of the topic. Probability is the measure of the likelihood that an event will occur. This likelihood is expressed as a number between 0 and 1, where 0 will indicate impossibility and 1 indicate certainty. The value will always be between 0 and 1 with the sum of probabilities being equal to 1. Some short-hand which you might seen is *P(A)*, which indicates the "probability of event A occurring". 
+To understand probability distributions, we should probably have a brief review of the topic. Probability is the measure of the likelihood that an event will occur. This likelihood is expressed as a number between 0 and 1, where 0 will indicate impossibility and 1 indicate certainty. The value will always be between 0 and 1 with the sum of probabilities being equal to 1. Some short-hand which you might seen is *P(A)*, which indicates the "probability of event A occurring".
 
 \begin{watch}{}{}
     \href{https://youtu.be/BxHJLWyJWZo}{Probability Overview}
@@ -51,13 +49,14 @@ sample(c("H", "T"), 10, replace=TRUE)
 sample(c("H", "T"), 10, replace=TRUE)
 sample(c("H", "T"), 10, replace=TRUE)
 ```
+
 ```{r}
 flip <- sample(c("H", "T"), 10000, replace=TRUE)
 table(flip)
 barplot(table(flip))
 ```
 
-What would happen though if the coin wasn't fair and gave us $P(H)=0.75$? Then we would expect to get Heads roughly 75% of the time and Tails roughly 25% of the time. To do this simulation in R, we could alter the probabilities of each value in the vector using the *prob* argument. 
+What would happen though if the coin wasn't fair and gave us $P(H)=0.75$? Then we would expect to get Heads roughly 75% of the time and Tails roughly 25% of the time. To do this simulation in R, we could alter the probabilities of each value in the vector using the *prob* argument.
 
 ```{r}
 unfair <- sample(c("H", "T"), 10000, prob=c(.75,.25), replace=TRUE)
@@ -65,14 +64,13 @@ table(unfair)
 barplot(table(unfair))
 ```
 
-The examples we have seen will lead us to the idea of the **Bernoulli Distribution**. For this probability distribution, the results are either Success (1) or Failure (0). The probability of success is usually denoted by $p$ with the probability of failure being $q=1-p$. The probability distribution function can be written as: 
-$$ P(X=k) = p^k (1-p)^{1-k}$$ 
+The examples we have seen will lead us to the idea of the **Bernoulli Distribution**. For this probability distribution, the results are either Success (1) or Failure (0). The probability of success is usually denoted by $p$ with the probability of failure being $q=1-p$. The probability distribution function can be written as: $$ P(X=k) = p^k (1-p)^{1-k}$$
 
 where $k=1$ means success and $k=0$ means failure. Other things to note about this distribution are that the mean will be $\mu=p$ (note: $\mu$ represents the population mean and is pronounced "mew") and the standard deviation will be $\sigma= \sqrt{p(1-p)}$. (note: $\sigma$ represents the population standard deviation is the pronounced "sigma").
 
 ### Utilizing the Matrix and Apply function
 
-The Bernoulli distribution will only concern itself with a single outcome, but what if we are instead interested in flipping a coin 10 times and counting the number of heads that occur? We have already seen that we would expect roughly 5 heads, but it will not always be exact. To model this problem, we could do some simulations in R again. For this problem, I will instead use 1 (to represent Heads) and 0 (to represent Tails) as well as using the *matrix()* function and *apply()* function. 
+The Bernoulli distribution will only concern itself with a single outcome, but what if we are instead interested in flipping a coin 10 times and counting the number of heads that occur? We have already seen that we would expect roughly 5 heads, but it will not always be exact. To model this problem, we could do some simulations in R again. For this problem, I will instead use 1 (to represent Heads) and 0 (to represent Tails) as well as using the *matrix()* function and *apply()* function.
 
 The *matrix()* function will allow us to fill in a matrix with values from our sample. We will indicate the number of rows we want in the matrix and it will figure out how many columns are needed to accommodate all of the data we give it. We should be aware though that it will start repeating the data if we do not pass it enough data to complete the rectangular matrix. In the example below, we can see how it will fill in the matrix if we pass it 10 values and indicate we only want 3 rows:
 
@@ -108,7 +106,6 @@ table(nheads) # Results of flipping 10 coins 12 times
 barplot(table(factor(nheads, levels=0:10)))
 ```
 
-
 Instead of just doing it 12 times, what if we did it 100 times or even 10,000 times? How might our counts and barplot look?
 
 ```{r}
@@ -131,7 +128,7 @@ In the simulations, the individual flips are represented by the Bernoulli distri
 
 $$ \text{P(X=k)}={n\choose k}p^k(1-p)^{n-k}=\frac{n!}{(n-k)!k!}p^kq^{n-k}$$
 
-where $n$ is the number of trials, $k$ is the number of successes, and $p$ is the probability of success. Other things to note about this distribution are that the mean will be $\mu=np$ and the standard deviation will be $\sigma=\sqrt{np(1-p)}$. 
+where $n$ is the number of trials, $k$ is the number of successes, and $p$ is the probability of success. Other things to note about this distribution are that the mean will be $\mu=np$ and the standard deviation will be $\sigma=\sqrt{np(1-p)}$.
 
 \begin{watch}{}{}
     \href{https://youtu.be/RObY6UvS6fs}{Simulating a Binomial Distribution}
@@ -139,7 +136,7 @@ where $n$ is the number of trials, $k$ is the number of successes, and $p$ is th
 
 ### Theoretical vs Empirical Probability
 
-Now that we know a few different probability distribution functions, we should probably discuss the 2 main ways we can calculate probabilities. The first way is to calculate it **theoretically** if we know the underlying distribution. To do this, we would need to evaluate the probability distribution function at the desired value. If we do not, then we can calculate it **empirically** if we have a large number of observations available to us. To do this, we will simply see the proportion of values that meet the desired criteria. 
+Now that we know a few different probability distribution functions, we should probably discuss the 2 main ways we can calculate probabilities. The first way is to calculate it **theoretically** if we know the underlying distribution. To do this, we would need to evaluate the probability distribution function at the desired value. If we do not, then we can calculate it **empirically** if we have a large number of observations available to us. To do this, we will simply see the proportion of values that meet the desired criteria.
 
 Take the following example: If we were to flip a coin 10 times, what is the probability that we would end up with exactly 4 heads? This is a Binomial Distribution with $n=10$ and $p=0.5$, which is can be written as Bin(10,0.5), so:
 
@@ -165,7 +162,6 @@ flips <- matrix(sample(c(1, 0), 10*n, replace=TRUE, prob=c(0.75, 0.25)), nrow=n)
 nheads <- apply(flips, MARGIN=1, FUN=sum)
 table(nheads)
 ```
-
 
 We can then calculate the probability of getting exactly 4 heads both theoretically and empirically. We will notice that the empirical probability gives us a good estimation as long as we carry out a large number of simulations.
 
@@ -222,12 +218,11 @@ where $n$ is the number of possible outcomes. For this distribution, the mean wi
 
 ### Poisson Distribution
 
-The last discrete probability distribution we want to discuss is the **Poisson Distribution**. This distribution will give us the probability of a given number of events occurring in a fixed time interval. This will only apply if the events occur at a constant rate $\lambda$ (pronounced "lambda") and the events are independent of each other (meaning one occurrence does not affect another occurrence). The probability distribution can be described as:
-$$ \text{P(X=k)}=\frac{\lambda^ke^{-\lambda}}{k!}$$
+The last discrete probability distribution we want to discuss is the **Poisson Distribution**. This distribution will give us the probability of a given number of events occurring in a fixed time interval. This will only apply if the events occur at a constant rate $\lambda$ (pronounced "lambda") and the events are independent of each other (meaning one occurrence does not affect another occurrence). The probability distribution can be described as: $$ \text{P(X=k)}=\frac{\lambda^ke^{-\lambda}}{k!}$$
 
 with $e$ being the mathematical constant $2.71828\dots$. Some properties of this distribution are that the mean is $\mu=\lambda$ and the standard deviation is $\sigma = \sqrt{\lambda}$.
 
-To create simulations for this distribution in R, we will use the *rpois()* function which generate random values from the Poisson distribution. Similar functions exist for other distributions as well (such as *rbinom()* for random values from a binomial distribution). Additional functions will allow us to calculate theoretical probabilities in R using $p$ instead of $r$ at the front of the function. We will discuss these in more detail during future lectures. 
+To create simulations for this distribution in R, we will use the *rpois()* function which generate random values from the Poisson distribution. Similar functions exist for other distributions as well (such as *rbinom()* for random values from a binomial distribution). Additional functions will allow us to calculate theoretical probabilities in R using $p$ instead of $r$ at the front of the function. We will discuss these in more detail during future lectures.
 
 Let's consider the following example: A considerable amount of 18-Wheelers drive down Emmitsburg’s Main Street each day. If they come through at a rate of 2 per 15 minutes, what would we expect to see the distribution look like? What happens if the rate changes to 5 per 15 minutes?
 
@@ -264,23 +259,23 @@ sum(x<=4)/10000
     \href{https://youtu.be/RsaVDiUv5C0}{Simulating a Poisson Distribution}
 \end{watch}
 
-## Population, Sample, \& the Law of Large Numbers
+## Population, Sample, & the Law of Large Numbers
 
-Since we are coming to the end of the lecture on discrete probability distributions, we should probably cover a few definitions that will pop up throughout the rest of the course. The first is the difference between a population and a sample. A **population** is the entire collection of possible values for a measured observation, while a **sample** is just the subset of the population that we collect. For instance, if you are interested in the number of siblings all college students have then your population would be all college students while your sample is just the students you get data on. 
+Since we are coming to the end of the lecture on discrete probability distributions, we should probably cover a few definitions that will pop up throughout the rest of the course. The first is the difference between a population and a sample. A **population** is the entire collection of possible values for a measured observation, while a **sample** is just the subset of the population that we collect. For instance, if you are interested in the number of siblings all college students have then your population would be all college students while your sample is just the students you get data on.
 
-The next definition we should discuss is a random variable. A **random variable** is the value of an observation determined by a chance event. For instance, rolling a die or flipping a coin would be a random variable. A **Frequency Distribution** is the frequency of a random variable occurring at all observed values. This will help us calculate empirical probabilities and is an approximation for the population distribution. 
+The next definition we should discuss is a random variable. A **random variable** is the value of an observation determined by a chance event. For instance, rolling a die or flipping a coin would be a random variable. A **Frequency Distribution** is the frequency of a random variable occurring at all observed values. This will help us calculate empirical probabilities and is an approximation for the population distribution.
 
 Lastly, we have seen throughout this lecture that as we increase the sample size, the visualization looks closer and closer to what we would expect. This is due to the **Law of Large Numbers**, which states that as our sample gets larger and larger, the relative frequencies will converge to the probability from the population distribution.
 
 ## Continuous Probability
 
-Previously in this chapter we discussed some Discrete Distributions and were able to calculate the probability that a single event occurred. We can do a similar idea with continuous data except that instead of calculating $P(X=a)$, we will be calculating the probability of falling within a range of values such as $P(X<a)$ or $P(a\leq X \leq b)$. This should hopefully make sense as continuous data can take on any value in a given interval, so the probability that our backpack weighs exactly 6.4939 pounds is 0 since this is only 1 value with an infinite amount of possibilities if the scale can be infinitely precise. For the students who have taken calculus before, we (should) know that the integral at a single point, that is $\int_a^a f(x)\ dx$, is 0. 
+Previously in this chapter we discussed some Discrete Distributions and were able to calculate the probability that a single event occurred. We can do a similar idea with continuous data except that instead of calculating $P(X=a)$, we will be calculating the probability of falling within a range of values such as $P(X<a)$ or $P(a\leq X \leq b)$. This should hopefully make sense as continuous data can take on any value in a given interval, so the probability that our backpack weighs exactly 6.4939 pounds is 0 since this is only 1 value with an infinite amount of possibilities if the scale can be infinitely precise. For the students who have taken calculus before, we (should) know that the integral at a single point, that is $\int_a^a f(x)\ dx$, is 0.
 
 ### Uniform Continuous Distribution
 
 The first distribution we will discuss is the **Uniform Continuous Distribution**. Similar to the Uniform Discrete Distribution, all possibilities within the interval $[a,b]$ have the same chance of being selected. The visualization of this distribution is essentially "flat" across the specified interval. The Uniform Continuous distribution can be described by the probability distribution $f(x)=\frac{1}{b-a}$ when $a\leq x \leq b$ and $f(x)=0$ otherwise. The mean will be $\mu=\frac{b+a}{2}$ and the standard deviation will be $\sigma = \sqrt{\frac{(b-a)^2}{12}}$
 
-Uniform Distributions occur when all of the ranges of outputs are equally likely. People's heights typically are not uniformly distributed (as most people are around 68 inches tall, with a few really short people and a few tall people). But, if we look at the decimal values of the height (for a person 68.283 inches tall if we just use the .283 portion) then that would most likely be uniformly distributed. This idea of a continuous Uniform distribution is also seen in Random Number Generators, which are vital in simulations and computer applications! 
+Uniform Distributions occur when all of the ranges of outputs are equally likely. People's heights typically are not uniformly distributed (as most people are around 68 inches tall, with a few really short people and a few tall people). But, if we look at the decimal values of the height (for a person 68.283 inches tall if we just use the .283 portion) then that would most likely be uniformly distributed. This idea of a continuous Uniform distribution is also seen in Random Number Generators, which are vital in simulations and computer applications!
 
 The code to simulate a uniform continuous distribution in R is fairly straightforward. We will use the *runif()* function which requires us to specify the number of random uniform numbers. We can also specify the minimum and maximum values for the digits. If we do not specify this then it will return values between 0 and 1. To view discrete data we used a barplot, but if we want to view the continuous data then we should utilize a histogram using the *hist()* function.
 
@@ -347,7 +342,7 @@ legend("topright", legend=c("shape=1, scale=2", "shape=2, scale=2", "shape=3, sc
 
 ### Exponential Distribution
 
-The **Exponential Distribution** is going to be similar to the Gamma Distribution with one slight caveat, it is the time between Poisson events and not the time until the $n^{\text{th}}$ event. This is often referred to as a memory-less distribution as we start over each time we see an observation and count the time til the next one. So, the Exponential Distribution is a special case of the Gamma distribution when the shape is 1 and the scale is $\frac{1}{\lambda}$. The mean and standard deviation for this distribution will be $\mu=\sigma=\frac{1}{\lambda}$. 
+The **Exponential Distribution** is going to be similar to the Gamma Distribution with one slight caveat, it is the time between Poisson events and not the time until the $n^{\text{th}}$ event. This is often referred to as a memory-less distribution as we start over each time we see an observation and count the time til the next one. So, the Exponential Distribution is a special case of the Gamma distribution when the shape is 1 and the scale is $\frac{1}{\lambda}$. The mean and standard deviation for this distribution will be $\mu=\sigma=\frac{1}{\lambda}$.
 
 This is useful when we are interested in determining the arrival time between events. If we go back to our example of 18-wheelers driving down Main Street at a rate of 4 per 15 minutes, we can determine the time between the 18-wheelers coming through the city.
 
@@ -412,3 +407,32 @@ So with this, we can see that the 68-95-99.7 rule is pretty accurate in telling 
 \begin{watch}{}{}
     \href{https://youtu.be/0C7qVM9wr3c}{Simulating a Normal Distribution}
 \end{watch}
+
+
+::: {.chapter-resources}
+
+<div class="chapter-resources-header">
+  <a href="https://youtu.be/kU8uS7tHiXc" target="_blank">Lecture Video (Discrete Distributions)</a>
+</div>
+<div class="chapter-resources-header">
+  <a href="https://youtu.be/N_1lrJeO00U" target="_blank">Lecture Video (Continuous Distributions)</a>
+</div>
+
+<div class="chapter-resources-grid">
+  <div><a href="Assignments/Data-200-L10-Discrete-Inclass-Assignment.pdf" target="_blank">In-Class Exercises (Discrete) </a></div>
+  <div><a href="https://youtu.be/pX06vz4aDwg" target="_blank">In-Class Exercises Video Solutions </a></div>
+</div>
+<div class="chapter-resources-grid">
+  <div><a href="Assignments/Data-200-L10-Continuous-Inclass-Assignment.pdf" target="_blank">In-Class Exercises (Continuous) </a></div>
+  <div><a href="https://youtu.be/xMmT3f_Qt3s" target="_blank">In-Class Exercises Video Solutions</a></div>
+</div>
+
+<div class="chapter-resources-footer lab-row">
+  <a href="Assignments/Data-200-L10-Lab.pdf" target="_blank">Lab Problems</a>
+</div>
+
+<div class="chapter-resources-footer problem-set-row">
+  <a href="Assignments/Data-200-L10-Problem-Set.pdf" target="_blank">Problem Set Questions</a>
+</div>
+
+:::

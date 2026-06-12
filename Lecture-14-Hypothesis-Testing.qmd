@@ -10,11 +10,10 @@ Confidence Intervals and Hypothesis Testing both allow us to make inferences abo
 -   Connect the idea of sampling variability to the rejection regions in a normal distribution.
 :::
 
-::: {.callout-tip}
+::: callout-tip
 ## Supplemental Material
-<a href="Reading-Guide/L14-Reading-Guide.pdf" download>
-📄 Download the lecture's Reading Guide
-</a>
+
+<a href="Reading-Guide/L14-Reading-Guide.pdf" download> 📄 Download the lecture's Reading Guide </a>
 :::
 
 ## Setting Up to Problem
@@ -106,3 +105,24 @@ t.test(births$weight, mu=7.3)
 ```
 
 You can notice that we get the exact same test statistic and $p-$value as we did when we did it manually. It is vital to know how to do it manually though, as we will not always be able to pass our information into a function to do it for us.
+
+::: {.chapter-resources}
+
+<div class="chapter-resources-header">
+  <a href="https://youtu.be/H4SPvvHqCkI" target="_blank">Lecture Video</a>
+</div>
+
+<div class="chapter-resources-grid">
+  <div><a href="Assignments/Data-200-L14-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a></div>
+  <div><a href="https://youtu.be/t3tkxxHlWj0" target="_blank">In-Class Exercises Video Solutions</a></div>
+</div>
+
+<div class="chapter-resources-footer lab-row">
+  <a href="Assignments/Data-200-L14-Lab.pdf" target="_blank">Lab Problems</a>
+</div>
+
+<div class="chapter-resources-footer problem-set-row">
+  <a href="Assignments/Data-200-L14-Problem-Set.pdf" target="_blank">Problem Set Questions</a>
+</div>
+
+:::

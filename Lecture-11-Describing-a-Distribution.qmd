@@ -1,43 +1,39 @@
 # Describing a Distribution
 
-We have already done some Exploratory Data Analysis (EDA) in order to become familiar with the data. We asked ourselves what the logical and physical structure were, as well as if there were any "issues" with the data concerning missing values. We also started to prepare the data for future analysis by converting some columns to factors and occasionally creating new factor columns using the *cut()* function on a column composed of quantitative data. We finished off our Goal 1 of EDA by looking at a summary of the dataset and visualizing it in order to get a better idea of what the data we were working with looks like. 
+We have already done some Exploratory Data Analysis (EDA) in order to become familiar with the data. We asked ourselves what the logical and physical structure were, as well as if there were any "issues" with the data concerning missing values. We also started to prepare the data for future analysis by converting some columns to factors and occasionally creating new factor columns using the *cut()* function on a column composed of quantitative data. We finished off our Goal 1 of EDA by looking at a summary of the dataset and visualizing it in order to get a better idea of what the data we were working with looks like.
 
 Now that we are familiar with the dataset and know what it looks like, we can move on to describing the data. To describe the data, we can use **descriptive statistics**. The three of the big ways we will use to describe a dataset are the center, the spread, and the shape of the dataset. All of these will help us understand the data at a deeper level.
 
 ::: learning-goals
-
-- Identify and explain key features used to describe a distribution: center, spread, and shape.  
-- Distinguish between symmetric, left-skewed, and right-skewed distributions using visual and numerical cues.  
-- Calculate and interpret quartiles, percentiles, and the interquartile range (IQR).  
-- Compute and interpret measures of spread such as range, variance, and standard deviation.  
-- Describe how skew affects the relationship between the mean and median.  
-- Summarize and communicate the overall distribution of a dataset using numerical summaries and visual displays.  
+-   Identify and explain key features used to describe a distribution: center, spread, and shape.\
+-   Distinguish between symmetric, left-skewed, and right-skewed distributions using visual and numerical cues.\
+-   Calculate and interpret quartiles, percentiles, and the interquartile range (IQR).\
+-   Compute and interpret measures of spread such as range, variance, and standard deviation.\
+-   Describe how skew affects the relationship between the mean and median.\
+-   Summarize and communicate the overall distribution of a dataset using numerical summaries and visual displays.\
 :::
 
-::: {.callout-tip}
+::: callout-tip
 ## Supplemental Material
-<a href="Reading-Guide/L11-Reading-Guide.pdf" download>
-📄 Download the lecture's Reading Guide
-</a>
+
+<a href="Reading-Guide/L11-Reading-Guide.pdf" download> 📄 Download the lecture's Reading Guide </a>
 :::
 
 ## Center Statistics
 
 ### Measures of Central Tendency
 
-Describing the center of a dataset can help give us insight into what the data looks like, but we do lose some meaning when we reduce all of the data values down to a single representative value. Because we lose some meaning, multiple "competing" definitions of the center have emerged. These different definitions will allow us to identify patterns in the data that a single one by itself will not be able to tell us. We already know that there are multiple different ways in which we can describe the center of a dataset. We can do this with the **mean**, which is the average, the **median**, which is the middle of a sorted list, and the **mode**, which is where the highest occurring frequency happens. 
+Describing the center of a dataset can help give us insight into what the data looks like, but we do lose some meaning when we reduce all of the data values down to a single representative value. Because we lose some meaning, multiple "competing" definitions of the center have emerged. These different definitions will allow us to identify patterns in the data that a single one by itself will not be able to tell us. We already know that there are multiple different ways in which we can describe the center of a dataset. We can do this with the **mean**, which is the average, the **median**, which is the middle of a sorted list, and the **mode**, which is where the highest occurring frequency happens.
 
-The central tendency can give us insight into the shape of the distribution. In order for a distribution to be symmetric, that is the "left-hand" side and the "right-hand" side look like mirror images, the mean must equal the median. This is a necessary condition, but not necessarily a sufficient condition. If the mean and median are equal then do we have a symmetric distribution? We will investigate this condition later after we look into the shape and spread of the distribution a little bit more. 
+The central tendency can give us insight into the shape of the distribution. In order for a distribution to be symmetric, that is the "left-hand" side and the "right-hand" side look like mirror images, the mean must equal the median. This is a necessary condition, but not necessarily a sufficient condition. If the mean and median are equal then do we have a symmetric distribution? We will investigate this condition later after we look into the shape and spread of the distribution a little bit more.
 
 ![](images/L11-skewed-distributions.png){fig-align="center"}
 
-
 ### Quartile Analysis
 
-Let's look at a quick example in order to see how the center can tell us about the shape. The first thing that we will probably want to look at is to see if the mean and median are close to each other. Then, another thing we can do is look at the Quartiles of the dataset. We will want to see if the range of the $2^{\text{nd}}$ Quartile (2Q) and the $3^{\text{rd}}$ Quartile (3Q) are comparable as well as if the range of the $1^{\text{st}}$ Quartile (1Q) and $4^{\text{th}}$ Quartile (4Q) are comparable. If the range of the $1^{\text{st}}$ Quartile is much larger than the range of the $4^{\text{th}}$ Quartile then it may indicate that the distribution is negatively skewed. Now, remember that the $1^{\text{st}}$ Quartile is the first 25% of the data, the $2^{\text{nd}}$ Quartile is the second 25% of the data, and so on. 
+Let's look at a quick example in order to see how the center can tell us about the shape. The first thing that we will probably want to look at is to see if the mean and median are close to each other. Then, another thing we can do is look at the Quartiles of the dataset. We will want to see if the range of the $2^{\text{nd}}$ Quartile (2Q) and the $3^{\text{rd}}$ Quartile (3Q) are comparable as well as if the range of the $1^{\text{st}}$ Quartile (1Q) and $4^{\text{th}}$ Quartile (4Q) are comparable. If the range of the $1^{\text{st}}$ Quartile is much larger than the range of the $4^{\text{th}}$ Quartile then it may indicate that the distribution is negatively skewed. Now, remember that the $1^{\text{st}}$ Quartile is the first 25% of the data, the $2^{\text{nd}}$ Quartile is the second 25% of the data, and so on.
 
 ![](images/L11-skewed-quartiles.png){fig-align="center"}
-
 
 ```{r}
 summary(iris$Sepal.Length)
@@ -45,7 +41,7 @@ summary(iris$Sepal.Length)
 
 In the output above, we can see that the mean and median are comparable to each other, which indicates we might have a symmetric distribution. Looking at the range of the $2^{\text{nd}}$ and $3^{\text{rd}}$ Quartiles we can see the range of the $3^{\text{rd}}$ Quartile ($6.4-5.8=0.6$) is slightly smaller than the range of the $2^{\text{nd}}$ Quartile ($5.8-5.1=0.7$). Additionally, looking at the range of the $1^{\text{st}}$ Quartile ($0.8$) and $4^{\text{th}}$ Quartile ($1.5$) we can see that we have a wider Q4 then we have with Q1. This might indicate a positive skew since the larger range of Q4 might suggest we have outliers above the mean.
 
-Looking at another example, our first impression may be that the data is slightly negatively skewed due to outliers below the mean. This is because while the mean and median are similar, the range of Q1 is larger than the range of Q4. 
+Looking at another example, our first impression may be that the data is slightly negatively skewed due to outliers below the mean. This is because while the mean and median are similar, the range of Q1 is larger than the range of Q4.
 
 ```{r}
 summary(cars$speed)
@@ -53,10 +49,9 @@ summary(cars$speed)
 
 We should note that this method is only to give us an initial impression of the skew of the data and is not meant to be a definitive statement. We will see additional techniques later that we can employ to get a more definitive answer.
 
-
 ### Trimmed Mean
 
-Another technique we can use to measure the central tendency is to use the trimmed mean. It is important to remember that the mean is affected by outliers, meaning extreme values on either side may cause the mean to be "pulled" one way or another. The idea behind the trimmed is to remove a percentage of the top and bottom values and then calculate the mean. This allows us to determine the average of the majority of the values, so the extreme outlier will not have any influence. This method of finding the mean is used in many Olympic competitions, most notably in Figure Skating. The highest and lowest scores are discarded so a single judge could not "tank" the score of an opposing country's competitor. 
+Another technique we can use to measure the central tendency is to use the trimmed mean. It is important to remember that the mean is affected by outliers, meaning extreme values on either side may cause the mean to be "pulled" one way or another. The idea behind the trimmed is to remove a percentage of the top and bottom values and then calculate the mean. This allows us to determine the average of the majority of the values, so the extreme outlier will not have any influence. This method of finding the mean is used in many Olympic competitions, most notably in Figure Skating. The highest and lowest scores are discarded so a single judge could not "tank" the score of an opposing country's competitor.
 
 After carrying out a trimmed mean, the shift in the mean will highlight the effect and impact of extreme values. If there is an increase with the trimmed mean then it indicates we have extreme values on the left-side. If there is a decrease with the trimmed mean then we have outliers on the right-side. And if there is only a slight change then there is only a minimal impact from extreme values.
 
@@ -81,10 +76,9 @@ mean(c(iris$Sepal.Length,-100))
 mean(c(iris$Sepal.Length,-100), trim=.1)
 ```
 
-
 ### Weighted Mean
 
-Another important way to calculate the mean is using a weighted average. The idea behind this calculation is to assign a weight to each value and then calculate the mean. This is commonly done with quantitative discrete data. You have used the weighted mean before to calculate your grade grades and your GPA. The weighted mean can be described with the following formula: $$ \frac{\sum_{i=1}^n w_i\cdot x_i}{\sum_{i=1}^n w_i} $$ where $x_i$ is the value and $w_i$ is the weight associated with it. 
+Another important way to calculate the mean is using a weighted average. The idea behind this calculation is to assign a weight to each value and then calculate the mean. This is commonly done with quantitative discrete data. You have used the weighted mean before to calculate your grade grades and your GPA. The weighted mean can be described with the following formula: $$ \frac{\sum_{i=1}^n w_i\cdot x_i}{\sum_{i=1}^n w_i} $$ where $x_i$ is the value and $w_i$ is the weight associated with it.
 
 When every value has the same weight then we are calculating the mean. Below is an example of this:
 
@@ -113,7 +107,6 @@ mean(price)
 sold <- c(200,100,5)
 sum(price*sold)/sum(sold)
 ```
-
 
 ### Mode
 
@@ -170,7 +163,6 @@ center_stats(iris$Sepal.Length)
 center_stats(airquality$Ozone)
 ```
 
-
 We also have something similar with our position summary as well to view the quartiles and quantiles:
 
 ```{r}
@@ -193,8 +185,7 @@ In this section, we will look into what the spread of the data can tell and rela
 
 ### Variance
 
-One way to describe the range of a dataset is to calculate the variance of the data. This will tell us how far (on average) data varies from the mean. This should sound extremely similar to our standard deviation, which is expected since the two are related. In fact, the variance ($\sigma^2$) is the standard deviation ($\sigma$) squared. Its exact formula can be seen below:
-$$ \text{variance } = \sigma^2 = \frac{\sum_{i=1}^n (x_1-\bar{x})^2}{n-1}$$
+One way to describe the range of a dataset is to calculate the variance of the data. This will tell us how far (on average) data varies from the mean. This should sound extremely similar to our standard deviation, which is expected since the two are related. In fact, the variance ($\sigma^2$) is the standard deviation ($\sigma$) squared. Its exact formula can be seen below: $$ \text{variance } = \sigma^2 = \frac{\sum_{i=1}^n (x_1-\bar{x})^2}{n-1}$$
 
 It should be noted that the units are squared for variance. This means that if our data is measuring pounds then the variance will be in pounds$^2$. Taking the square root of the variance will give us the standard deviation. The idea of variance and standard deviation allows us to compare two sets of data that have the same units. Below, we can see the calculation in R using a formula and the built-in function and how it relates to standard deviation:
 
@@ -220,7 +211,6 @@ Once we have found the median, we can break our data up into a "lower" half and 
 
 ![](images/L11-Quartiles.png){fig-align="center"}
 
-
 It should probably be mentioned that R sometimes calculates quartiles a little bit differently than you may expect. That is because there are actually nine(!) different ways programmed in R. We can choose different methods using the 'type=' argument in our 'quantile()' function. Below is an example of carrying out the process in R and seeing that we get different results than the picture above depending on the type we select to caclulate the quartiles. Don't worry about the small differences or the details as all of the results will give us similar values, and it will not affect any calculations we do. I just wanted to point this out in case we try finding it by hand or use an online calculator and then compare it to R and notice that it is different.
 
 ```{r}
@@ -231,8 +221,7 @@ quantile(x, c(0,.25,.50,.75,1), type=5)
 quantile(x, c(0,.25,.50,.75,1), type=6)
 ```
 
-
-We can use these quartiles to determine the spread of our data along with if the data is possibly symmetric. Remember that when we do this "Quartile Analysis", we want to check that the Median-Minimum is roughly the same size as the Maximum-Median. Additionally, we want to check whether Q1-Minimum is roughly similar to Maximum-Q3 and if Median-Q1 is roughly similar to Q3-Median. Going through this process, we may see that data on one side of the median is more spread out, which may indicate the data is skewed toward that side. 
+We can use these quartiles to determine the spread of our data along with if the data is possibly symmetric. Remember that when we do this "Quartile Analysis", we want to check that the Median-Minimum is roughly the same size as the Maximum-Median. Additionally, we want to check whether Q1-Minimum is roughly similar to Maximum-Q3 and if Median-Q1 is roughly similar to Q3-Median. Going through this process, we may see that data on one side of the median is more spread out, which may indicate the data is skewed toward that side.
 
 We can go a little bit further and introduce the idea of the Inter-Quartile Range (IQR). This will be calculated as the middle 50% of the data (or Q3-Q1). This is important as it tells us how spread out the middle part of our data is. Typically, it is said that data below $Q1-1.5\cdot IQR$ or above $Q3+1.5\cdot IQR$ are considered outliers.
 
@@ -314,10 +303,9 @@ spread_stats(mtcars$mpg)
     \href{https://youtu.be/6WKsAQJTPTE}{Summarizing the data using the \textit{spread\_stats()} function}
 \end{watch}
 
-
 ## Skew Statistics
 
-So far we have discussed what the center and the spread of the data can tell us about symmetry. Remember that for data to be symmetric the mean has to equal the median. In this section, we will look into how we can measure the shape of the distribution using symmetry, skewness, and the tails of the data. 
+So far we have discussed what the center and the spread of the data can tell us about symmetry. Remember that for data to be symmetric the mean has to equal the median. In this section, we will look into how we can measure the shape of the distribution using symmetry, skewness, and the tails of the data.
 
 ### Skewness
 
@@ -335,9 +323,9 @@ skew(rnorm(500,0,2)) # Have shown this to be symmetric
 skew(mtcars$mpg) # Have shown this to be moderately skewed
 ```
 
-These values should validate the calculations we did earlier relating to center and spread. We still want to go through the process of our "Quartile Analysis" and other steps to verify that we are skewed, as we do not want to just rely on the visualization (though it can help confirm) to determine symmetry/skew. 
+These values should validate the calculations we did earlier relating to center and spread. We still want to go through the process of our "Quartile Analysis" and other steps to verify that we are skewed, as we do not want to just rely on the visualization (though it can help confirm) to determine symmetry/skew.
 
-If we do happen to have extreme values or highly skewed data then we will probably not want to use the mean and standard deviation. This is because these statistics are highly influenced by outliers. Instead, we will want to consider using the Median and IQR to give better measures of the center and spread of the data. 
+If we do happen to have extreme values or highly skewed data then we will probably not want to use the mean and standard deviation. This is because these statistics are highly influenced by outliers. Instead, we will want to consider using the Median and IQR to give better measures of the center and spread of the data.
 
 \begin{watch}{}{}
     \href{https://youtu.be/_VHtL0hgaKA}{Describing the Skew of the Data}
@@ -348,11 +336,10 @@ If we do happen to have extreme values or highly skewed data then we will probab
 Another important thing to look at when it comes to the shape of the distribution is the kurtosis. This tells us information about the tails of our data, specifically if they are thinner or thicker than the tails of a normal distribution. If there are extreme values then data is "pulled" into the tails, resulting in the "thicker tails". If our data has thicker tails then we will call it "leptokurtic". If there is less data in the tails (meaning the tails are "thinner") then there is a minimal impact of extreme values. This will be called "platykurtic". We can visualize what both of these look like (with mesokurtic being normally distributed)
 
 ![](images/L11-kurtosis.png){fig-align="center"}
- 
 
 This idea of looking at the tails is important in allowing us to compare the data with a normal distribution. We know through the 68-95-99.7 rule that if we have a normal distribution then roughly 68% of the data is within 1 standard deviation, 95% of the data is within 2 standard deviations, and 99.7% of the data is within 3 standard deviations. So, if we calculate the proportion of data within 1 standard deviation from the mean and get a value less than 68% then we have the potential for thicker tails (and thus more extreme values), while a value greater than 68% indicates that we have thinner tails (and thus fewer extreme values).
 
-We can also quantify the kurtosis with the formula below. If the kurtosis is positive then we have more values in the tails (leptokurtic) and if the kurtosis is negative then we have fewer values in the tails than a normal distribution (platykurtic). 
+We can also quantify the kurtosis with the formula below. If the kurtosis is positive then we have more values in the tails (leptokurtic) and if the kurtosis is negative then we have fewer values in the tails than a normal distribution (platykurtic).
 
 $$ \text{kurtosis} = \frac{1}{n} \sum_{i=1}^n z_i^4 - 3 $$
 
@@ -361,7 +348,6 @@ We can then use the `kurt()` function to calculate the kurtosis for the 'mpg' ve
 ```{r}
 kurt(mtcars$mpg)
 ```
-
 
 There is a function which will provide a summary of the skew and kurtosis calculations into a single function to use. For instance, we can see in the dataset 'mlb_teams' that the Wins column is moderately skewed left and that it has thicker tails than the normal distribution.
 
@@ -385,7 +371,6 @@ The Mode of a distribution is directly related to the shape. If we have symmetri
 
 ![](images/L11-Modals.png){fig-align="center"}
 
-
 ### Assessing the Data
 
 Now that we can look at the center, the spread, and the skew of the data we can start talking about how to assess the data. We might ask ourselves what relationships and patterns can be seen and what transformations might help us gain a deeper understanding of the data.
@@ -404,4 +389,23 @@ lines(xfit, yfit, col="red", lwd=2)
     \href{https://youtu.be/R20OrKJMHnc}{Putting it all together}
 \end{watch}
 
+::: {.chapter-resources}
 
+<div class="chapter-resources-header">
+  <a href="https://youtu.be/7IwXPnWj0ks" target="_blank">Lecture Video</a>
+</div>
+
+<div class="chapter-resources-grid">
+  <div><a href="Assignments/Data-200-L11-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a></div>
+  <div><a href="https://youtu.be/TLNLRgaU9Q8" target="_blank">In-Class Exercises Video Solutions</a></div>
+</div>
+
+<div class="chapter-resources-footer lab-row">
+  <a href="Assignments/Data-200-L11-Lab.pdf" target="_blank">Lab Problems</a>
+</div>
+
+<div class="chapter-resources-footer problem-set-row">
+  <a href="Assignments/Data-200-L11-Problem-Set.pdf" target="_blank">Problem Set Questions</a>
+</div>
+
+:::

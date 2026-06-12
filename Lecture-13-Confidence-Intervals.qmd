@@ -3,20 +3,17 @@
 When we were showing the Central Limit Theorem through simulations, we were able to generate random samples over and over again to see that the sampling distribution did follow a normal distribution when the sample size was sufficiently large. But, in the "real world" we are not able to generate an infinite number of samples, rather we are given a single sample and told to analyze it and try to figure out what the population mean is. We will want to come up with a way to state how confident we are about our estimation of the population mean.
 
 ::: learning-goals
-
-- Explain what a confidence interval represents and how it relates to sampling variability.
-- Distinguish between confidence intervals constructed using the $z$-distribution and the $t$-distribution.
-- Calculate and interpret confidence intervals for population means when $\sigma$ is known and unknown.
-- Describe how confidence level, sample size, and standard deviation affect the width of a confidence interval.
+-   Explain what a confidence interval represents and how it relates to sampling variability.
+-   Distinguish between confidence intervals constructed using the $z$-distribution and the $t$-distribution.
+-   Calculate and interpret confidence intervals for population means when $\sigma$ is known and unknown.
+-   Describe how confidence level, sample size, and standard deviation affect the width of a confidence interval.
 :::
 
-::: {.callout-tip}
+::: callout-tip
 ## Supplemental Material
-<a href="Reading-Guide/L13-Reading-Guide.pdf" download>
-📄 Download the lecture's Reading Guide
-</a>
-:::
 
+<a href="Reading-Guide/L13-Reading-Guide.pdf" download> 📄 Download the lecture's Reading Guide </a>
+:::
 
 ## Estimating Parameters
 
@@ -31,7 +28,7 @@ We have seen though that our sample mean will not be the same as our population 
 
 ## Central Limit Theorem
 
-In a previous section we saw that the Central Limit Theorem (CLT) says that as the sample size gets sufficiently large, the sampling distribution will begin to follow a normal distribution with the parameters $N(\mu, \frac{\sigma}{\sqrt{n}})$. The issue is when we are given a sample is that we don't know what $\mu$ is, so we have to estimate it using the sample mean. We will also need to account for the variability of our estimate, which can be done using the standard error. 
+In a previous section we saw that the Central Limit Theorem (CLT) says that as the sample size gets sufficiently large, the sampling distribution will begin to follow a normal distribution with the parameters $N(\mu, \frac{\sigma}{\sqrt{n}})$. The issue is when we are given a sample is that we don't know what $\mu$ is, so we have to estimate it using the sample mean. We will also need to account for the variability of our estimate, which can be done using the standard error.
 
 To estimate it and give ourselves a little "buffer room", we will need to create an interval that allows for some variability with our sample. Since the sampling distribution will follow a normal distribution, we can use the $68-95-99,7$ rule to assist us. If we remember correctly, $68\%$ of the data will be within 1 standard deviation, $95\%$ of the data will be within 2 standard deviations, and $99.7\%$ of the data will be within 3 standard deviations. Since we know that $68\%$ of the data is within one standard deviation of the mean, we can essentially infer that the population mean lies within 1 standard deviation of the sample $68\%$ of the time. And since we are discussing the sampling distribution, we know the standard deviation is scaled to $\frac{\sigma}{\sqrt{n}}$, which we will call the standard error (SE).
 
@@ -41,13 +38,11 @@ We can create a confidence interval using this idea. For instance, if we wanted 
 
 $$ \overline{x} \pm \text{SE} = (\overline{x} - \text{SE}, \overline{x} + \text{SE}) $$
 
-For instance, if we had a sample mean of 50 and a standard error of 5, then the 68% Confidence Interval would be $(45,55)$. If we wanted a 95% Confidence Interval then we would need to multiply the standard error by 2, giving us $(40,60)$. It should be mentioned that the standard error relies on both the population standard deviation ($\sigma$) and the sample size ($n$). If one is altered then the standard error will change and will either "widen" the confidence interval or cause it to become more "narrow". 
+For instance, if we had a sample mean of 50 and a standard error of 5, then the 68% Confidence Interval would be $(45,55)$. If we wanted a 95% Confidence Interval then we would need to multiply the standard error by 2, giving us $(40,60)$. It should be mentioned that the standard error relies on both the population standard deviation ($\sigma$) and the sample size ($n$). If one is altered then the standard error will change and will either "widen" the confidence interval or cause it to become more "narrow".
 
 Now we can easily create $68\%$, $95\%$, and $99,7\%$ Confidence Intervals by multiplying the standard error by 1, 2, and 3 respectively. But, what if we want some other level of confidence instead? Well, we could find the $z-$score associated with the particular level of confidence by drawing ourselves a picture. This will allow us to scale the standard error by the correct value. If we wanted to create a $90\%$ Confidence Interval then we need to find the $z-$score where $90\%$ of the data is between it.
 
-
 ![](images/L13-z-score.png){fig-align="center"}
-
 
 To find these values, we can use the $qnorm()$ function which will find the $z-$score which has the inputted value of data to the left of the point. So, if we wanted to find the $z-$score for the $90\%$ confidence interval then we would want to find the value where $95\%$ of the data is to the left of it:
 
@@ -77,7 +72,7 @@ z <- qnorm(.975)
 mean(x) + c(-1,1)*z*se
 ```
 
-In the code above we got a 95\% confidence interval of (7.975, 11.554). If we were to repeat the process, we might get something that looks completely different:
+In the code above we got a 95% confidence interval of (7.975, 11.554). If we were to repeat the process, we might get something that looks completely different:
 
 ```{r}
 x <- rnorm(30, 10, 5)
@@ -85,9 +80,10 @@ se <- 5/sqrt(30)
 z <- qnorm(.975)
 mean(x) + c(-1,1)*z*se
 ```
-If you repeat this process 100 times in total, then 95% of your confidence intervals will contain the true population mean (of 10). Normally though, we don't know the true population mean. Below is another example which we might encounter: 
 
-Suppose you are interested in determining the weekly average price of groceries for a family of 4. You collect a sample of 40 families and determine the average price is \$125 and you know from an earlier study that the population standard deviation is \$55. Construct a 90% CI and a 95% CI. 
+If you repeat this process 100 times in total, then 95% of your confidence intervals will contain the true population mean (of 10). Normally though, we don't know the true population mean. Below is another example which we might encounter:
+
+Suppose you are interested in determining the weekly average price of groceries for a family of 4. You collect a sample of 40 families and determine the average price is \$125 and you know from an earlier study that the population standard deviation is \$55. Construct a 90% CI and a 95% CI.
 
 ```{r}
 xbar <- 125
@@ -99,16 +95,13 @@ z <- qnorm(.975) # z-score for 95% CI
 xbar + c(-1,1)*z*se
 ```
 
-
-This shows us that, while we don't know what the true population mean is, we can be 90% confident that the population mean is somewhere between (\$110.70, \$139.30) and 95% confident it is between (\$107.96, \$142.04). We should note that we do not want to say that the probability is 90\% or 95\%, but rather if we were to repeat the sample 100 times, then 90\% and 95% of the confidence intervals should contain the population mean.
+This shows us that, while we don't know what the true population mean is, we can be 90% confident that the population mean is somewhere between (\$110.70, \$139.30) and 95% confident it is between (\$107.96, \$142.04). We should note that we do not want to say that the probability is 90% or 95%, but rather if we were to repeat the sample 100 times, then 90% and 95% of the confidence intervals should contain the population mean.
 
 ## Creating Confidence Intervals when $\sigma$ is unknown
 
-In the examples above, we were able to assume that we knew the population standard deviation, but often we don't know that. We are usually just given the sample without knowing anything about the population mean or standard deviation, so we have to estimate both of those to infer things about the sample. But, estimating both of these parameters gives us more chances to be wrong. Therefore, we want to give ourselves a little wider confidence interval in order to account for this. 
-Since we have more chances of being wrong, we will want to pull the $z-$score from something that stretches out a little further than a normal distribution. This will allow us to scale the standard error by a slightly larger number to account for the chances of being wrong. To do this, we will use what is called a Student's t-distribution. This looks very much like a normal distribution but has thicker tails. As the sample size increases the distribution becomes more and more like a normal distribution.
+In the examples above, we were able to assume that we knew the population standard deviation, but often we don't know that. We are usually just given the sample without knowing anything about the population mean or standard deviation, so we have to estimate both of those to infer things about the sample. But, estimating both of these parameters gives us more chances to be wrong. Therefore, we want to give ourselves a little wider confidence interval in order to account for this. Since we have more chances of being wrong, we will want to pull the $z-$score from something that stretches out a little further than a normal distribution. This will allow us to scale the standard error by a slightly larger number to account for the chances of being wrong. To do this, we will use what is called a Student's t-distribution. This looks very much like a normal distribution but has thicker tails. As the sample size increases the distribution becomes more and more like a normal distribution.
 
 ![](images/L13-t-distribution.png){fig-align="center"}
-
 
 The degree of freedom is the sample size minus 1 ($df=n-1$). In the picture above we can see that when the degrees of freedom are small then we have thicker tails than a normal distribution, this will cause the quantiles for a confidence interval to be larger than a normal distribution. We can see this in action if we use the $qt()$ function instead of the $qnorm()$ function. Notice how the amount we will scale the standard error by gets closer to the normal distribution as the sample size (and degrees of freedom) gets large.
 
@@ -163,7 +156,7 @@ t.test(x, conf.level = .95)$conf.int
 
 ## Confidence Intervals for Categorical Data
 
-So far we have seen how we can make confidence intervals for quantitative data, but what if we have qualitative data instead? Well, it turns out that the Central Limit Theorem applies to that as well. If we have categorical data that can be written as Success and Failure then the proportion of successes will be $\hat{p}=\frac{\# \text{ of successes}}{\# \text{ of total values}}$. The standard error cannot be found by taking the standard deviation, rather it will be $\text{SE}=\sqrt{\frac{p(1-p)}{n}}$. This will work as long as our observations are independent of each other and as long as $np\geq 5$ and $n(1-p)\geq 5$. When the population proportion ($p$) is not known then we will use $\hat{p}$ to estimate it. 
+So far we have seen how we can make confidence intervals for quantitative data, but what if we have qualitative data instead? Well, it turns out that the Central Limit Theorem applies to that as well. If we have categorical data that can be written as Success and Failure then the proportion of successes will be $\hat{p}=\frac{\# \text{ of successes}}{\# \text{ of total values}}$. The standard error cannot be found by taking the standard deviation, rather it will be $\text{SE}=\sqrt{\frac{p(1-p)}{n}}$. This will work as long as our observations are independent of each other and as long as $np\geq 5$ and $n(1-p)\geq 5$. When the population proportion ($p$) is not known then we will use $\hat{p}$ to estimate it.
 
 The general form of the confidence interval will use the normal distribution to scale the standard error and it will be of the following form:
 
@@ -177,3 +170,24 @@ phat <- 66/length(absenteeism$sex)
 se <- sqrt(phat*(1-phat)/length(absenteeism$sex))
 phat + c(-1,1)*qnorm(.975)*se
 ```
+
+::: {.chapter-resources}
+
+<div class="chapter-resources-header">
+  <a href="https://youtu.be/HAcgRDGAN-g" target="_blank">Lecture Video</a>
+</div>
+
+<div class="chapter-resources-grid">
+  <div><a href="Assignments/Data-200-L13-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a></div>
+  <div><a href="https://youtu.be/4ODwvdAL2go" target="_blank">In-Class Exercises Video Solutions</a></div>
+</div>
+
+<div class="chapter-resources-footer lab-row">
+  <a href="Assignments/Data-200-L13-Lab.pdf" target="_blank">Lab Problems</a>
+</div>
+
+<div class="chapter-resources-footer problem-set-row">
+  <a href="Assignments/Data-200-L13-Problem-Set.pdf" target="_blank">Problem Set Questions</a>
+</div>
+
+:::

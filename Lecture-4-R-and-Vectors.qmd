@@ -3,23 +3,21 @@
 As we continue learning R, it’s important to understand how data is structured and stored. In R, everything is a vector, this includes not only sequences of numbers but also text and logical values. This design choice makes R a powerful tool for performing operations across entire datasets at once. In this section, we will explore how to create, manipulate, and understand vectors, as well as how to work with factors, which are special types of vectors used to represent categorical data. Understanding these structures will be foundational to all future data analysis you perform in R.
 
 ::: learning-goals
-
-- Distinguish between the basic data types in R, including doubles, characters, and logical values.
-- Create, manipulate, and coerce vectors while understanding how R recycles shorter vectors.
-- Use built-in statistical functions and know how to the basics of index selection.
-- Define and work with factors and ordered factors to represent categorical and ordinal data, including setting and renaming levels.
+-   Distinguish between the basic data types in R, including doubles, characters, and logical values.
+-   Create, manipulate, and coerce vectors while understanding how R recycles shorter vectors.
+-   Use built-in statistical functions and know how to the basics of index selection.
+-   Define and work with factors and ordered factors to represent categorical and ordinal data, including setting and renaming levels.
 :::
 
-::: {.callout-tip}
+::: callout-tip
 ## Supplemental Material
-<a href="Reading-Guide/L4-Reading-Guide.pdf" download>
-📄 Download the lecture's Reading Guide
-</a>
+
+<a href="Reading-Guide/L4-Reading-Guide.pdf" download> 📄 Download the lecture's Reading Guide </a>
 :::
 
 ## Data Types in R
 
-So far we have seen how we can create variables in R. It is important to note that all objects in R have a type (the big three are **Doubles**, **Characters**, and **Logical**). A benefit to R is that we do not have to declare each variable and type, as it can figure all of that information out without us needing to do anything. Doubles consist of our numbers, which can be integers or decimal values. This is not the same as *floating point* values in other languages though. We can coerce the value to be an integer by placing an "L" after it (but there is no real benefit right now for integers over doubles so don't worry about it). Characters will be anything in quotes, whether it is a single letter, a word, a paragraph, a symbol, or a number. R will treat all characters the same. The last type we should discuss is the Logical type, which consists of TRUE and FALSE (yes it has to be in all caps) or the shortened T and F. If we are ever unsure of the type we are dealing with, we can use the *typeof()* function and R will tell us. 
+So far we have seen how we can create variables in R. It is important to note that all objects in R have a type (the big three are **Doubles**, **Characters**, and **Logical**). A benefit to R is that we do not have to declare each variable and type, as it can figure all of that information out without us needing to do anything. Doubles consist of our numbers, which can be integers or decimal values. This is not the same as *floating point* values in other languages though. We can coerce the value to be an integer by placing an "L" after it (but there is no real benefit right now for integers over doubles so don't worry about it). Characters will be anything in quotes, whether it is a single letter, a word, a paragraph, a symbol, or a number. R will treat all characters the same. The last type we should discuss is the Logical type, which consists of TRUE and FALSE (yes it has to be in all caps) or the shortened T and F. If we are ever unsure of the type we are dealing with, we can use the *typeof()* function and R will tell us.
 
 ```{r}
 typeof(17.2)
@@ -39,18 +37,19 @@ It is critical to know what type our value is as it will determine what function
 #| eval: FALSE
 "a" + "b"
 ```
-<span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error in &quot;a&quot; + &quot;b&quot; : non-numeric argument to binary operator</span>
+
+[Error in "a" + "b" : non-numeric argument to binary operator]{style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;"}
 
 ```{r}
 3 + TRUE # TRUE is equal to 1 and FALSE is equal to 0
 ```
 
-
 ```{r}
 #| eval: FALSE
 "abc" + 2
 ```
-<span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error in &quot;abc&quot; + 2 : non-numeric argument to binary operator</span>
+
+[Error in "abc" + 2 : non-numeric argument to binary operator]{style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;"}
 
 One thing that makes R different then some other languages is that R is "vectorized" (meaning everything is a vector). This characteristic will allow us to quickly work with entire sets of data and avoids the need for iterations or loops (but the *for* and *while* loop still exist). So remember, **Everything is a Vector!!!**
 
@@ -162,7 +161,7 @@ z
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-Emmit writes the amount of money he spends on coffee each day for a whole week. Help him put the values in a vector and then determine the prices if they increase by 25\%. 
+Emmit writes the amount of money he spends on coffee each day for a whole week. Help him put the values in a vector and then determine the prices if they increase by 25%.
 
 $\$4.25,\ \$0,\ \$3.75,\ \$4.00,\ \$5.00,\ \$2.75,\ \$3.00$
 
@@ -177,7 +176,7 @@ $\$4.25,\ \$0,\ \$3.75,\ \$4.00,\ \$5.00,\ \$2.75,\ \$3.00$
 
 ## Logical Operators
 
-One of the most important things we do in this class (and we will repeatedly do it throughout the semester) is using logical operators on vectors. If we compare 2 vectors using logical operators, the result will be a logical vector. There are a few big ones that we will need to know, and they are pretty well known. For instance, $<$ means less than, $>$ means greater than, $<=$ means less than or equal, $>=$ means greater than or equal, $==$ means equal (notice it is two equal signs), and $!=$ means not equal. 
+One of the most important things we do in this class (and we will repeatedly do it throughout the semester) is using logical operators on vectors. If we compare 2 vectors using logical operators, the result will be a logical vector. There are a few big ones that we will need to know, and they are pretty well known. For instance, $<$ means less than, $>$ means greater than, $<=$ means less than or equal, $>=$ means greater than or equal, $==$ means equal (notice it is two equal signs), and $!=$ means not equal.
 
 ```{r}
 x <- c(0, 4, 2, 5, 3, 6)
@@ -187,7 +186,6 @@ x == 3 # Checks each element to see if it is equal to 3
 
 x > 4 # Checks each element to see if it is greater than 4
 ```
-
 
 \begin{watch}{}{}
     \href{https://youtu.be/IKVtf3-yO3k}{Logical Operators in R}
@@ -262,11 +260,11 @@ Emmit recorded the number of minutes he spent reading each day over the last wee
 
 reading time: $20,\ 35,\ 28,\ 40,\ 30,\ 35,\ 45$
 
-- What is the total time Emmit spent reading?
-- What was his average (mean) reading time?
-- What was the median amount of time he read?
-- What is the standard deviation of his reading time?
-- What are the minimum and maximum reading times? What is the range difference?
+-   What is the total time Emmit spent reading?
+-   What was his average (mean) reading time?
+-   What was the median amount of time he read?
+-   What is the standard deviation of his reading time?
+-   What are the minimum and maximum reading times? What is the range difference?
 
 <details>
 
@@ -291,7 +289,6 @@ x[length(x)]
 x[c(1,3,6)]
 ```
 
-
 \begin{watch}{}{}
     \href{https://youtu.be/isTXaMdsyfI}{Indexing in R}
 \end{watch}
@@ -301,10 +298,10 @@ Emmit is tracking the number of hours he sleeps each night for a week:
 
 sleep time: $6.5,\ 7,\ 8,\ 6,\ 7.5,\ 9,\ 6.5$
 
-- How many hours did Emmit sleep on the second night?
-- How many hours did he sleep on the last night of the week?
-- Use indexing to display only the second, fourth, and sixth nights.
-- Emmit wants to find the average of the sleep hours from the 2nd, 3rd, and 7th nights.
+-   How many hours did Emmit sleep on the second night?
+-   How many hours did he sleep on the last night of the week?
+-   Use indexing to display only the second, fourth, and sixth nights.
+-   Emmit wants to find the average of the sleep hours from the 2nd, 3rd, and 7th nights.
 
 <details>
 
@@ -315,10 +312,9 @@ sleep time: $6.5,\ 7,\ 8,\ 6,\ 7.5,\ 9,\ 6.5$
 </details>
 :::
 
-
 ## Creating Factors in R
 
-So far we have seen a couple of different types of data in R, including numeric, logical, and character types. Another type that we will use quite a bit are **factors**. Factors will allow us to represent categorical data that fit in only a finite number of distinct categories. These factors could either be words (like Small, Medium, or Large) or numbers (like a house having 1, 2, or 3 bedrooms). R does some things behind the scenes to make it efficient to store this qualitative data, but the only thing we really need to know is that if we have categorical data then we should probably save it as a factor using the *factor()* function. 
+So far we have seen a couple of different types of data in R, including numeric, logical, and character types. Another type that we will use quite a bit are **factors**. Factors will allow us to represent categorical data that fit in only a finite number of distinct categories. These factors could either be words (like Small, Medium, or Large) or numbers (like a house having 1, 2, or 3 bedrooms). R does some things behind the scenes to make it efficient to store this qualitative data, but the only thing we really need to know is that if we have categorical data then we should probably save it as a factor using the *factor()* function.
 
 Let's create a vector containing a random sample of "Males" and "Females" using the *sample()* function. First, we should realize that this is categorical data, so we will want to convert it to a factor. We can then use the *factor()* function to convert it to categories. Notice how the levels are in alphabetical order.
 
@@ -330,7 +326,7 @@ fx <- factor(x)
 fx
 ```
 
-We can also notice how the vector class and the element type are also altered. We don't have to understand the "behind-the-scenes" happenings of why the element type is now an integer. But we should emphasize though that the new vector is no longer a character vector, rather it is a factor since it is categorical data. 
+We can also notice how the vector class and the element type are also altered. We don't have to understand the "behind-the-scenes" happenings of why the element type is now an integer. But we should emphasize though that the new vector is no longer a character vector, rather it is a factor since it is categorical data.
 
 ```{r}
 class(x)
@@ -339,12 +335,14 @@ class(fx)
 typeof(x)
 typeof(fx)
 ```
+
 \begin{watch}{}{}
     \href{https://youtu.be/UoPKvEKD9K4}{Creating Factors in R}
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
 Emmit is organizing a survey about his favorite fruit stand, and asks his friends what fruit they prefer: "Apple", "Banana", or "Cherry". The options are stored in a character vector. Create this character vector in R and then convert it into a factor.
+
 <details>
 
 <summary>Click to see the solution</summary>
@@ -356,14 +354,15 @@ Emmit is organizing a survey about his favorite fruit stand, and asks his friend
 
 ## Dealing with Ordinal Data
 
-If we remember from our previous lectures, categorical data can fall into two types: Nominal and Ordinal. Right now our *factor()* function is returning the values in a nominal form (meaning the factors have no specific ordering) and thus we cannot compare values. 
+If we remember from our previous lectures, categorical data can fall into two types: Nominal and Ordinal. Right now our *factor()* function is returning the values in a nominal form (meaning the factors have no specific ordering) and thus we cannot compare values.
 
 ```{r}
 #| warning: false
 #| eval: false
 fx[1] > fx[2]
 ```
-<span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Warning in Ops.factor(fx[1], fx[2]) : &#39;>&#39; not meaningful for factors</span>
+
+[Warning in Ops.factor(fx\[1\], fx\[2\]) : '\>' not meaningful for factors]{style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;"}
 
 ```{r}
 #| warning: false
@@ -371,8 +370,7 @@ fx[1] > fx[2]
 fx[1] > fx[2]
 ```
 
-
-If we want to create ordinal data in R then all we have to do is specify the 'ordered' argument to be TRUE. An example of this can be seen below, but note that the levels are in alphabetical order by default. 
+If we want to create ordinal data in R then all we have to do is specify the 'ordered' argument to be TRUE. An example of this can be seen below, but note that the levels are in alphabetical order by default.
 
 ```{r}
 y <- sample(c("Small", "Medium", "Large"), 7, replace=TRUE)
@@ -391,7 +389,6 @@ fy
 class(fy)
 fy[1] > fy[2]
 ```
-
 
 Additionally, we can always see the possible categories an element can have in the factor by using the *levels()* function. Finally, if we wish to change the levels then we can do so by assigning a new character vector to the current levels of factor. Be careful with this, as we do not want to pass in the order of the vector elements, rather we want to pass in the order of the levels.
 
@@ -415,7 +412,6 @@ Emmit is helping organize a welcome event for new students. As part of the plann
 classification <- c("Freshman", "Sophomore", "Junior", "Senior")
 ```
 
-
 <details>
 
 <summary>Click to see the solution</summary>
@@ -427,35 +423,51 @@ classification <- c("Freshman", "Sophomore", "Junior", "Senior")
 
 ## RStudio
 
-So far, we have been using the R Console (RGui) to run code. While this is sufficient to run all of our R code, we are going to introduce a program called RStudio. This is the most commonly used IDE (Integrated Development Environment) for R which will allow us to be more organized and better for trouble-shooting our code. It is maintained by Posit and can be downloaded \href{https://posit.co/download/rstudio-desktop/}{here}. Since you already have R installed, you will only need to download the RStudio Desktop. Once this is done it should look something like this: 
+So far, we have been using the R Console (RGui) to run code. While this is sufficient to run all of our R code, we are going to introduce a program called RStudio. This is the most commonly used IDE (Integrated Development Environment) for R which will allow us to be more organized and better for trouble-shooting our code. It is maintained by Posit and can be downloaded \href{https://posit.co/download/rstudio-desktop/}{here}. Since you already have R installed, you will only need to download the RStudio Desktop. Once this is done it should look something like this:
 
 ![](images/L4-RStudio-Download.png){fig-align="center"}
 
-
 We will run our code in the bottom left panel with the option to save our code in the top left panel using a script or text file (more to come on this in future lectures). In the top right panel we will be able to see the variables saved in our R environment along with a history of our code. In the bottom right panel we will be able to view plots, read documentation, and browse files on our computer.
 
-::: {.practice-it}
-- Create variables in R to do the following:
-  a) Create a variable `age` and assign it your age as a double.  
-  b) Create a variable `student` and assign it a logical value indicating if you are a student (TRUE/FALSE).  
-  c) Create a variable `favorite_food` and assign it your favorite food as a character string.  
-  d) Use the `typeof()` function to check the type of each variable.  
-  e) Combine all three variables into a vector `combined_vec` using `c()` and check its type using `class()`. What do you notice about the elements?
+::: {.chapter-resources}
 
-- Create a numeric vector `scores` with values: 82, 90, 75, 88, 95.  
-  a) Calculate the mean, median, and standard deviation of `scores`.  
-  b) Create a logical vector indicating which scores are above 85.  
-  c) Use this logical vector to subset and display only scores above 85.  
-  d) Multiply all scores by 1.1 to simulate a 10% curve and display the new scores.
+<div class="chapter-resources-header">
+  <a href="https://youtu.be/XAFqk2UY_CA" target="_blank">Lecture Video</a>
+</div>
 
-- Create a character vector `colors` with values `"red"`, `"blue"`, `"green"`, `"yellow"`.  
-  a) Create a logical vector `likes_color` of length 4, with TRUE for `"blue"` and `"green"` and FALSE otherwise.  
-  b) Use logical indexing to return only the colors you like.  
-  c) Try combining `colors` and `likes_color` into one vector. What happens to the types?
+<div class="chapter-resources-grid">
+  <div><a href="Assignments/Data-200-L4-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a></div>
+  <div><a href="https://youtu.be/Y44S3Y__ZAE" target="_blank">In-Class Exercises Video Solutions</a></div>
+</div>
 
-- Create a vector `temps` with the values 72, 75, 78, 80, 77, 74.  
-  a) Access the first, third, and last elements using indexing.  
-  b) Use a logical condition to find and display all temps greater than or equal to 77.  
-  c) Replace the second element with 76 and display the updated vector.
+<div class="chapter-resources-footer lab-row">
+  <a href="Assignments/Data-200-L4-Lab.pdf" target="_blank">Lab Problems</a>
+</div>
+
+<div class="chapter-resources-footer problem-set-row">
+  <a href="Assignments/Data-200-L4-Problem-Set.pdf" target="_blank">Problem Set Questions</a>
+</div>
+
 :::
 
+<!-- ::: practice-it -->
+<!-- -   Create variables in R to do the following: -->
+<!--     a)  Create a variable `age` and assign it your age as a double.\ -->
+<!--     b)  Create a variable `student` and assign it a logical value indicating if you are a student (TRUE/FALSE).\ -->
+<!--     c)  Create a variable `favorite_food` and assign it your favorite food as a character string.\ -->
+<!--     d)  Use the `typeof()` function to check the type of each variable.\ -->
+<!--     e)  Combine all three variables into a vector `combined_vec` using `c()` and check its type using `class()`. What do you notice about the elements? -->
+<!-- -   Create a numeric vector `scores` with values: 82, 90, 75, 88, 95. -->
+<!--     a)  Calculate the mean, median, and standard deviation of `scores`.\ -->
+<!--     b)  Create a logical vector indicating which scores are above 85.\ -->
+<!--     c)  Use this logical vector to subset and display only scores above 85.\ -->
+<!--     d)  Multiply all scores by 1.1 to simulate a 10% curve and display the new scores. -->
+<!-- -   Create a character vector `colors` with values `"red"`, `"blue"`, `"green"`, `"yellow"`. -->
+<!--     a)  Create a logical vector `likes_color` of length 4, with TRUE for `"blue"` and `"green"` and FALSE otherwise.\ -->
+<!--     b)  Use logical indexing to return only the colors you like.\ -->
+<!--     c)  Try combining `colors` and `likes_color` into one vector. What happens to the types? -->
+<!-- -   Create a vector `temps` with the values 72, 75, 78, 80, 77, 74. -->
+<!--     a)  Access the first, third, and last elements using indexing.\ -->
+<!--     b)  Use a logical condition to find and display all temps greater than or equal to 77.\ -->
+<!--     c)  Replace the second element with 76 and display the updated vector. -->
+<!-- ::: -->

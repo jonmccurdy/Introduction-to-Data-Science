@@ -3,19 +3,17 @@
 The Data Science Life-cycle consists of procuring the data, tidying the data to make it workable, and then repeatedly transforming, visualizing, and modeling the data until our results are finalized to how we would like them. After we are happy with the results, we then have to communicate the information to our respective audience. For this class, we will focus on transforming the data, visualizing the data, and communicating the data. Future courses will emphasize "tidying" large datasets and building models to better describe data.
 
 ::: learning-goals
-
-- Understand the role of Exploratory Data Analysis (EDA) in the data science life cycle and identify when and why it is necessary.
-- Investigate dataset documentation and structure using functions like help() and str() to determine what the data is and how it is organized.
-- Detect and handle special values (e.g., NA, NaN, Inf) and assess data conditions using logical checks and summary functions.
-- Prepare data by modifying variable types, filtering missing values, or creating new variables through transformation and recoding.
-- Generate initial summaries using the summary() function and visualize quantitative and categorical variables to gain insight into distributions and patterns in the data.
+-   Understand the role of Exploratory Data Analysis (EDA) in the data science life cycle and identify when and why it is necessary.
+-   Investigate dataset documentation and structure using functions like help() and str() to determine what the data is and how it is organized.
+-   Detect and handle special values (e.g., NA, NaN, Inf) and assess data conditions using logical checks and summary functions.
+-   Prepare data by modifying variable types, filtering missing values, or creating new variables through transformation and recoding.
+-   Generate initial summaries using the summary() function and visualize quantitative and categorical variables to gain insight into distributions and patterns in the data.
 :::
 
-::: {.callout-tip}
+::: callout-tip
 ## Supplemental Material
-<a href="Reading-Guide/L8-Reading-Guide.pdf" download>
-📄 Download the lecture's Reading Guide
-</a>
+
+<a href="Reading-Guide/L8-Reading-Guide.pdf" download> 📄 Download the lecture's Reading Guide </a>
 :::
 
 ## The Basics of EDA
@@ -33,7 +31,6 @@ Whenever we start working with a new dataset for the first time, we will want to
 ## Step 1: What is the Data?
 
 We can attempt to answer Step One: What is the Data, by looking at the logical structure (metadata) of the data. Normally datasets come with documentation that tells us how the data was captured, what the attributes are that are being measured, and the data types and units present in the dataset. This will be helpful to look at as a first glance of the dataset to understand what we are working with. There are a few datasets that we will regularly use in R, one is the "datasets" library (built into R) and the other in the "openintro" library. To access a library for the first time we need to install the package using the *install.packages()* function. We will only need to do this once. After we have the package installed, we will need to use the *library()* function every time we start a new session (or RMarkdown file) to access the functions/datasets inside the package. To learn more about the packages we can use the *help()* function.
-
 
 ```{r}
 #| eval: false
@@ -57,7 +54,7 @@ library(openintro) # Loading library into environment- do every session
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-Emmit is taking an Introductory Data Science course and has learned about a package created specifically for students in his course. Help Emmit install, load, and view the documentation for the "MSMU" package. 
+Emmit is taking an Introductory Data Science course and has learned about a package created specifically for students in his course. Help Emmit install, load, and view the documentation for the "MSMU" package.
 
 <details>
 
@@ -140,7 +137,7 @@ which(is.na(head(airquality$Ozone, 10)))
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-Looking at the "income_data" dataset in the "MSMU" library, help Emmit determine if there are any missing values present and where they occur. 
+Looking at the "income_data" dataset in the "MSMU" library, help Emmit determine if there are any missing values present and where they occur.
 
 <details>
 
@@ -189,7 +186,7 @@ head(airquality[complete.cases(airquality),])
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-Emmit thinks that there are might be some unusual values present in the "income_data" dataset. Help him determine which values are unusual. Also help him calculate the mean number of years until retirement. 
+Emmit thinks that there are might be some unusual values present in the "income_data" dataset. Help him determine which values are unusual. Also help him calculate the mean number of years until retirement.
 
 <details>
 
@@ -209,9 +206,9 @@ airquality$Ozone[airquality$Ozone == 168] <- NA
 sort(unique(airquality$Ozone), na.last = TRUE)
 ```
 
-We will very rarely make changes to missing values in this course. Instead, we will most likely just filter them out from our calculations using the argument *na.rm=*TRUE. In Data 210 we will learn different options of how to replace them. 
+We will very rarely make changes to missing values in this course. Instead, we will most likely just filter them out from our calculations using the argument *na.rm=*TRUE. In Data 210 we will learn different options of how to replace them.
 
-If we want to convert a variable to a different type then we can using the different data type's function in R. Most of these will be of the form *as.type()* where "type" is replaced by the data type we are aiming for. So, if we want to convert a vector to numeric then we would use *as.numeric()*. If we wanted a character or logical vector instead we would say *as.character()* or *as.logical()*. For converting vector to a factor we could use *factor()*. 
+If we want to convert a variable to a different type then we can using the different data type's function in R. Most of these will be of the form *as.type()* where "type" is replaced by the data type we are aiming for. So, if we want to convert a vector to numeric then we would use *as.numeric()*. If we wanted a character or logical vector instead we would say *as.character()* or *as.logical()*. For converting vector to a factor we could use *factor()*.
 
 To see an example of this we will look at the "beaver2" dataset, specifically at the "activ" variable. Looking at the documentation it seems "activ" is an indicator variable (either 0 or 1) which may be better suited to be a factor instead of an integer. So, we will go through the process of converting the vector into a factor. When we do this though, we do not want to change the column in R, rather we will create a new column to store the changed value. This way if we make a mistake the original data will still be present. So, to re-iterate... **don't overwrite your column!!!** If we do happen to over-write a dataset in R then we can get the original dataset back by using the command *data("name of dataset")* and it will reload the original into your environment.
 
@@ -229,7 +226,7 @@ str(beaver2)
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-You and Emmit noticed that unusual values were present in the "Ages" and the "Salary" column. Change the unusual values to NA so that they are properly coded. 
+You and Emmit noticed that unusual values were present in the "Ages" and the "Salary" column. Change the unusual values to NA so that they are properly coded.
 
 <details>
 
@@ -255,7 +252,7 @@ summary(airquality[,c(1,7)])
 \end{watch}
 
 ::: {.callout-tip title="Try it Out"}
-While the "Age" variable is beneficial, Emmit thinks that having a qualitative variable might be more beneficial. Help him add a new column to the dataframe which classifies an individual as early career (< 35 years old), mid-career (35-55 years old), and late career (> 55 years old). 
+While the "Age" variable is beneficial, Emmit thinks that having a qualitative variable might be more beneficial. Help him add a new column to the dataframe which classifies an individual as early career (\< 35 years old), mid-career (35-55 years old), and late career (\> 55 years old).
 
 <details>
 
@@ -274,11 +271,9 @@ Step Five: Initial Summary is all about displaying a summary of the dataset to g
 summary(airquality)
 ```
 
-
 \begin{watch}{}{}
     \href{https://youtu.be/lDZzsabI2xw}{Using the \textit{summary()} Function}
 \end{watch}
-
 
 ## Step 6: Data Visualization
 
@@ -312,18 +307,38 @@ Help Emmit create a few different visualizations to understand the dataset.
 </details>
 :::
 
-::: {.practice-it}
-- Carry out Exploratory Data Analysis on the "beaver2" dataset:
-  a) Display the structure of the dataset. What are the datatypes present?
-  b) Create a new factor variable activ_f from the activ column with levels "No" and "Yes". Confirm the new variable is a factor.
-  c) Why might converting activ to a factor be useful in data analysis?
-  d) Display a summary of the beaver2 dataset including the new factor variable.
-  e) Suppose you mistakenly overwrite the activ variable. How can you reload the original dataset to recover it?
+::: {.chapter-resources}
 
-- Carry out Exploratory Data Analysis on the "exam_data" dataset in the "MSMU" library:
-  a) Use the help() function to explore the documentation for the built-in exam_data dataset. What does this dataset represent?
-  b) Use str() on the exam_data dataset. How many rows and columns are there? Are there any special values or missing values mentioned?
-  c) Identify how many missing values are in each column
-  e) Display the unique values of the writing.score column sorted in increasing order. What does the range look like including and excluding missing values?
-  f) Explain why it might be important to know how many complete observations exist in this dataset. Use a function to find how many complete rows there are.
+<div class="chapter-resources-header">
+  <a href="https://youtu.be/24pKQPb1gqI" target="_blank">Lecture Video</a>
+</div>
+
+<div class="chapter-resources-grid">
+  <div><a href="Assignments/Data-200-L8-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a></div>
+  <div><a href="https://youtu.be/1KdZiR-arPc" target="_blank">In-Class Exercises Video Solutions</a></div>
+</div>
+
+<div class="chapter-resources-footer lab-row">
+  <a href="Assignments/Data-200-L8-Lab.pdf" target="_blank">Lab Problems</a>
+</div>
+
+<div class="chapter-resources-footer problem-set-row">
+  <a href="Assignments/Data-200-L8-Problem-Set.pdf" target="_blank">Problem Set Questions</a>
+</div>
+
 :::
+
+<!-- ::: practice-it -->
+<!-- -   Carry out Exploratory Data Analysis on the "beaver2" dataset: -->
+<!--     a)  Display the structure of the dataset. What are the datatypes present? -->
+<!--     b)  Create a new factor variable activ_f from the activ column with levels "No" and "Yes". Confirm the new variable is a factor. -->
+<!--     c)  Why might converting activ to a factor be useful in data analysis? -->
+<!--     d)  Display a summary of the beaver2 dataset including the new factor variable. -->
+<!--     e)  Suppose you mistakenly overwrite the activ variable. How can you reload the original dataset to recover it? -->
+<!-- -   Carry out Exploratory Data Analysis on the "exam_data" dataset in the "MSMU" library: -->
+<!--     a)  Use the help() function to explore the documentation for the built-in exam_data dataset. What does this dataset represent? -->
+<!--     b)  Use str() on the exam_data dataset. How many rows and columns are there? Are there any special values or missing values mentioned? -->
+<!--     c)  Identify how many missing values are in each column -->
+<!--     d)  Display the unique values of the writing.score column sorted in increasing order. What does the range look like including and excluding missing values? -->
+<!--     e)  Explain why it might be important to know how many complete observations exist in this dataset. Use a function to find how many complete rows there are. -->
+<!-- ::: -->

@@ -1,20 +1,18 @@
 # R Basics
 
-As Data Scientists, we will not have to calculate everything by hand, but rather we will rely on a statistical programming language called R. This is an open-source language (meaning anyone can contribute to it) designed to clean, analyze, and present data. Before you begin coding in R you should note that syntax rules do apply and it is an interpreted language (meaning you can run it line by line). One of the benefits of R (and why we are learning it) is that it is a popular, powerful, and flexible language used by Data Scientists throughout the industry. 
+As Data Scientists, we will not have to calculate everything by hand, but rather we will rely on a statistical programming language called R. This is an open-source language (meaning anyone can contribute to it) designed to clean, analyze, and present data. Before you begin coding in R you should note that syntax rules do apply and it is an interpreted language (meaning you can run it line by line). One of the benefits of R (and why we are learning it) is that it is a popular, powerful, and flexible language used by Data Scientists throughout the industry.
 
 ::: learning-goals
-
-- Understand what R is and recognize common syntax rules in R.
-- Identify and troubleshoot basic errors in R.
-- Use R as a calculator by applying arithmetic operations, grouping expressions with parentheses, and interpreting results.
-- Create and use variables in R with the assignment operator <- to store and reuse values in calculations.
+-   Understand what R is and recognize common syntax rules in R.
+-   Identify and troubleshoot basic errors in R.
+-   Use R as a calculator by applying arithmetic operations, grouping expressions with parentheses, and interpreting results.
+-   Create and use variables in R with the assignment operator \<- to store and reuse values in calculations.
 :::
 
-::: {.callout-tip}
+::: callout-tip
 ## Supplemental Material
-<a href="Reading-Guide/L3-Reading-Guide.pdf" download>
-📄 Download the lecture's Reading Guide
-</a>
+
+<a href="Reading-Guide/L3-Reading-Guide.pdf" download> 📄 Download the lecture's Reading Guide </a>
 :::
 
 ## The R Language
@@ -33,26 +31,28 @@ Knowing all of these things will not only help us in writing code to analyze the
 
 ## Starting to Code
 
-The R Console will be where we will "submit" our code to be run line by line. Any code you wish to run should be placed after the > symbol. Let's open up R and type in *Hello R* and see what happens. We should get an error telling us that there is an unexpected symbol present. This is because R does not understand what the word *Hello* means. If we want to type in characters/words/strings then we need to do so inside of quotation marks (either "double" quotes or 'single' quotes). Below is an example of what your results may look like. Note that the grey box seen below will represent the R console to display the code/output.
+The R Console will be where we will "submit" our code to be run line by line. Any code you wish to run should be placed after the \> symbol. Let's open up R and type in *Hello R* and see what happens. We should get an error telling us that there is an unexpected symbol present. This is because R does not understand what the word *Hello* means. If we want to type in characters/words/strings then we need to do so inside of quotation marks (either "double" quotes or 'single' quotes). Below is an example of what your results may look like. Note that the grey box seen below will represent the R console to display the code/output.
 
 ```{r}
 #| eval: FALSE
 Hello R
 ```
-<span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error: unexpected symbol in &quot;Hello R&quot;</span>
 
-```{r} 
+[Error: unexpected symbol in "Hello R"]{style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;"}
+
+```{r}
 "Hello R"
 'Hello R'
 ```
 
-Before we continue running code in R, it is important to go over some quick housekeeping notes. To begin, you will place your code after the > symbol. If you see a + on the left-hand side, it means that R is expecting something more to end the previous line (maybe you are missing a quotation mark or parenthesis). Anything you put after # will be considered a comment and nothing on the line after the # symbol will run. It is also important to realize that R is case sensitive so MyData and mydata are different. If you ever would like to access any previous commands then you can have them re-appear by using the up and down arrows on your keyboard. Finally, if you are ever unsure about the exact command syntax then R will help you finish typing the commands (tab completion). 
+Before we continue running code in R, it is important to go over some quick housekeeping notes. To begin, you will place your code after the \> symbol. If you see a + on the left-hand side, it means that R is expecting something more to end the previous line (maybe you are missing a quotation mark or parenthesis). Anything you put after \# will be considered a comment and nothing on the line after the \# symbol will run. It is also important to realize that R is case sensitive so MyData and mydata are different. If you ever would like to access any previous commands then you can have them re-appear by using the up and down arrows on your keyboard. Finally, if you are ever unsure about the exact command syntax then R will help you finish typing the commands (tab completion).
 
 ```{r}
 #| eval: FALSE
 > "I am Dr. McCurdy
 + and I forgot a quotation mark"
 ```
+
 ```{r}
 #| echo: FALSE
 "I am Dr. McCurdy
@@ -65,12 +65,11 @@ and I forgot a quotation mark"
 ```
 
 ::: {.callout-tip title="Try it Out"}
-Emmit is running a smoothie stand on campus and he can't quite figure out how to advertise his business in R. He wants to calculate the price (\$2 + $1 for each size increase) and make a digital sign that displays this message in R: “Welcome to Emmit’s Smoothie Stand!” How can he accomplish this task?
+Emmit is running a smoothie stand on campus and he can't quite figure out how to advertise his business in R. He wants to calculate the price (\$2 + \$1 for each size increase) and make a digital sign that displays this message in R: “Welcome to Emmit’s Smoothie Stand!” How can he accomplish this task?
 
 <details>
 
 <summary>Click to see the solution</summary>
-
 
 {{< video https://www.youtube.com/embed/qg2RO3BSkKM?modestbranding=1&rel=0 >}}
 
@@ -83,7 +82,7 @@ Emmit is running a smoothie stand on campus and he can't quite figure out how to
 
 ## Understanding Error Messages
 
-It is also probably time to discuss some of the things that can go wrong when inputting code. The first that might occur (and the most obvious) is a **syntax error**. This means that you have submitted invalid code (maybe a forgotten comma, an "open" bracket, or misspelled a function name/variable) and R returns an error message. It is important to **read the error message**! About 95% of the time it will be easy to identify your mistake and fix it. We will see some common syntax errors later on in the course as we get to new material. 
+It is also probably time to discuss some of the things that can go wrong when inputting code. The first that might occur (and the most obvious) is a **syntax error**. This means that you have submitted invalid code (maybe a forgotten comma, an "open" bracket, or misspelled a function name/variable) and R returns an error message. It is important to **read the error message**! About 95% of the time it will be easy to identify your mistake and fix it. We will see some common syntax errors later on in the course as we get to new material.
 
 Another error that you might make is a **semantic error**. This occurs when your code is technically correct but it does not do what you expected it to do. For instance, if you are trying to find the mean of a dataset with 10 items and you divide by 11 instead, then R will run it just fine, but you didn't calculate the mean. These semantic errors are hard to find and figure out, but it does help to run your code **line by line** to identify where the unexpected result occurs. **When in doubt explain your code to a rubber duck!** (this means that looking at your code line by line and trying to explain it usually helps you identify the mistake)
 
@@ -130,7 +129,7 @@ To get started with R, we should think of it as a calculator. Any mathematical o
 18 %/% 7 + 18%%7 / 7
 ```
 
-R follows the standard Order of Operations, with the order going P-E-\%-MD-AS. This means that R will always carry out items in the **Parenthesis** before going on to things outside of the parenthesis. Next, R will look for **Exponentiation**, with the operations being carried out from right to left. This means that $2 \wedge 2 \wedge 3$ is not $4 \wedge 3$ but rather $2\wedge8$. Any special function indicated with a \% will be next. Then **Multiplication** and **Division** are evaluated left to right (which is typical) with **Addition** and **Subtraction** being evaluated last (also left to right). It may take some getting used to, so I always recommend putting more parenthesis than is required so that you can have peace of mind that the calculation is what you intended it to be.
+R follows the standard Order of Operations, with the order going P-E-%-MD-AS. This means that R will always carry out items in the **Parenthesis** before going on to things outside of the parenthesis. Next, R will look for **Exponentiation**, with the operations being carried out from right to left. This means that $2 \wedge 2 \wedge 3$ is not $4 \wedge 3$ but rather $2\wedge8$. Any special function indicated with a % will be next. Then **Multiplication** and **Division** are evaluated left to right (which is typical) with **Addition** and **Subtraction** being evaluated last (also left to right). It may take some getting used to, so I always recommend putting more parenthesis than is required so that you can have peace of mind that the calculation is what you intended it to be.
 
 For values that contain a certain number of significant figures (usually more than 7), R will represent the results in scientific notation. This is represented with an $e$, which stands for $\times 10^n$. For instance, $3.21\times 10^{-7}$ is represented in R as $3.21e-7$.
 
@@ -147,9 +146,9 @@ For values that contain a certain number of significant figures (usually more th
 ::: {.callout-tip title="Try it Out"}
 Emmit is competing in a local math scavenger hunt. He finds a list of strange math expressions written on a whiteboard and he decides to use R to carry out the calculations. What should the results be for each expression?
 
-- $\displaystyle 10^2 + \frac{3\times 60}{8 + 3} - 3$
-- $\displaystyle \frac{5^3\times(6-2)}{61-3+4}$
-- $\displaystyle \left(\frac{2^{2+1}}{6^{-2^{2.5}}}\right)^\frac{1}{2}$
+-   $\displaystyle 10^2 + \frac{3\times 60}{8 + 3} - 3$
+-   $\displaystyle \frac{5^3\times(6-2)}{61-3+4}$
+-   $\displaystyle \left(\frac{2^{2+1}}{6^{-2^{2.5}}}\right)^\frac{1}{2}$
 
 <details>
 
@@ -171,13 +170,12 @@ value1
 value1 + value2
 ```
 
-
 ```{r}
 #| eval: FALSE
 value3 # will have a syntax error since value3 does not exist
 ```
-<span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error: object &#39;value3&#39; not found</span>
 
+[Error: object 'value3' not found]{style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;"}
 
 ```{r}
 value3 <- value1*value2
@@ -225,26 +223,46 @@ x
 rm(x)
 ```
 
-
 ```{r}
 #| eval: FALSE
 x
 ```
-<span style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;">Error: object &#39;x&#39; not found</span>
 
+[Error: object 'x' not found]{style="color: red;font-size: 80%; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;"}
 
 If you need to close R then you can either close it by using the command *q()* or by just exiting the window. When you close R it will ask you if you want to "Save workspace image?". What this is asking is if you would like to save all of your current objects in R (all of the variables and functions you have made) and have them available to you in your future R sessions. If you select yes then it will be saved under your current directory under the file .RData. Most things we will be doing in this class will not need to be saved in this manner as it will be easy to recreate everything quickly if we do need something again.
 
-::: {.practice-it}
 
-<br>
+::: {.chapter-resources}
 
-1) What is the purpose of parentheses in R calculations? Give an example where parentheses change the result of an expression.
+<div class="chapter-resources-header">
+  <a href="https://youtu.be/iz72fnh5Pcc" target="_blank">Lecture Video</a>
+</div>
 
-2) Write the following expression in R syntax:  
-$\left(3 + \frac{12\times 2}{2+1}\right)^2 - 5^2$
+<div class="chapter-resources-grid">
+  <div><a href="Assignments/Data-200-L3-Inclass-Assignment.pdf" target="_blank">In-Class Exercises</a></div>
+  <div><a href="https://youtu.be/OeXWAKwbzXg" target="_blank">In-Class Exercises Video Solutions</a></div>
+</div>
 
-3) Create a variable called `price` and assign it the value 4.25. Then create another variable called `quantity` with the value 6. Create a third variable `total` that multiplies `price` by `quantity`. What is the value of `total`?
+<div class="chapter-resources-footer lab-row">
+  <a href="Assignments/Data-200-L3-Lab.pdf" target="_blank">Lab Problems</a>
+</div>
 
-4) After creating the variable `total` in the previous problem, use the `rm()` function to remove `total` from your environment. What happens if you try to display `total` after removing it?
+<div class="chapter-resources-footer problem-set-row">
+  <a href="Assignments/Data-200-L3-Problem-Set.pdf" target="_blank">Problem Set Questions</a>
+</div>
+
 :::
+
+<!-- ::: practice-it -->
+<!-- <br> -->
+
+<!-- 1)  What is the purpose of parentheses in R calculations? Give an example where parentheses change the result of an expression. -->
+
+<!-- 2)  Write the following expression in R syntax:\ -->
+<!--     $\left(3 + \frac{12\times 2}{2+1}\right)^2 - 5^2$ -->
+
+<!-- 3)  Create a variable called `price` and assign it the value 4.25. Then create another variable called `quantity` with the value 6. Create a third variable `total` that multiplies `price` by `quantity`. What is the value of `total`? -->
+
+<!-- 4)  After creating the variable `total` in the previous problem, use the `rm()` function to remove `total` from your environment. What happens if you try to display `total` after removing it? -->
+<!-- ::: -->
